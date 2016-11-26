@@ -1,6 +1,6 @@
-# Ember-radical
+# Ember Radical
 
-This README outlines the details of collaborating on this Ember addon.
+A set of lightweight, simple and fully accessible Ember DDAU components.
 
 ## Installation
 
