@@ -3,11 +3,13 @@
 // ========================================================
 
 // Setup
-@import 'skeleton-theme/variables';
-@import 'skeleton-theme/mixins';
+@import 'skeleton-theme/utils/variables';
+@import 'skeleton-theme/utils/functions';
+@import 'skeleton-theme/utils/mixins';
 
 // Reset baseline
 @import 'skeleton-theme/normalize';
 @import 'skeleton-theme/reboot';
 
 // Setup baseline
+@import 'skeleton-theme/grid';
