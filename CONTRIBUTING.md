@@ -4,10 +4,33 @@ Contributions are welcome, below is an overview of roadmap items and repository 
 
 Note that all components declare their templates inline using the [ember-cli-htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) package. You can enable syntax highlighting for the templates by using the [ember-language](https://atom.io/packages/language-ember) Atom package.
 
+## Installation
+
+* `git clone <repository-url>` this repository
+* `cd ember-radical`
+* `npm install`
+* `bower install`
+
+## Running
+
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
+
+## Running Tests
+
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
+* `ember test`
+* `ember test --server`
+
+## Building
+
+* `ember build`
+
+For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+
 ### Roadmap
 
-- [] Base styles/variables created
-- [] ember-component-css for pod styles for components?
+- [] Base styles/variables created (Skeleton theme for Bootstrap)
 - [] Feature flag system for build code stripping
 - [] Documentation page for accessibility guidelines and tools
 
@@ -22,3 +45,5 @@ Note that all components declare their templates inline using the [ember-cli-htm
 - Simple Google Analytics tagging should be included and wrapped behind feature flag
 - Additional accessibility validations created for dev builds
 - Hooks included for `onShow` and `onHide`
+- Component classNames used for styling should match Bootstrap conventions
+- Styles should be broken out into structure/theme for easy theming
