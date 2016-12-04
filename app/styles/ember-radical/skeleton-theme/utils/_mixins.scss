@@ -2,8 +2,27 @@
 // Bootstrap Mixins
 // ========================================================
 
+// Global
+// ---------------------------------------------------------------------------
+
+@mixin border-radius($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+@mixin transition($transition...) {
+  transition: $transition;
+}
+
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
 // Hover
 // ---------------------------------------------------------------------------
+
+@mixin hover {
+  &:hover { @content }
+}
 
 @mixin hover-focus {
   &:focus,
@@ -173,6 +192,70 @@
           }
         }
       }
+    }
+  }
+}
+
+// Buttons
+// ---------------------------------------------------------------------------
+
+@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  @include border-radius($border-radius);
+}
+
+@mixin button-variant($color, $background, $border) {
+  $active-background: darken($background, 10%);
+  $active-border: darken($border, 12%);
+
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  @include hover {
+    color: $color;
+    background-color: $active-background;
+        border-color: $active-border;
+  }
+
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: $active-background;
+        border-color: $active-border;
+  }
+
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: $active-background;
+        border-color: $active-border;
+    // Remove the gradient for the pressed/active state
+    background-image: none;
+    @include box-shadow($btn-active-box-shadow);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      background-color: darken($background, 17%);
+          border-color: darken($border, 25%);
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    &:focus,
+    &.focus {
+      background-color: $background;
+          border-color: $border;
+    }
+    @include hover {
+      background-color: $background;
+          border-color: $border;
     }
   }
 }

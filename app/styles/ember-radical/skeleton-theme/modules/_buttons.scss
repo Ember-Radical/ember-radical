@@ -1,0 +1,138 @@
+// ========================================================
+// Buttons - Skeleton in Bootstrap
+// ========================================================
+
+.btn {
+  display: inline-block;
+  font-family: $font-family-base;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $input-btn-border-width solid $border-color;
+  background-color: transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+  @include transition(all .2s ease-in-out);
+
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      @include tab-focus();
+    }
+  }
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+  &.focus {
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    outline: 0;
+    @include box-shadow($btn-active-box-shadow);
+  }
+
+  &.disabled,
+  &:disabled {
+    cursor: $cursor-disabled;
+    opacity: .65;
+    @include box-shadow(none);
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+
+// Branded Buttons
+// ---------------------------------------------------------------------------
+.btn-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+.btn-secondary {
+  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+.btn-info {
+  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+.btn-success {
+  @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+.btn-warning {
+  @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+.btn-danger {
+  @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+}
+
+
+// Link Buttons - Make a button look and behave like a link
+// ---------------------------------------------------------------------------
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+
+  &,
+  &:active,
+  &.active,
+  &:disabled {
+    background-color: transparent;
+    @include box-shadow(none);
+  }
+  &,
+  &:focus,
+  &:active {
+    border-color: transparent;
+  }
+  @include hover {
+    border-color: transparent;
+  }
+  @include hover-focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: transparent;
+  }
+  &:disabled {
+    @include hover-focus {
+      color: $btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+}
+
+
+// Block Button
+// ---------------------------------------------------------------------------
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: $btn-block-spacing-y;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
