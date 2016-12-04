@@ -15,6 +15,7 @@ $ten4rem: 10 / strip-units(15px); // Conversion unit for skeleton base 10 rems
 
 $border-width: 1px;
 $border-radius: 0.25rem;
+$border-radius-sm: 0.2rem;
 
 // Colors
 // ---------------------------------------------------------------------------
@@ -69,9 +70,11 @@ $grid-breakpoints: (
 
 // Typography
 // ---------------------------------------------------------------------------
-$font-family-base: -apple-system, BlinkMacSystemFont, "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+$font-family-base: -apple-system, BlinkMacSystemFont, "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-size-base: 1rem;
 $font-weight-normal: normal;
+$font-weight-bold: bold;
 $font-weight-base: $font-weight-normal;
 $line-height-base: 1.5;
 $body-color: $gray-dark;
@@ -132,6 +135,20 @@ $btn-link-disabled-color: $gray-light;
 
 $btn-block-spacing-y: 0.5rem;
 $btn-toolbar-margin:  0.5rem;
+
+// Code
+// ---------------------------------------------------------------------------
+$code-padding-y: 0.2rem;
+$code-padding-x: 0.4rem;
+$code-font-size: 90%;
+$code-color: #c7254e;
+$code-bg: #f9f2f4;
+$code-border: #eee;
+$kbd-color: #fff;
+$kbd-bg: #333;
+$kbd-box-shadow: inset 0 -.1rem 0 rgba(0,0,0,.25);
+$pre-color: $body-color;
+$pre-scrollable-max-height: 340px;
 
 
 // Tables
