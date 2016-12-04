@@ -34,6 +34,10 @@ a {
   margin-bottom: 1rem;
   font-size: 18px;
   border-left: 4px solid $border-color;
+
+  p:last-of-type {
+    margin-bottom: 0; // Cut out margin for last item b/c it's too much and janks up the blockquote
+  }
 }
 
 .blockquote-footer {

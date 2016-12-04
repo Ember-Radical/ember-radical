@@ -47,3 +47,7 @@ For more information on using ember-cli, visit [http://ember-cli.com/](http://em
 - Hooks included for `onShow` and `onHide`
 - Component classNames used for styling should match Bootstrap conventions
 - Styles should be broken out into structure/theme for easy theming
+
+### TODO Tasks
+
+- [] Convert Skeleton rems using `$ten4rem` to normal base 15 rems.

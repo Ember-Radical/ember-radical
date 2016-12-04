@@ -29,11 +29,20 @@
 @import 'skeleton-theme/normalize';
 @import 'skeleton-theme/reboot';
 
-// Modules
+/*
+ * Note on style modules:
+ * The following modules still need cleanup work on matching Bootstrap standards:
+ * - forms
+ * - tables
+ * - lists
+ * For now b/c we don't have any components, and because they style elements
+ * directly instead of using classes, they are 'ok'
+ */
 @import 'skeleton-theme/modules/grid';
 @import 'skeleton-theme/modules/type';
 @import 'skeleton-theme/modules/buttons';
 @import 'skeleton-theme/modules/code';
 @import 'skeleton-theme/modules/lists';
 @import 'skeleton-theme/modules/tables';
+@import 'skeleton-theme/modules/forms';
 @import 'skeleton-theme/modules/utility';
