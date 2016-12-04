@@ -11,8 +11,8 @@ h4 { font-size: $font-size-h4; line-height: 1.35; letter-spacing: -.08rem; }
 h5 { font-size: $font-size-h5; line-height: 1.5;  letter-spacing: -.05rem; }
 h6 { font-size: $font-size-h6; line-height: 1.6;  letter-spacing: 0; }
 
-/* Links
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Links
+// ---------------------------------------------------------------------------
 a {
   color: $link-color;
   text-decoration: $link-decoration;
@@ -25,4 +25,40 @@ a {
   &:focus {
     @include tab-focus();
   }
+}
+
+// Blockquote
+// ---------------------------------------------------------------------------
+.blockquote {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  border-left: 4px solid $border-color;
+}
+
+.blockquote-footer {
+  display: block;
+  font-size: 80%; // back to default font-size
+  color: $text-muted;
+
+  &::before {
+    content: "\2014 \00A0"; // em dash, nbsp
+  }
+}
+
+// Misc
+// ---------------------------------------------------------------------------
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+small,
+.small {
+  font-size: 80%;
+  font-weight: normal;
+  color: $gray;
 }

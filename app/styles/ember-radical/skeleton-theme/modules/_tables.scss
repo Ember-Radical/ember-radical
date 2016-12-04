@@ -1,0 +1,20 @@
+// ========================================================
+// Tables - Skeleton in Bootstrap
+// ========================================================
+
+th,
+td {
+  padding: $ten4rem * 1.2rem $ten4rem * 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid $td-border-color;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}

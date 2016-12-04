@@ -17,6 +17,14 @@
   box-shadow: $shadow;
 }
 
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
 // Hover
 // ---------------------------------------------------------------------------
 

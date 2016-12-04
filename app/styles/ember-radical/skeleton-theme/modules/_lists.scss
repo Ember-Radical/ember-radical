@@ -1,0 +1,28 @@
+// ========================================================
+// Lists - Skeleton in Bootstrap
+// ========================================================
+
+ul {
+  list-style: circle inside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ol, ul {
+  padding-left: 0;
+  margin-top: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: $ten4rem * 1.5rem 0 $ten4rem * 1.5rem $ten4rem * 3rem;
+  font-size: 90%;
+}
+
+li {
+  margin-bottom: $ten4rem * 1rem;
+}
