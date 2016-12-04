@@ -1,24 +1,14 @@
 // ========================================================
-// Theme Mixins (Bootstrap Mixins Mostly)
+// Bootstrap Mixins
 // ========================================================
 
 // Hover
 // ---------------------------------------------------------------------------
 
-@mixin hover {
-  &:hover { @content }
-}
-
 @mixin hover-focus {
-  @if $enable-hover-media-query {
-    &:focus { @content }
-    @include hover { @content }
-  }
-  @else {
-    &:focus,
-    &:hover {
-      @content
-    }
+  &:focus,
+  &:hover {
+    @content
   }
 }
 
@@ -138,10 +128,6 @@
 
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
-
-    .test {
-      color: #{$infix};
-    }
 
     // Allow columns to stretch full width below their breakpoints
     @for $i from 1 through $columns {

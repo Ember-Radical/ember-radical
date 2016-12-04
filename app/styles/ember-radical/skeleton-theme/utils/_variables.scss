@@ -2,31 +2,48 @@
 // Theme Variables
 // ========================================================
 
+// Units
+// ---------------------------------------------------------------------------
+/*
+ * Note that skeleton rems are all based on a 10px rem root. Bootstrap uses a 16
+ * (15px) for this theme actual font size for the rem root. The $ten4rem
+ * variable is used to convert the base 10 skeleton rems to base 15 bootstrap
+ * compatible ones.
+ */
+$font-size-root: 15px; // Font size drives rem values for theme
+$ten4rem: 10 / strip-units(15px); // Conversion unit for skeleton base 10 rems
+
 // Colors
 // ---------------------------------------------------------------------------
-$gray-dark:                 #292b2c;
-$gray:                      #464a4c;
-$gray-light:                #636c72;
-$gray-lighter:              #eceeef;
-$gray-lightest:             #f7f7f9;
+$gray-dark:     #292b2c;
+$gray:          #464a4c;
+$gray-light:    #636c72;
+$gray-lighter:  #eceeef;
+$gray-lightest: #f7f7f9;
 
-$brand-primary:             #0275d8;
-$brand-success:             #5cb85c;
-$brand-info:                #5bc0de;
-$brand-warning:             #f0ad4e;
-$brand-danger:              #d9534f;
-$brand-inverse:             $gray-dark;
+$brand-primary: #0275d8;
+$brand-success: #5cb85c;
+$brand-info:    #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger:  #d9534f;
+$brand-inverse: $gray-dark;
 
 // Typography
 // ---------------------------------------------------------------------------
-$font-size-root: 16px;
-$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-base: -apple-system, BlinkMacSystemFont, "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;;
 $font-size-base: 1rem;
 $font-weight-base: normal;
 $line-height-base: 1.5;
 $body-color: $gray-dark;
 $body-bg: #fff;
 $text-muted: $gray-light;
+
+$font-size-h1: $ten4rem * 5.0rem;
+$font-size-h2: $ten4rem * 4.2rem;
+$font-size-h3: $ten4rem * 3.6rem;
+$font-size-h4: $ten4rem * 3.0rem;
+$font-size-h5: $ten4rem * 2.4rem;
+$font-size-h6: $ten4rem * 1.5rem;
 
 $link-color: $brand-primary;
 $link-decoration: none;
@@ -52,10 +69,11 @@ $container-max-widths: (
   xl: 1140px
 );
 
-// Grid breakpoints
-//
-// Define the minimum dimensions at which your layout will change,
-// adapting to different screen sizes, for use in media queries.
+/* Grid breakpoints
+ *
+ * Define the minimum dimensions at which your layout will change,
+ * adapting to different screen sizes, for use in media queries.
+ */
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
