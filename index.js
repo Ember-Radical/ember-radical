@@ -95,7 +95,7 @@ module.exports = {
     };
 
     // Merge UglifyJS options into parent app configuration
-    if (addonConfig.stripCode) {
+    if (addonConfig.stripCode && appConfig.environment === 'production') {
       app.options.minifyJS = Object.assign(app.options.minifyJS, minifyJSOptions);
 
       // If you want to remove unreachable code, uglify must be enabled

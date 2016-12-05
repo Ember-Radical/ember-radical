@@ -50,4 +50,5 @@ For more information on using ember-cli, visit [http://ember-cli.com/](http://em
 
 ### TODO Tasks
 
+- [] Tagging setup utility and service
 - [] Convert Skeleton rems using `$ten4rem` to normal base 15 rems.
