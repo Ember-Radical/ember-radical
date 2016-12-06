@@ -2,22 +2,40 @@
 // Utility Classes
 // ========================================================
 
-.w-100 {
-  width: 100%;
+// Spacing
+// ---------------------------------------------------------------------------
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+// Positioning
+// ---------------------------------------------------------------------------
+
+.clearfix { @include clearfix(); }
+.float-left { float: left; }
+.float-right { float: right; }
+
+// Show/Hide Classes
+// -----------------------------------------------------------------------------
+
+span[aria-hidden="true"],
+div[aria-hidden="true"],
+li[aria-hidden="true"] {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+span[aria-hidden="false"],
+div[aria-hidden="false"],
+li[aria-hidden="false"] {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
 }
 
-.h-100 {
-  height: 100%;
-}
+// Misc
+// -----------------------------------------------------------------------------
 
-.clearfix {
-  @include clearfix();
-}
-
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
+.pointer {
+  cursor: pointer;
 }

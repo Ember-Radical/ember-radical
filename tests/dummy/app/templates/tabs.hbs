@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="xs-8">
+    <h1>Tabs</h1>
+    {{#core-tabs defaultTab="jetSki" as |components|}}
+      {{#components.content name="Jet Skri" id="jetSki"}}
+        <p>I was gonna invent a jet skri but then I realized I already own like twenty of them so why bother.</p>
+      {{/components.content}}
+      {{#components.content name="Prizza Oven" id="pizzaOven"}}
+        <p>I have my own prizza oven! I can make my own pizzas all the time, and I can put on as many toppings as I want.</p>
+      {{/components.content}}
+    {{/core-tabs}}
+  </div>
+
+  <div class="xs-12">
+    <hr class="divider" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="xs-8">
+    <h5><code>buttonStyle</code></h5>
+    {{#core-tabs defaultTab="dumpsterShrimp" buttonStyle=true as |components|}}
+      {{#components.content name="Shrimp" id="dumpsterShrimp"}}
+        <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
+      {{/components.content}}
+      {{#components.content name="Capn Jack" id="capnJack"}}
+        <p>This here is salty sea captain name of Jack Springo</p>
+      {{/components.content}}
+      {{#components.content name="Fresh Water" id="looksClean"}}
+        <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
+      {{/components.content}}
+    {{/core-tabs}}
+  </div>
+
+  <div class="xs-12">
+    <hr class="divider" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="xs-8">
+    <h5><code>hideTab</code></h5>
+    {{#core-button click=(action "toggleTabVisible")}}
+      Show/hide the "Baz" tab
+    {{/core-button}}
+
+    {{#core-tabs defaultTab="foo" as |components|}}
+      {{#components.content name="Quux" id="quux"}}
+        <p>This is the Quux tab.</p>
+      {{/components.content}}
+      {{#components.content name="Baz" id="baz" hidden=tabHidden}}
+        <p>I am the sometimes hidden Baz tab.</p>
+      {{/components.content}}
+    {{/core-tabs}}
+  </div>
+
+  <div class="xs">
+    <hr class="divider" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="xs-8">
+    <h5><code>DYNAMIC ADDITIONS</code></h5>
+    {{#core-button click=(action "addTab")}}
+      Add a tab
+    {{/core-button}}
+
+    {{#core-tabs defaultTab="bar" as |components|}}
+      {{#each tabs as |tab|}}
+        {{#components.content name=tab.name id=tab.id}}
+          <p>{{tab.content}}</p>
+        {{/components.content}}
+      {{/each}}
+    {{/core-tabs}}
+  </div>
+</div>
