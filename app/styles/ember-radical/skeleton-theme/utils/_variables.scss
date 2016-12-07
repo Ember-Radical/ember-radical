@@ -11,6 +11,7 @@
  * compatible ones.
  */
 $font-size-root: 15px; // Font size drives rem values for theme
+$rem-root: strip-units($font-size-root);
 $ten4rem: 10 / strip-units(15px); // Conversion unit for skeleton base 10 rems
 
 $border-width: 1px;

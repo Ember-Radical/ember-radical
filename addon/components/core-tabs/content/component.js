@@ -125,6 +125,7 @@ export default Component.extend({
    */
   init() {
     this._super(...arguments);
+    // @TODO: This is not being set, apparently matches html id
     this.set('elementId', `${this.get('id')}-tabpanel`);
 
     this.registerTab(this.getProperties(

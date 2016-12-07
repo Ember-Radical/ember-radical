@@ -30,7 +30,7 @@
  *    20 * rem-root * 1rem = 1.333rem
  */
 @function rem-calc($value, $rem: $rem-root) {
-  @return $value / $rem * 1rem;
+  @return strip-units($value) / $rem * 1rem;
 }
 
 /* Returns a value with the units stripped

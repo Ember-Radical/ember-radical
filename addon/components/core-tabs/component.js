@@ -45,10 +45,14 @@ const { $ } = Ember;
  *
  * Configuration | Type | Default | Description
  * --- | --- | ---
- * `buttonStyle` | boolean | false | Set to true for button style tab buttons (adds class `button-tabs`)
+ * `buttonStyle` | boolean | true | Set to false for tab buttons without primary background-color
  * `defaultTab` | string | null | Tab to render shown by default
  * `scrollOnClick` | boolean | false | Set to true to scroll page to top on tab click
  * `scrollTarget` | jQuery selector | 'body, html' | Specify scroll animation target
+ *
+ * ### Feature Notes:
+ * - The tab list is a flexbox container with flex-grow 1 for each tab. This auto
+ *   magically grows the tabs to fill the entire width of tab container.
  *
  * @class CoreTabs
  * @constructor
@@ -88,12 +92,12 @@ export default Component.extend({
    */
   scrollTarget: 'body, html',
   /**
-   * Whether to use the alternate "button group" style for displaying the tabs.
+   * Pass false to use tab style without primary color tabs.
    * @property buttonStyle
    * @type {Boolean}
-   * @default false
+   * @default true
    */
-  buttonStyle: false,
+  buttonStyle: true,
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -227,14 +231,15 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{! A list of buttons that are all automagically added to the tabList based on the number of core-tabs.content components are nested inside the component. }}
-    <ul class=" {{if buttonStyle 'button-tabs'}}" role="tablist" data-test="tab-list">
-      {{#each tabList as |tab index|}}
-        <li class="{{if (eq tab.id _activeId) 'active'}}" aria-hidden="{{if tab.hidden true false}}">
+    <ul class="tab-list{{if buttonStyle ' button-style'}}" role="tablist" data-test="tab-list">
+      {{#each tabList as |tab|}}
+        <li class="tab-li"
+          aria-hidden="{{if tab.hidden true false}}">
           {{#core-button
             ariaRole="tab"
             aria-controls=tab.elementId
-            class=(concat 'tab' (if buttonStyle ' button-tab'))
-            link=(unless buttonStyle true)
+            class=(concat 'tab' (if (eq tab.id _activeId) ' active'))
+            link=true
             click=(action 'showTab' tab.id)
             data-test=tab.dataTest
             tagcategory=tab.tagcategory

@@ -1,0 +1,53 @@
+// ========================================================
+// Tabs Theme Styles
+// ========================================================
+
+.core-tabs {
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: rem-calc(50px);
+
+  .tab-list {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .tab-li {
+    margin-bottom: 0;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: center;
+    padding-top: rem-calc(15px);
+    padding-bottom: rem-calc(15px);
+    border-bottom: 1px solid $border-color;
+
+    &.active {
+      border: 1px solid $border-color;
+      border-bottom: 1px solid transparent;
+    }
+
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .content-container {
+    padding: $ten4rem * 2rem;
+  }
+
+  // Button Style
+  // ---------------------------------------------------------------------------
+  .button-style {
+    .tab-li {
+      background-color: #fff;
+      border-bottom: 4px solid #0e687a;
+    }
+
+    .tab.active {
+      background-color: #0e687a;
+      color : #fff;
+    }
+  }
+}

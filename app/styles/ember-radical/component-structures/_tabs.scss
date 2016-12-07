@@ -1,0 +1,14 @@
+// ========================================================
+// Tabs Structural Styles
+// ========================================================
+
+.core-tabs {
+  .tab-list {
+    display: flex;
+
+    .tab-li {
+      flex-basis: auto;
+      flex-grow: 1;
+    }
+  }
+}
