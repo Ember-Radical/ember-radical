@@ -15,10 +15,10 @@ const { $ } = Ember;
  *
  * ```handlebars
  * {{#core-tabs as |components|}}
- *   {{#components.content name="Delgrango's"}}
+ *   {{#components.content label="Delgrango's"}}
  *     This is my favorite resaurant at the marinara, name of Delgrango's
  *   {{/components.content}}
- *   {{#components.content name="Fresh Water"}}
+ *   {{#components.content label="Fresh Water"}}
  *     Boy I sure did work up a thirst after eating all them shramps. Time to
  *     wash it down with a cool glass of marina water.
  *   {{/components.content}}
@@ -34,11 +34,11 @@ const { $ } = Ember;
  * match one of content components' HTML id property:
  *
  * ```handlebars
- * {{#core-tabs defaultTab="dumpsterShrimp" as |components|}}
- *   {{#components.content name="Shrimp" elementId="dumpsterShrimp"}}
+ * {{#core-tabs defaultTab="shrimpers" as |components|}}
+ *   {{#components.content label="Shrimp" elementId="shrimpers"}}
  *     BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.
  *   {{/components.content}}
- *   {{#components.content name="Delgrango's" elementId="delGrangos"}}
+ *   {{#components.content label="Delgrango's"}}
  *     This is my favorite resaurant at the marinara, name of Delgrango's
  *   {{/components.content}}
  * {{/core-tabs}}
@@ -133,7 +133,7 @@ export default Component.extend({
   /**
    * List of tabs to display. This is iterated through in the template to
    * rendered the buttons that are used to change tabs.
-   * @property tabNameList
+   * @property tabList
    * @type {Array.<Object>}
    * @default null
    */
@@ -252,7 +252,7 @@ export default Component.extend({
             tagcategory=tab.tagcategory
             tagaction=tab.tagaction
             taglabel=tab.taglabel}}
-            {{tab.name}}
+            {{tab.label}}
           {{/core-button}}
         </li>
       {{/each}}

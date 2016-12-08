@@ -12,7 +12,7 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * ```handlebars
  * {{#core-tabs defaultTab="dumpsterShrimp" as |components|}}
- *   {{#components.content name="Shrimp" elementId="dumpsterShrimp" tabDataTest="a-nifty-tab-button"}}
+ *   {{#components.content label="Shrimp" elementId="dumpsterShrimp" tabDataTest="a-nifty-tab-button"}}
  *     BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.
  *   {{/components.content}}
  * {{/core-tabs}}
@@ -20,7 +20,7 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * Configuration | Type | Default | Description
  * --- | --- | ---
- * `name` | string | null | Text of the tab button for this panel
+ * `label` | string | null | Text label of the tab button for this panel
  * `elementId` | string | null | Set a specific id for this component when using container `defaultTab`
  * `tabDataTest` | string | null | `data-test` for the tab button
  *
@@ -94,14 +94,14 @@ export default Component.extend({
     }
   }),
   /**
-   * The name of the tab. This will be passed up via a closure action to the
-   * containing component and used as the label for the tab.
+   * The button label text of this tab. This will be passed up via a closure
+   * action to the containing `core-tabs` component.
    *
-   * @property name
+   * @property label
    * @type {String}
    * @default ''
    */
-  name: '',
+  label: '',
   /**
    * Use this attribute to place a custom data-test attribute on the tab button
    * for this tab. This will allow easier, specific/direct targeting of clicking
@@ -125,7 +125,7 @@ export default Component.extend({
 
     this.registerTab(this.getProperties(
       'elementId',
-      'name',
+      'label',
       'hidden',
       'tabDataTest',
       'tagcategory',

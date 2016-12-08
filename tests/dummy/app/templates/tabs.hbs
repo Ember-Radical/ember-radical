@@ -2,13 +2,13 @@
   <div class="col-xs-8">
     <h1>Tabs</h1>
     {{#core-tabs defaultTab='tab-c' as |components|}}
-      {{#components.content name='Tab A' tabDataTest='tab-a'}}
+      {{#components.content label='Tab A' tabDataTest='tab-a'}}
         <p>Tab A Content</p>
       {{/components.content}}
-      {{#components.content name='Tab B' tabDataTest='tab-b'}}
+      {{#components.content label='Tab B' tabDataTest='tab-b'}}
         <p>Tab B Content</p>
       {{/components.content}}
-      {{#components.content name='Tab C' elementId='tab-c' tabDataTest='tab-c'}}
+      {{#components.content label='Tab C' elementId='tab-c' tabDataTest='tab-c'}}
         <p>Tab C Content</p>
       {{/components.content}}
     {{/core-tabs}}
@@ -23,13 +23,13 @@
   <div class="col-xs-8">
     <h5><code>buttonStyle=false</code></h5>
     {{#core-tabs defaultTab='dumpsterShrimp' buttonStyle=false as |components|}}
-      {{#components.content name='Shrimp' elementId='dumpsterShrimp'}}
+      {{#components.content label='Shrimp' elementId='dumpsterShrimp'}}
         <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
       {{/components.content}}
-      {{#components.content name='Capn Jack'}}
+      {{#components.content label='Capn Jack'}}
         <p>This here is salty sea captain name of Jack Springo</p>
       {{/components.content}}
-      {{#components.content name='Fresh Water'}}
+      {{#components.content label='Fresh Water'}}
         <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
       {{/components.content}}
     {{/core-tabs}}
@@ -44,13 +44,13 @@
   <div class="col-xs-8">
     <h5><code>scrollOnClick</code></h5>
     {{#core-tabs defaultTab='scrimp' scrollOnClick=true as |components|}}
-      {{#components.content name='Shrimp' elementId='scrimp'}}
+      {{#components.content label='Shrimp' elementId='scrimp'}}
         <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
       {{/components.content}}
-      {{#components.content name='Capn Jack'}}
+      {{#components.content label='Capn Jack'}}
         <p>This here is salty sea captain name of Jack Springo</p>
       {{/components.content}}
-      {{#components.content name='Fresh Water'}}
+      {{#components.content label='Fresh Water'}}
         <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
       {{/components.content}}
     {{/core-tabs}}
@@ -69,10 +69,10 @@
     {{/core-button}}
 
     {{#core-tabs defaultTab='baz' as |components|}}
-      {{#components.content name='Quux'}}
+      {{#components.content label='Quux'}}
         <p>This is the Quux tab.</p>
       {{/components.content}}
-      {{#components.content name='Baz' elementId='baz' hidden=tabHidden}}
+      {{#components.content label='Baz' elementId='baz' hidden=tabHidden}}
         <p>I am the sometimes hidden Baz tab.</p>
       {{/components.content}}
     {{/core-tabs}}
@@ -92,7 +92,7 @@
 
     {{#core-tabs defaultTab='bar' as |components|}}
       {{#each tabs as |tab|}}
-        {{#components.content name=tab.name elementId=tab.elementId}}
+        {{#components.content label=tab.label elementId=tab.elementId}}
           <p>{{tab.content}}</p>
         {{/components.content}}
       {{/each}}

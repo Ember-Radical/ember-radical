@@ -5,47 +5,46 @@ moduleForComponent('core-tabs', 'Integration | Component | core tabs', {
   integration: true
 });
 
-// TODO:
-// - test dynamically adding a tab
+// TODO: test dynamically adding a tab
 
 test('it renders', function(assert) {
   this.render(hbs`
     {{#core-tabs as |components|}}
-      {{#components.content name='Jet Skri' id='jetSki' tabDataTest='jet-ski'}}
-        <p>I was gonna invent a jet skri but then I realized I already own like twenty of them so why bother.</p>
+      {{#components.content label='Tab A' tabDataTest='tab-a'}}
+        <p>Tab A Panel</p>
       {{/components.content}}
-      {{#components.content name='Prizza Oven' id='pizzaOven' tabDataTest='pizza-oven'}}
-        <p>I have my own prizza oven! I can make my own pizzas all the time, and I can put on as many toppings as I want.</p>
+      {{#components.content label='Tab B' tabDataTest='tab-b'}}
+        <p>Tab B Panel</p>
       {{/components.content}}
     {{/core-tabs}}
   `);
 
   assert.ok(this.$('.core-tabs').length, 'component binds addon component class');
   assert.ok(this.$('.button-style').length, 'component renders button style tabs by default');
-  assert.notOk(this.$('.active').length, 'component does not render active tab without passed defaultTab');
+  assert.notOk(this.$('.active').length, 'component renders no active tabs by default');
   assert.equal(this.$('[role="tab"]').length, 2, 'component tabs have aria role tab bound');
 
   // Test data-test existence and passage of name
-  assert.ok(this.$('[data-test="jet-ski"]').text().includes('Jet Skri'), 'component renders passed tab name');
-  assert.ok(this.$('[data-test="pizza-oven"]').text().includes('Prizza Oven'), 'component renders passed tab name');
+  assert.ok(this.$('[data-test="tab-a"]').text().includes('Tab A'), 'component renders passed tab name');
+  assert.ok(this.$('[data-test="tab-b"]').text().includes('Tab B'), 'component renders passed tab name');
 
   // Test aria-controls bound to id
-  const jetSkiControls = this.$('[data-test="jet-ski"]').attr('aria-controls');
-  const pizzaOvenControls = this.$('[data-test="pizza-oven"]').attr('aria-controls');
-  assert.ok(jetSkiControls, 'component tabs have aria-controls value');
-  assert.ok(pizzaOvenControls, 'component tabs have aria-controls value');
-  assert.equal(this.$(`#${jetSkiControls}`).length, 1, 'component aria-controls matches one id in DOM');
-  assert.equal(this.$(`#${pizzaOvenControls}`).length, 1, 'component aria-controls matches one id in DOM');
+  const tabAControls = this.$('[data-test="tab-a"]').attr('aria-controls');
+  const tabBControls = this.$('[data-test="tab-b"]').attr('aria-controls');
+  assert.ok(tabAControls, 'component tabs have aria-controls value');
+  assert.ok(tabBControls, 'component tabs have aria-controls value');
+  assert.equal(this.$(`#${tabAControls}`).length, 1, 'component aria-controls matches one id in DOM');
+  assert.equal(this.$(`#${tabBControls}`).length, 1, 'component aria-controls matches one id in DOM');
 });
 
 test('it yields content subcomponents', function(assert) {
   this.render(hbs`
     {{#core-tabs as |components|}}
-      {{#components.content name='Jet Skri' id='jetSki' tabDataTest='jet-ski'}}
-        <p>I was gonna invent a jet skri but then I realized I already own like twenty of them so why bother.</p>
+      {{#components.content label='Tab C' tabDataTest='tab-c'}}
+        <p>Tab C Content</p>
       {{/components.content}}
-      {{#components.content name='Prizza Oven' id='pizzaOven' tabDataTest='pizza-oven'}}
-        <p>I have my own prizza oven! I can make my own pizzas all the time, and I can put on as many toppings as I want.</p>
+      {{#components.content label='Tab D' tabDataTest='tab-d'}}
+        <p>Tab D Content</p>
       {{/components.content}}
     {{/core-tabs}}
   `);
@@ -62,51 +61,61 @@ test('it yields content subcomponents', function(assert) {
 
 test('it uses property defaultTab to show a tab by default', function(assert) {
   this.render(hbs`
-    {{#core-tabs defaultTab='jetSki' as |components|}}
-      {{#components.content name='Jet Skri' id='jetSki' tabDataTest='jet-ski'}}
-        <p>I was gonna invent a jet skri but then I realized I already own like twenty of them so why bother.</p>
+    {{#core-tabs defaultTab='tab-e' as |components|}}
+      {{#components.content label='Tab E' elementId='tab-e' data-test='tab-e-panel' tabDataTest='tab-e'}}
+        <p>Tab E Content</p>
       {{/components.content}}
-      {{#components.content name='Prizza Oven' id='pizzaOven' tabDataTest='pizza-oven'}}
-        <p>I have my own prizza oven! I can make my own pizzas all the time, and I can put on as many toppings as I want.</p>
+      {{#components.content label='Tab F' data-test='tab-f-panel' tabDataTest='tab-f'}}
+        <p>Tab F Content</p>
       {{/components.content}}
     {{/core-tabs}}
   `);
 
-  assert.equal(this.$('#jetSki').attr('aria-hidden'), 'false', 'default tab is shown on render');
-  assert.equal(this.$('#pizzaOven').attr('aria-hidden'), 'true', 'ONLY default tab is shown on render');
+  assert.equal(this.$('[data-test="tab-e-panel"]').attr('aria-hidden'), 'false',
+    'defaultTab tab panel is shown on render');
+  assert.equal(this.$('[data-test="tab-f-panel"]').attr('aria-hidden'), 'true',
+    'ONLY defaulTab tab panel is shown on render');
 });
 
 test('it hides tab label when hidden is specified', function(assert) {
   this.set('tabHidden', true);
 
   this.render(hbs`
-    {{#core-tabs defaultTab='jetSki' as |components|}}
-      {{#components.content name='Jet Skri' id='jetSki' tabDataTest='jet-ski'}}
-        <p>I was gonna invent a jet skri but then I realized I already own like twenty of them so why bother.</p>
+    {{#core-tabs defaultTab='tab-g' as |components|}}
+      {{#components.content label='Tab G' id='tab-g' data-test='tab-g-panel' tabDataTest='tab-g'}}
+        <p>Tab G Content</p>
       {{/components.content}}
-      {{#components.content name='Prizza Oven' id='pizzaOven' hidden=tabHidden tabDataTest='pizza-oven'}}
-        <p>I have my own prizza oven! I can make my own pizzas all the time, and I can put on as many toppings as I want.</p>
+      {{#components.content label='Tab H' hidden=tabHidden data-test='tab-h-panel' tabDataTest='tab-h'}}
+        <p>Tab H Content</p>
       {{/components.content}}
     {{/core-tabs}}
   `);
 
-  // Panels and buttons should only show jet-ski
-  assert.equal(this.$('#jetSki').attr('aria-hidden'), 'false', 'default tab is shown on render');
-  assert.equal(this.$('#pizzaOven').attr('aria-hidden'), 'true', 'ONLY default tab is shown on render');
-  // Pizza Oven tab button should be hidden
-  assert.equal(this.$(this.$('[data-test="jet-ski"]').parent()[0]).attr('aria-hidden'), 'false', 'show default tab button');
-  assert.equal(this.$(this.$('[data-test="pizza-oven"]').parent()[0]).attr('aria-hidden'), 'true', 'pizza tab is hidden');
+  // Tab H tab button should be hidden
+  assert.equal(this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'), 'false',
+    'show default tab button');
+  assert.equal(this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'), 'true',
+    'pizza tab is hidden');
+  // Tab H panel should be hidden
+  assert.equal(this.$('[data-test="tab-g-panel"]').attr('aria-hidden'), 'false',
+    'defaultTab tab panel is shown on render');
+  assert.equal(this.$('[data-test="tab-h-panel"]').attr('aria-hidden'), 'true',
+    'ONLY defaulTab tab panel is shown on render');
 
   // Update hidden prop and retest that tab button is now showing
   // ---------------------------------------------------------------------------
   this.set('tabHidden', false);
 
-  // Panels should only show jet-ski
-  assert.equal(this.$('#jetSki').attr('aria-hidden'), 'false', 'default tab is shown');
-  assert.equal(this.$('#pizzaOven').attr('aria-hidden'), 'true', 'ONLY default tab is shown');
-  // Pizza Oven tab button should be shown
-  assert.equal(this.$(this.$('[data-test="jet-ski"]').parent()[0]).attr('aria-hidden'), 'false', 'show default tab button');
-  assert.equal(this.$(this.$('[data-test="pizza-oven"]').parent()[0]).attr('aria-hidden'), 'false', 'show pizza tab button');
+  // Both tab buttons should be shown
+  assert.equal(this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'), 'false',
+    'show default tab button');
+  assert.equal(this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'), 'false',
+    'show tab h tab button');
+  // Tab H panel should still be hidden
+  assert.equal(this.$('[data-test="tab-g-panel"]').attr('aria-hidden'), 'false',
+    'defaultTab tab panel is shown on render');
+  assert.equal(this.$('[data-test="tab-h-panel"]').attr('aria-hidden'), 'true',
+    'ONLY defaulTab tab panel is shown on render');
 });
 
 test('it shows tabpanels when a tab label is clicked', function(assert) {
@@ -114,13 +123,13 @@ test('it shows tabpanels when a tab label is clicked', function(assert) {
 
   this.render(hbs`
     {{#core-tabs as |components|}}
-      {{#components.content name='Tab A' tabDataTest='tab-a' data-test='panel-a'}}
+      {{#components.content label='Tab A' tabDataTest='tab-a' data-test='panel-a'}}
         <p>Tab A Content</p>
       {{/components.content}}
-      {{#components.content name='Tab B' tabDataTest='tab-b' data-test='panel-b'}}
+      {{#components.content label='Tab B' tabDataTest='tab-b' data-test='panel-b'}}
         <p>Tab B Content</p>
       {{/components.content}}
-      {{#components.content name='Tab C' tabDataTest='tab-c' data-test='panel-c'}}
+      {{#components.content label='Tab C' tabDataTest='tab-c' data-test='panel-c'}}
         <p>Tab C Content</p>
       {{/components.content}}
     {{/core-tabs}}
