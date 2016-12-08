@@ -2,13 +2,13 @@
   <div class="col-xs-8">
     <h1>Tabs</h1>
     {{#core-tabs defaultTab='tab-c' as |components|}}
-      {{#components.content label='Tab A' tabDataTest='tab-a'}}
+      {{#components.content label='Tab A'}}
         <p>Tab A Content</p>
       {{/components.content}}
-      {{#components.content label='Tab B' tabDataTest='tab-b'}}
+      {{#components.content label='Tab B'}}
         <p>Tab B Content</p>
       {{/components.content}}
-      {{#components.content label='Tab C' elementId='tab-c' tabDataTest='tab-c'}}
+      {{#components.content label='Tab C' elementId='tab-c'}}
         <p>Tab C Content</p>
       {{/components.content}}
     {{/core-tabs}}
