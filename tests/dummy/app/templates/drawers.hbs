@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-xs-8">
+    <h1>Drawers</h1>
+    {{#core-drawer as |components|}}
+      {{#components.target}}
+        <hr>
+        <strong>Check out this super rad drawer</strong>
+      {{/components.target}}
+      {{#components.content}}
+        <hr>
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-drawer}}
+  </div>
+
+  <div class="col-xs-12">
+    <hr class="divider" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8">
+    <h5><code>buttonStyle=true</code></h5>
+    {{#core-drawer
+      Target='This Drawer Target is a Button!'
+      buttonStyle=true as |components|}}
+      {{#components.content}}
+        <hr>
+        <img src="http://i.giphy.com/125RIkH7IluIpy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-drawer}}
+  </div>
+
+  <div class="col-xs-12">
+    <hr class="divider" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8">
+    <h5><code>external control</code></h5>
+    <p>
+      {{#core-button
+        click=(action 'expandCollapseAll')
+        classNames='btn-primary'}}
+        {{if exampleGroupExpanded 'Collapse All' 'Expand All'}}
+      {{/core-button}}
+    </p>
+    {{#core-drawer Target='Drawer One' externalToggle=exampleGroupExpanded buttonStyle=true as |components|}}
+      {{#components.content}}
+        <hr>
+        <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+      {{/components.content}}
+    {{/core-drawer}}
+    <hr>
+    {{#core-drawer Target='Drawer Two' externalToggle=exampleGroupExpanded buttonStyle=true as |components|}}
+      {{#components.content}}
+        <hr>
+        <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+      {{/components.content}}
+    {{/core-drawer}}
+    <hr>
+    {{#core-drawer Target='Drawer Three' externalToggle=exampleGroupExpanded buttonStyle=true as |components|}}
+      {{#components.content}}
+        <hr>
+        <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+      {{/components.content}}
+    {{/core-drawer}}
+  </div>
+</div>

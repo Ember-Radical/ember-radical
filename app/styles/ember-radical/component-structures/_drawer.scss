@@ -1,0 +1,23 @@
+// Drawer Rules
+//##############################################################################
+
+.core-drawer {
+  .drawer-target {
+    width: 100%;
+  }
+
+  .drawer-target {
+    &.btn-link {
+      text-align: left;
+    }
+  }
+
+  .drawer-icon {
+    float: right;
+    transition: transform 500ms, margin 500ms;
+
+    &.active {
+      transform: rotate(-0.5turn);
+    }
+  }
+}
