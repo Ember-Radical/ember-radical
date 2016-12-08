@@ -25,8 +25,8 @@ test('it renders', function(assert) {
   assert.equal(this.$('[role="tab"]').length, 2, 'component tabs have aria role tab bound');
 
   // Test data-test existence and passage of name
-  assert.ok(this.$('[data-test="tab-a"]').text().includes('Tab A'), 'component renders passed tab name');
-  assert.ok(this.$('[data-test="tab-b"]').text().includes('Tab B'), 'component renders passed tab name');
+  assert.ok(this.$('[data-test="tab-a"]').text().indexOf('Tab A') !== -1, 'component renders passed tab name');
+  assert.ok(this.$('[data-test="tab-b"]').text().indexOf('Tab B') !== -1, 'component renders passed tab name');
 
   // Test aria-controls bound to id
   const tabAControls = this.$('[data-test="tab-a"]').attr('aria-controls');
