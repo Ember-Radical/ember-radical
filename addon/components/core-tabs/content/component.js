@@ -12,11 +12,17 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * ```handlebars
  * {{#core-tabs defaultTab="dumpsterShrimp" as |components|}}
- *   {{#components.content tabName="Shrimp" tabId="dumpsterShrimp" tabDataTest="a-nifty-tab-button"}}
+ *   {{#components.content name="Shrimp" elementId="dumpsterShrimp" tabDataTest="a-nifty-tab-button"}}
  *     BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.
  *   {{/components.content}}
  * {{/core-tabs}}
  * ```
+ *
+ * Configuration | Type | Default | Description
+ * --- | --- | ---
+ * `name` | string | null | Text of the tab button for this panel
+ * `elementId` | string | null | Set a specific id for this component when using container `defaultTab`
+ * `tabDataTest` | string | null | `data-test` for the tab button
  *
  * @class CoreTabs.Content
  * @constructor
@@ -46,33 +52,6 @@ export default Component.extend({
    * @type {Boolean}
    */
   hidden: false,
-  /**
-   * Use this attribute to place a custom data-test attribute on the tab button
-   * for this instance of tab content. This will allow easier, specific/direct
-   * targeting of clicking this tab in automated testing.
-   *
-   * @property dataTest
-   * @type {string}
-   */
-  dataTest: '',
-  /**
-   * This tab's id, which is used to open it up by the containing component.
-   * NOTE that this is not the tab's html id, which is: `<ID>-tabpanel`
-   *
-   * @property id
-   * @type {String}
-   * @default ''
-   */
-  id: '',
-  /**
-   * The name of the tab. This will be passed up via a closure action to the
-   * containing component and used as the label for the tab.
-   *
-   * @property name
-   * @type {String}
-   * @default ''
-   */
-  name: '',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -108,12 +87,30 @@ export default Component.extend({
    * @returns {string} String of true/false for use with `aria-hidden` binding
    */
   _hidden: computed('_activeId', 'hidden', function() {
-    if (this.get('hidden') || this.get('_activeId') !== this.get('id')) {
+    if (this.get('hidden') || this.get('_activeId') !== this.get('elementId')) {
       return 'true';
     } else {
       return 'false';
     }
   }),
+  /**
+   * The name of the tab. This will be passed up via a closure action to the
+   * containing component and used as the label for the tab.
+   *
+   * @property name
+   * @type {String}
+   * @default ''
+   */
+  name: '',
+  /**
+   * Use this attribute to place a custom data-test attribute on the tab button
+   * for this tab. This will allow easier, specific/direct targeting of clicking
+   * this tab in automated testing.
+   *
+   * @property tabDataTest
+   * @type {string}
+   */
+  tabDataTest: '',
 
   // Hooks
   // ---------------------------------------------------------------------------
@@ -125,15 +122,12 @@ export default Component.extend({
    */
   init() {
     this._super(...arguments);
-    // @TODO: This is not being set, apparently matches html id
-    this.set('elementId', `${this.get('id')}-tabpanel`);
 
     this.registerTab(this.getProperties(
-      'id',
+      'elementId',
       'name',
       'hidden',
-      'dataTest',
-      'elementId',
+      'tabDataTest',
       'tagcategory',
       'tagaction',
       'taglabel')
@@ -152,7 +146,7 @@ export default Component.extend({
     let newHidden = newAttrs.hidden ? newAttrs.hidden.value : null;
 
     if (oldHidden !== newHidden) {
-      this.updateTab(this.getProperties('id', 'hidden'));
+      this.updateTab(this.getProperties('elementId', 'hidden'));
     }
   },
 

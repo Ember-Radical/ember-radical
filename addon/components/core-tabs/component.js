@@ -7,37 +7,38 @@ const { $ } = Ember;
 
 /**
  * A++ Accessible tabs. The `core-tabs` component is the parent container for
- * a given set of tabs. The `core-tabs` component yields a `content` contextual
- * component inside of the `components` hash.
+ * a given set of tabs and handles managing the active state of the tabs and tab
+ * panels. The `core-tabs` component yields a `content` contextual component
+ * inside of the `components` hash.
  *
  * #### Usage
  *
  * ```handlebars
  * {{#core-tabs as |components|}}
- *   {{#components.content name="Delgrango's" id="delGrangos"}}
+ *   {{#components.content name="Delgrango's"}}
  *     This is my favorite resaurant at the marinara, name of Delgrango's
  *   {{/components.content}}
- *   {{#components.content name="Fresh Water" id="water"}}
+ *   {{#components.content name="Fresh Water"}}
  *     Boy I sure did work up a thirst after eating all them shramps. Time to
  *     wash it down with a cool glass of marina water.
  *   {{/components.content}}
  * {{/core-tabs}}
  * ```
  *
- * You can include any number of `components.content` contextual components,
- * however keep in mind that adding too many `content` components may result in
+ * You can include any number of `components.content` contextual components.
+ * _(However keep in mind that adding too many `content` components may result in
  * the tab labels becoming unreadable depending on the space alotted for
- * displaying them.
+ * displaying them.)_
  *
- * You can also specify a default tab by setting the `defaultTab` parameter that
- * matches one of content components' `id` property:
+ * You can also specify a default tab by setting the `defaultTab` parameter to
+ * match one of content components' HTML id property:
  *
  * ```handlebars
  * {{#core-tabs defaultTab="dumpsterShrimp" as |components|}}
- *   {{#components.content name="Shrimp" id="dumpsterShrimp"}}
+ *   {{#components.content name="Shrimp" elementId="dumpsterShrimp"}}
  *     BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.
  *   {{/components.content}}
- *   {{#components.content name="Delgrango's" id="delGrangos"}}
+ *   {{#components.content name="Delgrango's" elementId="delGrangos"}}
  *     This is my favorite resaurant at the marinara, name of Delgrango's
  *   {{/components.content}}
  * {{/core-tabs}}
@@ -49,6 +50,12 @@ const { $ } = Ember;
  * `defaultTab` | string | null | Tab to render shown by default
  * `scrollOnClick` | boolean | false | Set to true to scroll page to top on tab click
  * `scrollTarget` | jQuery selector | 'body, html' | Specify scroll animation target
+ *
+ * ### A++ Accessibility
+ * - Tabs have `aria-controls` set to the `elementId` of the `tabpanel` they show.
+ * - Tabs have `role=tab` for role identification
+ * - Tabs are instances of `core-button` for keyboard access
+ * - Show/hide of tabs and panels are managed through `aria-hidden` attr
  *
  * ### Feature Notes:
  * - The tab list is a flexbox container with flex-grow 1 for each tab. This auto
@@ -64,7 +71,7 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
-   * The optional tab ID of the tab that should be shown by default. This is
+   * The optional elementId of the tab that should be shown by default. This is
    * useful for cases where the user has come into a page and is expecting one
    * of the tabs to be shown by default.
    * @property defaultTab
@@ -103,7 +110,7 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
-   * The ID of the currently opened tab. This determines which tab is active and
+   * The elementId of the currently opened tab. This determines which tab is active and
    * which tab's content to display. If this is empty, no tabs are open.
    * @property _activeId
    * @type {String}
@@ -179,19 +186,19 @@ export default Component.extend({
 
   actions: {
     /**
-     * Action to show a tab. Set `_activeId` to the passed id. `_activeId` is
-     * passed down to children content components
+     * Action to show a tab. Set `_activeId` to the passed elementId. `_activeId`
+     * is passed down to children content components
      * @method showTab
-     * @param {String} id Id of the tab to show
+     * @param {String} elementId HTML id of the tab to show
      */
-    showTab(id) {
+    showTab(elementId) {
       if (this.get('scrollOnClick')) {
         let scrollTarget = this.get('scrollTarget');
         $(scrollTarget).animate({
           scrollTop: $('#' + this.get('elementId')).offset().top - 120
         }, 1000);
       }
-      this.set('_activeId', id);
+      this.set('_activeId', elementId);
     },
     /**
      * Closure action passed to content subcomponents that is called on init.
@@ -213,11 +220,11 @@ export default Component.extend({
      * this is only when a tab's `hidden` status changes.
      * @method updateTab
      * @param {Object}  tab
-     * @param {string}  tab.id     Id of tab to update
-     * @param {boolean} tab.hidden Hidden status of changed tab
+     * @param {string}  tab.elementId HTML id of tab to update
+     * @param {boolean} tab.hidden    Hidden status of changed tab
      */
-    updateTab({ id, hidden }) {
-      const tabToUpdate = this.get('tabList').filter(tab => tab.id === id);
+    updateTab({ elementId, hidden }) {
+      const tabToUpdate = this.get('tabList').filter(tab => tab.elementId === elementId);
 
       if (tabToUpdate.length) {
         // TODO: when updating hidden in the tabList a double render is occuring
@@ -238,10 +245,10 @@ export default Component.extend({
           {{#core-button
             ariaRole="tab"
             aria-controls=tab.elementId
-            class=(concat 'tab' (if (eq tab.id _activeId) ' active'))
+            class=(concat 'tab' (if (eq tab.elementId _activeId) ' active'))
             link=true
-            click=(action 'showTab' tab.id)
-            data-test=tab.dataTest
+            click=(action 'showTab' tab.elementId)
+            data-test=tab.tabDataTest
             tagcategory=tab.tagcategory
             tagaction=tab.tagaction
             taglabel=tab.taglabel}}

@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   tabs: Ember.A([
     {
       name: 'bar',
-      id: 'bar',
+      elmentId: 'bar',
       content: 'The bar tab'
     }
   ]),
@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
     addTab() {
       this.get('tabs').pushObject({
         name: 'foo',
-        id: 'foo',
+        elementId: 'foo',
         content: 'The foo tab added after'
       });
     }
