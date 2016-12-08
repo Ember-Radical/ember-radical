@@ -15,4 +15,4 @@
 /libpeerconnection.log
 npm-debug.log*
 testem.log
-/vendor/feature-flags.js
+vendor/feature-flags.js
