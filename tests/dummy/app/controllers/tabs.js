@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   tabs: Ember.A([
     {
       name: 'bar',
-      elmentId: 'bar',
+      elementId: 'bar',
       content: 'The bar tab'
     }
   ]),
