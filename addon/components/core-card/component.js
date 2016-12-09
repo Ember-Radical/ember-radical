@@ -35,7 +35,7 @@ export default Component.extend({
   /**
    * Computed css class for the brand bound to the component.
    * @property brandClass
-   * @type {Array}
+   * @type {String}
    */
   brandClass: computed(function() {
     return `card-${this.get('brand') ? this.get('brand') : 'default'}`
