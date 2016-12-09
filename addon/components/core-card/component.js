@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
-   * Pass a core brand to use in conjunction with a Title
+   * Pass a brand to use to style the component and it's child components.
    * @property brand
    * @type {string}
    * @default ''
