@@ -1,5 +1,3 @@
-/* jshint node: true */
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
@@ -23,7 +21,8 @@ module.exports = function(environment) {
     },
 
     featureFlags: {
-      RADICAL: true
+      RADICAL: true,
+      TAGGING: false
     }
   };
 

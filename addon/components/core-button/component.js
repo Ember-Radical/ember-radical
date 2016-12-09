@@ -1,5 +1,5 @@
 import Component from 'ember-component';
-// import inject from 'ember-service/inject';
+import inject from 'ember-service/inject';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -18,10 +18,34 @@ import hbs from 'htmlbars-inline-precompile';
  * @constructor
  * @extends Ember.Component
  */
-export default Component.extend({
-  // Services
-  // ---------------------------------------------------------------------------
-  // tagging: inject.service(),
+
+// Feature Assets
+// ---------------------------------------------------------------------------
+let taggingAssets = {};
+
+if (TAGGING) {
+  taggingAssets = {
+    tagging: inject(),
+
+    /**
+     * Internal method that handles firiing a tag with or without custom dimensions.
+     * @method _fireTag
+     * @returns {undefined}
+     */
+    _fireTag() {
+      const { tagcategory, tagaction, taglabel, tagvalue, tagcd } =
+        this.getProperties('tagcategory', 'tagaction', 'taglabel', 'tagvalue', 'tagcd');
+
+      // Fire off that tag, pass along available props
+      this.get('tagging').fireTag({ tagcategory, tagaction, taglabel, tagvalue, tagcd });
+
+      // If we're only tagging once, null out the category to prevent additional fires
+      if (this.get('tagonce')) { this.set('tagcategory', null); }
+    }
+  };
+}
+
+export default Component.extend(taggingAssets, {
 
   // Passed Properties
   // ---------------------------------------------------------------------------
@@ -61,9 +85,9 @@ export default Component.extend({
    *
    * @property taglabel
    * @type {string}
-   * @default undefined
+   * @default null
    */
-  taglabel: undefined,
+  taglabel: null,
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagvalue
@@ -133,13 +157,19 @@ export default Component.extend({
    * @property classNames
    * @type {Array}
    */
-  classNames: ['core-button', 'btn'],
+  classNames: [
+    'core-button',
+    'btn'
+  ],
   /**
    * Handle binding brand and link related css class names
    * @property classNameBindings
    * @type {Array}
    */
-  classNameBindings: ['brandClass', 'link:btn-link'],
+  classNameBindings: [
+    'brandClass',
+    'link:btn-link'
+  ],
   /**
    * Button DOM element
    * @property tagName
@@ -154,42 +184,6 @@ export default Component.extend({
    * @default 'button'
    */
   type: 'button',
-
-  // Methods
-  // ---------------------------------------------------------------------------
-
-  /**
-   * Internal method that handles firiing a tag with or without custom dimensions.
-   * @method _fireTag
-   * @returns {undefined}
-   */
-  // _fireTag() {
-  //   const {
-  //     tagging,
-  //     tagcategory,
-  //     tagaction,
-  //     taglabel,
-  //     tagvalue,
-  //     tagcd } = this.getProperties('tagging', 'tagcategory', 'tagaction', 'taglabel', 'tagvalue', 'tagcd');
-  //
-  //   // @TODO: Move tagging custom dims to `fireTag`
-  //   if (tagcd) { tagging.pushData(tagcd); }
-  //
-  //   // Fire off that tag, pass along available props
-  //   tagging.fireTag(tagcategory, tagaction, taglabel, tagvalue);
-  //
-  //   if (tagcd) {
-  //     // Replace all values in custom dimensions with undefined, reset custom dims
-  //     for (let dim in tagcd) {
-  //       if ( tagcd.hasOwnProperty(dim)) { tagcd[dim] = undefined; }
-  //     }
-  //
-  //     tagging.pushData(tagcd);
-  //   }
-  //
-  //   // If we're only tagging once, null out the category to prevent additional fires
-  //   if (this.get('tagonce')) { this.set('tagcategory', null); }
-  // },
 
   // Events
   // ---------------------------------------------------------------------------
@@ -220,8 +214,10 @@ export default Component.extend({
       this.$().off('blur').css('outline', '');
     });
 
-    // If a tagcategory is present, handle firing a tag
-    // if (this.get('tagcategory')) { this._fireTag(); }
+    if (TAGGING) {
+      // If a tagcategory is present, handle firing a tag
+      if (this.get('tagcategory')) { this._fireTag(); }
+    }
   },
   /**
    * The `mouseEnter` checks for a tagging category and hover flag. If they're
@@ -232,12 +228,14 @@ export default Component.extend({
    * @event mouseEnter
    * @returns {undefined}
    */
-  // mouseEnter() {
-  //   const { taghover, tagcategory } = this.getProperties('taghover', 'tagcategory');
-  //
-  //   // If tagcategory is present and hover is flagged, handle firing a tag
-  //   if (taghover && tagcategory) { this._fireTag(); }
-  // },
+  mouseEnter() {
+    if (TAGGING) {
+      const { taghover, tagcategory } = this.getProperties('taghover', 'tagcategory');
+
+      // If tagcategory is present and hover is flagged, handle firing a tag
+      if (taghover && tagcategory) { this._fireTag(); }
+    }
+  },
 
   // Layout
   // ---------------------------------------------------------------------------

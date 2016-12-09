@@ -20,7 +20,8 @@
   // Allowed Globals
   globals: {
     DEVELOPMENT: true,
-    PRODUCTION: true
+    PRODUCTION: true,
+    TAGGING: true
   },
 
   rules: {
