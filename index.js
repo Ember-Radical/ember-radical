@@ -63,7 +63,8 @@ module.exports = {
     const envFlags = {
       DEVELOPMENT: appConfig.environment === 'development',
       PRODUCTION: appConfig.environment === 'production',
-      TEST: appConfig.environment === 'test'
+      TEST: appConfig.environment === 'test',
+      TAGGING: false
     };
     const featureFlags = Object.assign(envFlags, appConfig.featureFlags || {});
     const vendorPath = this.treePaths.vendor;
