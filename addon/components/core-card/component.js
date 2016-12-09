@@ -9,7 +9,7 @@ import hbs from 'htmlbars-inline-precompile';
  * {{#core-card as |components|}}
  *   {{#components.title}}Card title{{/components.title}}
  *   {{#components.body}}Card body{{/components.body}}
- *   {{#components.footer}}Card body{{/components.footer}}
+ *   {{#components.footer}}Card footer{{/components.footer}}
  * {{/core-card}}
  * ```
  * @class Component.CoreCard
