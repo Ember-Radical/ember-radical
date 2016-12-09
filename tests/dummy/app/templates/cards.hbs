@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-8">
+    <h1>Cards</h1>
+    {{#core-card as |components|}}
+      {{#components.body}}Hey, I'm in a card.{{/components.body}}
+    {{/core-card}}
+
+    <br/>
+
+    {{#core-card as |components|}}
+      {{#components.title}}Card title{{/components.title}}
+      {{#components.body}}Card content{{/components.body}}
+      {{#components.footer}}Card footer{{/components.footer}}
+    {{/core-card}}
+
+    <br/>
+
+    {{#core-card brand="primary" as |components|}}
+      {{#components.title}}Party time{{/components.title}}
+      {{#components.body}}
+        <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+      {{/components.body}}
+    {{/core-card}}
+  </div>
+</div>

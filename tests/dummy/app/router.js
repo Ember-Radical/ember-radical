@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('drawers');
   this.route('tabs');
+  this.route('cards');
 });
 
 export default Router;
