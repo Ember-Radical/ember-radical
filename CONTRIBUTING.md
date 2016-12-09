@@ -52,3 +52,4 @@ For more information on using ember-cli, visit [http://ember-cli.com/](http://em
 
 - [] Tagging setup utility and service
 - [] Convert Skeleton rems using `$ten4rem` to normal base 15 rems.
+- [] Handle funneling out tagging.js when tagging feature flag is off

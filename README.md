@@ -1,4 +1,4 @@
-# Ember Radical
+# Ember Radical [![Build Status](https://travis-ci.org/healthsparq/ember-radical.svg?branch=develop)](https://travis-ci.org/healthsparq/ember-radical)
 
 Feather light, dead simple and fully accessible Ember DDAU components. Ember
 Radical is a set of core components that make writing consistent, quality

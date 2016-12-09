@@ -1,0 +1,11 @@
+hr {
+  border: solid transparent;
+  border-width: 1px 0 0;
+  clear: both;
+  height: 0;
+  margin: 0.9375rem 0 0.875rem;
+
+  &.divider {
+    border-color: $brand-primary;
+  }
+}
