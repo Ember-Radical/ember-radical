@@ -13,7 +13,7 @@ cache:
 env:
   # we recommend testing LTS's and latest stable release (bonus points to beta/canary)
   - EMBER_TRY_SCENARIO=ember-lts-2.4
-  # - EMBER_TRY_SCENARIO=ember-lts-2.8 # commenting out 2.8 lts until this scenario has been fixed and actually exists in the CLI test config
+  - EMBER_TRY_SCENARIO=ember-lts-2.8 # commenting out 2.8 lts until this scenario has been fixed and actually exists in the CLI test config
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
