@@ -49,13 +49,10 @@ export default Service.extend({
    * @return {undefined}
    */
   fireTag(tag = {}) {
-    console.log('tag: ', tag);
     // Tags require a category and action, don't even think about sending without 'em
     if (!tag.tagcategory || !tag.tagaction) { return; }
     let tagcd = tag.tagcd || {};
     let taglabel = tag.taglabel;
-
-    console.log('tagging');
 
     // Ember hash helper creates a fake Object which lacks the Object prototype. fix that.
     if (!(tagcd instanceof Object)) { tagcd = Object.assign({}, tagcd); }
