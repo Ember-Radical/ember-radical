@@ -16,7 +16,7 @@ import hbs from 'htmlbars-inline-precompile';
  * @constructor
  * @extends Ember.Component
  */
-export default Ember.Component.extend({
+export default Component.extend({
 
   // Passed Properties
   // ---------------------------------------------------------------------------
