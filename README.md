@@ -1,27 +1,32 @@
-# Ember-radical
+# Ember Radical [![Build Status](https://travis-ci.org/healthsparq/ember-radical.svg?branch=develop)](https://travis-ci.org/healthsparq/ember-radical)
 
-This README outlines the details of collaborating on this Ember addon.
+Feather light, dead simple and fully accessible Ember DDAU components. Ember
+Radical is a set of core components that make writing consistent, quality
+components simple.
 
-## Installation
+The addon includes an optional theme based off of [Skeleton CSS](http://getskeleton.com/)
+for drop in usage. If you'd prefer a different look, all component classes are
+Bootstrap compatible.
 
-* `git clone <repository-url>` this repository
-* `cd ember-radical`
-* `npm install`
-* `bower install`
+### Installation
 
-## Running
+```
+ember install ember-radical
+```
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+### Styles
+_Stylesheets are written in SCSS. The [ember-cli-sass](https://github.com/aexmachina/ember-cli-sass)
+package can be used for compilation._
 
-## Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+To import the base theme:
+```
+// In your /app/styles.css file
+@import 'ember-radical/styles';
+```
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+To import only the structural styles for components:
+```
+// In your /app/styles.css file
+@import 'ember-radical/component-structures';
+```

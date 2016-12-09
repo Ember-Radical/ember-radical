@@ -1,0 +1,166 @@
+// ========================================================
+// Theme Variables
+// ========================================================
+
+// Units
+// ---------------------------------------------------------------------------
+/*
+ * Note that skeleton rems are all based on a 10px rem root. Bootstrap uses a 16
+ * (15px) for this theme actual font size for the rem root. The $ten4rem
+ * variable is used to convert the base 10 skeleton rems to base 15 bootstrap
+ * compatible ones.
+ */
+$font-size-root: 15px; // Font size drives rem values for theme
+$rem-root: strip-units($font-size-root);
+$ten4rem: 10 / strip-units(15px); // Conversion unit for skeleton base 10 rems
+
+$border-width: 1px;
+$border-radius: 0.25rem;
+$border-radius-sm: 0.2rem;
+
+$spacer: $ten4rem * 1rem;
+
+// Colors
+// ---------------------------------------------------------------------------
+$gray-dark:     #292b2c;
+$gray:          #464a4c;
+$gray-light:    #636c72;
+$gray-lighter:  #eceeef;
+$gray-lightest: #f7f7f9;
+
+$brand-primary: #0e687a;
+$brand-success: #5cb85c;
+$brand-info:    #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger:  #d9534f;
+$brand-inverse: $gray-dark;
+
+$border-color: #bbb;
+
+
+// Grid
+// ---------------------------------------------------------------------------
+$grid-columns: 12;
+$grid-gutter-width-base: 30px;
+$grid-gutter-widths: (
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+/* Grid breakpoints
+ *
+ * Define the minimum dimensions at which your layout will change,
+ * adapting to different screen sizes, for use in media queries.
+ */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
+// Typography
+// ---------------------------------------------------------------------------
+$font-family-base: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-size-base: 1rem;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
+$font-weight-base: $font-weight-normal;
+$line-height-base: 1.5;
+$body-color: $gray-dark;
+$body-bg: #fff;
+$text-muted: $gray-light;
+
+$font-size-h1: $ten4rem * 5.0rem;
+$font-size-h2: $ten4rem * 4.2rem;
+$font-size-h3: $ten4rem * 3.6rem;
+$font-size-h4: $ten4rem * 3.0rem;
+$font-size-h5: $ten4rem * 2.4rem;
+$font-size-h6: $ten4rem * 1.5rem;
+
+$link-color: $brand-primary;
+$link-decoration: none;
+$link-hover-color: darken($link-color, 15%);
+$link-hover-decoration: underline;
+
+// Buttons
+// ---------------------------------------------------------------------------
+
+$btn-padding-x: 2rem;
+$btn-padding-y: 0.6rem;
+$btn-font-size: 0.933rem;
+$btn-line-height: 1.25;
+$btn-font-weight: $font-weight-normal;
+$btn-box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+$btn-active-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+$input-btn-border-width: $border-width;
+$btn-border-radius: $border-radius;
+
+$btn-primary-color:  #fff;
+$btn-primary-bg:     $brand-primary;
+$btn-primary-border: $btn-primary-bg;
+
+$btn-secondary-color:  $gray-dark;
+$btn-secondary-bg:     #fff;
+$btn-secondary-border: #ccc;
+
+$btn-info-color:  #fff;
+$btn-info-bg:     $brand-info;
+$btn-info-border: $btn-info-bg;
+
+$btn-success-color:  #fff;
+$btn-success-bg:     $brand-success;
+$btn-success-border: $btn-success-bg;
+
+$btn-warning-color:  #fff;
+$btn-warning-bg:     $brand-warning;
+$btn-warning-border: $btn-warning-bg;
+
+$btn-danger-color:  #fff;
+$btn-danger-bg:     $brand-danger;
+$btn-danger-border: $btn-danger-bg;
+
+$btn-link-disabled-color: $gray-light;
+
+$btn-block-spacing-y: 0.5rem;
+$btn-toolbar-margin:  0.5rem;
+
+// Code
+// ---------------------------------------------------------------------------
+$code-padding-y: 0.2rem;
+$code-padding-x: 0.4rem;
+$code-font-size: 90%;
+$code-color: #c7254e;
+$code-bg: #f9f2f4;
+$code-border: #eee;
+$kbd-color: #fff;
+$kbd-bg: #333;
+$kbd-box-shadow: inset 0 -.1rem 0 rgba(0,0,0,.25);
+$pre-color: $body-color;
+$pre-scrollable-max-height: 340px;
+
+
+// Tables
+// ---------------------------------------------------------------------------
+$table-bg: transparent;
+$table-cell-padding: 0.75rem;
+$dt-font-weight: bold;
+$td-border-color: #E1E1E1;
+
+
+// Misc
+// ---------------------------------------------------------------------------
+$cursor-disabled: not-allowed;

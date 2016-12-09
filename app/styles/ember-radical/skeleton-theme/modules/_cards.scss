@@ -1,0 +1,37 @@
+// ========================================================
+// Cards Theme Styles
+// ========================================================
+
+.core-card {
+  box-shadow: 0 2px 6px #eee;
+
+  .card-title {
+    padding: rem-calc(15px);
+    font-style: italic;
+  }
+
+  .card-body {
+    padding: rem-calc(15px);
+  }
+
+  .card-footer {
+    padding: rem-calc(15px);
+  }
+
+  &.card-default {
+    .card-title {
+      background: #eee;
+    }
+
+    .card-footer {
+      background: #eee;
+    }
+  }
+
+  &.card-primary {
+    .card-title {
+      background: #0e687a;
+      color: white;
+    }
+  }
+}

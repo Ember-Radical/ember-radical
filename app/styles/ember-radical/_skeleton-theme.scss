@@ -1,0 +1,52 @@
+// ========================================================
+// Skeleton Theme for Ember Radical
+// ========================================================
+
+/*
+ * NOTES ON SKELETON THEME
+ *
+ * Skeleton theme is intended to be a Bootstrap compatible version of the very
+ * beautiful Skelete css. All breakpoints and class names have been updated to
+ * match Bootstrap v4 standards.
+ *
+ * Most of the original skeleton rems are still used. Instead of converting them
+ * to a base 15 rem root, they are multiplied by the $ten4rem variable. We may
+ * remove this later when we decide the styles and rem root are stable.
+ *
+ * Bootstrap Breakpoints:
+ * sm: 576px,
+ * md: 768px,
+ * lg: 992px,
+ * xl: 1200px
+ */
+
+// Setup
+@import 'skeleton-theme/utils/functions';
+@import 'skeleton-theme/utils/variables';
+@import 'skeleton-theme/utils/mixins';
+
+// Reset baseline
+@import 'skeleton-theme/normalize';
+@import 'skeleton-theme/reboot';
+
+/*
+ * Note on style modules:
+ * The following modules still need cleanup work on matching Bootstrap standards:
+ * - forms
+ * - tables
+ * - lists
+ * For now b/c we don't have any components, and because they style elements
+ * directly instead of using classes, they are 'ok'
+ */
+@import 'skeleton-theme/modules/grid';
+@import 'skeleton-theme/modules/type';
+@import 'skeleton-theme/modules/buttons';
+@import 'skeleton-theme/modules/code';
+@import 'skeleton-theme/modules/lists';
+@import 'skeleton-theme/modules/tables';
+@import 'skeleton-theme/modules/forms';
+@import 'skeleton-theme/modules/utility';
+
+// Components
+@import 'skeleton-theme/modules/tabs';
+@import 'skeleton-theme/modules/cards';
