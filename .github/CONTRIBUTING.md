@@ -4,7 +4,7 @@ Hi there! Thanks for your interest in contributing to `ember-radical`!
 
 Before implementing new features and changes, please [submit a new issue](https://github.com/healthsparq/ember-radical/issues/new). We'd love to discuss proposed changes before getting started, and also make sure we aren't already working on the issue you have!
 
-We welcome contributions to the project! Below you will find an overview of roadmap items and repository conventions.
+We welcome contributions to the project! Below you will find an overview of [roadmap items](#feature-roadmap) and [repository conventions](#conventions).
 
 Note that all components declare their templates inline using the [ember-cli-htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) package. You can enable syntax highlighting for the templates by using the [language-ember](https://atom.io/packages/language-ember) Atom package.
 
@@ -46,12 +46,6 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 6. Push your changes
 7. Submit your pull request!
 
-## Roadmap
-
-- [ ] Base styles/variables created (Skeleton theme for Bootstrap)
-- [ ] Feature flag system for build code stripping
-- [ ] Documentation page for accessibility guidelines and tools
-
 ## Conventions
 
 ### Code/Patterns
@@ -73,8 +67,33 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 ### Other
 - We use [gitmoji](https://gitmoji.carloscuesta.me/) in our commit messages to help quickly identify the nature of a commit and request you do as well.
 
-## TODO Tasks
+## Feature Roadmap
 
-- [ ] Tagging setup utility and service
-- [ ] Convert Skeleton rems using `$ten4rem` to normal base 15 rems.
+### Core Components
+
+- [ ] Core Alert
+- [x] Core Button
+- [x] Core Card
+- [x] Core Drawer
+- [ ] Core Dropdown
+- [ ] Core Modal
+- [ ] Core Popover
+- [ ] Core State
+- [x] Core SVG
+- [x] Core Tabs
+- [ ] Core Tooltip
+- [ ] Omni Filter(?)
+
+### Services
+
+- [ ] Tagging (GA)
+
+### Misc
+
+- [ ] Tagging setup utility
+- [ ] Base styles/variables created (Skeleton theme for Bootstrap)
+- [ ] Feature flag system for build code stripping
+- [ ] Documentation page for accessibility guidelines and tools
+- [ ] Full public-facing documentation (gh-pages) (separate repo?)
+- [ ] Convert Skeleton rems using `$ten4rem` to normal base 15 rems
 - [ ] Handle funneling out tagging.js when tagging feature flag is off
