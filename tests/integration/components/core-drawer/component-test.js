@@ -28,7 +28,7 @@ test('it renders (simple invocation)', function(assert) {
   // Test data-test existence and passage of text content
   assert.ok(this.$('[data-test="basic-render-test-target"]').length, 'target subcomponent renders data-test attr');
   assert.ok(this.$('[data-test="basic-render-test-content"]').length, 'content subcomponent renders data-test attr');
-  assert.equal(this.$('[data-test="basic-render-test-target"]').text().trim(), this.get('targetText'), 'component renders the target text supplied via Target attr into the target subcomponent');
+  assert.equal(this.$('[data-test="basic-render-test-target-yield"]').text().trim(), this.get('targetText'), 'component renders the target text supplied via Target attr into the target subcomponent');
   assert.equal(this.$('[data-test="basic-render-test-content"]').text().trim(), this.get('contentText'), 'component renders the target text supplied via Content attr into the content subcomponent');
 
   // Test aria-controls bound to id
@@ -57,7 +57,7 @@ test('it yields target and content contextual subcomponents', function(assert) {
   assert.ok(this.$('[data-test="subcomponent-test-content"]').length, 'the component renders a content contextual subcomponent');
 
   // Validate subcomponents content
-  assert.equal(this.$('[data-test="subcomponent-test-target"]').text().trim(), 'Test Target', 'the target subcomponent renders its content correctly');
+  assert.equal(this.$('[data-test="subcomponent-test-target-yield"]').text().trim(), 'Test Target', 'the target subcomponent renders its content correctly');
   assert.equal(this.$('[data-test="subcomponent-test-content"]').text().trim(), this.get('testContent'), 'the content subcomponent renders its content correctly');
 
   // Validate aria-expanded on target subcomponent
@@ -158,4 +158,34 @@ test('it expands when external state is manipulated', function(assert) {
   // Validate that the content container collapses again
   assert.equal(this.$('[data-test="externalToggle-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not aria-expanded after external state changes back to false');
   assert.equal(this.$('[data-test="externalToggle-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden after external state changes back to false');
+});
+
+// #6 Test icons are disabled when `icon=false`
+// ---------------------------------------------------------------------------
+test('the drawer icon is disabled when icon is set to false', function(assert) {
+  this.render(hbs`
+    {{core-drawer
+      Target='This drawer has no icon'
+      Content='Isnt that amazing kids?'
+      icon=false
+      data-test='no-icon-test'}}
+  `);
+
+  assert.notOk(this.$('[data-test="no-icon-test-icon"]').length,
+    'No icon should be rendered when `icon` has been set to `false`');
+});
+
+// #7 Custom icon names are correctly passed through and referenced
+// ---------------------------------------------------------------------------
+test('the custom drawer icon is correctly referenced', function(assert) {
+  this.render(hbs`
+    {{core-drawer
+      Target='This drawer has no icon'
+      Content='Isnt that amazing kids?'
+      icon='steve-brule'
+      data-test='custom-icon-test'}}
+  `);
+
+  assert.ok(this.$('[data-test="custom-icon-test-target-icon"] use').attr('xlink:href').includes('#steve-brule'),
+    'The custom icon reference should be correctly rendered');
 });
