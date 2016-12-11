@@ -70,7 +70,7 @@ import {controls} from '../../utils/arias';
  * --- | --- | ---
  * `externalToggle` | boolean | false | Pass in any other property to cause `core-drawer` to update when that property updates
  * `icon` | string/boolean | 'arrow-down2' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
- * `useButtonStyle` | boolean | false | Whether to style the `target` to look like a button
+ * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
  *
  * ### A++ Accessibility
  *
@@ -108,7 +108,7 @@ export default Component.extend({
    * @type {string|Boolean}
    * @default 'arrow-down2'
    */
-  icon: 'arrow-down2',
+  icon: 'arrow-down',
 
   // Properties
   // ---------------------------------------------------------------------------
