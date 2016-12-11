@@ -1,4 +1,4 @@
-# Ember Radical [![Build Status](https://travis-ci.org/healthsparq/ember-radical.svg?branch=develop)](https://travis-ci.org/healthsparq/ember-radical)
+# Ember Radical [![Build Status](https://travis-ci.org/healthsparq/ember-radical.svg?branch=master)](https://travis-ci.org/healthsparq/ember-radical) [![Code Climate](https://codeclimate.com/github/healthsparq/ember-radical/badges/gpa.svg)](https://codeclimate.com/github/healthsparq/ember-radical)
 
 Feather light, dead simple and fully accessible Ember DDAU components. Ember
 Radical is a set of core components that make writing consistent, quality
@@ -30,3 +30,7 @@ To import only the structural styles for components:
 // In your /app/styles.css file
 @import 'ember-radical/component-structures';
 ```
+
+### Contributing
+
+If you'd like to contribute, please read our [contribution guidelines](./.github/CONTRIBUTING.md) and then get cracking! We look forward to seeing your pull requests!
