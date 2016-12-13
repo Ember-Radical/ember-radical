@@ -115,38 +115,98 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
 
 });
 
-test('it passes and binds closeModal action to background and header', function(assert) {
-  assert.expect(4);
-
-  this.set('actions.closeModalAction', () => {
-    assert.ok(this.$('.core-modal-wrapper'), 'close action fired');
-  });
+test('it passes and binds closeModal action to background and header (normal header)', function(assert) {
 
   this.setProperties({
     Header: 'test-header',
-    ariaHeader: ''
+    ariaHeader: '',
+    closeModal: () => {
+      this.set('modalIsOpen', false);
+    },
+    modalIsOpen: true
   });
 
   this.render(hbs`
-    {{#core-modal closeModal=(action 'closeModalAction') Header=Header ariaHeader=ariaHeader open=true}}
+    {{#core-modal closeModal=closeModal Header=Header ariaHeader=ariaHeader open=modalIsOpen}}
       template block text
     {{/core-modal}}
   `);
 
-  // Fire clicks
-  // ---------------------------------------------------------------------------
-  this.$('.core-modal-background').click();
-  this.$('button.close-x').click();
+  // Verify modal is visible at start when passed `open` prop is true
+  assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'false', 'modal background state begins as visible');
+  assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper begins as visible');
 
-  // Switch to ariaHeader
-  // ---------------------------------------------------------------------------
+  // Trigger background click
+  this.$('.core-modal-background').click();
+
+  // Wait for updates
+  return wait().then(() => {
+    // Validate that modal elements are hidden
+    assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+
+    // Reset open state, confirm modal is open again
+    this.set('modalIsOpen', true);
+    assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'false', 'modal background returns to visible');
+    assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper returns to visible');
+
+    // Click close button
+    this.$('button.close-x').click();
+
+    // Wait for updates
+    return wait().then(() => {
+      // Confirm modal is hidden
+      assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from close button click');
+      assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+    });
+  });
+});
+
+test('it passes and binds closeModal action to background and header (aria header)', function(assert) {
+
   this.setProperties({
     Header: '',
-    ariaHeader: 'aria label'
+    ariaHeader: 'aria label for header',
+    closeModal: () => {
+      this.set('modalIsOpen', false);
+    },
+    modalIsOpen: true
   });
 
+  this.render(hbs`
+    {{#core-modal closeModal=closeModal Header=Header ariaHeader=ariaHeader open=modalIsOpen}}
+      template block text
+    {{/core-modal}}
+  `);
+
+  // Verify modal is visible at start when passed `open` prop is true
+  assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'false', 'modal background state begins as visible');
+  assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper begins as visible');
+
+  // Trigger background click
   this.$('.core-modal-background').click();
-  this.$('button.close-x').click();
+
+  // Wait for updates
+  return wait().then(() => {
+    // Validate that modal elements are hidden
+    assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+
+    // Reset open state, confirm modal is open again
+    this.set('modalIsOpen', true);
+    assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'false', 'modal background returns to visible');
+    assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper returns to visible');
+
+    // Click close button
+    this.$('button.close-x').click();
+
+    // Wait for updates
+    return wait().then(() => {
+      // Confirm modal is hidden
+      assert.equal(this.$('[data-test="core-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from close button click');
+      assert.equal(this.$('[data-test="core-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+    });
+  });
 });
 
 // ========================================================

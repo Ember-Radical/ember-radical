@@ -57,6 +57,7 @@
 
   background: #fff;
   opacity: 0;
+  outline: none;
 
   transition: opacity 300ms linear; // Fade in the modal b/c we're a super classy operation
 
@@ -192,6 +193,7 @@
     opacity: 0.5;
 
     &:hover {
+      color: #666;
       opacity: 1;
     }
 

@@ -1,6 +1,6 @@
 import Component from 'ember-component';
 import hbs from 'htmlbars-inline-precompile';
-import {next, later} from 'ember-runloop';
+import {later} from 'ember-runloop';
 import $ from 'jquery';
 const devAssets = {};
 
@@ -238,7 +238,7 @@ export default Component.extend(devAssets, {
    * transition is added to/removed from the modal.
    * @property _visible
    * @type {Boolean}
-   * @default true
+   * @default false
    */
   _visible: false,
 
@@ -261,8 +261,8 @@ export default Component.extend(devAssets, {
     $('body').removeClass('fixed-body');
 
     // Remove active classes in case modal stays in DOM while it is closed
-    this.$('.core-modal-wrapper').removeClass('active');
-    this.$('.core-modal-background').removeClass('active');
+    $('.core-modal-wrapper').removeClass('active');
+    $('.core-modal-background').removeClass('active');
 
     // Move focus back to last element (usually the button that opened the
     // modal) and clear out _lastFocusedElement to boy scout against any weird
@@ -315,16 +315,13 @@ export default Component.extend(devAssets, {
     // required for when we wait to render the modal until it should be active
     // if we add the active class at this point, then the modal renders with
     // active class and so there is no *transition*
-    next(() => {
+    later(() => {
       this.$('.core-modal-wrapper').addClass('active');
       this.$('.core-modal-background').addClass('active');
       // Focus the modal wrapper for usability
-      // @TODO: A method to handle checking for an autoFocus element would be
-      // A++
-      // This was causing issues with ember inputs nested in modals after
-      // updating to Glimmer 2
-      // this.$('.core-modal-wrapper').focus();
-    });
+      // @TODO: A method to handle checking for an autoFocus element would be A++
+      this.$('.core-modal-wrapper').focus();
+    }, 15);
 
     // Bind the keycommand `esc` to close modal
     bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this));
@@ -334,21 +331,34 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * didReceiveAttrs hook used to handle fixing the body to prevent wonky
-   * scroll while modal is open. `fixed-body` styles are added to DOM during
-   * application startup. (Some diffing of the scrollbar width needs to
-   * happen). We just take advantage of that class here.
+   * Whenever this component receives attrs check if the `open` prop matches the
+   * template status. If not, call the handlers for open/close
    *
    * @event didReceiveAttrs
    * @return {undefined}
    */
   didReceiveAttrs() {
-    // didReceiveAttrs is called whenever `open` is toggled/modified; this hook
-    // will handle executing appropriate functions.
+    const background = this.$('.core-modal-background');
+    const hidden = background ? background.attr('aria-hidden') : null;
+
+    if (this.get('open') && hidden === 'true') {
+      this._handleOpen();
+    } else if (!this.get('open') && hidden === 'false') {
+      this._handleClose();
+    }
+  },
+  /**
+   * Make sure to run the full `_handleOpen` setup on `init`, as the conditions
+   * in `didReceiveAttrs` will not cause it to run because the default value of
+   * `_visible` will eval to false.
+   *
+   * @method init
+   * @return {undefined}
+   */
+  init() {
+    this._super(...arguments);
     if (this.get('open')) {
       this._handleOpen();
-    } else {
-      this._handleClose();
     }
   },
   /**
