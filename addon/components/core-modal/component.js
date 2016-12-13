@@ -222,16 +222,6 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * Determines if the modal should be rendered in the template. This is not
-   * equivalent to `open`. In order for CSS transitions to work properly, the
-   * modal must be rendered in the DOM when the class that applies the
-   * transition is added to/removed from the modal.
-   * @property _isVisible
-   * @type {Boolean}
-   * @default true
-   */
-  _isVisible: false,
-  /**
    * Private reference to the last focused element in the DOM before the modal
    * was opened. This is used to make the experience for keyboard users not
    * terrible.
@@ -241,6 +231,16 @@ export default Component.extend(devAssets, {
    * @default undefined
    */
   _lastFocusedElement: undefined,
+  /**
+   * Determines if the modal should be rendered in the template. This is not
+   * equivalent to `open`. In order for CSS transitions to work properly, the
+   * modal must be rendered in the DOM when the class that applies the
+   * transition is added to/removed from the modal.
+   * @property _visible
+   * @type {Boolean}
+   * @default true
+   */
+  _visible: false,
 
   // Methods
   // ---------------------------------------------------------------------------
@@ -278,7 +278,7 @@ export default Component.extend(devAssets, {
       // Don't run this on a dealy if the object is destoryed. This can
       // happen when the user transitions to another route or during tests
       if (!this.get('isDestroyed')) {
-        this.set('_isVisible', false);
+        this.set('_visible', false);
       }
     }, 500);
 
@@ -304,7 +304,7 @@ export default Component.extend(devAssets, {
 
     // Set the modal to be shown in the DOM first to allow for transitions
     // to work properly.
-    this.set('_isVisible', true);
+    this.set('_visible', true);
 
     // Set the current `activeElement` from the document to focus on close
     if (this.get('autoFocus')) {
@@ -373,7 +373,7 @@ export default Component.extend(devAssets, {
   layout: hbs`
     {{! Modal background is passed closeModal closure action for closing on click}}
     <div class="core-modal-background {{if animateFrom 'animate-from'}}"
-      aria-hidden="{{not _isVisible}}"
+      aria-hidden="{{not _visible}}"
       {{action closeModal}}
       data-firetag
       data-tagcategory={{tagClose.category}}
@@ -381,14 +381,14 @@ export default Component.extend(devAssets, {
       data-taglabel={{tagClose.label}}
       data-test="core-modal-background"></div>
 
-    {{#if (or _isVisible (not removeFromDomOnClose))}}
+    {{#if (or _visible (not removeFromDomOnClose))}}
       {{! The actual modal div. { role, labelledby, hidden } => 508 compliance attrs  }}
       {{! Note that if passed Header is null, we do not bind aria-labelledby }}
       <div class="core-modal-wrapper {{size}} {{if animateFrom (concat 'animate-' animateFrom)}}"
         role="dialog"
         tabindex="-1"
         aria-labelledby="aria-labelledby-{{elementId}}"
-        aria-hidden="{{not _isVisible}}"
+        aria-hidden="{{not _visible}}"
         data-test="core-modal-wrapper">
 
         {{! If a Header is passed, handle setting one up }}
