@@ -334,17 +334,17 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * didRender hook used to handle fixing the body to prevent wonky scroll while
-   * modal is open. `fixed-body` styles are added to DOM during application
-   * startup. (Some diffing of the scrollbar width needs to happen). We just
-   * take advantage of that class here.
+   * didReceiveAttrs hook used to handle fixing the body to prevent wonky
+   * scroll while modal is open. `fixed-body` styles are added to DOM during
+   * application startup. (Some diffing of the scrollbar width needs to
+   * happen). We just take advantage of that class here.
    *
-   * @method didRender
+   * @event didReceiveAttrs
    * @return {undefined}
    */
-  didRender() {
-    // didRender is called whenever `open` is toggled/modified; this hook will
-    // handle executing appropriate functions.
+  didReceiveAttrs() {
+    // didReceiveAttrs is called whenever `open` is toggled/modified; this hook
+    // will handle executing appropriate functions.
     if (this.get('open')) {
       this._handleOpen();
     } else {
@@ -361,7 +361,7 @@ export default Component.extend(devAssets, {
    * open state of your modal is a data down property which needs to be cleaned
    * up on whatever parent context controls it.
    *
-   * @method willDestroyElement
+   * @event willDestroyElement
    * @return {undefined}
    */
   willDestroyElement() {
