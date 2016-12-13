@@ -105,6 +105,7 @@ module.exports = {
 
     // Set feature flag globals in dev and test envs or always if strip code is turned of
     if (!addonConfig.stripCode || appConfig.environment === 'development' || appConfig.environment === 'test') {
+      app.import('vendor/console-image.js');
       this._importFeatureFlags(featureFlags);
     }
   }

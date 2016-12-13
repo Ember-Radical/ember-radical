@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('drawers');
   this.route('tabs');
   this.route('cards');
+  this.route('modals');
 });
 
 export default Router;

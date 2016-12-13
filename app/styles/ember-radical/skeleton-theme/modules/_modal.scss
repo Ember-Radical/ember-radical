@@ -1,0 +1,14 @@
+// ========================================================
+// Modal Theme Styles
+// ========================================================
+
+.modal-header.primary-bg {
+  background-color: $modal-primary-bg;
+  color: $modal-primary-color;
+
+  .modal-svg {
+    &.primary {
+      color: $modal-primary-color;
+    }
+  }
+}
