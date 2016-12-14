@@ -44,10 +44,22 @@ const { $ } = Ember;
  * {{/core-tabs}}
  * ```
  *
+ * ### Controlled Tabs
+ * If you need to programatically open tabs within your application you can
+ * create a controlled instance of `core-tabs` by specifying the `activeId` for
+ * the component. This means that you need to track the `activeId` in a parent
+ * component or service and pass it down into the controlled tab instance. To do
+ * this pass an `onChange` closure into the component. It will be called with
+ * the `elementId` of the selected tab any time a user changes tabs.
+ *
+ * TODO: Template && JS Examples
+ *
  * Configuration | Type | Default | Description
  * --- | --- | ---
+ * `activeId` | string | null | The `elementId` of the tab that should be opened
  * `buttonStyle` | boolean | true | Set to false for tab buttons without primary background-color
  * `defaultTab` | string | null | Tab to render shown by default
+ * `onChange` | function | null | Optional closure that will be called when any tab is opened
  * `scrollOnClick` | boolean | false | Set to true to scroll page to top on tab click
  * `scrollTarget` | jQuery selector | 'body, html' | Specify scroll animation target
  *
@@ -71,6 +83,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Pass false to use tab style without primary color tabs.
+   * @property buttonStyle
+   * @type {Boolean}
+   * @default true
+   */
+  buttonStyle: true,
+  /**
    * The optional elementId of the tab that should be shown by default. This is
    * useful for cases where the user has come into a page and is expecting one
    * of the tabs to be shown by default.
@@ -79,6 +98,14 @@ export default Component.extend({
    * @default ''
    */
   defaultTab: '',
+  /**
+   * Optional closure action that will be called whenever a tab is opened with
+   * the id of that tab. Use this to create a controlled tabs instance.
+   * @property onChange
+   * @type {function}
+   * @default null
+   */
+  onChange: null,
   /**
    * Whether the page should scroll the tab context back to the top when one of
    * the tabs is clicked. This can be a nice convenience for usabilitee.
@@ -98,13 +125,6 @@ export default Component.extend({
    * @default 'body, html'
    */
   scrollTarget: 'body, html',
-  /**
-   * Pass false to use tab style without primary color tabs.
-   * @property buttonStyle
-   * @type {Boolean}
-   * @default true
-   */
-  buttonStyle: true,
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -112,11 +132,11 @@ export default Component.extend({
   /**
    * The elementId of the currently opened tab. This determines which tab is active and
    * which tab's content to display. If this is empty, no tabs are open.
-   * @property _activeId
+   * @property activeId
    * @type {String}
    * @default ''
    */
-  _activeId: '',
+  activeId: '',
   /**
    * Bound attributes:
    * - `data-test`: for precise testing identification
@@ -177,7 +197,7 @@ export default Component.extend({
 
     // When default tab is passed, update internal flag
     if (this.get('defaultTab')) {
-      this.set('_activeId', this.get('defaultTab'));
+      this.set('activeId', this.get('defaultTab'));
     }
   },
 
@@ -186,7 +206,7 @@ export default Component.extend({
 
   actions: {
     /**
-     * Action to show a tab. Set `_activeId` to the passed elementId. `_activeId`
+     * Action to show a tab. Set `activeId` to the passed elementId. `activeId`
      * is passed down to children content components
      * @method showTab
      * @param {String} elementId HTML id of the tab to show
@@ -198,7 +218,14 @@ export default Component.extend({
           scrollTop: $('#' + this.get('elementId')).offset().top - 120
         }, 1000);
       }
-      this.set('_activeId', elementId);
+
+      // If an onChange closure was passed in, call it with change data. This
+      // allows for 'controlled' tabs
+      if (this.get('onChange')) {
+        this.get('onChange')({ elementId: elementId });
+      } else {
+        this.set('activeId', elementId);
+      }
     },
     /**
      * Closure action passed to content subcomponents that is called on init.
@@ -245,7 +272,7 @@ export default Component.extend({
           {{#core-button
             ariaRole="tab"
             aria-controls=tab.elementId
-            class=(concat 'tab' (if (eq tab.elementId _activeId) ' active'))
+            class=(concat 'tab' (if (eq tab.elementId activeId) ' active'))
             link=true
             click=(action 'showTab' tab.elementId)
             data-test=tab.tabDataTest
@@ -263,7 +290,7 @@ export default Component.extend({
         content=(component 'core-tabs/content'
           registerTab=(action 'registerTab')
           updateTab=(action 'updateTab')
-          _activeId=_activeId)
+          activeId=activeId)
       )}}
     </div>
   `

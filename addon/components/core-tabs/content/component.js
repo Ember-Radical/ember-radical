@@ -3,7 +3,7 @@ import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
 /**
- * This component is yielded by the `core-tabs` component. The `_activeId` and
+ * This component is yielded by the `core-tabs` component. The `activeId` and
  * actions `registerTab` and `updateTab` are privately bound for internal use.
  *
  * On init each tab will register itself with the `core-tabs` wrapping container,
@@ -36,11 +36,11 @@ export default Component.extend({
   /**
    * The id of the currently active tab in the scope of the core-tabs component.
    * This is provided privately in the `core-tabs` yield hash.
-   * @property _activeId
+   * @property activeId
    * @type {String}
    * @default ''
    */
-  _activeId: '',
+  activeId: '',
   /**
    * Whether this tab should be hidden from view. Useful for situations where
    * a tab needs to exist in a particular place in the tab ordering but may
@@ -79,15 +79,15 @@ export default Component.extend({
   classNames: ['tabs-content'],
   /**
    * Computed `_hidden` accounts for whether the tab is selected (by checking
-   * `_activeId`) && if this tab has been flagged to be hidden with property
+   * `activeId`) && if this tab has been flagged to be hidden with property
    * `hidden`
    * @property _hidden
-   * @param {string} _activeId
+   * @param {string} activeId
    * @param {boolean} hidden
    * @returns {string} String of true/false for use with `aria-hidden` binding
    */
-  _hidden: computed('_activeId', 'hidden', function() {
-    if (this.get('hidden') || this.get('_activeId') !== this.get('elementId')) {
+  _hidden: computed('activeId', 'hidden', function() {
+    if (this.get('hidden') || this.get('activeId') !== this.get('elementId')) {
       return 'true';
     } else {
       return 'false';
