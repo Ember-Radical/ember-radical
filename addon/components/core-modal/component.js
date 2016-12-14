@@ -261,8 +261,8 @@ export default Component.extend(devAssets, {
     $('body').removeClass('fixed-body');
 
     // Remove active classes in case modal stays in DOM while it is closed
-    $('.core-modal-wrapper').removeClass('active');
-    $('.core-modal-background').removeClass('active');
+    this.$('.core-modal-wrapper').removeClass('active');
+    this.$('.core-modal-background').removeClass('active');
 
     // Move focus back to last element (usually the button that opened the
     // modal) and clear out _lastFocusedElement to boy scout against any weird
