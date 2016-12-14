@@ -178,3 +178,47 @@ test('it shows tabpanels when a tab label is clicked', function(assert) {
   assert.equal(this.$('[data-test="panel-b"]').attr('aria-hidden'), 'true', 'tabpanel B hidden');
   assert.equal(this.$('[data-test="panel-c"]').attr('aria-hidden'), 'false', 'tabpanel C shown');
 });
+
+test('it works as a controlled tabs instance by passing activeId and onChange closures', function(assert) {
+  function onChangeClosure({ elementId }) {
+    this.set('controlledId', elementId);
+  }
+
+  this.set('controlledId', 'tabA');
+  this.set('actions.onChange', onChangeClosure);
+
+  this.render(hbs`
+    {{#core-tabs
+      activeId=controlledId
+      defaultTab=controlledId
+      onChange=(action 'onChange')
+      as |components|}}
+      {{#components.content label='Tab A' tabDataTest='tab-a' data-test='panel-a' elementId='tabA'}}
+        <p>Tab A Content</p>
+      {{/components.content}}
+      {{#components.content label='Tab B' tabDataTest='tab-b' data-test='panel-b' elementId='tabB'}}
+        <p>Tab B Content</p>
+      {{/components.content}}
+      {{#components.content label='Tab C' tabDataTest='tab-c' data-test='panel-c' elementId='tabC'}}
+        <p>Tab C Content</p>
+      {{/components.content}}
+    {{/core-tabs}}
+  `);
+
+  assert.ok(this.$('[data-test="tab-a"]').hasClass('active'), 'tab is active by default');
+  assert.equal(this.$('[data-test="panel-a"]').attr('aria-hidden'), 'false', 'panel is shown by default');
+
+  // Simulate user click
+  // ---------------------------------------------------------------------------
+  this.$('[data-test="tab-c"]').trigger('click');
+
+  assert.ok(this.$('[data-test="tab-c"]').hasClass('active'), 'user click activates tab');
+  assert.equal(this.$('[data-test="panel-c"]').attr('aria-hidden'), 'false', 'user click shows panel');
+
+  // Simulate controlled change
+  // ---------------------------------------------------------------------------
+  this.set('controlledId', 'tabB');
+
+  assert.ok(this.$('[data-test="tab-b"]').hasClass('active'), 'user click activates tab');
+  assert.equal(this.$('[data-test="panel-b"]').attr('aria-hidden'), 'false', 'user click shows panel');
+});

@@ -32,6 +32,13 @@ li[aria-hidden="false"] {
   pointer-events: auto;
   visibility: visible;
 }
+span[role="presentation"],
+div[role="presentation"],
+li[role="presentation"] {
+  display: initial;
+  pointer-events: auto;
+  visibility: visible;;
+}
 
 // Misc
 // -----------------------------------------------------------------------------
