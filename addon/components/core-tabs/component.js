@@ -83,6 +83,14 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * The elementId of the currently opened tab. This determines which tab is active and
+   * which tab's content to display. If this is empty, no tabs are open.
+   * @property activeId
+   * @type {String}
+   * @default ''
+   */
+  activeId: '',
+  /**
    * Pass false to use tab style without primary color tabs.
    * @property buttonStyle
    * @type {Boolean}
@@ -129,14 +137,6 @@ export default Component.extend({
   // Properties
   // ---------------------------------------------------------------------------
 
-  /**
-   * The elementId of the currently opened tab. This determines which tab is active and
-   * which tab's content to display. If this is empty, no tabs are open.
-   * @property activeId
-   * @type {String}
-   * @default ''
-   */
-  activeId: '',
   /**
    * Bound attributes:
    * - `data-test`: for precise testing identification
