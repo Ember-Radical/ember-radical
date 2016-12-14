@@ -1,0 +1,13 @@
+// ========================================================
+// Drawer Theme Styles
+// ========================================================
+
+.core-drawer {
+  .drawer-target.btn-link {
+    border-bottom: 1px solid $brand-primary;
+    padding: 1rem .5rem;
+  }
+  .drawer-content {
+    margin-top: 1rem;
+  }
+}

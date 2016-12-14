@@ -76,9 +76,11 @@ export default CoreButton.extend({
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
-    {{#if icon}}
-      {{!core-svg iconName=icon fontSize='p' classNames='drawer-icon' class=(if hidden '' 'active')}}
+    {{#if (and icon (not buttonStyle))}}
+      {{core-svg svgId=icon classNames='drawer-icon' class=(if hidden '' 'active') data-test=(concat dataTest '-icon')}}
     {{/if}}
-    {{yield}}
+    <span data-test="{{dataTest}}-yield">
+      {{yield}}
+    </span>
   `
 });

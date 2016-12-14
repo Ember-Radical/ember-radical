@@ -1,0 +1,231 @@
+// ========================================================
+// Modal Structural Styles
+// ========================================================
+
+// Gray Background
+// ========================================================
+.core-modal-background {
+  // Use position fixed to handle making full screen regardless of where this is in the DOM
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  // That modal's gunna have all the fancy fading and sliding. So smooth.
+  // Fade in and out the background to make the default transitions for the modal
+  // the most fanicful
+  opacity: 0;
+  transition: opacity 300ms linear;
+
+  // Active class is used for transitioning modal into visible state
+  &.active {
+    opacity: 1;
+  }
+
+  // Make the background ease in with the modal for added classiness
+  // when slide in transitions are used.
+  .animate-from {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+// Modal Element Proper
+// ========================================================
+.core-modal-wrapper {
+  overflow: auto;
+  max-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+
+  // Use position fixed to handle making full screen regardless of where this is in the DOM
+  position: fixed;
+  z-index: 1051;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: #fff;
+  opacity: 0;
+  outline: none;
+
+  transition: opacity 300ms linear; // Fade in the modal b/c we're a super classy operation
+
+  // Active class is used for transitioning modal into visible state
+  &.active {
+    opacity: 1;
+  }
+
+  // Transitions / animations
+  // ========================================================
+  &.animate-right {
+    left: 100%;
+    opacity: 1; // Overrides default transitions on modal
+    transition: left 0.5s ease;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  &.animate-left {
+    left: -200%;
+    opacity: 1;
+    transition: left 0.5s ease;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  &.animate-top {
+    opacity: 1;
+    top: -100%;
+    transition: top 0.5s ease;
+
+    &.active {
+      top: 0;
+    }
+  }
+
+  &.animate-bottom {
+    opacity: 1;
+    top: 100%;
+    transition: top 0.5s ease;
+
+    &.active {
+      top: 0;
+    }
+  }
+
+  // Medium Up Modals
+  // ========================================================
+  @media only screen and (min-width: 40.063em) {
+    border: solid 1px #6D6964;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    max-width: 60%;
+    max-height: 65vh;
+    padding: 30px; // Bump up padding for large screens
+
+    top: 100px;
+    right: 5%;
+    left: 5%;
+    bottom: auto;
+
+    &.animate-bottom.active {
+      top: 100px;
+    }
+
+    &.animate-top.active {
+      top: 100px;
+    }
+
+    &.full {
+      bottom: 0;
+      left: 0;
+      max-height: 100%;
+      max-width: 100%;
+      right: 0;
+      top: 0;
+    }
+
+    &.medium {
+      max-width: 60%;
+    }
+
+    &.small {
+      max-width: 45%;
+    }
+  }
+
+  // Large Up Modals
+  // ========================================================
+  @media only screen and (min-width: 64.063em) {
+    &.medium {
+      max-width: 45%;
+    }
+
+    &.small {
+      max-width: 30%;
+    }
+  }
+
+  // Begin Modal Wrapper Elements
+  // ========================================================
+
+  // When the header is suppressed this div is shown and pushes down the content
+  // the height of the closing x.
+  .header-replacement {
+    display: block;
+    height: 17px;
+  }
+
+  // Aria label when there is no visual header. Should not be visible
+  .aria-header {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  // X icon container, limit size and set to top right of header
+  .close-x {
+    height: 17px;
+    width: 17px;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    color: #666;
+
+    cursor: pointer;
+    opacity: 0.5;
+
+    &:hover {
+      color: #666;
+      opacity: 1;
+    }
+
+    // Adjust X location for change in modal padding when small
+    @media only screen and (min-width: 64.063em) {
+      top: 25px;
+      right: 30px;
+    }
+  }
+}
+
+// Modal Header
+// ========================================================
+.modal-header {
+  margin: -20px -20px 0 -20px;
+  padding: 20px;
+
+  // Adjust header padding compensation when small
+  @media only screen and (min-width: 64.063em) {
+    margin: -30px -30px 0 -30px; // Modal component has 30px wrapping padding, offset here for branding
+    padding: 30px; // Add padding for inner content
+  }
+
+  // When the header is branded it needs margin bottom to push down content
+  &.branded {
+    margin-bottom: 2rem;
+  }
+
+  .header-title {
+    margin: 0;
+    padding-right: 20px; // This is to make sure that we don't overlap the 20px close button that is absolute positioned to right of header
+
+    line-height: 1;
+  }
+}
