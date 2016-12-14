@@ -1,6 +1,6 @@
 import Component from 'ember-component';
 import hbs from 'htmlbars-inline-precompile';
-import {next, later} from 'ember-runloop';
+import {later} from 'ember-runloop';
 import $ from 'jquery';
 const devAssets = {};
 
@@ -222,16 +222,6 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * Determines if the modal should be rendered in the template. This is not
-   * equivalent to `open`. In order for CSS transitions to work properly, the
-   * modal must be rendered in the DOM when the class that applies the
-   * transition is added to/removed from the modal.
-   * @property _isVisible
-   * @type {Boolean}
-   * @default true
-   */
-  _isVisible: false,
-  /**
    * Private reference to the last focused element in the DOM before the modal
    * was opened. This is used to make the experience for keyboard users not
    * terrible.
@@ -241,6 +231,16 @@ export default Component.extend(devAssets, {
    * @default undefined
    */
   _lastFocusedElement: undefined,
+  /**
+   * Determines if the modal should be rendered in the template. This is not
+   * equivalent to `open`. In order for CSS transitions to work properly, the
+   * modal must be rendered in the DOM when the class that applies the
+   * transition is added to/removed from the modal.
+   * @property _visible
+   * @type {Boolean}
+   * @default false
+   */
+  _visible: false,
 
   // Methods
   // ---------------------------------------------------------------------------
@@ -278,7 +278,7 @@ export default Component.extend(devAssets, {
       // Don't run this on a dealy if the object is destoryed. This can
       // happen when the user transitions to another route or during tests
       if (!this.get('isDestroyed')) {
-        this.set('_isVisible', false);
+        this.set('_visible', false);
       }
     }, 500);
 
@@ -304,7 +304,7 @@ export default Component.extend(devAssets, {
 
     // Set the modal to be shown in the DOM first to allow for transitions
     // to work properly.
-    this.set('_isVisible', true);
+    this.set('_visible', true);
 
     // Set the current `activeElement` from the document to focus on close
     if (this.get('autoFocus')) {
@@ -315,16 +315,13 @@ export default Component.extend(devAssets, {
     // required for when we wait to render the modal until it should be active
     // if we add the active class at this point, then the modal renders with
     // active class and so there is no *transition*
-    next(() => {
+    later(() => {
       this.$('.core-modal-wrapper').addClass('active');
       this.$('.core-modal-background').addClass('active');
       // Focus the modal wrapper for usability
-      // @TODO: A method to handle checking for an autoFocus element would be
-      // A++
-      // This was causing issues with ember inputs nested in modals after
-      // updating to Glimmer 2
-      // this.$('.core-modal-wrapper').focus();
-    });
+      // @TODO: A method to handle checking for an autoFocus element would be A++
+      this.$('.core-modal-wrapper').focus();
+    }, 15);
 
     // Bind the keycommand `esc` to close modal
     bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this));
@@ -334,21 +331,34 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * didRender hook used to handle fixing the body to prevent wonky scroll while
-   * modal is open. `fixed-body` styles are added to DOM during application
-   * startup. (Some diffing of the scrollbar width needs to happen). We just
-   * take advantage of that class here.
+   * Whenever this component receives attrs check if the `open` prop matches the
+   * template status. If not, call the handlers for open/close
    *
-   * @method didRender
+   * @event didReceiveAttrs
    * @return {undefined}
    */
-  didRender() {
-    // didRender is called whenever `open` is toggled/modified; this hook will
-    // handle executing appropriate functions.
+  didReceiveAttrs() {
+    const background = this.$('.core-modal-background');
+    const hidden = background ? background.attr('aria-hidden') : null;
+
+    if (this.get('open') && hidden === 'true') {
+      this._handleOpen();
+    } else if (!this.get('open') && hidden === 'false') {
+      this._handleClose();
+    }
+  },
+  /**
+   * Make sure to run the full `_handleOpen` setup on `init`, as the conditions
+   * in `didReceiveAttrs` will not cause it to run because the default value of
+   * `_visible` will eval to false.
+   *
+   * @method init
+   * @return {undefined}
+   */
+  init() {
+    this._super(...arguments);
     if (this.get('open')) {
       this._handleOpen();
-    } else {
-      this._handleClose();
     }
   },
   /**
@@ -361,7 +371,7 @@ export default Component.extend(devAssets, {
    * open state of your modal is a data down property which needs to be cleaned
    * up on whatever parent context controls it.
    *
-   * @method willDestroyElement
+   * @event willDestroyElement
    * @return {undefined}
    */
   willDestroyElement() {
@@ -373,7 +383,7 @@ export default Component.extend(devAssets, {
   layout: hbs`
     {{! Modal background is passed closeModal closure action for closing on click}}
     <div class="core-modal-background {{if animateFrom 'animate-from'}}"
-      aria-hidden="{{not _isVisible}}"
+      aria-hidden="{{not _visible}}"
       {{action closeModal}}
       data-firetag
       data-tagcategory={{tagClose.category}}
@@ -381,14 +391,14 @@ export default Component.extend(devAssets, {
       data-taglabel={{tagClose.label}}
       data-test="core-modal-background"></div>
 
-    {{#if (or _isVisible (not removeFromDomOnClose))}}
+    {{#if (or _visible (not removeFromDomOnClose))}}
       {{! The actual modal div. { role, labelledby, hidden } => 508 compliance attrs  }}
       {{! Note that if passed Header is null, we do not bind aria-labelledby }}
       <div class="core-modal-wrapper {{size}} {{if animateFrom (concat 'animate-' animateFrom)}}"
         role="dialog"
         tabindex="-1"
         aria-labelledby="aria-labelledby-{{elementId}}"
-        aria-hidden="{{not _isVisible}}"
+        aria-hidden="{{not _visible}}"
         data-test="core-modal-wrapper">
 
         {{! If a Header is passed, handle setting one up }}
