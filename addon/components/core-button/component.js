@@ -10,8 +10,10 @@ import hbs from 'htmlbars-inline-precompile';
  * - Tag firing when enabled
  * - Aria and html attributes
  *
+ * {{#core-button}}Core Button{{/core-button}}
+ *
  * Configuration | Type | Default | Description
- * --- | --- | ---
+ * --- | --- | --- | ---
  * `link` | boolean | `false` | Toggles the `.btn-link` class, making the button look and act like a link
  * `brand` | {'primary', 'secondary', 'info' etc. } | `null` | Toggles brand class for a branded button
  * @class Component.CoreButton
