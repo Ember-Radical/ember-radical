@@ -20,17 +20,17 @@
 
   &.card-default {
     .card-title {
-      background: #eee;
+      background: $gray-lighter;
     }
 
     .card-footer {
-      background: #eee;
+      background: $gray-lighter;
     }
   }
 
   &.card-primary {
     .card-title {
-      background: #0e687a;
+      background: $brand-primary;
       color: white;
     }
   }
