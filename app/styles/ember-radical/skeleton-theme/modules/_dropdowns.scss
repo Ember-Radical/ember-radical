@@ -1,0 +1,14 @@
+// ========================================================
+// Dropdown Theme Styles
+// ========================================================
+
+.core-dropdown-background {
+  background: transparent;
+}
+
+.dropdown-content {
+  background: white;
+  border: solid 1px $border-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}

@@ -1,0 +1,25 @@
+// ========================================================
+// Dropdown Structural Styles
+// ========================================================
+
+.core-dropdown {
+  button {
+    margin-bottom: 0; // No margin for trigger buttons inside of dropdown
+  }
+}
+
+.core-dropdown-background {
+  position: fixed;
+  z-index: 1090;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.dropdown-content {
+  margin-top: 3px;
+  padding: 20px;
+  position: absolute;
+  z-index: 1091;
+}
