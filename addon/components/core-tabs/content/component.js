@@ -19,7 +19,7 @@ import hbs from 'htmlbars-inline-precompile';
  * ```
  *
  * Configuration | Type | Default | Description
- * --- | --- | ---
+ * --- | --- | --- | ---
  * `label` | string | null | Text label of the tab button for this panel
  * `elementId` | string | null | Set a specific id for this component when using container `defaultTab`
  * `tabDataTest` | string | null | `data-test` for the tab button

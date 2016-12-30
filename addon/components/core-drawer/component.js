@@ -67,7 +67,7 @@ import {controls} from '../../utils/arias';
  * passed in, but it gives you the ability to control it externally.
  *
  * Configuration | Type | Default | Description
- * --- | --- | ---
+ * --- | --- | --- | ---
  * `externalToggle` | boolean | false | Pass in any other property to cause `core-drawer` to update when that property updates
  * `icon` | string/boolean | 'arrow-down2' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button

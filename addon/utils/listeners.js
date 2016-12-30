@@ -1,6 +1,11 @@
 import $ from 'jquery';
 
 /**
+ * @class Utils.Listeners
+ * @constructor
+ */
+
+/**
  * Handle binding a listener to an element that calls a callback (typically a
  * close method) when the escape key is pressed.
  * @method closeOnEscape
