@@ -59,3 +59,28 @@ test('content is shown on click', function(assert) {
   assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content shows have aria-hidden true after 2nd click');
   assert.equal(this.$('.dropdown-content').css('display'), 'none', 'content is not displayed after 2nd click');
 });
+
+test('pressing escape closes the dropdown', function(assert) {
+  this.render(hbs`{{core-dropdown Target="Dropdown Target" Content="Dropdown Content"}}`);
+
+  assert.equal(this.$('.dropdown-target').attr('aria-expanded'), 'false', 'target shows expanded false before click');
+  assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content should have aria-hidden true by default');
+  assert.equal(this.$('.dropdown-content').css('display'), 'none', 'content is not displayed before click');
+
+  this.$('button.dropdown-target').click();
+
+  assert.equal(this.$('.dropdown-target').attr('aria-expanded'), 'true', 'target shows expanded true after click');
+  assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'false', 'aria-hidden is false after click');
+  assert.equal(this.$('.dropdown-content').css('display'), 'block', 'content is displayed after click');
+
+  // Simulate pressing escape
+  Ember.run(() => {
+    let e = Ember.$.Event('keydown');
+    e.which = 27; // escape key
+    this.$(document).trigger(e);
+  });
+
+  assert.equal(this.$('.dropdown-target').attr('aria-expanded'), 'false', 'target shows expanded false after pressing escape');
+  assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content shows have aria-hidden true after pressing escape');
+  assert.equal(this.$('.dropdown-content').css('display'), 'none', 'content is not displayed after pressing escape');
+});
