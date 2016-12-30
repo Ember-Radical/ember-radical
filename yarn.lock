@@ -929,10 +929,6 @@ cardinal@^1.0.0:
     ansicolors "~0.2.1"
     redeyed "~1.0.0"
 
-case@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/case/-/case-1.4.2.tgz#9258a3cf01ca98fca140946e23495ce435825eb5"
-
 caseless@~0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
@@ -1038,6 +1034,14 @@ cli-usage@^0.1.1:
 cli-width@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a"
+
+clipboard@^1.5.5:
+  version "1.5.16"
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-1.5.16.tgz#916d5e739b0064be61b0b48a535731ecaef3d367"
+  dependencies:
+    good-listener "^1.2.0"
+    select "^1.0.6"
+    tiny-emitter "^1.0.0"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -1414,6 +1418,10 @@ delayed-stream@0.0.5:
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
+
+delegate@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.1.1.tgz#22a0e3ea8776c7f89e02d5950942ef9cdfd019cf"
 
 delegates@^1.0.0:
   version "1.0.0"
@@ -1823,16 +1831,16 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-fountainhead@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-1.0.0.tgz#b1e86dd93b6247024c78403ed3bbd68ed8af7b46"
+ember-fountainhead@beta:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-2.0.0-beta.1.tgz#8a159f036a1193c7e6e71debdb539a82c2c24557"
   dependencies:
-    case "^1.4.1"
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
     ember-cli-htmlbars-inline-precompile "^0.3.1"
-    highlight.js "^9.7.0"
+    ember-radical "git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a"
     markdown-it "^8.0.0"
+    prismjs "^1.5.1"
     yuidocjs "^0.10.2"
 
 ember-inflector@^1.9.4:
@@ -1850,6 +1858,14 @@ ember-qunit@^1.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-1.0.0.tgz#7db7b9f0c4e1f331ae1a3fd8c0688778d5dea7fb"
   dependencies:
     ember-test-helpers "^0.5.32"
+
+"ember-radical@git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a":
+  version "0.2.0"
+  resolved "git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-htmlbars "^1.0.10"
+    ember-cli-htmlbars-inline-precompile "^0.3.3"
 
 ember-resolver@^2.0.3:
   version "2.1.0"
@@ -2685,6 +2701,12 @@ globule@^1.0.0:
     lodash "~4.16.4"
     minimatch "~3.0.2"
 
+good-listener@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.1.tgz#4c5b4681a3e8c91b00f1cb12d89a23b32473547b"
+  dependencies:
+    delegate "^3.1.1"
+
 graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@^4.1.6, graceful-fs@^4.1.9, graceful-fs@~4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
@@ -2808,10 +2830,6 @@ heimdalljs@^0.3.0:
   resolved "https://registry.yarnpkg.com/heimdalljs/-/heimdalljs-0.3.0.tgz#d35973da0333e7d9396a491d57f727793691ee8f"
   dependencies:
     rsvp "~3.2.1"
-
-highlight.js@^9.7.0:
-  version "9.9.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.9.0.tgz#b9995dcfdc2773e307a34f0460d92b9a474782c0"
 
 hoek@0.9.x:
   version "0.9.1"
@@ -4413,6 +4431,12 @@ printf@^0.2.3:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/printf/-/printf-0.2.5.tgz#c438ca2ca33e3927671db4ab69c0e52f936a4f0f"
 
+prismjs@^1.5.1:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.6.0.tgz#118d95fb7a66dba2272e343b345f5236659db365"
+  optionalDependencies:
+    clipboard "^1.5.5"
+
 private@^0.1.6, private@~0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.6.tgz#55c6a976d0f9bafb9924851350fe47b9b5fbb7c1"
@@ -4904,6 +4928,10 @@ sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
 
+select@^1.0.6:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/select/-/select-1.1.0.tgz#a6c520cd9ab919ad81c7d1a273e0452f504dd7a2"
+
 "semver@2 >=2.2.1 || 3.x || 4 || 5", "semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", "semver@^2.3.0 || 3.x || 4 || 5", semver@^5.1.0, semver@^5.1.1, semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
@@ -5384,6 +5412,10 @@ throttleit@^1.0.0:
 through@^2.3.6, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+tiny-emitter@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-1.1.0.tgz#ab405a21ffed814a76c19739648093d70654fecb"
 
 tiny-lr@^1.0.3:
   version "1.0.3"

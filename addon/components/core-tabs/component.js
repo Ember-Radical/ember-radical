@@ -173,8 +173,6 @@ export default Component.extend({
   _createTabsList() {
     const tabList = this.get('tabList');
 
-    console.log('create tabs list');
-
     this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab));
     this.set('_tabsToCreate', Ember.A());
   },
@@ -192,8 +190,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    console.log('init tabs');
-
     // Disabled prototype extensions require Ember.A for a new array:
     // https://guides.emberjs.com/v2.10.0/configuring-ember/disabling-prototype-extensions/#toc_arrays
     this.set('tabList', Ember.A());
@@ -203,10 +199,6 @@ export default Component.extend({
     if (this.get('defaultTab')) {
       this.set('activeId', this.get('defaultTab'));
     }
-  },
-
-  didReceiveAttrs() {
-    console.log('tabs received: ', this.get('activeId'));
   },
 
   // Actions
@@ -220,7 +212,6 @@ export default Component.extend({
      * @param {String} elementId HTML id of the tab to show
      */
     showTab(elementId) {
-      console.log('show tab: ', this.get('elementId'));
       if (this.get('scrollOnClick')) {
         let scrollTarget = this.get('scrollTarget');
         $(scrollTarget).animate({
