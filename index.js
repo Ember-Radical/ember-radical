@@ -58,12 +58,13 @@ module.exports = {
     app.options = app.options || {};
 
     // Setup addon variables
-    const appConfig = this.project.config(app.env);
+    const env = process.env.EMBER_ENV || 'development';
+    const appConfig = this.project.config(env);
     let addonConfig = app.options.emberRadical ? app.options.emberRadical : {};
     const envFlags = {
-      DEVELOPMENT: appConfig.environment === 'development',
-      PRODUCTION: appConfig.environment === 'production',
-      TEST: appConfig.environment === 'test',
+      DEVELOPMENT: env === 'development',
+      PRODUCTION: env === 'production',
+      TEST: env === 'test',
       TAGGING: false
     };
     const featureFlags = Object.assign(envFlags, appConfig.featureFlags || {});
@@ -95,18 +96,20 @@ module.exports = {
       }
     };
 
-    // Merge UglifyJS options into parent app configuration
-    if (addonConfig.stripCode && appConfig.environment === 'production') {
+    // If consumer wants to strip unreachable code, merge UglifyJS options into
+    // consuming app configuration. NOTE that even if this is enabled we ONLY
+    // want to do it for production builds b/c it will crush the dev rebuild time
+    if (addonConfig.stripCode && env === 'production') {
       app.options.minifyJS = Object.assign(app.options.minifyJS, minifyJSOptions);
 
       // If you want to remove unreachable code, uglify must be enabled
       if (!app.options.minifyJS.enabled) { app.options.minifyJS.enabled = true; }
     }
 
-    // Set feature flag globals in dev and test envs or always if strip code is turned of
-    if (!addonConfig.stripCode || appConfig.environment === 'development' || appConfig.environment === 'test') {
-      app.import('vendor/console-image.js');
-      this._importFeatureFlags(featureFlags);
+    // Handle importing dev/test only assets (or always when stripCode is disabled)
+    if (env === 'development' || env === 'test' || !addonConfig.stripCode) {
+      app.import('vendor/console-image.js'); // Radical dev logging messages
+      this._importFeatureFlags(featureFlags); // Adds feature flags to window
     }
   }
 };
