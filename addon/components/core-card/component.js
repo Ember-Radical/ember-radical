@@ -5,13 +5,19 @@ import hbs from 'htmlbars-inline-precompile';
 /**
  * Core card.
  *
- * ```
+ * ```handlebars
  * {{#core-card as |components|}}
  *   {{#components.title}}Card title{{/components.title}}
  *   {{#components.body}}Card body{{/components.body}}
  *   {{#components.footer}}Card footer{{/components.footer}}
  * {{/core-card}}
  * ```
+ *
+ * {{#core-card as |components|}}
+ *   {{#components.title}}Party Time{{/components.title}}
+ *   {{#components.body}}<img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>{{/components.body}}
+ * {{/core-card}}
+ *
  * @class Component.CoreCard
  * @constructor
  * @extends Ember.Component
