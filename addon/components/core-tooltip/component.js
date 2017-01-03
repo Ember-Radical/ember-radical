@@ -44,7 +44,7 @@ import { describedby } from '../../utils/arias';
  * {{/core-tooltip}}
  *
  * #### 4. Turn the title into a button with `buttonStyle` and pass a
- * `brand` to change the color button.
+ * `brand` to change the color of the button.
  * ```handlebars
  * {{core-tooltip buttonStyle=true brand="primary" Title="Hover me" Content="For some rad information"}}
  * ```
