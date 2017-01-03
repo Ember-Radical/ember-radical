@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-8">
+    <h1>Dropdowns</h1>
+
+    <h5><code>buttonStyle=false</code></h5>
+    {{core-dropdown Target="Open dropdown!" Content="Oh hi, mark" buttonStyle=false}}
+
+    <br>
+
+    <h5><code>buttonStyle=true</code></h5>
+    {{#core-dropdown Target="Open me!" buttonStyle=true as |components|}}
+      {{#components.content}}Heyy{{/components.content}}
+    {{/core-dropdown}}
+
+    <br>
+
+    <h5><code>Branded</code></h5>
+    {{#core-dropdown Target="Click me!" brand="primary" buttonStyle=true as |components|}}
+      {{#components.content}}Heyy{{/components.content}}
+    {{/core-dropdown}}
+
+    <br>
+
+    <h5><code>Custom Content</code></h5>
+    {{#core-dropdown buttonStyle=true as |components|}}
+      {{#components.target}}Oh hi{{/components.target}}
+      {{#components.content}}
+        <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+      {{/components.content}}
+    {{/core-dropdown}}
+  </div>
+</div>
