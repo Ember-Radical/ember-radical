@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('tabs');
   this.route('cards');
   this.route('modals');
+  this.route('dropdowns');
 
   fountainheadRoutes(this);
 });

@@ -1,0 +1,22 @@
+.sidebar {
+  margin-top: 1rem;
+
+  img {
+    width: 100%;
+  }
+}
+
+nav {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    li {
+      margin-bottom: 0;
+      padding: 0.5rem;
+      width: 100%;
+    }
+  }
+}

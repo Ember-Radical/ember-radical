@@ -1,3 +1,19 @@
 <div class="container-fluid">
-  {{outlet}}
+  <div class="row">
+    <div class="sidebar col-xs-3">
+      <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"/>
+      <nav>
+        <ul>
+          <li>{{link-to "Cards" "cards"}}</li>
+          <li>{{link-to "Drawers" "drawers"}}</li>
+          <li>{{link-to "Modals" "modals"}}</li>
+          <li>{{link-to "Tabs" "tabs"}}</li>
+          <li>{{link-to "Dropdowns" "dropdowns"}}</li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-xs-9">
+      {{outlet}}
+    </div>
+  </div>
 </div>
