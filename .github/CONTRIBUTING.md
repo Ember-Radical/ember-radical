@@ -91,9 +91,8 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 ### Misc
 
 - [ ] Tagging setup utility
-- [ ] Base styles/variables created (Skeleton theme for Bootstrap)
-- [ ] Feature flag system for build code stripping
+- [x] Base styles/variables created (Skeleton theme for Bootstrap)
+- [x] Feature flag system for build code stripping
 - [ ] Documentation page for accessibility guidelines and tools
 - [ ] Full public-facing documentation (gh-pages) (separate repo?)
-- [ ] Convert Skeleton rems using `$ten4rem` to normal base 15 rems
 - [ ] Handle funneling out tagging.js when tagging feature flag is off
