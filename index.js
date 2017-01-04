@@ -100,7 +100,9 @@ module.exports = {
     // consuming app configuration. NOTE that even if this is enabled we ONLY
     // want to do it for production builds b/c it will crush the dev rebuild time
     if (addonConfig.stripCode && env === 'production') {
-      app.options.minifyJS = Object.assign(app.options.minifyJS, minifyJSOptions);
+      let appOptions = app.options.minifyJS || {};
+
+      app.options.minifyJS = Object.assign(appOptions, minifyJSOptions);
 
       // If you want to remove unreachable code, uglify must be enabled
       if (!app.options.minifyJS.enabled) { app.options.minifyJS.enabled = true; }
