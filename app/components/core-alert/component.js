@@ -1,0 +1,1 @@
+export { default } from 'ember-radical/components/core-alert/component';
