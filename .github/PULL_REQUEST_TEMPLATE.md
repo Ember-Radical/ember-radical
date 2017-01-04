@@ -16,5 +16,5 @@ These are the changes included:
 
 ## Tests
 <!-- Don't lie about this, Travis CI will call you out pretty fast if you do -->
-[ ] I added tests for changes I made
-[ ] All tests are _definitely_ passing
+- [ ] I added tests for changes I made
+- [ ] All tests are _definitely_ passing

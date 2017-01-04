@@ -1,0 +1,69 @@
+// ========================================================
+// Tooltips Structure Styles
+// ========================================================
+
+/*
+ * Wrapping Element
+ * Display inline-block and position relative sets this element as the anchor
+ * point for the absolutely positioned tooltip.
+ */
+.core-tooltip {
+  display: inline-block;
+  position: relative;
+}
+
+/*
+ * MAGICAL WRAPPER
+ * Having a relatively positioned anchor handles appropriately positioning the
+ * tooltip, but its width is constrained by the parent element which is frequently
+ * too narrow. This absolutely positioned wrapper has a width of 500px which
+ * allows the tooltip to expand its parent's dimensions, but constrains it to a
+ * readable width for the narrow text.
+ */
+.tooltip-content-wrapper {
+  width: 500px;
+  position: absolute;
+}
+
+// Tooltip Content
+.tooltip-content {
+  margin-top: 10px;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1000;
+
+  // Remove margins for consistent whitespace
+  p {
+    margin-top: 0;
+  }
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  // Tooltip Content Tip
+  .tip {
+    overflow: hidden;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: -24px;
+    left: 0.5rem;
+
+    &:after {
+      content: "";
+      height: 12px;
+      width: 12px;
+      position: absolute;
+      top: 18px;
+      left: 6px;
+      transform: rotate(45deg);
+    }
+  }
+
+  // If you need an svg in a tooltip, they need to be 1x instead of 1.2 b/c
+  // tooltip font size is a lot smaller
+  .core-svg {
+    height: $rem-root * 1px !important;
+    width: $rem-root * 1px !important;
+  }
+}
