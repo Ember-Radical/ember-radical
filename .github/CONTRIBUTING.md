@@ -71,7 +71,7 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 
 ### Core Components
 
-- [ ] Core Alert
+- [x] Core Alert
 - [x] Core Button
 - [x] Core Card
 - [x] Core Drawer

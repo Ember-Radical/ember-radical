@@ -1,0 +1,34 @@
+// ========================================================
+// Alerts Theme Styles
+// ========================================================
+
+.core-alert {
+  border-width: 1px;
+  border-radius: $alert-border-radius;
+  border-style: solid;
+}
+
+.alert-dismissible {
+  .close {
+    color: inherit;
+  }
+}
+
+.alert-primary {
+  @include alert-variant($alert-primary-color, $alert-primary-bg, $alert-primary-border);
+}
+.alert-secondary {
+  @include alert-variant($alert-secondary-color, $alert-secondary-bg, $alert-secondary-border);
+}
+.alert-info {
+  @include alert-variant($alert-info-color, $alert-info-bg, $alert-info-border);
+}
+.alert-success {
+  @include alert-variant($alert-success-color, $alert-success-bg, $alert-success-border);
+}
+.alert-warning {
+  @include alert-variant($alert-warning-color, $alert-warning-bg, $alert-warning-border);
+}
+.alert-danger {
+  @include alert-variant($alert-danger-color, $alert-danger-bg, $alert-danger-border);
+}
