@@ -22,7 +22,7 @@ export default Component.extend({
    * @type {string}
    * @default assets/svg-defs.svg
    */
-  filePath: 'assets/symbol-defs.svg',
+  filePath: '/assets/symbol-defs.svg',
   /**
    * The id of the svg.
    * @property svgId
