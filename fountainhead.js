@@ -1,6 +1,7 @@
 module.exports = {
   name: 'Ember Radical Docs',
   description: 'API documentation for Ember Radical Components, Helpers and Services',
+  liveEdit: true,
   includeForProduction: false,
   entry: ['addon'],
   output: {
