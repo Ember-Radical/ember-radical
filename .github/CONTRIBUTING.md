@@ -77,12 +77,11 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 - [x] Core Drawer
 - [x] Core Dropdown
 - [x] Core Modal
-- [ ] Core Popover
+- [x] Core Popover
 - [x] Core State
 - [x] Core SVG
 - [x] Core Tabs
 - [x] Core Tooltip
-- [ ] Omni Filter(?)
 
 ### Services
 
