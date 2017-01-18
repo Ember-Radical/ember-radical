@@ -50,6 +50,7 @@ import {controls} from '../../utils/arias';
  *     <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" />
  *   {{/components.content}}
  * {{/core-drawer}}
+ * ```
  *
  * Additionally, the open/closed state of a `core-drawer` can be updated from
  * an external state source. This can be very useful for situations where you
@@ -60,7 +61,7 @@ import {controls} from '../../utils/arias';
  * ```handlebars
  * {{#core-button click=(action 'changeSomeProp')}}Toggle Drawer{{/core-button}}
  *
- * {{#core-drawer Target='Hello' Content='I am open now' externalToggle=someProp}}
+ * {{core-drawer Target='Hello' Content='I am open now' externalToggle=someProp}}
  * ```
  *
  * `core-drawer` will still continue to function normally with this property
