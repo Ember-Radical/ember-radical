@@ -53,6 +53,14 @@ export default Component.extend(taggingAssets, {
   // ---------------------------------------------------------------------------
 
   /**
+   * 508 compliance/accessibility attribute that allows for unique identifiers
+   * to be assigned to interaction targets and link them to the results of that
+   * interaction so that screen readers know how to associate the two.
+   * @property aria-describedby
+   * @type {string}
+   */
+  'aria-describedby': '',
+  /**
    * Pass a brand to have `btn-${brand}` class applied
    * @property brand
    * @type {string}

@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-xs-8">
+    <h1>Popovers</h1>
+    {{#core-popover as |components|}}
+      {{#components.target}}PRETTY SWEET CONTENT INSIDE!{{/components.target}}
+      {{#components.content position="bottom"}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+    <p>The <code>target</code> subcomponents are just <code>core-button</code> instances! That means you can pass properties like <code>brand</code> and <code>link</code> into them!</p>
+    {{#core-popover as |components|}}
+      {{#components.target link=true}}This component target looks like regular ol text{{/components.target}}
+      {{#components.content position="bottom"}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+  </div>
+
+  <div class="col-xs-12">
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8">
+    <h2>Positions!</h2>
+    <h5><code>position="top"</code></h5>
+    {{#core-popover position="top" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover appears above{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+    <h5><code>position="left"</code></h5>
+    {{#core-popover position="left" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover appears to the left{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+    <h5><code>position="right"</code></h5>
+    {{#core-popover position="right" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover appears to the right{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+    <h5><code>position="bottom-left"</code></h5>
+    {{#core-popover position="bottom-left" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover appears to the bottom and left{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+  </div>
+
+  <div class="col-xs-12">
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8">
+    <h2>Sizes!</h2>
+    <h5><code>size="large"</code></h5>
+    {{#core-popover position="top" size="large" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover is bigger than usual{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+    <hr>
+    <h5><code>size="x-large"</code></h5>
+    {{#core-popover position="top" size="x-large" as |components aria-describedby|}}
+      {{#core-button aria-describedby=aria-describedby}}This popover is REALLY BIG{{/core-button}}
+      {{#components.content}}
+        <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+      {{/components.content}}
+    {{/core-popover}}
+  </div>
+
+  <div class="col-xs-12">
+    <hr>
+  </div>
+</div>

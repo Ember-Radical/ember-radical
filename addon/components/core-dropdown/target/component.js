@@ -1,4 +1,3 @@
-import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
