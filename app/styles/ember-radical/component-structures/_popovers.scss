@@ -1,0 +1,202 @@
+// ========================================================
+// Popover Structural Styles
+// @TODO: Rework the layout styles to use flexbox
+// ========================================================
+
+$small-popover-width:     243px;
+$small-popover-padding:   1rem;
+
+$medium-popover-width:    335px;
+$medium-popover-padding:  1rem;
+
+$large-popover-width:     428px;
+$large-popover-padding:   1.5rem;
+
+$xlarge-popover-width:    519px;
+$xlarge-popover-padding:  2.5rem;
+
+.core-popover {
+  display: inline-block;
+  position: relative;
+
+  button {
+    margin-bottom: 0; // Popover target buttons with margin-bottom push the popover content down
+  }
+}
+
+// Content Subcomponent
+// ========================================================
+
+.popover-content {
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
+  border-radius: 5px;
+  position: absolute;
+  width: $small-popover-width;
+  z-index: 1000;
+  font-size: 1rem;
+  padding: 1rem;
+
+  // Make whitespace consistent
+  h1, h2, h3, h4, p { margin-top: 0; }
+  *:last-child { margin-bottom: 0; }
+
+  // Base tip styles
+  .tip {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    overflow: hidden;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      transform: rotate(45deg);
+    }
+  }
+
+  // Sizes Configuration
+  // ========================================================
+  &.small {
+    width: $small-popover-width;
+    padding: $small-popover-padding;
+  }
+
+  &.medium {
+    width: $medium-popover-width;
+    padding: $medium-popover-padding;
+  }
+
+  &.large {
+    width: $large-popover-width;
+    padding: $large-popover-padding;
+  }
+
+  &.x-large {
+    width: $xlarge-popover-width;
+    padding: $xlarge-popover-padding;
+  }
+
+  // Top Position Configuration
+  // ========================================================
+  &.top {
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: 10px;
+    transform: translateX(-50%);
+
+    .tip {
+      left: 50%;
+      bottom: -24px;
+      transform: translateY(0px) translateX(-50%);
+
+      &:after {
+        top: -6px;
+        left: 6px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Bottom Position Configuration
+  // ========================================================
+  &.bottom {
+    left: 50%;
+    margin-top: 10px;
+    top: 100%;
+    transform: translateX(-50%);
+
+    .tip {
+      left: 50%;
+      top: -24px;
+      transform: translateY(0px) translateX(-50%);
+
+      &:after {
+        top: 18px;
+        left: 6px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Left Position Configuration
+  // ========================================================
+  &.left {
+    margin-right: 10px;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .tip {
+      right: -24px;
+      top: 50%;
+      transform: translateY(-50%) translateX(0);
+
+      &:after {
+        top: 6px;
+        right: 18px;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Right Position Configuration
+  // ========================================================
+  &.right {
+    left: 100%;
+    margin-left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .tip {
+      left: -24px;
+      top: 50%;
+      transform: translateY(-50%) translateX(0);
+
+      &:after {
+        top: 6px;
+        left: 18px;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Bottom-Left Position Configuration
+  // ========================================================
+  &.bottom-left {
+    margin-top: 10px;
+    left: 25%;
+
+    .tip {
+      left: 1.5rem;
+      top: -24px;
+
+      &:after {
+        top: 18px;
+        left: 6px;
+        box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Bottom-Right Position Configuration
+  // ========================================================
+  &.bottom-right {
+    margin-top: 10px;
+    right: 25%;
+
+    .tip {
+      right: 1.5rem;
+      top: -24px;
+
+      &:after {
+        top: 18px;
+        left: 6px;
+        box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}

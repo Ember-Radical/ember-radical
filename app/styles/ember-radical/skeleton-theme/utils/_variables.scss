@@ -170,6 +170,35 @@ $modal-primary-bg: $brand-primary;
 $tooltip-bg: #42403d;
 $tooltip-color: #fff;
 
+// Alerts
+// ---------------------------------------------------------------------------
+$alert-padding: $font-size-base;
+$alert-border-radius: $border-radius;
+
+$alert-primary-color:  #fff;
+$alert-primary-bg:     $brand-primary;
+$alert-primary-border: darken(adjust-hue($alert-primary-bg, -10), 7%);
+
+$alert-secondary-color:  $gray-dark;
+$alert-secondary-bg:     #fff;
+$alert-secondary-border: darken(adjust-hue($alert-secondary-bg, -10), 7%);
+
+$alert-info-color:  #31708f;
+$alert-info-bg:     #d9edf7;
+$alert-info-border: darken(adjust-hue($alert-info-bg, -10), 7%);
+
+$alert-success-color:  #3c763d;
+$alert-success-bg:     #dff0d8;
+$alert-success-border: darken(adjust-hue($alert-success-bg, -10), 5%);
+
+$alert-warning-color:  #8a6d3b;
+$alert-warning-bg:     #fcf8e3;
+$alert-warning-border: darken(adjust-hue($alert-warning-bg, -10), 5%);
+
+$alert-danger-color:  #a94442;
+$alert-danger-bg:     #f2dede;
+$alert-danger-border: darken(adjust-hue($alert-danger-bg, -10), 5%);
+
 // Misc
 // ---------------------------------------------------------------------------
 $cursor-disabled: not-allowed;
