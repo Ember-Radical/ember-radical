@@ -18,7 +18,7 @@ import {controls} from '../../utils/arias';
  * If you only have simple text (or pre-determined text/HTML within a variable)
  * to yield, you can simply use the `Target` and `Content` attrs on `core-drawer` to auto-invoke the subcomponents, like so:
  *
- * ```handlebars
+ * ```glimmer
  * {{core-drawer Target='Click to read more about puppies' Content='Imagine five paragraphs about puppies instead of this one sentence.'}}
  * ```
  *
@@ -31,7 +31,7 @@ import {controls} from '../../utils/arias';
  * `core-drawer` yields contextual components for both which you can access
  * directly within the block invocation of `core-drawer`.
  *
- * ```handlebars
+ * ```glimmer
  * {{#core-drawer as |components|}}
  *   {{#components.target}}
  *     <h2>This is a very large drawer that will be hard to not see</h2>
@@ -44,7 +44,7 @@ import {controls} from '../../utils/arias';
  *
  * You can also combine the use of attrs and contextual components:
  *
- * ```handlebars
+ * ```glimmer
  * {{#core-drawer Target='Click me! Come on, do it!' as |components|}}
  *   {{#components.content}}
  *     <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" />
@@ -63,6 +63,11 @@ import {controls} from '../../utils/arias';
  *
  * {{core-drawer Target='Hello' Content='I am open now' externalToggle=someProp}}
  * ```
+ *
+ * {{#core-state as |open close active toggle|}}
+ *   {{#core-button click=(action toggle)}}Toggle Drawer{{/core-button}}
+ *   {{core-drawer Target='Hello' Content='I am open now' externalToggle=active}}
+ * {{/core-state}}
  *
  * `core-drawer` will still continue to function normally with this property
  * passed in, but it gives you the ability to control it externally.

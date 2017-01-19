@@ -31,6 +31,16 @@ To import only the structural styles for components:
 @import 'ember-radical/component-structures';
 ```
 
+### Troubleshooting
+
+If you are experiencing infinite reloads while developing and running the dummy application, and have watchman installed, you may need to restart your local watchman server:
+
+```
+$ watchman shutdown-server
+```
+
+The server will be restarted automatically the next time you run `ember s`
+
 ### Contributing
 
 If you'd like to contribute, please read our [contribution guidelines](./.github/CONTRIBUTING.md) and then get cracking! We look forward to seeing your pull requests!
