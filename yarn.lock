@@ -1552,7 +1552,7 @@ ember-cli-get-dependency-depth@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-dependency-depth/-/ember-cli-get-dependency-depth-1.0.0.tgz#e0afecf82a2d52f00f28ab468295281aec368d11"
 
-ember-cli-htmlbars-inline-precompile@^0.3.1, ember-cli-htmlbars-inline-precompile@^0.3.3:
+ember-cli-htmlbars-inline-precompile@^0.3.3:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-0.3.6.tgz#4095fe423f93102724c0725e4dd1a31f25e24de5"
   dependencies:
@@ -1561,7 +1561,7 @@ ember-cli-htmlbars-inline-precompile@^0.3.1, ember-cli-htmlbars-inline-precompil
     ember-cli-htmlbars "^1.0.0"
     hash-for-dep "^1.0.2"
 
-ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.3:
+ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.10:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.1.1.tgz#8776cf59796dac8f32e8625fc6d1ea45ffa55de1"
   dependencies:
@@ -1831,14 +1831,13 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-fountainhead@beta:
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-2.0.0-beta.1.tgz#8a159f036a1193c7e6e71debdb539a82c2c24557"
+ember-fountainhead@2.0.0-beta.8:
+  version "2.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-2.0.0-beta.8.tgz#eef7f582a7cc6549479b7b40b74e5026c324b09f"
   dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
-    ember-cli-htmlbars-inline-precompile "^0.3.1"
-    ember-radical "git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a"
+    ember-cli-babel "^5.1.7"
+    ember-cli-htmlbars "^1.0.10"
+    ember-cli-htmlbars-inline-precompile "^0.3.3"
     markdown-it "^8.0.0"
     prismjs "^1.5.1"
     yuidocjs "^0.10.2"
@@ -1858,14 +1857,6 @@ ember-qunit@^1.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-1.0.0.tgz#7db7b9f0c4e1f331ae1a3fd8c0688778d5dea7fb"
   dependencies:
     ember-test-helpers "^0.5.32"
-
-"ember-radical@git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a":
-  version "0.2.0"
-  resolved "git://github.com/healthsparq/ember-radical.git#7bffd41445e6cac3b658be8aa10cb1a271c5731a"
-  dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.0.10"
-    ember-cli-htmlbars-inline-precompile "^0.3.3"
 
 ember-resolver@^2.0.3:
   version "2.1.0"

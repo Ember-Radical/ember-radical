@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-xs-8">
     <h1>Modals</h1>
-    {{#core-state as |open close active toggle|}}
+    {{#core-state as |state stateActions|}}
       {{#core-button
-        click=(action open)
+        click=(action stateActions.open)
         brand='primary'}}Open The Modal!{{/core-button}}
       {{#core-modal
-        open=active
+        open=state
         Header='This is a totally rad modal right here!'
-        closeModal=(action close)}}
+        closeModal=(action stateActions.close)}}
         <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
       {{/core-modal}}
     {{/core-state}}
@@ -22,13 +22,13 @@
 <div class="row">
   <div class="col-xs-8">
     <h5><code>Branded Header</code></h5>
-    {{#core-state as |open close active toggle|}}
+    {{#core-state as |state stateActions|}}
       {{#core-button
-        click=(action open)
+        click=(action stateActions.open)
         brand='primary'}}Open this branded modal{{/core-button}}
       {{#core-modal
-        open=active
-        closeModal=(action close) as |components|}}
+        open=state
+        closeModal=(action stateActions.close) as |components|}}
         {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
         <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
       {{/core-modal}}
@@ -43,13 +43,13 @@
 <div class="row">
   <div class="col-xs-8">
     <h5><code>No Header (Still Accessible)</code></h5>
-    {{#core-state as |open close active toggle|}}
+    {{#core-state as |state stateActions|}}
       {{#core-button
-        click=(action open)}}Open this modal with no header{{/core-button}}
+        click=(action stateActions.open)}}Open this modal with no header{{/core-button}}
       {{#core-modal
-        open=active
+        open=state
         ariaHeader='This modal shows what a modal with no header looks like'
-        closeModal=(action close)}}
+        closeModal=(action stateActions.close)}}
         <p>Inspect the HTML of this sucker to see the screen-reader friendly
           header in action.</p>
         <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />

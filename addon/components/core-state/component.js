@@ -4,13 +4,40 @@ import hbs from 'htmlbars-inline-precompile';
 /**
  * Component that can be used for tracking state changes with modals or drawers.
  * Wrap either in one of these and use the yielded state and actions to handle
- * showing/hiding your component.
+ * showing/hiding/controlling your component.
  *
  * Useful mainly for demonstration/documentation purposes, but also handy for
  * when you don't have a convenient place to store state (particularly during
- * early development stages).
+ * early development stages). It's also kind of nice for not cluttering up your
+ * parent scope with a bunch of extra state and actions you might not want to
+ * hang onto. Go nuts!
  *
- * Try not to use this for real-real in prod tho, ok?
+ * ## Usage
+ *
+ * Instances of `core-state` yield an `active` property and a hash of `actions`
+ * for manipulating that state: `open`, `close`, and `toggleState`.
+ *
+ * ```handlebars
+ * {{#core-state as |state stateActions|}}
+ *   {{bank-vault
+ *     isOpen=state
+ *     closeVault=stateActions.close
+ *     openVault=stateActions.open}}
+ * {{/core-state}}
+ * ```
+ *
+ * Or for a smipler toggling implementation:
+ *
+ * ```handlebars
+ * {{#core-state as |switchState switchActions|}}
+ *   {{light-switch isOn=switchState toggleSwitch=switchActions.toggleState}}
+ * {{/core-state}}
+ * ```
+ *
+ * The actions in the actions hash have already been yielded via the action
+ * helper, so it is not necessary to continue using that helper when passing
+ * actions into child components as properties (but you totally still can if
+ * you would prefer to.
  *
  * @class Component.CoreState
  * @constructor
@@ -63,5 +90,9 @@ export default Component.extend({
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{yield (action 'open') (action 'close') active (action 'toggleState')}}`
+  layout: hbs`{{yield active (hash
+    open=(action 'open')
+    close=(action 'close')
+    toggleState=(action 'toggleState')
+  )}}`
 });
