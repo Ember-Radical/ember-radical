@@ -6,18 +6,18 @@ moduleForComponent('core-state', 'Integration | Component | core state', {
 });
 
 test('it renders', function(assert) {
-  this.render(hbs`{{#core-state as |open close active toggleState|}}{{/core-state}}`);
+  this.render(hbs`{{#core-state as |state stateActions|}}{{/core-state}}`);
 
   assert.equal(this.$().text().trim(), '', 'Component renders block form correctly');
 });
 
 test('it can be used as a state tracker', function(assert) {
   this.render(hbs`
-    {{#core-state as |open close active toggleState|}}
-      {{#core-button click=(action open) id="open"}}Open{{/core-button}}
-      {{#core-button click=(action close) id="close"}}Close{{/core-button}}
+    {{#core-state as |state stateActions|}}
+      {{#core-button click=(action stateActions.open) id="open"}}Open{{/core-button}}
+      {{#core-button click=(action stateActions.close) id="close"}}Close{{/core-button}}
 
-      <div aria-hidden={{if active 'false' 'true'}} id="secrets">SECRET CONTENT</div>
+      <div aria-hidden={{if state 'false' 'true'}} id="secrets">SECRET CONTENT</div>
     {{/core-state}}
   `);
 
@@ -34,9 +34,9 @@ test('it can be used as a state tracker', function(assert) {
 
 test('it can be used as a state toggler', function(assert) {
   this.render(hbs`
-    {{#core-state as |open close active toggleState|}}
-      {{#core-button click=(action toggleState) id="toggle"}}Toggle{{/core-button}}
-      <div aria-hidden={{if active 'false' 'true'}} id="secrets">SECRET CONTENT</div>
+    {{#core-state as |state stateActions|}}
+      {{#core-button click=(action stateActions.toggleState) id="toggle"}}Toggle{{/core-button}}
+      <div aria-hidden={{if state 'false' 'true'}} id="secrets">SECRET CONTENT</div>
     {{/core-state}}
   `);
 

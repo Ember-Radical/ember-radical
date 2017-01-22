@@ -9,22 +9,24 @@ import {controls} from '../../utils/arias';
  * `content` subcomponents, which represent the title/trigger text to open the
  * drawer and the content to be revealed within the drawer, respectively.
  *
- * ### Usage
+ * ## Usage
  *
  * There are two ways to use `core-drawer`'s subcomponents:
  *
- * #### 1. Simple invocation via attrs
+ * ### 1. Simple invocation via attrs
  *
  * If you only have simple text (or pre-determined text/HTML within a variable)
  * to yield, you can simply use the `Target` and `Content` attrs on `core-drawer` to auto-invoke the subcomponents, like so:
  *
  * ```glimmer
- * {{core-drawer Target='Click to read more about puppies' Content='Imagine five paragraphs about puppies instead of this one sentence.'}}
+ * {{core-drawer
+ *   Target='Click to read more about puppies'
+ *   Content='Imagine five paragraphs about puppies instead of this one sentence.'}}
  * ```
  *
  * This is the easiest and quickest way to create an instance of `core-drawer`.
  *
- * #### 2. Full invocation via contextual components
+ * ### 2. Full invocation via contextual components
  *
  * If you have more complex needs in terms of the text/html/template code
  * that needs to exist in either the `target` or `content` subcomponents,
@@ -64,13 +66,15 @@ import {controls} from '../../utils/arias';
  * {{core-drawer Target='Hello' Content='I am open now' externalToggle=someProp}}
  * ```
  *
- * {{#core-state as |open close active toggle|}}
- *   {{#core-button click=(action toggle)}}Toggle Drawer{{/core-button}}
- *   {{core-drawer Target='Hello' Content='I am open now' externalToggle=active}}
+ * {{#core-state as |state stateActions|}}
+ *   {{#core-button click=(action stateActions.toggleState)}}Toggle Drawer{{/core-button}}
+ *   {{core-drawer Target='Hello' Content='I am open now' externalToggle=state}}
  * {{/core-state}}
  *
  * `core-drawer` will still continue to function normally with this property
  * passed in, but it gives you the ability to control it externally.
+ *
+ * ## Properties
  *
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
@@ -78,7 +82,7 @@ import {controls} from '../../utils/arias';
  * `icon` | string/boolean | 'arrow-down2' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
  *
- * ### A++ Accessibility
+ * ## A++ Accessibility Features
  *
  * - Drawer target auto-binds `aria-controls` to the value of the component ID
  * - Drawer target auto-binds `aria-expanded` to the expanded/collapsed state
