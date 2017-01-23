@@ -1,7 +1,6 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
-const devAssets = {};
 
 import { bindOnEscape, unbindOnEscape } from '../../utils/listeners';
 import { labelledby, describedby } from '../../utils/arias';
@@ -12,15 +11,15 @@ import { labelledby, describedby } from '../../utils/arias';
  * Welcome friend, if you're looking for a button/link that opens a dropdown
  * you've come to the right place.
  *
- * ### Usage
+ * ## Usage
  *
- * 1. Simple invocation. It's so easy. Just pass a Target and Content prop
+ * ### 1. Simple invocation. It's so easy. Just pass a Target and Content prop
  * and you've got a totally rad dropdown.
- * ```handlebars
+ * ```glimmer
  * {{core-dropdown Target="Open me!" Content="Hey, what's up?"}}
  * ```
  *
- * 2. Simple target with custom content. Use the Content contextual
+ * ### 2. Simple target with custom content. Use the Content contextual
  * component to add custom content to the dropdown.
  * ```handlebars
  * {{#core-dropdown Target="Open me!" as |components|}}
@@ -28,21 +27,22 @@ import { labelledby, describedby } from '../../utils/arias';
  * {{/core-dropdown}}
  * ```
  *
- * 3. Customize both the dropdown target and content.
- * ```handlebars
+ * ### 3. Customize both the dropdown target and content.
+ * ```glimmer
  * {{#core-dropdown as |components|}}
  *   {{#components.target}}Open me!{{/components.target}}
  *   {{#components.content}}Hey, what's up?{{/components.content}}
  * {{/core-dropdown}}
  * ```
  *
- * 4. Turn the target into a button with `buttonStyle=true` and pass a `brand`
- * to change the color button.
+ * ### 4. Turn the target into a button with `buttonStyle=true` and pass a
+ * `brand` to change the color button.
  * ```handlebars
  * {{core-dropdown buttonStyle=true brand="primary" Target="Open me!" Content="Hey, what's up?"}}
  * ```
+ *
  * Configuration | Type | Default | Description
- * --- | --- | ---
+ * --- | --- | --- | ---
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
  * `brand` | string | '' | The brand class to use to style the `target`
  *
