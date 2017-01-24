@@ -24,6 +24,7 @@ module.exports = {
    * Create file with consuming applications feature flags in `/vendor` and call
    * `app.import` on that file. This creates the necessary globals for feature
    * flags in dev and test envs, or always if `stripCode` has been turned off.
+   * After importing those flags delete the file for maximum 🔮.
    */
   _importFeatureFlags(flags) {
     try {
@@ -42,6 +43,12 @@ module.exports = {
     }
 
     this.app.import(`${this.vendorPath}/feature-flags.js`);
+
+    try {
+      fs.unlinkSync(path.resolve('vendor', 'feature-flags.js'));
+    } catch(ex) {
+      console.warn('error deleting feature flags: ', ex);
+    }
   },
 
   // Addon Hooks
