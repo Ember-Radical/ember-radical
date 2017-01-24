@@ -80,6 +80,7 @@ export default Component.extend({
   ariaRole: 'tooltip',
   /**
    * Handle binding `hidden` and `aria-hidden` for A++ usability :thumbsup:
+   * @property attributeBindings
    * @type {Array}
    */
   attributeBindings: ['hiddenForArias:aria-hidden', 'data-test'],
@@ -119,7 +120,7 @@ export default Component.extend({
    * Handle binding passed `aria-describedby` as this component's `elementId` on
    * init.
    * @event init
-   * @returns {undefined}
+   * @return {undefined}
    */
   init() {
     this._super(...arguments);
@@ -142,7 +143,7 @@ export default Component.extend({
     const boundingRect = document.getElementById(this.get('elementId')).getBoundingClientRect();
     const bodyWidth = $('body').width();
 
-    /**
+    /*
      * If the box is centered, it will center itself back off of the page when we
      * subtract the necessary width from the component width. In these cases, we
      * will need to subtract twice the necessary width. The box is only ever centered

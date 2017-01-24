@@ -115,6 +115,7 @@ export default Component.extend({
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan
    * listeners.
+   * @method willDestroyElement
    */
   willDestroyElement() {
     // Check for passed closures
@@ -135,7 +136,7 @@ export default Component.extend({
     /**
      * Handle the showing of the dropdown
      * @method show
-     * @returns {undefined}
+     * @return {undefined}
      */
     show() {
       // Toggle display
@@ -150,7 +151,7 @@ export default Component.extend({
     /**
      * Handle the hiding of the dropdown
      * @method hide
-     * @returns {undefined}
+     * @return {undefined}
      */
     hide() {
       // Toggle display

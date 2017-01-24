@@ -61,7 +61,7 @@ export default Component.extend({
   /**
    * Log warning if `aria-describedby` is not passed in.
    * @event init
-   * @returns {undefined}
+   * @return {undefined}
    */
   init() {
     this._super(...arguments);
@@ -73,7 +73,7 @@ export default Component.extend({
    *
    * If you need to override this event, be sure to call `this._super();`
    * @event didRender
-   * @returns {undefined}
+   * @return {undefined}
    */
   didRender() {
     // If the content is hidden, do less

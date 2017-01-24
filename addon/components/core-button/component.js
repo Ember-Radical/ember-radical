@@ -32,7 +32,7 @@ if (TAGGING) {
     /**
      * Internal method that handles firiing a tag with or without custom dimensions.
      * @method _fireTag
-     * @returns {undefined}
+     * @return {undefined}
      */
     _fireTag() {
       const { tagcategory, tagaction, taglabel, tagvalue, tagcd } =
@@ -211,7 +211,7 @@ export default Component.extend(taggingAssets, {
    *
    * If you need to override this event, be sure to call `this._super();`
    * @event mouseDown
-   * @returns {undefined}
+   * @return {undefined}
    */
   mouseDown() {
     // Hide outline b/c this was a legit mouse click
@@ -236,7 +236,7 @@ export default Component.extend(taggingAssets, {
    * If you need to override this event, be sure to call `this._super();`
    * TODO: Only include this if Tagging feature is enabled
    * @event mouseEnter
-   * @returns {undefined}
+   * @return {undefined}
    */
   mouseEnter() {
     if (TAGGING) {

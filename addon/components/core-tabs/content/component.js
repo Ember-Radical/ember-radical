@@ -84,7 +84,7 @@ export default Component.extend({
    * @property _hidden
    * @param {string} activeId
    * @param {boolean} hidden
-   * @returns {string} String of true/false for use with `aria-hidden` binding
+   * @return {string} String of true/false for use with `aria-hidden` binding
    */
   _hidden: computed('activeId', 'hidden', function() {
     if (this.get('hidden') || this.get('activeId') !== this.get('elementId')) {
