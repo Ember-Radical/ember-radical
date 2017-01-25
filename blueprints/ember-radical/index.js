@@ -9,8 +9,8 @@ module.exports = {
 
   /*
    * At one point we added feature flags to the vendor dir and left them there,
-   * so we manually updated the gitignore for consumers. Instead we know delete
-   * those feature flags after importing them. If we get down the road and this
+   * so we manually updated the gitignore for consumers. Instead we now inject
+   * content using the content-for hooks. If we get down the road and this
    * method is working great, delete the gitignore changes below.
    */
   afterInstall() {
