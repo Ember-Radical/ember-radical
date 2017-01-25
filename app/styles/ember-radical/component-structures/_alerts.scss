@@ -4,7 +4,6 @@
 
 .core-alert {
   position: relative;
-  padding: $alert-padding;
   margin-bottom: 1rem;
 
   > p,
@@ -14,11 +13,9 @@
 }
 
 .alert-dismissible {
-  padding-right: ($alert-padding + 1.5);
-
   .close {
     position: absolute;
-    top: $alert-padding;
-    right: $alert-padding;
+    top: 0; // this gets overridden by the skeleton-theme
+    right: 0; // this gets overridden by the skeleton-theme
   }
 }

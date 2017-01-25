@@ -17,4 +17,11 @@
       box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.15);
     }
   }
+
+  // If you need an svg in a tooltip, they need to be 1x instead of 1.2 b/c
+  // tooltip font size is a lot smaller
+  .core-svg {
+    height: $rem-root * 1px !important;
+    width: $rem-root * 1px !important;
+  }
 }
