@@ -6,11 +6,15 @@
   border-width: 1px;
   border-radius: $alert-border-radius;
   border-style: solid;
+  padding: $alert-padding;
 }
 
 .alert-dismissible {
+  padding-right: ($alert-padding + 1.5);
   .close {
     color: inherit;
+    top: $alert-padding;
+    right: $alert-padding;
   }
 }
 

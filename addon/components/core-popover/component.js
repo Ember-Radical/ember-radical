@@ -132,7 +132,7 @@ export default Component.extend({
   /**
    * Handle showing tooltip content
    * @method _showContent
-   * @returns undefined
+   * @return undefined
    */
   _showContent() {
     this.set('hidden', false);
@@ -140,7 +140,7 @@ export default Component.extend({
   /**
    * Handle showing tooltip content
    * @method _hideContent
-   * @returns undefined
+   * @return undefined
    */
   _hideContent() {
     this.set('hidden', true);
