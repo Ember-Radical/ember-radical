@@ -13,7 +13,15 @@
 
 .clearfix { @include clearfix(); }
 .float-left { float: left; }
+.pull-left { float: left; }
 .float-right { float: right; }
+.pull-right { float: right; }
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 // Show/Hide Classes
 // -----------------------------------------------------------------------------
