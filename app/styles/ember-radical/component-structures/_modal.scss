@@ -4,7 +4,7 @@
 
 // Gray Background
 // ========================================================
-.core-modal-background {
+.rad-modal-background {
   // Use position fixed to handle making full screen regardless of where this is in the DOM
   position: fixed;
   z-index: 1050;
@@ -39,7 +39,7 @@
 
 // Modal Element Proper
 // ========================================================
-.core-modal-wrapper {
+.rad-modal-wrapper {
   overflow: auto;
   max-height: 100vh;
   width: 100%;
