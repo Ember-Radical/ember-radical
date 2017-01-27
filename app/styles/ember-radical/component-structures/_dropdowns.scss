@@ -2,13 +2,13 @@
 // Dropdown Structural Styles
 // ========================================================
 
-.core-dropdown {
+.rad-dropdown {
   button {
     margin-bottom: 0; // No margin for trigger buttons inside of dropdown
   }
 }
 
-.core-dropdown-background {
+.rad-dropdown-background {
   position: fixed;
   z-index: 1090;
   top: 0;

@@ -20,7 +20,7 @@
 
   // If you need an svg in a tooltip, they need to be 1x instead of 1.2 b/c
   // tooltip font size is a lot smaller
-  .core-svg {
+  .rad-svg {
     height: $rem-root * 1px !important;
     width: $rem-root * 1px !important;
   }
