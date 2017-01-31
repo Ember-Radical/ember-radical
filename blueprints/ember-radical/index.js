@@ -1,7 +1,4 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const EOL = require('os').EOL;
 
 module.exports = {
   normalizeEntityName: function() {
@@ -10,19 +7,26 @@ module.exports = {
     // to us
   },
 
-  // Add an ignore for generated vendor feature flags
+  /*
+   * At one point we added feature flags to the vendor dir and left them there,
+   * so we manually updated the gitignore for consumers. Instead we now inject
+   * content using the content-for hooks. If we get down the road and this
+   * method is working great, delete the gitignore changes below.
+   */
   afterInstall() {
     // Read current gitignore
-    let gitignore = fs.readFileSync(path.resolve('.gitignore'), { encoding: 'utf8' });
+    // let gitignore = fs.readFileSync(path.resolve('.gitignore'), { encoding: 'utf8' });
 
     // If feature-flags has already been added, do less
-    if (gitignore.indexOf('vendor/feature-flags.js') !== -1) { return; }
+    // if (gitignore.indexOf('vendor/feature-flags.js') !== -1) { return; }
 
     // Write new entry to gitignore
-    fs.writeFileSync(
-      path.resolve('.gitignore'),
-      `${gitignore}${EOL}# Auto generated ember-radical feature flags${EOL}vendor/feature-flags.js`,
-      { encoding: 'utf8' }
-    );
+    // fs.writeFileSync(
+    //   path.resolve('.gitignore'),
+    //   `${gitignore}${EOL}# Auto generated ember-radical feature flags${EOL}vendor/feature-flags.js`,
+    //   { encoding: 'utf8' }
+    // );
+
+    console.log('Thanks for installing Ember Radical, we hope you build something radical!');
   }
 };

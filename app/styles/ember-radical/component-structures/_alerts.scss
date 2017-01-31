@@ -2,7 +2,7 @@
 // Alerts Structure Styles
 // ========================================================
 
-.core-alert {
+.rad-alert {
   position: relative;
   margin-bottom: 1rem;
 
@@ -15,7 +15,5 @@
 .alert-dismissible {
   .close {
     position: absolute;
-    top: 0; // this gets overridden by the skeleton-theme
-    right: 0; // this gets overridden by the skeleton-theme
   }
 }
