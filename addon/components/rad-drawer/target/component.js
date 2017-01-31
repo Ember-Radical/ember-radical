@@ -66,7 +66,7 @@ export default CoreButton.extend({
   // Hooks
   // ---------------------------------------------------------------------------
 
-  didReceiveAttrs({newAttrs}) {
+  didReceiveAttrs() {
     let dataTest = this.get('data-test');
     if (dataTest) {
       this.set('dataTest', `${dataTest}-target`);

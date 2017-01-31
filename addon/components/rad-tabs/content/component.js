@@ -141,13 +141,17 @@ export default Component.extend({
    * _(Currently the only change we're notifying on is the `hidden` prop)_
    * @event didUpdateAttrs
    */
-  didUpdateAttrs({ oldAttrs = {}, newAttrs = {}}) {
-    let oldHidden = oldAttrs.hidden ? oldAttrs.hidden.value : null;
-    let newHidden = newAttrs.hidden ? newAttrs.hidden.value : null;
+  didUpdateAttrs() {
+    let hidden = this.get('hidden'),
+        oldHidden = this.get('_oldHidden');
 
-    if (oldHidden !== newHidden) {
+    if (oldHidden !== hidden) {
       this.updateTab(this.getProperties('elementId', 'hidden'));
     }
+
+    // Update the private hidden state so it can be used for comparison
+    // on the next attrs update
+    this.set('_oldHidden', hidden);
   },
 
   // Layout

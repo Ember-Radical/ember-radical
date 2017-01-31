@@ -165,11 +165,17 @@ export default Component.extend({
    * @event didReceiveAttrs
    * @return {undefined}
    */
-  didReceiveAttrs({newAttrs, oldAttrs}) {
-    if (oldAttrs && newAttrs.externalToggle.value !== oldAttrs.externalToggle.value) {
-      const externalToggle = this.get('externalToggle');
+  didReceiveAttrs() {
+    let externalToggle = this.get('externalToggle');
+    let oldExternalToggle = this.get('_oldExternalToggle');
+
+    if (oldExternalToggle !== externalToggle) {
       this.set('hidden', !externalToggle);
     }
+
+    // Update the private hidden state so it can be used for comparison
+    // on the next attrs update
+    this.set('_oldExternalToggle', externalToggle);
   },
 
   // Actions
