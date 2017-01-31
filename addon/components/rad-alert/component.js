@@ -11,7 +11,7 @@ import hbs from 'htmlbars-inline-precompile';
  * #### 1. Basic usage
  * Alerts accept a `brand` property to change the alert color.
  *
- * ```handlebars
+ * ```glimmer
  * {{#rad-alert brand="primary"}}Even hunks were boys once. Pretty little boy hunks!{{/rad-alert}}
  * {{#rad-alert brand="secondary"}}If you’re raking the leaves and it gets all over your driveway, just hose it off dummy.{{/rad-alert}}
  * {{#rad-alert brand="success"}}You have smelly body parts? Smelly under your arms? In the armpits? Just… just put some vinegar on it! Why didn’t you think of that?{{/rad-alert}}
@@ -19,27 +19,18 @@ import hbs from 'htmlbars-inline-precompile';
  * {{#rad-alert brand="warning"}}Life comes from eggs. Not just for omelettes, ya dingus, you could make a baby boy or a baby girl too.{{/rad-alert}}
  * {{#rad-alert brand="danger"}}Go to bed early you doofus, ‘cause when you’re sleeping there’s no lonely times, just dreams.{{/rad-alert}}
  * ```
- *
- * {{#rad-alert brand="primary"}}Even hunks were boys once. Pretty little boy hunks!{{/rad-alert}}
- * {{#rad-alert brand="secondary"}}If you’re raking the leaves and it gets all over your driveway, just hose it off dummy.{{/rad-alert}}
- * {{#rad-alert brand="success"}}You have smelly body parts? Smelly under your arms? In the armpits? Just… just put some vinegar on it! Why didn’t you think of that?{{/rad-alert}}
- * {{#rad-alert brand="info"}}I’ll be brack.{{/rad-alert}}
- * {{#rad-alert brand="warning"}}Life comes from eggs. Not just for omelettes, ya dingus, you could make a baby boy or a baby girl too.{{/rad-alert}}
- * {{#rad-alert brand="danger"}}Go to bed early you doofus, ‘cause when you’re sleeping there’s no lonely times, just dreams.{{/rad-alert}}
  *
  * #### 2. Dismissing
  * By default alerts are dismissible. You can disable this by passing a
  * `canDismiss` property.
  *
- * ```handlebars
+ * ```glimmer
  * {{#rad-alert brand="primary" canDismiss=false}}Try to dismiss this, ya dingus.{{/rad-alert}}
  * ```
  *
- * {{#rad-alert brand="primary" canDismiss=false}}Try to dismiss this, ya dingus.{{/rad-alert}}
- *
  * When alerts are dismissed they also fire an `onDismiss` action.
  *
- * ```handlebars
+ * ```glimmer
  * {{#rad-alert brand="primary" onDismiss=(action "handleDismiss")}}Dismiss me!{{/rad-alert}}
  * ```
  *

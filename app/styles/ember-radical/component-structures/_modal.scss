@@ -177,32 +177,6 @@
     width: 0;
     overflow: hidden;
   }
-
-  // X icon container, limit size and set to top right of header
-  .close-x {
-    height: 17px;
-    width: 17px;
-
-    position: absolute;
-    top: 20px;
-    right: 20px;
-
-    color: #666;
-
-    cursor: pointer;
-    opacity: 0.5;
-
-    &:hover {
-      color: #666;
-      opacity: 1;
-    }
-
-    // Adjust X location for change in modal padding when small
-    @media only screen and (min-width: 64.063em) {
-      top: 25px;
-      right: 30px;
-    }
-  }
 }
 
 // Modal Header
