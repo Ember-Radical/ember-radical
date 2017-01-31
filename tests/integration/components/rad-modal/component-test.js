@@ -198,7 +198,7 @@ test('it passes and binds closeModal action to background and header (aria heade
     assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper returns to visible');
 
     // Click close button
-    this.$('button.close-x').click();
+    this.$('[data-test="rad-modal-close-button"]').click();
 
     // Wait for updates
     return wait().then(() => {

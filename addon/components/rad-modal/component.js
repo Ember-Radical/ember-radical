@@ -424,7 +424,8 @@ export default Component.extend(devAssets, {
                 click=(action closeModal)
                 tagcategory=tagClose.category
                 tagaction=tagClose.action
-                taglabel=tagClose.label}}
+                taglabel=tagClose.label
+                data-test='rad-modal-close-button'}}
                 {{rad-svg svgId='x'}}
               {{/rad-button}}
             </div>
