@@ -1831,9 +1831,9 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-fountainhead@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-2.0.0.tgz#50f4a27d324cf35a262959c353828ee5f317446e"
+ember-fountainhead@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-fountainhead/-/ember-fountainhead-2.1.0.tgz#9adfd5b1ae6052db5ee7f23d2d9d7bc679da307c"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.0.10"
