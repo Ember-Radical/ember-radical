@@ -1,0 +1,18 @@
+// ========================================================
+// Close Button Styles
+// ========================================================
+
+button.close {
+  float: right;
+  color: $close-color;
+
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover,
+  &:focus {
+    color: $close-color;
+    opacity: 1;
+    text-decoration: none;
+  }
+}
