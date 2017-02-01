@@ -214,7 +214,7 @@ export default Component.extend({
 
     {{#if Target}}
       {{#rad-dropdown/target
-        aria-describedby=aria-describedby
+        aria-describedby=describedby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
@@ -231,7 +231,7 @@ export default Component.extend({
 
     {{yield (hash
       target=(component 'rad-dropdown/target'
-        aria-describedby=aria-describedby
+        aria-describedby=describedby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
