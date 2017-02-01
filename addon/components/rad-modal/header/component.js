@@ -123,7 +123,8 @@ export default Component.extend({
         click=(action closeModal)
         tagcategory=tagClose.category
         tagaction=tagClose.action
-        taglabel=tagClose.label}}
+        taglabel=tagClose.label
+        data-test='rad-modal-close-button'}}
         {{rad-svg svgId="x" classNames=(concat 'modal-svg ' (if brand brand))}}
       {{/rad-button}}
     {{/unless}}
