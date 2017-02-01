@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import hbs from 'htmlbars-inline-precompile';
+import computed from 'ember-computed';
 
 import { describedby } from '../../utils/arias';
 
@@ -12,44 +13,32 @@ import { describedby } from '../../utils/arias';
  * ### Usage
  *
  * #### 1. Simple invocation
- * ```handlebars
- * {{rad-tooltip Title="Hover me" Content="For some rad information"}}
+ * ```glimmer
+ * {{rad-tooltip Title="Hover me" Content="For some rad information that is really really long"}}
  * ```
- *
- * {{rad-tooltip Title="Hover me" Content="For some rad information"}}
  *
  * #### 2. Block form using contextual components
- * ```handlebars
+ * ```glimmer
  * {{#rad-tooltip as |components|}}
  *   {{#components.title}}Hover me{{/components.title}}
- *   {{#components.content}}For some rad information{{/components.content}}
+ *   {{#components.content}}
+ *     {{rad-svg svgId='x'}} For some really rad information!
+ *   {{/components.content}}
  * {{/rad-tooltip}}
  * ```
  *
- * {{#rad-tooltip as |components|}}
- *   {{#components.title}}Hover me{{/components.title}}
- *   {{#components.content}}For some rad information{{/components.content}}
- * {{/rad-tooltip}}
- *
  * #### 3. Combine the use of attrs and contextual components.
- * ```handlebars
+ * ```glimmer
  * {{#rad-tooltip Title="Hover me" as |components|}}
  *   {{#components.content}}For some rad information{{/components.content}}
  * {{/rad-tooltip}}
  * ```
  *
- * {{#rad-tooltip as |components|}}
- *   {{#components.title}}Hover me{{/components.title}}
- *   {{#components.content}}For some rad information{{/components.content}}
- * {{/rad-tooltip}}
- *
  * #### 4. Turn the title into a button with `buttonStyle` and pass a
  * `brand` to change the color of the button.
- * ```handlebars
+ * ```glimmer
  * {{rad-tooltip buttonStyle=true brand="primary" Title="Hover me" Content="For some rad information"}}
  * ```
- *
- * {{rad-tooltip buttonStyle=true brand="primary" Title="Hover me" Content="For some rad information"}}
  *
  * @class Component.RadTooltip
  * @constructor
@@ -98,7 +87,7 @@ export default Component.extend({
    * @type {string}
    * @param elementId
    */
-  'aria-describedby': Ember.computed('elementId', describedby),
+  'aria-describedby': computed('elementId', describedby),
   /**
    * State boolean for display of the tooltip content. Is toggled true/false to
    * handle show/hide. Updated in `_showContent` and `_hideContent`
