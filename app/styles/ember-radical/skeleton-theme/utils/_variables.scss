@@ -172,15 +172,15 @@ $modal-primary-bg: $brand-primary;
 
 // Tooltips
 // ---------------------------------------------------------------------------
-$tooltip-max-width: 200px;
 $tooltip-color: #fff;
 $tooltip-bg: #42403d;
 $tooltip-opacity: .9;
 $tooltip-padding-y: 0.5em;
 $tooltip-padding-x: 0.75em;
-$zindex-tooltip: 1070;
-$tooltip-arrow-width: 10px;
-
+// Variables defined in structures-variables:
+// $tooltip-max-width: 200px;
+// $zindex-tooltip: 1070;
+// $tooltip-arrow-width: 10px;
 
 // Alerts
 // ---------------------------------------------------------------------------
