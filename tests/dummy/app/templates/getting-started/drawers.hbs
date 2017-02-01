@@ -1,0 +1,82 @@
+<div class="page-title">
+  <h1>Drawers</h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <div class="guide-content">
+        <section>
+          <p class="intro">Drawers offer a means for displaying short, concise content as a call to action that will reveal extended content within. Rad drawers are highly customizable for use in a variety of situations.</p>
+        </section>
+        <section>
+          <h4>Basic usage</h4>
+          <br>
+          {{#rad-drawer as |components|}}
+            {{#components.target}}
+              <strong>Check out this super rad drawer</strong>
+            {{/components.target}}
+            {{#components.content}}
+              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+            {{/components.content}}
+          {{/rad-drawer}}
+        </section>
+        <section>
+          <h4><code>buttonStyle=true</code></h4>
+          {{#rad-drawer
+            Target='This Drawer Target is a Button!'
+            buttonStyle=true as |components|}}
+            {{#components.content}}
+              <img src="http://i.giphy.com/125RIkH7IluIpy.gif" style="width: 100%;" alt="" />
+            {{/components.content}}
+          {{/rad-drawer}}
+        </section>
+        <section>
+          <h4><code>icon='heart'</code></h4>
+          {{rad-drawer
+            Target='This drawer has a custom svg icon'
+            Content="Isn't that something!"
+            icon='heart'}}
+        </section>
+        <section>
+          <h4><code>icon=false</code></h4>
+          {{rad-drawer
+            Target='This drawer has NO ICON AT ALL :('
+            Content="Poor fella"
+            icon=false}}
+        </section>
+        <section>
+          <h4><code>external control</code></h4>
+          <br>
+          {{#rad-state as |openState stateActions|}}
+            <p>
+              {{#rad-button
+                click=(action stateActions.toggleState)
+                classNames='btn-primary'}}
+                {{if openState 'Collapse All' 'Expand All'}}
+              {{/rad-button}}
+            </p>
+            {{#rad-drawer Target='Drawer One' externalToggle=openState as |components|}}
+              {{#components.content}}
+                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+              {{/components.content}}
+            {{/rad-drawer}}
+            {{#rad-drawer Target='Drawer Two' externalToggle=openState as |components|}}
+              {{#components.content}}
+                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+              {{/components.content}}
+            {{/rad-drawer}}
+            {{#rad-drawer Target='Drawer Three' externalToggle=openState as |components|}}
+              {{#components.content}}
+                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+              {{/components.content}}
+            {{/rad-drawer}}
+          {{/rad-state}}
+        </section>
+      </div>
+    </div>
+    <div class="sidebar col-xs-4">
+      {{sidebar-nav}}
+    </div>
+  </div>
+</div>

@@ -11,12 +11,19 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
 
     li {
+      width: 100%;
       margin-bottom: 0;
       padding: 0.5rem;
-      width: 100%;
+
+      a {
+        font-weight: 400;
+      }
+
+      .active {
+        color: #292B2C;
+      }
     }
   }
 }

@@ -119,7 +119,7 @@ export default Component.extend({
       {{#rad-button
         link=true
         aria-label="close"
-        classNames="close-x"
+        classNames="close"
         click=(action closeModal)
         tagcategory=tagClose.category
         tagaction=tagClose.action

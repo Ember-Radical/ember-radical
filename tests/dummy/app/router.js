@@ -7,12 +7,14 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('cards');
-  this.route('drawers');
-  this.route('dropdowns');
-  this.route('modals');
-  this.route('popovers');
-  this.route('tabs');
+  this.route('getting-started', function() {
+    this.route('cards');
+    this.route('drawers');
+    this.route('dropdowns');
+    this.route('modals');
+    this.route('popovers');
+    this.route('tabs');
+  });
 });
 
 export default Router;

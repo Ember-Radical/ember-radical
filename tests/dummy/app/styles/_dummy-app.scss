@@ -1,2 +1,23 @@
-@import 'dummy-styles/divider';
-@import 'dummy-styles/sidebar';
+@import "dummy-styles/divider";
+@import "dummy-styles/sidebar";
+
+// Flexy layout for sticky footer goodness
+// ---------------------------------------------------------------------------
+
+.site-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1;
+}
+
+.site-footer {
+  margin-top: 10em;
+  padding: 15px;
+  background: #50676B;
+  color: #FFFFFF;
+  text-align: center;
+}
