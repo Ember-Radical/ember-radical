@@ -6,6 +6,7 @@
 .tooltip-content {
   background: $tooltip-bg;
   box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px;
+  padding: $tooltip-padding-y $tooltip-padding-x;
   font-size: $font-size-sm;
   color: $tooltip-color;
 
