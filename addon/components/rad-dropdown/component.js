@@ -89,6 +89,18 @@ export default Component.extend({
    * @passed
    */
   dropdownMenu: false,
+  /**
+   * Fires when the dropdown is closed
+   * @property onHide
+   * @closure
+   */
+  onHide: () => {},
+  /**
+   * Fires when the dropdown is opened
+   * @property onShow
+   * @closure
+   */
+  onShow: () => {},
 
   // Properties
   // ---------------------------------------------------------------------------

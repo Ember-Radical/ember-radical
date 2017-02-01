@@ -28,11 +28,10 @@ export default CoreButton.extend({
   },
   /**
    * Closure action that hides the dropdown
-   * @method hide
-   * @return {undefined}
+   * @property hide
    * @closure
    */
-  hide() => {},
+  hide: () => {},
 
   // Layout
   // ---------------------------------------------------------------------------
