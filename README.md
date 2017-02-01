@@ -14,6 +14,8 @@ Bootstrap compatible.
 ember install ember-radical
 ```
 
+See [healthsparq.github.io/ember-radical/](https://healthsparq.github.io/ember-radical/) for details and a demo.
+
 ### Styles
 _Stylesheets are written in SCSS. The [ember-cli-sass](https://github.com/aexmachina/ember-cli-sass)
 package can be used for compilation._
