@@ -41,6 +41,20 @@ import { labelledby, describedby } from '../../utils/arias';
  * {{rad-dropdown buttonStyle=true brand="primary" Target="Open me!" Content="Hey, what's up?"}}
  * ```
  *
+ * ### 5. Use as a dropdown menu with menu items
+ *
+ * ```glimmer
+ * {{#rad-dropdown dropdownMenu=true brand="primary" buttonStyle=true as |components|}}
+ *   {{#components.target}}
+ *     Open me! {{rad-svg svgId="arrow-down"}}
+ *   {{/components.target}}
+ *   {{#components.content}}
+ *     {{#components.menu-item}}Option 1{{/components.menu-item}}
+ *     {{#components.menu-item}}Option 2{{/components.menu-item}}
+ *   {{/components.content}}
+ * {{/rad-dropdown}}
+ * ```
+ *
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
@@ -57,16 +71,24 @@ export default Component.extend({
    * Adds a brand class to the target as btn-{brand}
    * @property brand
    * @type {String}
-   * @default ''
+   * @passed
    */
   brand: '',
   /**
    * Whether or not to style the target as a link or a button
    * @property buttonStyle
    * @type {Boolean}
-   * @default false
+   * @passed
    */
   buttonStyle: false,
+  /**
+   * Whether or not to treat the dropdown content component as a dropdown menu
+   * @property dropdownMenu
+   * @type {Boolean}
+   * @default false
+   * @passed
+   */
+  dropdownMenu: false,
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -134,7 +156,8 @@ export default Component.extend({
    */
   actions: {
     /**
-     * Handle the showing of the dropdown
+     * Handle the showing of the dropdown. This will pass on any arguments you
+     * pass to it in the action.
      * @method show
      * @return {undefined}
      */
@@ -143,13 +166,14 @@ export default Component.extend({
       this.set('hidden', false);
 
       // Check for passed closures
-      if (this.get('onShow')) { this.get('onShow')(); }
+      if (this.get('onShow')) { this.get('onShow')(...arguments); }
 
       // Bind the keycommand `esc` to close dropdown
       bindOnEscape(this.get('elementId'), this.get('actions.hide').bind(this));
     },
     /**
-     * Handle the hiding of the dropdown
+     * Handle the hiding of the dropdown. This will pass on any arguments you
+     * pass to it in the action.
      * @method hide
      * @return {undefined}
      */
@@ -158,7 +182,7 @@ export default Component.extend({
       this.set('hidden', true);
 
       // Check for passed closures
-      if (this.get('onHide')) { this.get('onHide')(); }
+      if (this.get('onHide')) { this.get('onHide')(...arguments); }
 
       // Remove listeners
       unbindOnEscape(this.get('elementId'));
@@ -178,6 +202,7 @@ export default Component.extend({
 
     {{#if Target}}
       {{#rad-dropdown/target
+        aria-describedby=aria-describedby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
@@ -194,12 +219,17 @@ export default Component.extend({
 
     {{yield (hash
       target=(component 'rad-dropdown/target'
+        aria-describedby=aria-describedby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
         hidden=hidden)
       content=(component 'rad-dropdown/content'
+        dropdownMenu=dropdownMenu
         hidden=hidden)
+      menu-item=(component 'rad-dropdown/menu-item'
+        aria-describedby=aria-describedby
+        hide=(action 'hide'))
     ) (action 'show') (action 'hide') hidden aria-describedby aria-labelledby}}
   `
 });
