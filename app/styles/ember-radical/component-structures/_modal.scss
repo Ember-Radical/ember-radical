@@ -13,7 +13,6 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.45);
-
   // That modal's gunna have all the fancy fading and sliding. So smooth.
   // Fade in and out the background to make the default transitions for the modal
   // the most fanicful
@@ -45,20 +44,16 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-
   // Use position fixed to handle making full screen regardless of where this is in the DOM
   position: fixed;
   z-index: 1051;
-
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-
-  background: #fff;
-  opacity: 0;
+  background: #FFFFFF;
   outline: none;
-
+  opacity: 0;
   transition: opacity 300ms linear; // Fade in the modal b/c we're a super classy operation
 
   // Active class is used for transitioning modal into visible state
@@ -89,8 +84,8 @@
   }
 
   &.animate-top {
-    opacity: 1;
     top: -100%;
+    opacity: 1;
     transition: top 0.5s ease;
 
     &.active {
@@ -99,8 +94,8 @@
   }
 
   &.animate-bottom {
-    opacity: 1;
     top: 100%;
+    opacity: 1;
     transition: top 0.5s ease;
 
     &.active {
@@ -111,17 +106,16 @@
   // Medium Up Modals
   // ========================================================
   @media only screen and (min-width: 40.063em) {
+    max-height: 65vh;
+    max-width: 60%;
+    padding: 30px; // Bump up padding for large screens
+    top: 100px;
+    right: 5%;
+    bottom: auto;
+    left: 5%;
     border: solid 1px #6D6964;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    max-width: 60%;
-    max-height: 65vh;
-    padding: 30px; // Bump up padding for large screens
-
-    top: 100px;
-    right: 5%;
-    left: 5%;
-    bottom: auto;
 
     &.animate-bottom.active {
       top: 100px;
@@ -132,12 +126,12 @@
     }
 
     &.full {
-      bottom: 0;
-      left: 0;
       max-height: 100%;
       max-width: 100%;
-      right: 0;
       top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
 
     &.medium {
@@ -173,9 +167,22 @@
 
   // Aria label when there is no visual header. Should not be visible
   .aria-header {
+    overflow: hidden;
     height: 0;
     width: 0;
-    overflow: hidden;
+  }
+
+  // Modal close buttons still need "special treatment"
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    // Adjust X location for change in modal padding when small
+    @media only screen and (min-width: 64.063em) {
+      top: 25px;
+      right: 30px;
+    }
   }
 }
 
@@ -199,7 +206,6 @@
   .header-title {
     margin: 0;
     padding-right: 20px; // This is to make sure that we don't overlap the 20px close button that is absolute positioned to right of header
-
     line-height: 1;
   }
 }

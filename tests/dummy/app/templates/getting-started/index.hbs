@@ -1,0 +1,44 @@
+<div class="page-title">
+  <h1>Getting Started</h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <div class="guide-content">
+        <section>
+          <h4>Installation</h4>
+          <p>Install Ember Radical using Ember CLI:</p>
+          <p><code>ember install ember-radical</code></p>
+          <p class="italic">Currently, Ember Radical must be used inside of an Ember application.</p>
+        </section>
+        <section>
+          <h4>Styles</h4>
+          <p>Stylesheets are written in SCSS. The <a href="https://github.com/aexmachina/ember-cli-sass">ember-cli-sass</a>
+          package can be used for compilation.</p>
+          <p>To import the base theme:</p>
+          <p>
+            <pre>// In your /app/styles.css file
+@import 'ember-radical/styles';
+            </pre>
+          </p>
+          <p>To import only the structural styles for components:</p>
+          <p>
+            <pre>// In your /app/styles.css file
+@import 'ember-radical/component-structures';
+            </pre>
+          </p>
+        </section>
+        <section>
+          <h4>Troubleshooting</h4>
+          <p>If you are experiencing infinite reloads while developing and running the dummy application, and have watchman installed, you may need to restart your local watchman server:</p>
+          <p><code>$ watchman shutdown-server</code></p>
+          <p>The server will be restarted automatically the next time you run <code>ember serve</code></p>
+        </section>
+      </div>
+    </div>
+    <div class="sidebar col-xs-4">
+      {{sidebar-nav}}
+    </div>
+  </div>
+</div>

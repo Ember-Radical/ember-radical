@@ -12,6 +12,18 @@
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link rel="stylesheet" href="{{rootURL}}assets/dummy.css">
 
+    <!-- Totally great hack for enabling a SPA within Github pages -->
+    <!-- Thanks to: http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/ -->
+    <script>
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     {{content-for "head-footer"}}
   </head>
   <body>

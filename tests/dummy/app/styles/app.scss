@@ -1,6 +1,22 @@
 // ========================================================
-// Dummy App Styles
+// GH-Pages Demo Site Styles
 // ========================================================
 
+// Base line set by Ember Radical styles
+// ---------------------------------------------------------------------------
 @import "ember-radical/styles";
+
+// Import Fountainhead styles directly for live reload in dev
+// ---------------------------------------------------------------------------
+// @import "ember-fountainhead";
+
+// Demo Site Elements
+// ---------------------------------------------------------------------------
 @import "dummy-app";
+@import "landing";
+@import "dummy-styles/guide-page";
+
+// Keep paragraphs at a readable length
+p {
+  max-width: 750px;
+}

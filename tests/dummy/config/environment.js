@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // Production Settings
+    ENV.rootURL = '/ember-radical/';
   }
 
   return ENV;

@@ -16,7 +16,7 @@ test('it renders', function(assert) {
   `);
 
   assert.equal(this.$().text().trim().replace(/\s\s+/g, ' '), 'Test Header x icon', 'Component renders block form correctly');
-  assert.ok(this.$('button.close-x'), 'Close button should be rendered');
+  assert.ok(this.$('[data-test="rad-modal-close-button"]'), 'Close button should be rendered');
 });
 
 test('it binds appropriate attrs', function(assert) {
@@ -31,7 +31,7 @@ test('it binds appropriate attrs', function(assert) {
   assert.equal(this.$('header').attr('id'), 'aria', 'passed aria-labelledby should be bound to header id');
   assert.notOk(this.$('header').hasClass('primary-bg'), 'without a brand no brand classes should be rendered');
   assert.notOk(this.$('header').hasClass('branded'), 'without a brand no brand classes should be rendered');
-  assert.equal(this.$('button.close-x').attr('aria-label'), 'close', 'Close button should have aria-label close');
+  assert.equal(this.$('[data-test="rad-modal-close-button"]').attr('aria-label'), 'close', 'Close button should have aria-label close');
 });
 
 test('it binds appropriate brand classes', function(assert) {
@@ -45,7 +45,7 @@ test('it binds appropriate brand classes', function(assert) {
 
   assert.ok(this.$('header').hasClass('primary-bg'), 'passed brand should render brand class');
   assert.ok(this.$('header').hasClass('branded'), 'passed brand should render branded class used to handle whitespace');
-  assert.ok(this.$('button.close-x svg').hasClass('primary'), 'close x should also be branded');
+  assert.ok(this.$('[data-test="rad-modal-close-button"]').find(' svg').hasClass('primary'), 'close x should also be branded');
 });
 
 // @TODO: Reinstate this test once we get branding and tagging set back up
