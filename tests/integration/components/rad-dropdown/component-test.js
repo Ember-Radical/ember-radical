@@ -30,6 +30,8 @@ test('it binds the required attributes', function(assert) {
   assert.equal(this.$('button').attr('aria-haspopup'), 'true', 'target should have popup aria attr');
   assert.equal(this.$('button').attr('aria-expanded'), 'false', 'target should have aria expanded false by default');
   assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content should have aria-hidden true by default');
+  assert.equal(this.$('.dropdown-target').attr('id'), `lbldy-${this.$('.rad-dropdown').attr('id')}`, 'target should have proper id');
+  assert.equal(this.$('.dropdown-content').attr('aria-labelledby'), `lbldy-${this.$('.rad-dropdown').attr('id')}`, 'content should have aria-labelledby attr');
 });
 
 test('property buttonStyles binds the appropriate classes', function(assert) {
@@ -79,6 +81,37 @@ test('pressing escape closes the dropdown', function(assert) {
     e.which = 27; // escape key
     this.$(document).trigger(e);
   });
+
+  assert.equal(this.$('.dropdown-target').attr('aria-expanded'), 'false', 'target shows expanded false after pressing escape');
+  assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content shows have aria-hidden true after pressing escape');
+  assert.equal(this.$('.dropdown-content').css('display'), 'none', 'content is not displayed after pressing escape');
+});
+
+test('use the dropdown as a dropdown menu', function(assert) {
+  this.render(hbs`
+    {{#rad-dropdown dropdownMenu=true as |components|}}
+      {{#components.target}}Dropdown Target{{/components.target}}
+      {{#components.content}}
+        {{#components.menu-item}}Dropdown Option{{/components.menu-item}}
+      {{/components.content}}
+    {{/rad-dropdown}}
+  `);
+
+  assert.ok(this.$('.dropdown-content').hasClass('dropdown-menu'), 'dropdown-menu class exists');
+  assert.equal(this.$('.dropdown-item').length, 1, 'a dropdown menu-item is rendered');
+});
+
+test('clicking a menu-item closes the dropdown', function(assert) {
+  this.render(hbs`
+    {{#rad-dropdown dropdownMenu=true as |components|}}
+      {{#components.target}}Dropdown Target{{/components.target}}
+      {{#components.content}}
+        {{#components.menu-item}}Dropdown Option{{/components.menu-item}}
+      {{/components.content}}
+    {{/rad-dropdown}}
+  `);
+
+  this.$('.dropdown-item').first().click();
 
   assert.equal(this.$('.dropdown-target').attr('aria-expanded'), 'false', 'target shows expanded false after pressing escape');
   assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content shows have aria-hidden true after pressing escape');

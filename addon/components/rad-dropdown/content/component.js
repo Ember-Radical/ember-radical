@@ -41,7 +41,10 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['hiddenForArias:aria-hidden'],
+  attributeBindings: [
+    'hiddenForArias:aria-hidden',
+    'aria-labelledby:aria-labelledby'
+  ],
   /**
    * Bind `dropdown-content`
    * @property classNames

@@ -214,7 +214,7 @@ export default Component.extend({
 
     {{#if Target}}
       {{#rad-dropdown/target
-        aria-describedby=describedby
+        id=labelledby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
@@ -224,23 +224,25 @@ export default Component.extend({
     {{/if}}
 
     {{#if Content}}
-      {{#rad-dropdown/content hidden=hidden}}
+      {{#rad-dropdown/content
+        aria-labelledby=labelledby
+        hidden=hidden}}
         {{{Content}}}
       {{/rad-dropdown/content}}
     {{/if}}
 
     {{yield (hash
       target=(component 'rad-dropdown/target'
-        aria-describedby=describedby
+        id=labelledby
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
         hidden=hidden)
       content=(component 'rad-dropdown/content'
+        aria-labelledby=labelledby
         dropdownMenu=dropdownMenu
         hidden=hidden)
       menu-item=(component 'rad-dropdown/menu-item'
-        aria-describedby=aria-describedby
         hide=(action 'hide'))
     ) (action 'show') (action 'hide') hidden aria-describedby aria-labelledby}}
   `
