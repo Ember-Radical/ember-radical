@@ -1,87 +1,72 @@
-<div class="page-title">
-  <h1>Tabs</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Tabs are a great interface pattern for displaying sets of related content that you want to give focus to one item at a time.</p>
-        </section>
-        <section>
-          <h4>Basic Usage</h4>
-          {{#rad-tabs defaultTab='tab-a' as |components|}}
-            {{#components.content label='Tab A' elementId='tab-a'}}
-              <p>Tab A Content</p>
-            {{/components.content}}
-            {{#components.content label='Tab B'}}
-              <p>Tab B Content</p>
-            {{/components.content}}
-            {{#components.content label='Tab C'}}
-              <p>Tab C Content</p>
-            {{/components.content}}
-          {{/rad-tabs}}
-        </section>
-        <section>
-          <h4><code>buttonStyle=false</code></h4>
-          {{#rad-tabs defaultTab='dumpsterShrimp' buttonStyle=false as |components|}}
-            {{#components.content label='Shrimp' elementId='dumpsterShrimp'}}
-              <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
-            {{/components.content}}
-            {{#components.content label='Capn Jack'}}
-              <p>This here is salty sea captain name of Jack Springo</p>
-            {{/components.content}}
-            {{#components.content label='Fresh Water'}}
-              <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
-            {{/components.content}}
-          {{/rad-tabs}}
-        </section>
-        <section>
-          <h4><code>scrollOnClick</code></h4>
-          {{#rad-tabs defaultTab='scrimp' scrollOnClick=true as |components|}}
-            {{#components.content label='Shrimp' elementId='scrimp'}}
-              <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
-            {{/components.content}}
-            {{#components.content label='Capn Jack'}}
-              <p>This here is salty sea captain name of Jack Springo</p>
-            {{/components.content}}
-            {{#components.content label='Fresh Water'}}
-              <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
-            {{/components.content}}
-          {{/rad-tabs}}
-        </section>
-        <section>
-          <h4>Show/Hide Tabs</h4>
-          {{#rad-state as |stateValue stateActions|}}
-            <p>{{#rad-button click=(action stateActions.toggleState)}}Show/hide the "Baz" tab{{/rad-button}}</p>
-            <br>
-            {{#rad-tabs defaultTab='baz' as |components|}}
-              {{#components.content label='Quux'}}
-                <p>This is the Quux tab.</p>
-              {{/components.content}}
-              {{#components.content label='Baz' elementId='baz' hidden=stateValue}}
-                <p>I am the sometimes hidden Baz tab.</p>
-              {{/components.content}}
-            {{/rad-tabs}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>Dynamically Add Tabs</h4>
-          <p>{{#rad-button click=(action 'addTab')}}Add a tab{{/rad-button}}</p>
-          <br>
-          {{#rad-tabs defaultTab='bar' as |components|}}
-            {{#each tabs as |tab|}}
-              {{#components.content label=tab.label elementId=tab.elementId}}
-                <p>{{tab.content}}</p>
-              {{/components.content}}
-            {{/each}}
-          {{/rad-tabs}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Tabs are a great interface pattern for displaying sets of related content that you want to give focus to one item at a time.</p>
+</section>
+<section>
+  <h4>Basic Usage</h4>
+  {{#rad-tabs defaultTab='tab-a' as |components|}}
+    {{#components.content label='Tab A' elementId='tab-a'}}
+      <p>Tab A Content</p>
+    {{/components.content}}
+    {{#components.content label='Tab B'}}
+      <p>Tab B Content</p>
+    {{/components.content}}
+    {{#components.content label='Tab C'}}
+      <p>Tab C Content</p>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>
+<section>
+  <h4><code>buttonStyle=false</code></h4>
+  {{#rad-tabs defaultTab='dumpsterShrimp' buttonStyle=false as |components|}}
+    {{#components.content label='Shrimp' elementId='dumpsterShrimp'}}
+      <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
+    {{/components.content}}
+    {{#components.content label='Capn Jack'}}
+      <p>This here is salty sea captain name of Jack Springo</p>
+    {{/components.content}}
+    {{#components.content label='Fresh Water'}}
+      <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>
+<section>
+  <h4><code>scrollOnClick</code></h4>
+  {{#rad-tabs defaultTab='scrimp' scrollOnClick=true as |components|}}
+    {{#components.content label='Shrimp' elementId='scrimp'}}
+      <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
+    {{/components.content}}
+    {{#components.content label='Capn Jack'}}
+      <p>This here is salty sea captain name of Jack Springo</p>
+    {{/components.content}}
+    {{#components.content label='Fresh Water'}}
+      <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>
+<section>
+  <h4>Show/Hide Tabs</h4>
+  {{#rad-state as |stateValue stateActions|}}
+    <p>{{#rad-button click=(action stateActions.toggleState)}}Show/hide the "Baz" tab{{/rad-button}}</p>
+    <br>
+    {{#rad-tabs defaultTab='baz' as |components|}}
+      {{#components.content label='Quux'}}
+        <p>This is the Quux tab.</p>
+      {{/components.content}}
+      {{#components.content label='Baz' elementId='baz' hidden=stateValue}}
+        <p>I am the sometimes hidden Baz tab.</p>
+      {{/components.content}}
+    {{/rad-tabs}}
+  {{/rad-state}}
+</section>
+<section>
+  <h4>Dynamically Add Tabs</h4>
+  <p>{{#rad-button click=(action 'addTab')}}Add a tab{{/rad-button}}</p>
+  <br>
+  {{#rad-tabs defaultTab='bar' as |components|}}
+    {{#each tabs as |tab|}}
+      {{#components.content label=tab.label elementId=tab.elementId}}
+        <p>{{tab.content}}</p>
+      {{/components.content}}
+    {{/each}}
+  {{/rad-tabs}}
+</section>

@@ -1,15 +1,16 @@
-{{!-- <div class="container-fluid">
+<div class="page-title">
+  <h1>{{radical.currentRouteTitle}}</h1>
+</div>
+<div class="container-fluid">
   <div class="row">
-    <div class="col-xs-9">
-      {{outlet}}
+    <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+      <div class="guide-content">
+        {{outlet}}
+      </div>
     </div>
-    <div class="sidebar col-xs-3">
-      <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"/>
-      <nav>
-
-      </nav>
+    <div class="sidebar col-xs-4">
+      {{sidebar-nav}}
     </div>
   </div>
-</div> --}}
-
-{{outlet}}
+</div>

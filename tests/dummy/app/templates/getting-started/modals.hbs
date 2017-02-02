@@ -1,63 +1,48 @@
-<div class="page-title">
-  <h1>Modals</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Modals are awesome! They're a great way to surface focused content to the user without completely removing them from the context of the page they're viewing!</p>
-          <p class="intro">What's more awesome than a modal? A modal that can be controlled externally via one-way data flow, <i>obviously</i>. Yes, these modals can close themselves, but they do so by invoking an action passed into them that controls their open/closed state on the parent context.</p>
-          <p class="italic"><b>[mind-blown.gif]</b></p>
-        </section>
-        <section>
-          <h4>Basic Usage</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)
-              brand='primary'}}Open The Modal!{{/rad-button}}
-            {{#rad-modal
-              open=state
-              Header='This is a totally rad modal right here!'
-              closeModal=(action stateActions.close)}}
-              <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>Branded Header</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)
-              brand='primary'}}Open this branded modal{{/rad-button}}
-            {{#rad-modal
-              open=state
-              closeModal=(action stateActions.close) as |components|}}
-              {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
-              <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>No Header (Still Accessible)</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)}}Open this modal with no header{{/rad-button}}
-            {{#rad-modal
-              open=state
-              ariaHeader='This modal shows what a modal with no header looks like'
-              closeModal=(action stateActions.close)}}
-              <p>Inspect the HTML of this sucker to see the screen-reader friendly
-                header in action.</p>
-              <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Modals are awesome! They're a great way to surface focused content to the user without completely removing them from the context of the page they're viewing!</p>
+  <p class="intro">What's more awesome than a modal? A modal that can be controlled externally via one-way data flow, <i>obviously</i>. Yes, these modals can close themselves, but they do so by invoking an action passed into them that controls their open/closed state on the parent context.</p>
+  <p class="italic"><b>[mind-blown.gif]</b></p>
+</section>
+<section>
+  <h4>Basic Usage</h4>
+  {{#rad-state as |state stateActions|}}
+    {{#rad-button
+      click=(action stateActions.open)
+      brand='primary'}}Open The Modal!{{/rad-button}}
+    {{#rad-modal
+      open=state
+      Header='This is a totally rad modal right here!'
+      closeModal=(action stateActions.close)}}
+      <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
+    {{/rad-modal}}
+  {{/rad-state}}
+</section>
+<section>
+  <h4>Branded Header</h4>
+  {{#rad-state as |state stateActions|}}
+    {{#rad-button
+      click=(action stateActions.open)
+      brand='primary'}}Open this branded modal{{/rad-button}}
+    {{#rad-modal
+      open=state
+      closeModal=(action stateActions.close) as |components|}}
+      {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
+      <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
+    {{/rad-modal}}
+  {{/rad-state}}
+</section>
+<section>
+  <h4>No Header (Still Accessible)</h4>
+  {{#rad-state as |state stateActions|}}
+    {{#rad-button
+      click=(action stateActions.open)}}Open this modal with no header{{/rad-button}}
+    {{#rad-modal
+      open=state
+      ariaHeader='This modal shows what a modal with no header looks like'
+      closeModal=(action stateActions.close)}}
+      <p>Inspect the HTML of this sucker to see the screen-reader friendly
+        header in action.</p>
+      <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
+    {{/rad-modal}}
+  {{/rad-state}}
+</section>

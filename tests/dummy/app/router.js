@@ -1,9 +1,24 @@
 import Ember from 'ember';
 import config from './config/environment';
+const { getOwner, get, inject } = Ember;
 
 const Router = Ember.Router.extend({
+
+  radical: inject.service(),
+
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
+
+  didTransition() {
+    this._super(...arguments);
+
+    console.log('currentRouteName', this.get('currentRouteName'));
+    const currentRoute = getOwner(this).lookup(`route:${this.get('currentRouteName')}`);
+
+    console.log('currentRoute', currentRoute);
+
+    this.set('radical.currentRouteTitle', (get(currentRoute, 'pageTitle') || 'Ember Radical'));
+  }
 });
 
 Router.map(function() {
