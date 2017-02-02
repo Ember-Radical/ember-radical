@@ -53,6 +53,14 @@ export default Component.extend({
    * @type {Boolean}
    */
   active: false,
+  /**
+   * Rad State is a purely functional component with no rendered output of its
+   * own, so it doesn't need a root element cluttering up the DOM when it's
+   * being used.
+   * @property tagName
+   * @type {string}
+   */
+  tagName: '',
 
   // Actions
   // ---------------------------------------------------------------------------

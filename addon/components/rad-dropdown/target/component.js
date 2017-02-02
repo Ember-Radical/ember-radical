@@ -1,7 +1,7 @@
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
-import CoreButton from '../../rad-button/component';
+import CoreButton from '../../rad-button';
 import { expanded } from '../../../utils/arias';
 
 /**

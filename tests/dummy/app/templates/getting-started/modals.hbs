@@ -26,7 +26,7 @@
           {{/rad-state}}
         </section>
         <section>
-          <h4><code>Branded Header</code></h4>
+          <h4>Branded Header</h4>
           {{#rad-state as |state stateActions|}}
             {{#rad-button
               click=(action stateActions.open)
@@ -40,7 +40,7 @@
           {{/rad-state}}
         </section>
         <section>
-          <h4><code>No Header (Still Accessible)</code></h4>
+          <h4>No Header (Still Accessible)</h4>
           {{#rad-state as |state stateActions|}}
             {{#rad-button
               click=(action stateActions.open)}}Open this modal with no header{{/rad-button}}

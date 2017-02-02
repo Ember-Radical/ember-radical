@@ -1,4 +1,4 @@
-import CoreButton from '../../rad-button/component';
+import CoreButton from '../../rad-button';
 const devAssets = {};
 
 // Development Assets
