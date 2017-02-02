@@ -3,16 +3,16 @@
 // ========================================================
 
 // Gray Background
-// ========================================================
+// ---------------------------------------------------------------------------
 .rad-modal-background {
   // Use position fixed to handle making full screen regardless of where this is in the DOM
   position: fixed;
-  z-index: 1050;
+  z-index: $zindex-modal-backdrop;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: $modal-backdrop-bg;
   // That modal's gunna have all the fancy fading and sliding. So smooth.
   // Fade in and out the background to make the default transitions for the modal
   // the most fanicful
@@ -37,21 +37,20 @@
 }
 
 // Modal Element Proper
-// ========================================================
+// ---------------------------------------------------------------------------
 .rad-modal-wrapper {
   overflow: auto;
   max-height: 100vh;
   width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: $modal-inner-padding-sm;
   // Use position fixed to handle making full screen regardless of where this is in the DOM
   position: fixed;
-  z-index: 1051;
+  z-index: $zindex-modal;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: #FFFFFF;
   outline: none;
   opacity: 0;
   transition: opacity 300ms linear; // Fade in the modal b/c we're a super classy operation
@@ -61,6 +60,7 @@
     opacity: 1;
   }
 
+  // ========================================================
   // Transitions / animations
   // ========================================================
   &.animate-right {
@@ -103,19 +103,15 @@
     }
   }
 
+  // ========================================================
   // Medium Up Modals
   // ========================================================
-  @media only screen and (min-width: 40.063em) {
+  @media only screen and (min-width: $md-breakpoint) {
     max-height: 65vh;
-    max-width: 60%;
-    padding: 30px; // Bump up padding for large screens
+    max-width: $modal-lg;
     top: 100px;
-    right: 5%;
     bottom: auto;
-    left: 5%;
-    border: solid 1px #6D6964;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: $modal-inner-padding;
 
     &.animate-bottom.active {
       top: 100px;
@@ -135,35 +131,16 @@
     }
 
     &.medium {
-      max-width: 60%;
+      max-width: $modal-md;
     }
 
     &.small {
-      max-width: 45%;
-    }
-  }
-
-  // Large Up Modals
-  // ========================================================
-  @media only screen and (min-width: 64.063em) {
-    &.medium {
-      max-width: 45%;
-    }
-
-    &.small {
-      max-width: 30%;
+      max-width: $modal-sm;
     }
   }
 
   // Begin Modal Wrapper Elements
-  // ========================================================
-
-  // When the header is suppressed this div is shown and pushes down the content
-  // the height of the closing x.
-  .header-replacement {
-    display: block;
-    height: 17px;
-  }
+  // ---------------------------------------------------------------------------
 
   // Aria label when there is no visual header. Should not be visible
   .aria-header {
@@ -174,45 +151,67 @@
 
   // Modal close buttons still need "special treatment"
   .rad-button.close {
+    line-height: 1;
     font-size: 1.5em;
-    position: absolute;
-    top: 20px;
-    right: 20px;
 
     // The close button doesn't need a bottom adjustment b/c it's not directly
     // in line with fonts
     .rad-svg {
       bottom: 0;
     }
-
-    // Adjust X location for change in modal padding when small
-    @media only screen and (min-width: 64.063em) {
-      top: 30px;
-      right: 30px;
-    }
   }
 }
 
-// Modal Header
-// ========================================================
-.modal-header {
-  margin: -20px -20px 0 -20px;
-  padding: 20px;
+// TODO: Make text light color, border, box shadow
 
-  // Adjust header padding compensation when small
-  @media only screen and (min-width: 64.063em) {
-    margin: -30px -30px 0 -30px; // Modal component has 30px wrapping padding, offset here for branding
-    padding: 30px; // Add padding for inner content
-  }
+// Modal Header
+// ---------------------------------------------------------------------------
+.modal-header {
+  display: flex;
+  margin-top: -$modal-inner-padding-sm;
+  margin-right: -$modal-inner-padding-sm;
+  margin-left: -$modal-inner-padding-sm;
+  padding: $modal-inner-padding-sm;
 
   // When the header is branded it needs margin bottom to push down content
   &.branded {
-    margin-bottom: 2rem;
+    margin-bottom: $modal-inner-padding-sm;
   }
 
-  .header-title {
-    margin: 0;
-    padding-right: 22.5px; // This is to make sure that we don't overlap the 20px close button that is absolute positioned to right of header
-    line-height: 1;
+  // Adjust header padding compensation when small
+  @media only screen and (min-width: $lg-breakpoint) {
+    margin-top: -$modal-inner-padding;
+    margin-right: -$modal-inner-padding;
+    margin-left: -$modal-inner-padding;
+    padding: $modal-inner-padding; // Add padding for inner content
+
+    // When the header is branded it needs margin bottom to push down content
+    &.branded {
+      margin-bottom: $modal-inner-padding;
+    }
+  }
+
+  // Header is a flex div, and this sets the content of the header to take up the
+  // entire width except for the close button. It's totally rad.
+  .header-content {
+    flex-grow: 1;
+  }
+}
+
+// Modal Footer
+// ---------------------------------------------------------------------------
+.modal-footer {
+  margin-right: -$modal-inner-padding-sm;
+  margin-bottom: -$modal-inner-padding-sm;
+  margin-left: -$modal-inner-padding-sm;
+  padding: $modal-inner-padding-sm;
+
+  // Adjust footer padding compensation when small
+  @media only screen and (min-width: $lg-breakpoint) {
+    // margin: 0 -$modal-inner-padding -$modal-inner-padding -$modal-inner-padding; // Modal component has $modal-inner-padding wrapping padding, offset here for branding
+    margin-right: -$modal-inner-padding;
+    margin-bottom: -$modal-inner-padding;
+    margin-left: -$modal-inner-padding;
+    padding: $modal-inner-padding; // Add padding for inner content
   }
 }

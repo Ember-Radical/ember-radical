@@ -473,11 +473,11 @@ export default Component.extend({
           {{!-- Render aria label for screen readers --}}
           <header id='aria-labelledby-{{elementId}}' class='aria-header'>{{ariaHeader}}</header>
           {{#if closeButton}}
-            <div class='header-replacement'>
+            <div class='clearfix'>
               {{#rad-button
                 link=true
                 aria-label='close'
-                classNames='close'
+                classNames='close pull-right'
                 click=closeModal
                 tagcategory=tagClose.category
                 tagaction=tagClose.action
@@ -495,13 +495,17 @@ export default Component.extend({
         {{! element inside the modal to the same identifier. Also yield open
         {{! because who knows, we'll probably need it for something crazy
         {{! ----------------------------------------------------------------- }}
-        {{yield (hash
-          header=(component 'rad-modal/header'
-            closeModal=closeModal
-            elementId=(concat 'aria-labelledby-' elementId)
-            closeButton=closeButton
-            tagClose=tagClose)
-          ) open
+        {{yield
+          (hash
+            header=(component 'rad-modal/header'
+              closeModal=closeModal
+              elementId=(concat 'aria-labelledby-' elementId)
+              closeButton=closeButton
+              tagClose=tagClose
+            )
+            footer=(component 'rad-modal/footer')
+          )
+          open
         }}
       </div>
     {{/if}}

@@ -2,7 +2,28 @@
 // Variables used in structure
 // ========================================================
 
+// Modals
+$modal-inner-padding-sm: 20px !default;
+$modal-inner-padding: 30px !default;
+$modal-backdrop-bg: rgba(0, 0, 0, 0.45) !default;
+
+$modal-lg: 800px !default;
+$modal-md: 500px !default;
+$modal-sm: 300px !default;
+
 // Tooltips
 $tooltip-max-width: 200px !default;
-$zindex-tooltip: 1070 !default;
 $tooltip-arrow-width: 10px !default;
+
+// Grid Breakpoints
+$sm-breakpoint: 576px; // Don't use this, phones are big as hell now.
+$md-breakpoint: 768px;
+$lg-breakpoint: 992px;
+
+// Z-index master list
+$zindex-dropdown-backdrop:  990 !default;
+$zindex-dropdown:          1000 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;

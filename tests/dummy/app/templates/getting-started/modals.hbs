@@ -20,8 +20,13 @@
             {{#rad-modal
               open=state
               Header='This is a totally rad modal right here!'
-              closeModal=(action stateActions.close)}}
+              closeModal=(action stateActions.close)
+              as |components|}}
               <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
+              {{#components.footer}}
+                {{#rad-button brand='success'}}Neat{{/rad-button}}
+                {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
+              {{/components.footer}}
             {{/rad-modal}}
           {{/rad-state}}
         </section>

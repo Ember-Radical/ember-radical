@@ -129,22 +129,28 @@ export default Component.extend({
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
-    {{! Main content for modal header, yielded}}
-    {{yield}}
+    {{! Main content for modal header, yielded }}
+    {{! This div has flex-grow 1 to take up the entire header except the close button }}
+    <div class='header-content'>
+      {{yield}}
+    </div>
 
     {{! X to close modal included and action mounted for your convenience. }}
     {{#if closeButton}}
-      {{#rad-button
-        link=true
-        aria-label='close'
-        classNames='close'
-        click=(action closeModal)
-        tagcategory=tagClose.category
-        tagaction=tagClose.action
-        taglabel=tagClose.label
-        data-test='rad-modal-close-button'}}
-        {{rad-svg svgId=closeIcon classNames=(concat 'modal-svg ' (if brand brand))}}
-      {{/rad-button}}
+      {{! This wrapping div lets flexbox do it's magic with width }}
+      <div class='header-close-wrapper'>
+        {{#rad-button
+          link=true
+          aria-label='close'
+          classNames='close'
+          click=(action closeModal)
+          tagcategory=tagClose.category
+          tagaction=tagClose.action
+          taglabel=tagClose.label
+          data-test='rad-modal-close-button'}}
+          {{rad-svg svgId=closeIcon classNames=(concat 'modal-svg ' (if brand brand))}}
+        {{/rad-button}}
+      </div>
     {{/if}}
   `
 });

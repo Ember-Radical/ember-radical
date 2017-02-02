@@ -2,6 +2,19 @@
 // Modal Theme Styles
 // ========================================================
 
+.rad-modal-wrapper {
+  background: $modal-content-bg;
+
+  // ========================================================
+  // Medium Up Modals
+  // ========================================================
+  @media only screen and (min-width: $md-breakpoint) {
+    border: solid 1px $border-color;
+    border-radius: 4px;
+    box-shadow: $box-shadow;
+  }
+}
+
 .modal-header.primary-bg {
   background-color: $modal-primary-bg;
   color: $modal-primary-color;
@@ -11,4 +24,15 @@
       color: $modal-primary-color;
     }
   }
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid $border-color;
+
+  // Easily place margin between footer elements
+  > :not(:first-child) { margin-left: .25rem; }
+  > :not(:last-child) { margin-right: .25rem; }
 }

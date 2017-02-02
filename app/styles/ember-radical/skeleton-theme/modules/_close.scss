@@ -2,16 +2,15 @@
 // Close Button Styles
 // ========================================================
 
-button.close {
-  float: right;
-  color: $close-color;
-
-  cursor: pointer;
+button.rad-button.close {
+  // This makes close buttons gray for normal divs AND branded for any branded divs!
+  color: inherit;
   opacity: 0.5;
+  transition: opacity 300ms linear;
 
   &:hover,
   &:focus {
-    color: $close-color;
+    color: inherit;
     opacity: 1;
     text-decoration: none;
   }
