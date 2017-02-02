@@ -1,5 +1,5 @@
 import hbs from 'htmlbars-inline-precompile';
-import CoreButton from '../../rad-button/component';
+import CoreButton from '../../rad-button';
 
 /**
  * Core dropdown menu item
