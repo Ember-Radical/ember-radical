@@ -6,6 +6,11 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     sassOptions: {
       extension: 'scss'
+    },
+    // Don't fingerprint the ember-logo b/c it is pulled using a path from the
+    // docs meta which doesn't get updated with fingerprint hash
+    fingerprint: {
+      exclude: ['ember-logo']
     }
   });
 
