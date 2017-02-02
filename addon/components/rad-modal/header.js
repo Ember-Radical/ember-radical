@@ -62,6 +62,15 @@ export default Component.extend({
    */
   closeButton: true,
   /**
+   * Controls the SVG Id of the close button.
+   * @property closeIcon
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'close'
+   */
+  closeIcon: 'close',
+  /**
    * Pass a `(hash)` of tagging properties when you need to bind a tag fire to
    * close of the modal. Expects syntax:
    *
@@ -127,14 +136,14 @@ export default Component.extend({
     {{#if closeButton}}
       {{#rad-button
         link=true
-        aria-label="close"
-        classNames="close"
+        aria-label='close'
+        classNames='close'
         click=(action closeModal)
         tagcategory=tagClose.category
         tagaction=tagClose.action
         taglabel=tagClose.label
         data-test='rad-modal-close-button'}}
-        {{rad-svg svgId="x" classNames=(concat 'modal-svg ' (if brand brand))}}
+        {{rad-svg svgId=closeIcon classNames=(concat 'modal-svg ' (if brand brand))}}
       {{/rad-button}}
     {{/if}}
   `

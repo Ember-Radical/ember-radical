@@ -45,6 +45,20 @@ test('it renders a passed size', function(assert) {
     'Size is bound to modal wrapper');
 });
 
+test('it binds close button svgId to passed closeIcon', function(assert) {
+  this.render(hbs`
+    {{#rad-modal
+      Header='Test Header'
+      closeIcon='arrow-down'
+      closeModal=(action 'toggleModal')}}
+      template block text
+    {{/rad-modal}}
+  `);
+
+  assert.ok(this.$('[data-test="rad-modal-close-button"] svg').hasClass('arrow-down'),
+    'passed closeIcon is used for close button svg id');
+});
+
 test('it binds aria-labelledby to a passed Header', function(assert) {
   this.render(hbs`
     {{#rad-modal
@@ -150,18 +164,25 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
 });
 
 test('it uses default no-op if a closeModal action isnt passed', function(assert) {
+  this.set('active', false);
+
   this.render(hbs`
     {{#rad-modal
       Header='Test Header'
-      open=true}}
+      open=active}}
       template block text
     {{/rad-modal}}
   `);
 
-  this.$('[data-test="rad-modal-close-button"]').click();
-
   assert.ok(this.$().text().includes('template block text'),
     'Component renders without errors without closure action');
+
+  this.set('active', true);
+
+  return wait().then(() => {
+    assert.ok(this.$().text().includes('template block text'),
+      'Component renders without errors without closure action');
+  });
 });
 
 test('it passes and binds closeModal action to background and header (normal header)', function(assert) {

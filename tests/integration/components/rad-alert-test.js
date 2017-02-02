@@ -36,5 +36,5 @@ test('dismissing alert fires onDismiss action', function(assert) {
 
   this.render(hbs`{{#rad-alert brand="primary" onDismiss=(action handleDismiss)}}Check-it-out{{/rad-alert}}`);
 
-  this.$('.close').click();
+  this.$('button.close').click();
 });

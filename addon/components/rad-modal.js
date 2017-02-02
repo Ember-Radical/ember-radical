@@ -2,24 +2,9 @@ import Component from 'ember-component';
 import hbs from 'htmlbars-inline-precompile';
 import {later} from 'ember-runloop';
 import $ from 'jquery';
-const devAssets = {};
 
 // Utils
 import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
-
-// Development Assets
-// ---------------------------------------------------------------------------
-if (DEVELOPMENT) {
-  devAssets.didInsertElement = function() {
-    // aria-labelledby is required for A++ Accessibility
-    const elementId = this.get('elementId');
-    const headerId = `#aria-labelledby-${elementId}`;
-    if (!$(headerId).is('header')) {
-      console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2);
-      throw new Error('{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus');
-    }
-  };
-}
 
 /**
  * ### Ember Radical DDAU Modal
@@ -35,7 +20,7 @@ if (DEVELOPMENT) {
  * {{#rad-modal
  *   open=someService.modalActive
  *   Header='This is the modal title'
- *   closeModal=(action "closeModal" target=someService)}}
+ *   closeModal=(action 'closeModal' target=someService)}}
  *   <p>This is a totally rad modal!</p>
  * {{/rad-modal}}
  * ```
@@ -142,7 +127,7 @@ if (DEVELOPMENT) {
  * @constructor
  * @extends Ember.Component
  */
-export default Component.extend(devAssets, {
+export default Component.extend({
 
   // Passed Properties
   // ---------------------------------------------------------------------------
@@ -180,6 +165,15 @@ export default Component.extend(devAssets, {
    * @default true
    */
   closeButton: true,
+  /**
+   * Controls the SVG Id of the close button.
+   * @property closeIcon
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'close'
+   */
+  closeIcon: 'close',
   /**
    * Flag used to handle showing and hiding the modal. This property
    * should be passed in by a component/service+controller that controls the
@@ -249,6 +243,18 @@ export default Component.extend(devAssets, {
 
   // Properties
   // ---------------------------------------------------------------------------
+
+  /**
+   * Determines if the modal is currently _active_, which means that the modal
+   * has been opened/closed. Note that this is different from _visible_. Due to
+   * transition time, a modal can be _active_ but not yet _visible_ to the user.
+   * Seperate props are required for tracking active vs visible to allow the
+   * css animations to trigger.
+   * @property _active
+   * @type {Boolean}
+   * @default false
+   */
+  _active: false,
   /**
    * Private reference to the last focused element in the DOM before the modal
    * was opened. This is used to make the experience for keyboard users not
@@ -292,8 +298,7 @@ export default Component.extend(devAssets, {
     $('body').removeClass('fixed-body');
 
     // Remove active classes in case modal stays in DOM while it is closed
-    this.$('.rad-modal-wrapper').removeClass('active');
-    this.$('.rad-modal-background').removeClass('active');
+    this.set('_active', false);
 
     // Move focus back to last element (usually the button that opened the
     // modal) and clear out _lastFocusedElement to boy scout against any weird
@@ -356,8 +361,8 @@ export default Component.extend(devAssets, {
     // if we add the active class at this point, then the modal renders with
     // active class and so there is no *transition*
     later(() => {
-      this.$('.rad-modal-wrapper').addClass('active');
-      this.$('.rad-modal-background').addClass('active');
+      this.set('_active', true);
+
       // Focus the modal wrapper for usability
       // @TODO: A method to handle checking for an autoFocus element would be A++
       this.$('.rad-modal-wrapper').focus();
@@ -388,17 +393,26 @@ export default Component.extend(devAssets, {
     }
   },
   /**
-   * Make sure to run the full `_handleOpen` setup on `init`, as the conditions
-   * in `didReceiveAttrs` will not cause it to run because the default value of
-   * `_visible` will eval to false.
-   *
-   * @method init
-   * @return {undefined}
+   * When modal is inserted into DOM, check if it should be open by default, if
+   * so we need to call `_handleOpen` manually to open it.
+   * @method didInsertElement
    */
-  init() {
+  didInsertElement() {
     this._super(...arguments);
+
     if (this.get('open')) {
       this._handleOpen();
+    }
+
+    if (DEVELOPMENT) {
+      // In dev builds, check for a header element with the correct aria bindings
+      // aria-labelledby is required for A++ Accessibility
+      const elementId = this.get('elementId');
+      const headerId = `#aria-labelledby-${elementId}`;
+      if (!$(headerId).is('header')) {
+        console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2);
+        throw new Error('{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus');
+      }
     }
   },
   /**
@@ -422,32 +436,34 @@ export default Component.extend(devAssets, {
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{! Modal background is passed closeModal closure action for closing on click}}
-    <div class="rad-modal-background {{if animateFrom 'animate-from'}}"
-      aria-hidden="{{not _visible}}"
+    <div class='rad-modal-background{{if animateFrom ' animate-from'}}{{if _active ' active'}}'
+      aria-hidden='{{not _visible}}'
       {{action closeModal}}
       data-firetag
       data-tagcategory={{tagClose.category}}
       data-tagaction={{tagClose.action}}
       data-taglabel={{tagClose.label}}
-      data-test="rad-modal-background">
+      data-test='rad-modal-background'>
     </div>
 
     {{#if (or _visible (not removeFromDomOnClose))}}
       {{! The actual modal div. { role, labelledby, hidden } => 508 compliance attrs  }}
       {{! Note that if passed Header is null, we do not bind aria-labelledby }}
-      <div class="rad-modal-wrapper {{size}} {{if animateFrom (concat 'animate-' animateFrom)}}"
-        role="dialog"
-        tabindex="-1"
-        aria-labelledby="aria-labelledby-{{elementId}}"
-        aria-hidden="{{not _visible}}"
-        data-test="rad-modal-wrapper">
+      <div
+        class='rad-modal-wrapper {{size}}{{if animateFrom (concat ' animate-' animateFrom)}}{{if _active ' active'}}'
+        role='dialog'
+        tabindex='-1'
+        aria-labelledby='aria-labelledby-{{elementId}}'
+        aria-hidden='{{not _visible}}'
+        data-test='rad-modal-wrapper'>
 
         {{! If a Header is passed, handle setting one up }}
         {{#if Header}}
           {{#rad-modal/header
+            closeButton=closeButton
+            closeIcon=closeIcon
             closeModal=closeModal
             elementId=(concat 'aria-labelledby-' elementId)
-            closeButton=closeButton
             tagClose=tagClose}}
             <h2>{{{Header}}}</h2>
           {{/rad-modal/header}}
@@ -455,19 +471,19 @@ export default Component.extend(devAssets, {
 
         {{#if ariaHeader}}
           {{!-- Render aria label for screen readers --}}
-          <header id="aria-labelledby-{{elementId}}" class="aria-header">{{ariaHeader}}</header>
+          <header id='aria-labelledby-{{elementId}}' class='aria-header'>{{ariaHeader}}</header>
           {{#if closeButton}}
-            <div class="header-replacement">
+            <div class='header-replacement'>
               {{#rad-button
                 link=true
                 aria-label='close'
                 classNames='close'
-                click=(action closeModal)
+                click=closeModal
                 tagcategory=tagClose.category
                 tagaction=tagClose.action
                 taglabel=tagClose.label
                 data-test='rad-modal-close-button'}}
-                {{rad-svg svgId='x'}}
+                {{rad-svg svgId=closeIcon}}
               {{/rad-button}}
             </div>
           {{/if}}

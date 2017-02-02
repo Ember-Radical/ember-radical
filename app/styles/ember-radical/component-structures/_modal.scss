@@ -173,14 +173,21 @@
   }
 
   // Modal close buttons still need "special treatment"
-  .close {
+  .rad-button.close {
+    font-size: 1.5em;
     position: absolute;
     top: 20px;
     right: 20px;
 
+    // The close button doesn't need a bottom adjustment b/c it's not directly
+    // in line with fonts
+    .rad-svg {
+      bottom: 0;
+    }
+
     // Adjust X location for change in modal padding when small
     @media only screen and (min-width: 64.063em) {
-      top: 25px;
+      top: 30px;
       right: 30px;
     }
   }
@@ -205,7 +212,7 @@
 
   .header-title {
     margin: 0;
-    padding-right: 20px; // This is to make sure that we don't overlap the 20px close button that is absolute positioned to right of header
+    padding-right: 22.5px; // This is to make sure that we don't overlap the 20px close button that is absolute positioned to right of header
     line-height: 1;
   }
 }

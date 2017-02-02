@@ -184,7 +184,7 @@ export default Component.extend({
         click=(action "dismiss")
         link=true
         aria-label="close"}}
-        {{rad-svg svgId="x"}}
+        {{rad-svg svgId="close"}}
       {{/rad-button}}
     {{/if}}
   `

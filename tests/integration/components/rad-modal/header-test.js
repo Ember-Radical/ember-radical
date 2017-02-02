@@ -55,7 +55,20 @@ test('it binds appropriate brand classes', function(assert) {
   assert.ok(this.$('header').hasClass('branded'),
     'passed brand should render branded class used to handle whitespace');
   assert.ok(this.$('[data-test="rad-modal-close-button"]').find('svg').hasClass('primary'),
-    'close x should also be branded');
+    'close button should also be branded');
+});
+
+test('it binds close button svgId to passed closeIcon', function(assert) {
+  this.render(hbs`
+    {{#rad-modal/header
+      closeIcon='arrow-down'
+      closeModal=(action 'toggleModal')}}
+      template block text
+    {{/rad-modal/header}}
+  `);
+
+  assert.ok(this.$('svg').hasClass('arrow-down'),
+    'passed closeIcon is used for close button svg id');
 });
 
 test('it hides the close button if configured', function(assert) {
