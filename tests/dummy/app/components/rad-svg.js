@@ -1,0 +1,17 @@
+import RadSVG from 'ember-radical/components/rad-svg';
+import config from '../config/environment';
+
+const filePath = config.environment === 'production'
+    ? '/ember-radical/ember-radical/svg/symbol-defs.svg'
+    : '/ember-radical/svg/symbol-defs.svg';
+
+/**
+ * In the demo application we need to override the svg component to handle our
+ * gh-pages prod app requiring a special path.
+ * @class Component.RadSVG
+ * @constructor
+ * @extends Component.RadSVG
+ */
+export default RadSVG.extend({
+  filePath: filePath
+});
