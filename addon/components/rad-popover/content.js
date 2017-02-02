@@ -4,7 +4,7 @@ import hbs from 'htmlbars-inline-precompile';
 import $ from 'jquery';
 
 // Utils
-import { hiddenForArias } from '../../../utils/arias';
+import { hiddenForArias } from '../../utils/arias';
 
 /**
  *

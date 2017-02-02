@@ -5,7 +5,7 @@ import $ from 'jquery';
 const devAssets = {};
 
 // Utils
-import { bindOnEscape, unbindOnEscape } from '../../utils/listeners';
+import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
 
 // Development Assets
 // ---------------------------------------------------------------------------

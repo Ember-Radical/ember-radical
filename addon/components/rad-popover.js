@@ -3,7 +3,7 @@ import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
 // Utils
-import { describedby } from '../../utils/arias';
+import { describedby } from '../utils/arias';
 
 /**
  * Popover tooltips to Make UI Great Again.™
