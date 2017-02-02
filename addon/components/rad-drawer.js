@@ -79,7 +79,7 @@ import {controls} from '../utils/arias';
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
  * `externalToggle` | boolean | false | Pass in any other property to cause `rad-drawer` to update when that property updates
- * `icon` | string/boolean | 'arrow-down2' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
+ * `icon` | string/boolean | 'arrow-down' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
  *
  * ## A++ Accessibility Features
@@ -116,7 +116,7 @@ export default Component.extend({
    * at all, pass `false` into this property
    * @property icon
    * @type {string|Boolean}
-   * @default 'arrow-down2'
+   * @default 'arrow-down'
    */
   icon: 'arrow-down',
 

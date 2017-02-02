@@ -11,7 +11,6 @@ test('it renders', function(assert) {
 
   assert.ok(this.$('.rad-alert').length, 'renders root element');
   assert.ok(this.$('.rad-alert').hasClass('alert-primary'), 'renders brand class');
-  assert.ok(this.$('.rad-alert').hasClass('alert-dismissible'), 'renders dismissible class by default');
   assert.ok(this.$('.close').length, 'renders the close button');
   assert.ok(this.$('.rad-alert').text().indexOf('Check-it-out') > 0, 'renders alert content');
 });
@@ -22,7 +21,6 @@ test('can disable dismiss button', function(assert) {
 
   assert.ok(this.$('.rad-alert').length, 'renders root element');
   assert.ok(this.$('.rad-alert').hasClass('alert-primary'), 'renders brand class');
-  assert.notOk(this.$('.rad-alert').hasClass('alert-dismissible'), 'does not render dismissible class');
   assert.notOk(this.$('.close').length, 'does not render the close button');
   assert.ok(this.$('.rad-alert').text().indexOf('Check-it-out') > 0, 'renders alert content');
 });
@@ -36,5 +34,5 @@ test('dismissing alert fires onDismiss action', function(assert) {
 
   this.render(hbs`{{#rad-alert brand="primary" onDismiss=(action handleDismiss)}}Check-it-out{{/rad-alert}}`);
 
-  this.$('.close').click();
+  this.$('button.close').click();
 });

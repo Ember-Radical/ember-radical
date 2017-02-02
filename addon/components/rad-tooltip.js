@@ -22,7 +22,7 @@ import { describedby } from '../utils/arias';
  * {{#rad-tooltip as |components|}}
  *   {{#components.title}}Hover me{{/components.title}}
  *   {{#components.content}}
- *     {{rad-svg svgId='x'}} For some really rad information!
+ *     {{rad-svg svgId='close'}} For some really rad information!
  *   {{/components.content}}
  * {{/rad-tooltip}}
  * ```

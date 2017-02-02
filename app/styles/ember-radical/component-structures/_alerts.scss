@@ -3,6 +3,7 @@
 // ========================================================
 
 .rad-alert {
+  display: flex;
   position: relative;
   margin-bottom: 1rem;
 
@@ -10,10 +11,8 @@
   > ul {
     margin-bottom: 0;
   }
-}
 
-.alert-dismissible {
-  .close {
-    position: absolute;
+  .alert-content {
+    flex-grow: 1;
   }
 }
