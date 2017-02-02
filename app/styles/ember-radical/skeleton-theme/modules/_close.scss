@@ -5,6 +5,7 @@
 button.rad-button.close {
   // This makes close buttons gray for normal divs AND branded for any branded divs!
   color: inherit;
+  line-height: 1;
   opacity: 0.5;
   transition: opacity 300ms linear;
 
@@ -13,5 +14,11 @@ button.rad-button.close {
     color: inherit;
     opacity: 1;
     text-decoration: none;
+  }
+
+  // The close button doesn't need a bottom adjustment b/c it's not directly
+  // in line with fonts
+  .rad-svg {
+    bottom: 0;
   }
 }

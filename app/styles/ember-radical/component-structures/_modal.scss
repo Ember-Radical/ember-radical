@@ -151,18 +151,9 @@
 
   // Modal close buttons still need "special treatment"
   .rad-button.close {
-    line-height: 1;
     font-size: 1.5em;
-
-    // The close button doesn't need a bottom adjustment b/c it's not directly
-    // in line with fonts
-    .rad-svg {
-      bottom: 0;
-    }
   }
 }
-
-// TODO: Make text light color, border, box shadow
 
 // Modal Header
 // ---------------------------------------------------------------------------

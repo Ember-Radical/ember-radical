@@ -94,43 +94,27 @@ export default Component.extend({
   }),
   /**
    * A++ accessibility. Tells a screen this component is an alert.
-   * @property role
+   * @property ariaRole
    * @type {string}
-   * @private
+   * @default 'alert'
    */
-  role: 'alert',
+  ariaRole: 'alert',
 
   // Ember Properties
   // ---------------------------------------------------------------------------
 
   /**
-   * Attribute bindings applied to the component.
-   * @property attributeBindings
-   * @type {Array}
-   * @private
-   */
-  attributeBindings: [
-    'role'
-  ],
-  /**
-   * Static class names applied to the component that must always exist. This
-   * really should not need to be overridden or extended.
    * @property classNames
    * @type {Array}
-   * @private
+   * @default ['rad-alert']
    */
   classNames: ['rad-alert'],
   /**
-   * A set of dynamic classes whose output is bound to the associated values
-   * on the component.
    * @property classNameBindings
    * @type {Array}
-   * @private
+   * @default ['brandClass']
    */
-  classNameBindings: [
-    'brandClass',
-    'canDismiss:alert-dismissible'
-  ],
+  classNameBindings: ['brandClass'],
 
   // Methods
   // ---------------------------------------------------------------------------
@@ -176,16 +160,20 @@ export default Component.extend({
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
-    {{yield}}
+    <div class='alert-content'>
+      {{yield}}
+    </div>
 
     {{#if canDismiss}}
-      {{#rad-button
-        class="close"
-        click=(action "dismiss")
-        link=true
-        aria-label="close"}}
-        {{rad-svg svgId="close"}}
-      {{/rad-button}}
+      <div class='alert-close-wrapper'>
+        {{#rad-button
+          class="close"
+          click=(action "dismiss")
+          link=true
+          aria-label="close"}}
+          {{rad-svg svgId="close"}}
+        {{/rad-button}}
+      </div>
     {{/if}}
   `
 });
