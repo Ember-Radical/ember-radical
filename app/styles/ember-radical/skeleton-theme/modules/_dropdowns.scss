@@ -7,8 +7,18 @@
 }
 
 .dropdown-content {
-  background: white;
-  border: solid 1px $border-color;
+  padding: $dropdown-padding;
+  background: $dropdown-bg;
+  border: solid 1px $dropdown-border-color;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  min-width: 10rem;
+}
+
+.dropdown-item {
+  &:hover,
+  &:focus {
+    background: $dropdown-item-hover-bg;
+    text-decoration: none;
+  }
 }

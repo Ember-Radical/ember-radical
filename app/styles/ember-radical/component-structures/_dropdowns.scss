@@ -25,7 +25,17 @@
 
 .dropdown-content {
   margin-top: 3px;
-  padding: 20px;
   position: absolute;
   z-index: 1091;
+
+  &.dropdown-menu {
+    padding: 0;
+  }
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  border: 0;
 }

@@ -12,6 +12,18 @@ import { hiddenForArias } from '../../../utils/arias';
  * @extends Ember.Component
  */
 export default Component.extend({
+
+  // Passed Properties
+  // ---------------------------------------------------------------------------
+  /**
+   * Adds `dropdown-menu` class which removes padding in order to show
+   * dropdown menu items.
+   * @property dropdownMenu
+   * @type {Boolean}
+   * @passed
+   */
+  dropdownMenu: false,
+
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -29,13 +41,22 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['hiddenForArias:aria-hidden'],
+  attributeBindings: [
+    'hiddenForArias:aria-hidden',
+    'aria-labelledby:aria-labelledby'
+  ],
   /**
    * Bind `dropdown-content`
    * @property classNames
    * @type {Array}
    */
   classNames: ['dropdown-content'],
+  /**
+   * Binds `dropdown-menu` class if {{cross-link class="Component.RadDropdown.Content" item="dropdownMenu"}} is true
+   * @property classNameBindings
+   * @type {Array}
+   */
+  classNameBindings: ['dropdownMenu:dropdown-menu'],
 
   // Layout
   // ---------------------------------------------------------------------------
