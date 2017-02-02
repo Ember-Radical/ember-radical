@@ -1,97 +1,82 @@
-<div class="page-title">
-  <h1>Dropdowns</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Dropdowns can be used for displaying arbitrary content, and are also useful as a stand-in for select boxes/menus.</p>
-        </section>
-        <section>
-          <h3>Examples</h3>
+<section>
+  <p class="intro">Dropdowns can be used for displaying arbitrary content, and are also useful as a stand-in for select boxes/menus.</p>
+</section>
+<section>
+  <h3>Examples</h3>
 
-          {{#rad-card as |components|}}
-            {{#components.title}}Basic Examples{{/components.title}}
-            {{#components.body}}
-              {{rad-dropdown Target="Link" Content="Oh hi, mark" buttonStyle=false}}
-              {{rad-dropdown Target="Button" Content="Heyy" buttonStyle=true}}
-              {{rad-dropdown Target="Branded" Content="Heyy" buttonStyle=true brand="primary"}}
-            {{/components.body}}
-          {{/rad-card}}
+  {{#rad-card as |components|}}
+    {{#components.title}}Basic Examples{{/components.title}}
+    {{#components.body}}
+      {{rad-dropdown Target="Link" Content="Oh hi, mark" buttonStyle=false}}
+      {{rad-dropdown Target="Button" Content="Heyy" buttonStyle=true}}
+      {{rad-dropdown Target="Branded" Content="Heyy" buttonStyle=true brand="primary"}}
+    {{/components.body}}
+  {{/rad-card}}
 
-          <br>
+  <br>
 
-          {{#rad-card as |components|}}
-            {{#components.title}}Extended Examples{{/components.title}}
-            {{#components.body}}
-              {{#rad-dropdown
-                Target="Dropdown Menu"
-                dropdownMenu=true
-                buttonStyle=true as |components showMenu hideMenu|}}
-                {{#components.content}}
-                  {{#components.menu-item}}Menu Option One{{/components.menu-item}}
-                  {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
-                  {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
-                {{/components.content}}
-              {{/rad-dropdown}}
+  {{#rad-card as |components|}}
+    {{#components.title}}Extended Examples{{/components.title}}
+    {{#components.body}}
+      {{#rad-dropdown
+        Target="Dropdown Menu"
+        dropdownMenu=true
+        buttonStyle=true as |components showMenu hideMenu|}}
+        {{#components.content}}
+          {{#components.menu-item}}Menu Option One{{/components.menu-item}}
+          {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
+          {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
+        {{/components.content}}
+      {{/rad-dropdown}}
 
-              {{#rad-dropdown buttonStyle=true as |components|}}
-                {{#components.target}}Custom Content{{/components.target}}
-                {{#components.content}}
-                  <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
-                {{/components.content}}
-              {{/rad-dropdown}}
+      {{#rad-dropdown buttonStyle=true as |components|}}
+        {{#components.target}}Custom Content{{/components.target}}
+        {{#components.content}}
+          <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+        {{/components.content}}
+      {{/rad-dropdown}}
 
-            {{/components.body}}
-          {{/rad-card}}
+    {{/components.body}}
+  {{/rad-card}}
 
-        </section>
-        <section>
-          <h3>Properties</h3>
+</section>
+<section>
+  <h3>Properties</h3>
 
-          <table class="u-full-width">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>buttonStyle</code></td>
-                <td>Boolean</td>
-                <td>false</td>
-                <td>Whether to style the `target` to look like a button</td>
-              </tr>
-              <tr>
-                <td><code>brand</code></td>
-                <td>String</td>
-                <td>''</td>
-                <td>The brand class to use to style the `target`</td>
-              </tr>
-              <tr>
-                <td><code>Target</code></td>
-                <td>String</td>
-                <td>''</td>
-                <td>Simple way to define a the target element's content</td>
-              </tr>
-              <tr>
-                <td><code>Content</code></td>
-                <td>String</td>
-                <td>''</td>
-                <td>Simple way to define content</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>buttonStyle</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>Whether to style the `target` to look like a button</td>
+      </tr>
+      <tr>
+        <td><code>brand</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>The brand class to use to style the `target`</td>
+      </tr>
+      <tr>
+        <td><code>Target</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>Simple way to define a the target element's content</td>
+      </tr>
+      <tr>
+        <td><code>Content</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>Simple way to define content</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

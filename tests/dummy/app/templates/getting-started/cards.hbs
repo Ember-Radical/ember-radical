@@ -1,44 +1,29 @@
-<div class="page-title">
-  <h1>Cards</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Cards are simple presentational components with no real functionality but with a consistent visual language for displaying card-like content.</p>
-        </section>
-        <section>
-          <h4>Basic usage</h4>
-          <br>
-          {{#rad-card as |components|}}
-            {{#components.body}}Hey, I'm in a card.{{/components.body}}
-          {{/rad-card}}
-        </section>
-        <section>
-          <h4>Using Subcomponents</h4>
-          <br>
-          {{#rad-card as |components|}}
-            {{#components.title}}Card title{{/components.title}}
-            {{#components.body}}Card content{{/components.body}}
-            {{#components.footer}}Card footer{{/components.footer}}
-          {{/rad-card}}
-        </section>
-        <section>
-          <h4>With branding</h4>
-          <br>
-          {{#rad-card brand="primary" as |components|}}
-            {{#components.title}}Party time{{/components.title}}
-            {{#components.body}}
-              <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
-            {{/components.body}}
-          {{/rad-card}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Cards are simple presentational components with no real functionality but with a consistent visual language for displaying card-like content.</p>
+</section>
+<section>
+  <h4>Basic usage</h4>
+  <br>
+  {{#rad-card as |components|}}
+    {{#components.body}}Hey, I'm in a card.{{/components.body}}
+  {{/rad-card}}
+</section>
+<section>
+  <h4>Using Subcomponents</h4>
+  <br>
+  {{#rad-card as |components|}}
+    {{#components.title}}Card title{{/components.title}}
+    {{#components.body}}Card content{{/components.body}}
+    {{#components.footer}}Card footer{{/components.footer}}
+  {{/rad-card}}
+</section>
+<section>
+  <h4>With branding</h4>
+  <br>
+  {{#rad-card brand="primary" as |components|}}
+    {{#components.title}}Party time{{/components.title}}
+    {{#components.body}}
+      <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+    {{/components.body}}
+  {{/rad-card}}
+</section>
