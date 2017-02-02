@@ -83,10 +83,10 @@ module.exports = {
         PRODUCTION: env === 'production',
         TEST: env === 'test'
       },
+      // Radical features defaults, will be overriden by any consumer specified flags
+      this.radicalDefaultFeatureFlags,
       // Matches https://github.com/kategengler/ember-feature-flags name convention
-      applicationConfig.featureFlags || {},
-      // Radical specific defaults if not specified by consumer
-      this.radicalDefaultFeatureFlags
+      applicationConfig.featureFlags || {}
     );
     const minifyJSOptions = {
       options: {

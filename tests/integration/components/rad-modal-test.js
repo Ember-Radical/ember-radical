@@ -14,30 +14,42 @@ moduleForComponent('rad-modal', 'Integration | Component | rad modal', {
 // Modal tests w/out subcomponents
 // ========================================================
 
-test('it renders', function(assert) {
+test('it renders all the bits', function(assert) {
   this.render(hbs`
-    {{#rad-modal closeModal=(action 'toggleModal') Header='Test Header'}}
+    {{#rad-modal
+      Header='Test Header'
+      closeModal=(action 'toggleModal')}}
       template block text
     {{/rad-modal}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/\s\s+/g, ' '), 'Test Header x icon template block text', 'Component renders block form correctly');
-  assert.equal(this.$('.rad-modal-wrapper').attr('role'), 'dialog', 'Component renders role dialog');
+  assert.equal(this.$().text().trim().replace(/\s\s+/g, ' '), 'Test Header x icon template block text',
+    'Component renders block form correctly');
+  assert.equal(this.$('.rad-modal-wrapper').attr('role'), 'dialog',
+    'Component renders role dialog');
+  assert.ok(this.$('[data-test="rad-modal-close-button"]').length,
+    'close button is rendered inside of header');
 });
 
 test('it renders a passed size', function(assert) {
   this.render(hbs`
-    {{#rad-modal closeModal=(action 'toggleModal') Header='Test Header' size='medium'}}
+    {{#rad-modal
+      Header='Test Header'
+      size='medium'
+      closeModal=(action 'toggleModal')}}
       template block text
     {{/rad-modal}}
   `);
 
-  assert.equal(this.$('.rad-modal-wrapper.medium').length, 1, 'Size is bound to modal wrapper');
+  assert.equal(this.$('.rad-modal-wrapper.medium').length, 1,
+    'Size is bound to modal wrapper');
 });
 
 test('it binds aria-labelledby to a passed Header', function(assert) {
   this.render(hbs`
-    {{#rad-modal closeModal=(action 'toggleModal') Header='Test Header'}}
+    {{#rad-modal
+      Header='Test Header'
+      closeModal=(action 'toggleModal')}}
       template block text
     {{/rad-modal}}
   `);
@@ -49,9 +61,11 @@ test('it binds aria-labelledby to a passed Header', function(assert) {
 });
 
 test('it binds aria-labelledby to passed ariaHeader', function(assert) {
-  this.set('hideX', false);
+  this.set('closeButton', true);
   this.render(hbs`
-    {{#rad-modal closeModal=(action 'toggleModal') ariaHeader="test label" hideX=hideX}}
+    {{#rad-modal
+      ariaHeader="test label"
+      closeButton=closeButton}}
       template block text
     {{/rad-modal}}
   `);
@@ -60,19 +74,24 @@ test('it binds aria-labelledby to passed ariaHeader', function(assert) {
   const boundId = this.$('.aria-header').attr('id');
 
   assert.equal(ariaLabel, boundId, 'aria-labelledby matches bound id for aria header');
-  assert.equal(this.$('svg.x').length, 1, 'should render a close x inside of the header placeholder');
+  assert.equal(this.$('[data-test="rad-modal-close-button"]').length, 1,
+    'should render a close x inside of the header placeholder');
 
-  // Pass hideX prop as well
-  this.set('hideX', true);
+  // Hide the close button
+  this.set('closeButton', false);
   assert.equal(ariaLabel, boundId, 'aria-labelledby matches bound id for aria header');
-  assert.equal(this.$('svg.x').length, 0, 'should not render a close x inside of the header placeholder');
+  assert.equal(this.$('[data-test="rad-modal-close-button"]').length, 0,
+    'should not render a close x inside of the header placeholder');
 });
 
 test('it toggles aria-hidden attrs appropriately to handle show and hide', function(assert) {
   this.set('active', false);
 
   this.render(hbs`
-    {{#rad-modal closeModal=(action 'toggleModal') open=active Header='Test Header'}}
+    {{#rad-modal
+      Header='Test Header'
+      open=active
+      closeModal=(action 'toggleModal') }}
       template block text
     {{/rad-modal}}
   `);
@@ -84,15 +103,23 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
   return wait().then(() => {
     // Hidden by default
     // ---------------------------------------------------------------------------
-    assert.equal(this.$('.rad-modal-background').attr('aria-hidden'), 'true', 'background aria-hidden true when open is falsey');
-    assert.equal(this.$('.rad-modal-background').css('display'), 'none', 'background display none when open is falsey');
-    assert.equal(this.$('.rad-modal-background').css('visibility'), 'hidden', 'background hidden when open is falsey');
-    assert.equal(this.$('.rad-modal-background').css('pointer-events'), 'none', 'clicks disabled when open is falsey');
+    assert.equal(this.$('.rad-modal-background').attr('aria-hidden'), 'true',
+      'background aria-hidden true when open is falsey');
+    assert.equal(this.$('.rad-modal-background').css('display'), 'none',
+      'background display none when open is falsey');
+    assert.equal(this.$('.rad-modal-background').css('visibility'), 'hidden',
+      'background hidden when open is falsey');
+    assert.equal(this.$('.rad-modal-background').css('pointer-events'), 'none',
+      'clicks disabled when open is falsey');
 
-    assert.equal(this.$('.rad-modal-wrapper').attr('aria-hidden'), 'true', 'wrapper aria-hidden true when open is falsey');
-    assert.equal(this.$('.rad-modal-wrapper').css('display'), 'none', 'wrapper display none when open is falsey');
-    assert.equal(this.$('.rad-modal-wrapper').css('visibility'), 'hidden', 'wrapper hidden when open is falsey');
-    assert.equal(this.$('.rad-modal-wrapper').css('pointer-events'), 'none', 'clicks disabled when open is falsey');
+    assert.equal(this.$('.rad-modal-wrapper').attr('aria-hidden'), 'true',
+      'wrapper aria-hidden true when open is falsey');
+    assert.equal(this.$('.rad-modal-wrapper').css('display'), 'none',
+      'wrapper display none when open is falsey');
+    assert.equal(this.$('.rad-modal-wrapper').css('visibility'), 'hidden',
+      'wrapper hidden when open is falsey');
+    assert.equal(this.$('.rad-modal-wrapper').css('pointer-events'), 'none',
+      'clicks disabled when open is falsey');
 
     // set property to show the modal
     this.set('active', true);
@@ -100,15 +127,23 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
     return wait().then(() => {
       // Show the modal
       // --------------------------------------------s-------------------------------
-      assert.equal(this.$('.rad-modal-background').attr('aria-hidden'), 'false', 'background aria-hidden false when open is truthy');
-      assert.equal(this.$('.rad-modal-background').css('display'), 'block', 'background display block when open is truthy');
-      assert.equal(this.$('.rad-modal-background').css('visibility'), 'visible', 'background not hidden when open is truthy');
-      assert.equal(this.$('.rad-modal-background').css('pointer-events'), 'auto', 'clicks not disabled when open is truthy');
+      assert.equal(this.$('.rad-modal-background').attr('aria-hidden'),
+        'false', 'background aria-hidden false when open is truthy');
+      assert.equal(this.$('.rad-modal-background').css('display'), 'block',
+        'background display block when open is truthy');
+      assert.equal(this.$('.rad-modal-background').css('visibility'), 'visible',
+        'background not hidden when open is truthy');
+      assert.equal(this.$('.rad-modal-background').css('pointer-events'), 'auto',
+        'clicks not disabled when open is truthy');
 
-      assert.equal(this.$('.rad-modal-wrapper').attr('aria-hidden'), 'false', 'wrapper aria-hidden false when open is truthy');
-      assert.equal(this.$('.rad-modal-wrapper').css('display'), 'block', 'wrapper display block when open is truthy');
-      assert.equal(this.$('.rad-modal-wrapper').css('visibility'), 'visible', 'wrapper not hidden when open is truthy');
-      assert.equal(this.$('.rad-modal-wrapper').css('pointer-events'), 'auto', 'clicks not disabled when open is truthy');
+      assert.equal(this.$('.rad-modal-wrapper').attr('aria-hidden'), 'false',
+        'wrapper aria-hidden false when open is truthy');
+      assert.equal(this.$('.rad-modal-wrapper').css('display'), 'block',
+        'wrapper display block when open is truthy');
+      assert.equal(this.$('.rad-modal-wrapper').css('visibility'), 'visible',
+        'wrapper not hidden when open is truthy');
+      assert.equal(this.$('.rad-modal-wrapper').css('pointer-events'), 'auto',
+        'clicks not disabled when open is truthy');
 
     });
   });
@@ -118,23 +153,29 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
 test('it passes and binds closeModal action to background and header (normal header)', function(assert) {
 
   this.setProperties({
-    Header: 'test-header',
     ariaHeader: '',
+    Header: 'test-header',
+    modalIsOpen: true,
     closeModal: () => {
       this.set('modalIsOpen', false);
-    },
-    modalIsOpen: true
+    }
   });
 
   this.render(hbs`
-    {{#rad-modal closeModal=closeModal Header=Header ariaHeader=ariaHeader open=modalIsOpen}}
+    {{#rad-modal
+      ariaHeader=ariaHeader
+      Header=Header
+      open=modalIsOpen
+      closeModal=closeModal}}
       template block text
     {{/rad-modal}}
   `);
 
   // Verify modal is visible at start when passed `open` prop is true
-  assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false', 'modal background state begins as visible');
-  assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper begins as visible');
+  assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false',
+    'modal background state begins as visible');
+  assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false',
+    'modal wrapper begins as visible');
 
   // Trigger background click
   this.$('.rad-modal-background').click();
@@ -142,13 +183,17 @@ test('it passes and binds closeModal action to background and header (normal hea
   // Wait for updates
   return wait().then(() => {
     // Validate that modal elements are hidden
-    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from background click');
-    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true',
+      'modal background state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true',
+      'modal wrapper state is !visible after close action fires from background click');
 
     // Reset open state, confirm modal is open again
     this.set('modalIsOpen', true);
-    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false', 'modal background returns to visible');
-    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper returns to visible');
+    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false',
+      'modal background returns to visible');
+    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false',
+      'modal wrapper returns to visible');
 
     // Click close button
     this.$('[data-test="rad-modal-close-button"]').click();
@@ -156,8 +201,10 @@ test('it passes and binds closeModal action to background and header (normal hea
     // Wait for updates
     return wait().then(() => {
       // Confirm modal is hidden
-      assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from close button click');
-      assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+      assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true',
+        'modal background state is !visible after close action fires from close button click');
+      assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true',
+        'modal wrapper state is !visible after close action fires from background click');
     });
   });
 });
@@ -165,23 +212,29 @@ test('it passes and binds closeModal action to background and header (normal hea
 test('it passes and binds closeModal action to background and header (aria header)', function(assert) {
 
   this.setProperties({
-    Header: '',
     ariaHeader: 'aria label for header',
+    Header: '',
+    modalIsOpen: true,
     closeModal: () => {
       this.set('modalIsOpen', false);
-    },
-    modalIsOpen: true
+    }
   });
 
   this.render(hbs`
-    {{#rad-modal closeModal=closeModal Header=Header ariaHeader=ariaHeader open=modalIsOpen}}
+    {{#rad-modal
+      ariaHeader=ariaHeader
+      Header=Header
+      open=modalIsOpen
+      closeModal=closeModal }}
       template block text
     {{/rad-modal}}
   `);
 
   // Verify modal is visible at start when passed `open` prop is true
-  assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false', 'modal background state begins as visible');
-  assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper begins as visible');
+  assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false',
+    'modal background state begins as visible');
+  assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false',
+    'modal wrapper begins as visible');
 
   // Trigger background click
   this.$('.rad-modal-background').click();
@@ -189,13 +242,17 @@ test('it passes and binds closeModal action to background and header (aria heade
   // Wait for updates
   return wait().then(() => {
     // Validate that modal elements are hidden
-    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from background click');
-    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true',
+      'modal background state is !visible after close action fires from background click');
+    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true',
+      'modal wrapper state is !visible after close action fires from background click');
 
     // Reset open state, confirm modal is open again
     this.set('modalIsOpen', true);
-    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false', 'modal background returns to visible');
-    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false', 'modal wrapper returns to visible');
+    assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'false',
+      'modal background returns to visible');
+    assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'false',
+      'modal wrapper returns to visible');
 
     // Click close button
     this.$('[data-test="rad-modal-close-button"]').click();
@@ -203,8 +260,10 @@ test('it passes and binds closeModal action to background and header (aria heade
     // Wait for updates
     return wait().then(() => {
       // Confirm modal is hidden
-      assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true', 'modal background state is !visible after close action fires from close button click');
-      assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true', 'modal wrapper state is !visible after close action fires from background click');
+      assert.equal(this.$('[data-test="rad-modal-background"]').attr('aria-hidden'), 'true',
+        'modal background state is !visible after close action fires from close button click');
+      assert.equal(this.$('[data-test="rad-modal-wrapper"]').attr('aria-hidden'), 'true',
+        'modal wrapper state is !visible after close action fires from background click');
     });
   });
 });
@@ -233,20 +292,28 @@ test('it binds aria-labelledby when yielded and passed to subcomponent', functio
 
 test('it adds animation classes to the rad-modal-wrapper div', function(assert) {
   this.render(hbs`
-    {{#rad-modal ariaHeader='animation test left' closeModal=(action 'toggleModal') animateFrom='left'}}
+    {{#rad-modal
+      animateFrom='left'
+      ariaHeader='animation test left'
+      closeModal=(action 'toggleModal')}}
       template block text
     {{/rad-modal}}
   `);
 
-  assert.ok(this.$('.rad-modal-wrapper').hasClass('animate-left'), '.animate-left class is added');
+  assert.ok(this.$('.rad-modal-wrapper').hasClass('animate-left'),
+    '.animate-left class is added');
 
   this.render(hbs`
-    {{#rad-modal ariaHeader='animation test right' closeModal=(action 'toggleModal') animateFrom='right'}}
+    {{#rad-modal
+      animateFrom='right'
+      ariaHeader='animation test right'
+      closeModal=(action 'toggleModal')}}
       template block text
     {{/rad-modal}}
   `);
 
-  assert.ok(this.$('.rad-modal-wrapper').hasClass('animate-right'), '.animate-right class is added');
+  assert.ok(this.$('.rad-modal-wrapper').hasClass('animate-right'),
+    '.animate-right class is added');
 
   // Not passing animateFrom doesn't add an .animate- class
   this.render(hbs`
@@ -255,5 +322,6 @@ test('it adds animation classes to the rad-modal-wrapper div', function(assert) 
     {{/rad-modal}}
   `);
 
-  assert.ok(!this.$('.rad-modal-wrapper').hasClass('animate-'), '.animate- class is not added');
+  assert.notOk(this.$('.rad-modal-wrapper').hasClass('animate-'),
+    '.animate- class is not added');
 });

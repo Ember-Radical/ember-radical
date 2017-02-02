@@ -32,14 +32,20 @@ if (DEVELOPMENT) {
  *
  * **With Basic Header:**
  * ```handlebars
- * {{#rad-modal open=someService.modalActive Header='This is the modal title' closeModal=(action "closeModal" target=someService)}}
+ * {{#rad-modal
+ *   open=someService.modalActive
+ *   Header='This is the modal title'
+ *   closeModal=(action "closeModal" target=someService)}}
  *   <p>This is a totally rad modal!</p>
  * {{/rad-modal}}
  * ```
  *
  * **With Full/Custom Header:**
  * ```handlebars
- * {{#rad-modal open=someService.modalActive closeModal=(action "closeModal" target=someService) as |components|}}
+ * {{#rad-modal
+ *   open=someService.modalActive
+ *   closeModal=(action "closeModal" target=someService)
+ *   as |components|}}
  *   {{! Modal Header Subcomponent}}
  *   {{#components.header}}
  *     <h3>{{rad-svg svgId="sparkles"}} It Just Works™</h3>
@@ -54,7 +60,10 @@ if (DEVELOPMENT) {
  * text is required for 508 compliance_.
  *
  * ```handlebars
- * {{#rad-modal open=someService.modalActive ariaHeader='This is the puppy modal' closeModal=(action "closeModal" target=someService)}}
+ * {{#rad-modal
+ *   open=someService.modalActive
+ *   ariaHeader='This is the puppy modal'
+ *   closeModal=(action "closeModal" target=someService)}}
  *   <p>Imagine several cute puppy images and/or gifs here.</p>
  * {{/components.header}}
  * ```
@@ -104,6 +113,8 @@ if (DEVELOPMENT) {
  *   to set up an animation direction; "left", "right", "top", or "bottom".
  * - `autoFocus`: set to false to prevent the modal from refocusing
  *   the last element that was active in the DOM before the modal as opened.
+ * - `closeButton`: Controls display of the header close button. Set to false to
+ *   hide close button.
  * - `removeFromDomOnClose`: While you normally may wish to control whether
  *   your modal is being rendered at all via external logic, there are cases
  *   where you may be using the modal (e.g. in a wizard-like user flow) where
@@ -164,6 +175,16 @@ export default Component.extend(devAssets, {
    * @type {String}
    */
   animateFrom: '',
+  /**
+   * Controls display of the modal header close button. Is defaulted to true and
+   * can be set to false in order to suppress the header close button.
+   * @property closeButton
+   * @type {!Boolean}
+   * @passed
+   * @optional
+   * @default true
+   */
+  closeButton: true,
   /**
    * Flag used to handle showing and hiding the modal. This property
    * should be passed in by a component/service+controller that controls the
@@ -257,6 +278,9 @@ export default Component.extend(devAssets, {
    * @return {undefined}
    */
   _handleClose() {
+    // Fire user hooks
+    if (this.get('onHide')) { this.get('onHide')(); }
+
     // Remove body scroll freeze
     $('body').removeClass('fixed-body');
 
@@ -272,6 +296,9 @@ export default Component.extend(devAssets, {
       this.set('_lastFocusedElement', undefined);
     }
 
+    // Unbind escape listener
+    unbindOnEscape(this.get('elementId'));
+
     // The modal isn't the quickest of components, and needs some more time
     // finish it's transition/animation.
     later(() => {
@@ -280,10 +307,10 @@ export default Component.extend(devAssets, {
       if (!this.get('isDestroyed')) {
         this.set('_visible', false);
       }
-    }, 500);
 
-    // Unbind escape listener
-    unbindOnEscape(this.get('elementId'));
+      // Fire user hooks
+      if (this.get('onHidden')) { this.get('onHidden')(); }
+    }, 500);
   },
   /**
    * Handle modal open work here:
@@ -299,6 +326,9 @@ export default Component.extend(devAssets, {
    * @return {undefined}
    */
   _handleOpen() {
+    // Fire user hooks
+    if (this.get('onShow')) { this.get('onShow')(); }
+
     // Prevent body scroll while modal is open
     $('body').addClass('fixed-body');
 
@@ -311,6 +341,9 @@ export default Component.extend(devAssets, {
       this.set('_lastFocusedElement', document.activeElement);
     }
 
+    // Bind the keycommand `esc` to close modal
+    bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this));
+
     // Wait to add active to modal elements until next run loop. This is
     // required for when we wait to render the modal until it should be active
     // if we add the active class at this point, then the modal renders with
@@ -321,10 +354,10 @@ export default Component.extend(devAssets, {
       // Focus the modal wrapper for usability
       // @TODO: A method to handle checking for an autoFocus element would be A++
       this.$('.rad-modal-wrapper').focus();
-    }, 15);
 
-    // Bind the keycommand `esc` to close modal
-    bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this));
+      // Fire user hooks
+      if (this.get('onShown')) { this.get('onShown')(); }
+    }, 15);
   },
 
   // Hooks
@@ -405,8 +438,8 @@ export default Component.extend(devAssets, {
         {{#if Header}}
           {{#rad-modal/header
             closeModal=closeModal
-            aria-labelledby=(concat 'aria-labelledby-' elementId)
-            hideX=hideX
+            elementId=(concat 'aria-labelledby-' elementId)
+            closeButton=closeButton
             tagClose=tagClose}}
             <h2>{{{Header}}}</h2>
           {{/rad-modal/header}}
@@ -415,7 +448,7 @@ export default Component.extend(devAssets, {
         {{#if ariaHeader}}
           {{!-- Render aria label for screen readers --}}
           <header id="aria-labelledby-{{elementId}}" class="aria-header">{{ariaHeader}}</header>
-          {{#unless hideX}}
+          {{#if closeButton}}
             <div class="header-replacement">
               {{#rad-button
                 link=true
@@ -429,7 +462,7 @@ export default Component.extend(devAssets, {
                 {{rad-svg svgId='x'}}
               {{/rad-button}}
             </div>
-          {{/unless}}
+          {{/if}}
         {{/if}}
 
         {{! ----------------------------------------------------------------- }}
@@ -441,8 +474,8 @@ export default Component.extend(devAssets, {
         {{yield (hash
           header=(component 'rad-modal/header'
             closeModal=closeModal
-            aria-labelledby=(concat 'aria-labelledby-' elementId)
-            hideX=hideX
+            elementId=(concat 'aria-labelledby-' elementId)
+            closeButton=closeButton
             tagClose=tagClose)
           ) open
         }}
