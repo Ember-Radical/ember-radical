@@ -17,9 +17,9 @@ test('it renders', function(assert) {
     {{/rad-modal/header}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/\s\s+/g, ' '), 'Test Header x icon',
+  assert.ok(this.$().text().includes('Test Header'),
     'Component renders block form correctly');
-  assert.ok(this.$('[data-test="rad-modal-close-button"]'),
+  assert.ok(this.$('[data-test="rad-modal-close-button"]').length,
     'Close button should be rendered by default');
 });
 
@@ -54,7 +54,7 @@ test('it binds appropriate brand classes', function(assert) {
     'passed brand should render brand class');
   assert.ok(this.$('header').hasClass('branded'),
     'passed brand should render branded class used to handle whitespace');
-  assert.ok(this.$('[data-test="rad-modal-close-button"]').find(' svg').hasClass('primary'),
+  assert.ok(this.$('[data-test="rad-modal-close-button"]').find('svg').hasClass('primary'),
     'close x should also be branded');
 });
 
@@ -85,6 +85,19 @@ test('it calls passed closeModal action when close button is clicked', function(
   `);
 
   this.$('[data-test="rad-modal-close-button"]').click();
+});
+
+test('it uses default no-op if a closeModal action isnt passed', function(assert) {
+  this.render(hbs`
+    {{#rad-modal/header}}
+      Test Header
+    {{/rad-modal/header}}
+  `);
+
+  this.$('[data-test="rad-modal-close-button"]').click();
+
+  assert.ok(this.$().text().includes('Test Header'),
+    'Component renders without errors without closure action');
 });
 
 test('it binds tagging props when passed', function(assert) {

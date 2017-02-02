@@ -23,7 +23,7 @@ test('it renders all the bits', function(assert) {
     {{/rad-modal}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/\s\s+/g, ' '), 'Test Header x icon template block text',
+  assert.ok(this.$().text().includes('template block text'),
     'Component renders block form correctly');
   assert.equal(this.$('.rad-modal-wrapper').attr('role'), 'dialog',
     'Component renders role dialog');
@@ -147,7 +147,21 @@ test('it toggles aria-hidden attrs appropriately to handle show and hide', funct
 
     });
   });
+});
 
+test('it uses default no-op if a closeModal action isnt passed', function(assert) {
+  this.render(hbs`
+    {{#rad-modal
+      Header='Test Header'
+      open=true}}
+      template block text
+    {{/rad-modal}}
+  `);
+
+  this.$('[data-test="rad-modal-close-button"]').click();
+
+  assert.ok(this.$().text().includes('template block text'),
+    'Component renders without errors without closure action');
 });
 
 test('it passes and binds closeModal action to background and header (normal header)', function(assert) {

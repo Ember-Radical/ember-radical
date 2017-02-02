@@ -14,9 +14,9 @@
         <section>
           <h4>Basic Usage</h4>
           {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)
-              brand='primary'}}Open The Modal!{{/rad-button}}
+            {{#rad-button click=(action stateActions.open)}}
+              Open The Modal!
+            {{/rad-button}}
             {{#rad-modal
               open=state
               Header='This is a totally rad modal right here!'
@@ -42,8 +42,9 @@
         <section>
           <h4>No Header (Still Accessible)</h4>
           {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)}}Open this modal with no header{{/rad-button}}
+            {{#rad-button click=(action stateActions.open)}}
+              Open this modal with no header
+            {{/rad-button}}
             {{#rad-modal
               open=state
               ariaHeader='This modal shows what a modal with no header looks like'
@@ -51,6 +52,51 @@
               <p>Inspect the HTML of this sucker to see the screen-reader friendly
                 header in action.</p>
               <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
+            {{/rad-modal}}
+          {{/rad-state}}
+        </section>
+        <section>
+          <h4>Non-Dismissable Modal</h4>
+          {{#rad-state as |state stateActions|}}
+            {{#rad-button click=(action stateActions.open)}}
+              Open this modal
+            {{/rad-button}}
+            {{#rad-modal
+              closeButton=false
+              open=state
+              Header='USER REQUIRED ACTION'}}
+              <p>
+                The only way for a user to close a modal with no passed
+                <code>closeModal</code> is through a user action that you
+                include.
+              </p>
+              <p>
+                Since the close button in the header won't do anything, it's
+                usually good practice to pass <code>closeButton=false</code> for
+                non-dismissable modals.
+              </p>
+              {{#rad-button click=(action stateActions.close)}}
+                Close The Modal
+              {{/rad-button}}
+            {{/rad-modal}}
+          {{/rad-state}}
+        </section>
+        <section>
+          <h4>Animated Modal</h4>
+          {{#rad-state as |state stateActions|}}
+            {{#rad-button click=(action stateActions.open)}}
+              Open this modal
+            {{/rad-button}}
+            {{#rad-modal
+              animateFrom='left'
+              closeModal=(action stateActions.close)
+              open=state
+              Header='Animations So Classy'}}
+              <p>
+                Pass the <code>animateFrom</code> property of value,
+                <code>left</code>, <code>right</code>, <code>top</code> or
+                <code>bottom</code> to animate the modal entry.
+              </p>
             {{/rad-modal}}
           {{/rad-state}}
         </section>

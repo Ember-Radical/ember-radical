@@ -31,8 +31,17 @@ import computed from 'ember-computed';
  */
 export default Component.extend({
 
-  // Optional Passed Properties
+  // Passed Properties
   // ---------------------------------------------------------------------------
+  /**
+   * The elementId of this component must be set to match the `aria-labelledby`
+   * of the parent component. This is handled through the contextual component
+   * setup of `core-modal`
+   * @property elementId
+   * @type {string}
+   * @passed Component.RadModal
+   * @required
+   */
   /**
    * If you want that header to have some pop
    * @property brand
@@ -65,30 +74,20 @@ export default Component.extend({
    */
   tagClose: null,
 
-  // Required Passed Properties
+  // Closure Actions
   // ---------------------------------------------------------------------------
   /**
-   * Action closure passed in to modal. Is mounted to the modal background for
-   * close on click (unless 'hideBackground' is true)
+   * Closure action bound to header close button.
    * @property closeModal
    * @type {function}
    * @passed
-   * @required
+   * @optional
    * @closure
    */
-  /**
-   * The elementId of this component must be set to match the `aria-labelledby`
-   * of the parent component. This is handled through the contextual component
-   * setup of `core-modal`
-   * @property elementId
-   * @type {string}
-   * @passed Component.RadModal
-   * @required
-   */
+  closeModal: () => {},
 
   // Properties
   // ---------------------------------------------------------------------------
-
   /**
    * Computed css class bound to component. Handled by component to allow for
    * flexibility in future updates to branding class names

@@ -124,6 +124,13 @@ if (DEVELOPMENT) {
  *   may optionally choose `small` (30%), `medium` (45%), or `full` (100%).
  *   Modals are always full-width on small screen sizes.
  *
+ * #### Non-Dismissable Modal
+ * Create a modal that cannot be dismissed on click of the modal background by
+ * not passing a `closeModal` closure _(Modal components are set up with a no op
+ * `closeModal` action by default)_. Note that although not required, it's
+ * suggested to pass `closeButton=false` to suppress display of the close button
+ * because it won't do anything.
+ *
  * ##### TODO:
  * - Explore/Document how to handle having multiple modals of the same type? One
  *   modal with dynamic content? or multiple modals with modal ids?
@@ -137,20 +144,8 @@ if (DEVELOPMENT) {
  */
 export default Component.extend(devAssets, {
 
-  // Closure Actions
-  // ---------------------------------------------------------------------------
-
-  /**
-   * Closure action passed into the modal. Is event delegated to the modal
-   * background for close on click (unless 'hideBackground' is true)
-   * @property closeModal
-   * @type {function}
-   */
-  closeModal: () => {},
-
   // Passed Properties
   // ---------------------------------------------------------------------------
-
   /**
    * If a modal should not have a visible header, pass a label for the modal
    * using this property. It will be bound to a hidden div with the correct
@@ -239,9 +234,21 @@ export default Component.extend(devAssets, {
     label: null
   },
 
+  // Closure Actions
+  // ---------------------------------------------------------------------------
+  /**
+   * Closure action passed into the modal. Is event delegated to the modal
+   * background for close on click (unless 'hideBackground' is true)
+   * @property closeModal
+   * @type {function}
+   * @passed
+   * @optional
+   * @closure
+   */
+  closeModal: () => {},
+
   // Properties
   // ---------------------------------------------------------------------------
-
   /**
    * Private reference to the last focused element in the DOM before the modal
    * was opened. This is used to make the experience for keyboard users not
@@ -422,7 +429,8 @@ export default Component.extend(devAssets, {
       data-tagcategory={{tagClose.category}}
       data-tagaction={{tagClose.action}}
       data-taglabel={{tagClose.label}}
-      data-test="rad-modal-background"></div>
+      data-test="rad-modal-background">
+    </div>
 
     {{#if (or _visible (not removeFromDomOnClose))}}
       {{! The actual modal div. { role, labelledby, hidden } => 508 compliance attrs  }}
