@@ -13,11 +13,12 @@
           <h4>Basic usage (as a menu)</h4>
           {{#rad-dropdown
             Target="Pretty cool menu"
+            dropdownMenu=true
             buttonStyle=true as |components showMenu hideMenu|}}
             {{#components.content}}
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option One{{/rad-button}}<br>
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option Two{{/rad-button}}<br>
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option Three{{/rad-button}}
+              {{#components.menu-item}}Menu Option One{{/components.menu-item}}
+              {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
+              {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
             {{/components.content}}
           {{/rad-dropdown}}
         </section>
