@@ -1,3 +1,73 @@
 <section>
-  <p class="intro">Fill me in, please.</p>
+  <p class="intro">
+    Tooltips allow you to display text by simply hovering over the target
+    element.
+  </p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{#rad-card as |components|}}
+    {{#components.title}}Basic Examples{{/components.title}}
+    {{#components.body}}
+      {{rad-tooltip
+        buttonStyle=true
+        Title="Button"
+        Content="Some rad info"}}
+
+      {{rad-tooltip
+        buttonStyle=true
+        brand="primary"
+        Title="Branded button"
+        Content="Some rad information"}}
+
+      {{rad-tooltip
+        Title="Link"
+        Content="Some rad information that is really really long"}}
+
+    {{/components.body}}
+  {{/rad-card}}
+</section>
+<section>
+  <h3>Passed Properties</h3>
+
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>brand</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>Styles the target component with a brand style.</td>
+      </tr>
+      <tr>
+        <td><code>buttonStyle</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>
+          Whether or not to render the target component style as a button or a
+          link.
+        </td>
+      </tr>
+      <tr>
+        <td><code>onHide</code></td>
+        <td>Function</td>
+        <td>() => {}</td>
+        <td>Closure action is called when the tooltop is hidden.</td>
+      </tr>
+      <tr>
+        <td><code>onShow</code></td>
+        <td>Function</td>
+        <td>() => {}</td>
+        <td>Closure action is called when the tooltop is shown.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>

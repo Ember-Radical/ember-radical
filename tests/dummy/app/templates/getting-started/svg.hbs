@@ -1,3 +1,42 @@
 <section>
-  <p class="intro">Fill me in, please.</p>
+  <p class="intro">Simple component for rendering SVGs.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{#rad-card as |components|}}
+    {{#components.title}}Basic Examples{{/components.title}}
+    {{#components.body}}
+      {{rad-svg svgId="heart"}}
+      {{rad-svg svgId="close"}}
+    {{/components.body}}
+  {{/rad-card}}
+</section>
+<section>
+  <h3>Passed Properties</h3>
+
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>filePath</code></td>
+        <td>String</td>
+        <td>'/assets/symbol-defs.svg'</td>
+        <td>File path to svg definitions file.</td>
+      </tr>
+      <tr>
+        <td><code>svgId</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>The id of the svg.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
