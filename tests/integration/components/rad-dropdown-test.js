@@ -30,8 +30,8 @@ test('it binds the required attributes', function(assert) {
   assert.equal(this.$('button').attr('aria-haspopup'), 'true', 'target should have popup aria attr');
   assert.equal(this.$('button').attr('aria-expanded'), 'false', 'target should have aria expanded false by default');
   assert.equal(this.$('.dropdown-content').attr('aria-hidden'), 'true', 'content should have aria-hidden true by default');
-  assert.equal(this.$('.dropdown-target').attr('id'), `lbldy-${this.$('.rad-dropdown').attr('id')}`, 'target should have proper id');
-  assert.equal(this.$('.dropdown-content').attr('aria-labelledby'), `lbldy-${this.$('.rad-dropdown').attr('id')}`, 'content should have aria-labelledby attr');
+  assert.equal(this.$('.dropdown-target').attr('id'), `aria-labelledby-${this.$('.rad-dropdown').attr('id')}`, 'target should have proper id');
+  assert.equal(this.$('.dropdown-content').attr('aria-labelledby'), `aria-labelledby-${this.$('.rad-dropdown').attr('id')}`, 'content should have aria-labelledby attr');
 });
 
 test('property buttonStyles binds the appropriate classes', function(assert) {

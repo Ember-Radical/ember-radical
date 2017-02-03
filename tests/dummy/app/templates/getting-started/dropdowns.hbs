@@ -1,7 +1,7 @@
 <section>
   <p class="intro">Dropdowns can be used for displaying arbitrary content, and are also useful as a stand-in for select boxes/menus.</p>
 </section>
-<section>
+<section class="rad-dropdown-examples">
   <h3>Examples</h3>
 
   {{#rad-card as |components|}}
@@ -41,7 +41,7 @@
 
 </section>
 <section>
-  <h3>Properties</h3>
+  <h3>Passed Properties</h3>
 
   <table class="u-full-width">
     <thead>
@@ -76,6 +76,45 @@
         <td>String</td>
         <td>''</td>
         <td>Simple way to define content</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Yielded Properties</h3>
+
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>components</code></td>
+        <td>Object</td>
+        <td>N/A</td>
+        <td>Available subcomponents: <code>components.content</code>, <code>components.menu-item</code>, <code>components.target</code> (See example source code)</td>
+      </tr>
+      <tr>
+        <td><code>show</code></td>
+        <td>Action</td>
+        <td>N/A</td>
+        <td>Closure action to show the dropdown. Example: <code>onclick=(action show)</code></td>
+      </tr>
+      <tr>
+        <td><code>hide</code></td>
+        <td>Action</td>
+        <td>N/A</td>
+        <td>Closure action to close the dropdown. Example: <code>onclick=(action hide)</code></td>
+      </tr>
+      <tr>
+        <td><code>hidden</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>Whether or not the dropdown is hidden.</td>
       </tr>
     </tbody>
   </table>

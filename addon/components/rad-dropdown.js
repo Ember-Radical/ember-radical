@@ -3,7 +3,6 @@ import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
 import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
-import { labelledby, describedby } from '../utils/arias';
 
 /**
  * Core dropdown component.
@@ -112,20 +111,6 @@ export default Component.extend({
    * @default true
    */
   hidden: true,
-  /**
-   * Unique string used to handle setting up aria roles for A++ usability.
-   * @property describedby
-   * @type {string}
-   * @param elementId
-   */
-  describedby: computed('elementId', describedby),
-  /**
-   * Unique string used to handle setting up aria roles for A++ usability.
-   * @property labelledby
-   * @type {string}
-   * @param elementId
-   */
-  labelledby: computed('elementId', labelledby),
 
   // Ember Props
   // ---------------------------------------------------------------------------
@@ -214,7 +199,7 @@ export default Component.extend({
 
     {{#if Target}}
       {{#rad-dropdown/target
-        id=labelledby
+        id=(concat 'aria-labelledby-' elementId)
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
@@ -225,7 +210,7 @@ export default Component.extend({
 
     {{#if Content}}
       {{#rad-dropdown/content
-        aria-labelledby=labelledby
+        aria-labelledby=(concat 'aria-labelledby-' elementId)
         hidden=hidden}}
         {{{Content}}}
       {{/rad-dropdown/content}}
@@ -233,17 +218,17 @@ export default Component.extend({
 
     {{yield (hash
       target=(component 'rad-dropdown/target'
-        id=labelledby
+        id=(concat 'aria-labelledby-' elementId)
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
         hidden=hidden)
       content=(component 'rad-dropdown/content'
-        aria-labelledby=labelledby
+        aria-labelledby=(concat 'aria-labelledby-' elementId)
         dropdownMenu=dropdownMenu
         hidden=hidden)
       menu-item=(component 'rad-dropdown/menu-item'
         hide=(action 'hide'))
-    ) (action 'show') (action 'hide') hidden aria-describedby aria-labelledby}}
+    ) (action 'show') (action 'hide') hidden}}
   `
 });
