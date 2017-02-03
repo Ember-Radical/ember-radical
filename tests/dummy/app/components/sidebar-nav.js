@@ -22,7 +22,7 @@ export default Ember.Component.extend({
             <li>{{link-to 'Tooltips' 'getting-started.tooltips'}}</li>
           </ul>
         </li>
-        <li>{{link-to 'Docs' 'docs'}}</li>
+        <li>{{link-to 'API Docs' 'docs'}}</li>
       </ul>
     </nav>
   `

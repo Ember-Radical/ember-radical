@@ -1,99 +1,226 @@
-        <section>
-          <p class="intro">Modals are awesome! They're a great way to surface focused content to the user without completely removing them from the context of the page they're viewing!</p>
-          <p class="intro">What's more awesome than a modal? A modal that can be controlled externally via one-way data flow, <i>obviously</i>. Yes, these modals can close themselves, but they do so by invoking an action passed into them that controls their open/closed state on the parent context.</p>
-          <p class="italic"><b>[mind-blown.gif]</b></p>
-        </section>
-        <section>
-          <h4>Basic Usage</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button click=(action stateActions.open)}}
-              Open The Modal!
-            {{/rad-button}}
-            {{#rad-modal
-              open=state
-              Header='This is a totally rad modal right here!'
-              closeModal=(action stateActions.close)
-              as |components|}}
-              <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
-              {{#components.footer}}
-                {{#rad-button brand='success'}}Neat{{/rad-button}}
-                {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
-              {{/components.footer}}
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>Branded Header</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)
-              brand='primary'}}Open this branded modal{{/rad-button}}
-            {{#rad-modal
-              open=state
-              closeModal=(action stateActions.close) as |components|}}
-              {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
-              <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>No Header (Still Accessible)</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button click=(action stateActions.open)}}
-              Open this modal with no header
-            {{/rad-button}}
-            {{#rad-modal
-              open=state
-              ariaHeader='This modal shows what a modal with no header looks like'
-              closeModal=(action stateActions.close)}}
-              <p>Inspect the HTML of this sucker to see the screen-reader friendly
-                header in action.</p>
-              <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>Non-Dismissable Modal</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button click=(action stateActions.open)}}
-              Open this modal
-            {{/rad-button}}
-            {{#rad-modal
-              closeButton=false
-              open=state
-              Header='USER REQUIRED ACTION'}}
-              <p>
-                The only way for a user to close a modal with no passed
-                <code>closeModal</code> is through a user action that you
-                include.
-              </p>
-              <p>
-                Since the close button in the header won't do anything, it's
-                usually good practice to pass <code>closeButton=false</code> for
-                non-dismissable modals.
-              </p>
-              {{#rad-button click=(action stateActions.close)}}
-                Close The Modal
-              {{/rad-button}}
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
-        <section>
-          <h4>Animated Modal</h4>
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button click=(action stateActions.open)}}
-              Open this modal
-            {{/rad-button}}
-            {{#rad-modal
-              animateFrom='left'
-              closeModal=(action stateActions.close)
-              open=state
-              Header='Animations So Classy'}}
-              <p>
-                Pass the <code>animateFrom</code> property of value,
-                <code>left</code>, <code>right</code>, <code>top</code> or
-                <code>bottom</code> to animate the modal entry.
-              </p>
-            {{/rad-modal}}
-          {{/rad-state}}
-        </section>
+<section>
+  <p class="intro">Modals are awesome! They're a great way to surface focused content to the user without completely removing them from the context of the page they're viewing!</p>
+  <p class="intro">What's more awesome than a modal? A modal that can be controlled externally via one-way data flow, <i>obviously</i>. Yes, these modals can close themselves, but they do so by invoking an action passed into them that controls their open/closed state on the parent context.</p>
+  <p class="italic"><b>[mind-blown.gif]</b></p>
+</section>
+<section class="rad-modal-examples">
+  <h3>Examples</h3>
+
+  {{#rad-card as |components|}}
+    {{#components.title}}Basic Examples{{/components.title}}
+    {{#components.body}}
+      {{#rad-state as |state stateActions|}}
+        {{#rad-button click=(action stateActions.open)}}
+          Open Modal
+        {{/rad-button}}
+        {{#rad-modal
+          open=state
+          Header='This is a totally rad modal right here!'
+          closeModal=(action stateActions.close)
+          as |components|}}
+          <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
+          {{#components.footer}}
+            {{#rad-button brand='success'}}Neat{{/rad-button}}
+            {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
+          {{/components.footer}}
+        {{/rad-modal}}
+      {{/rad-state}}
+    {{/components.body}}
+  {{/rad-card}}
+
+  <br>
+
+  {{#rad-card as |components|}}
+    {{#components.title}}Basic Examples{{/components.title}}
+    {{#components.body}}
+      {{#rad-state as |state stateActions|}}
+        {{#rad-button
+          click=(action stateActions.open)
+          brand='primary'}}Branded header{{/rad-button}}
+        {{#rad-modal
+          open=state
+          closeModal=(action stateActions.close) as |components|}}
+          {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
+          <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
+        {{/rad-modal}}
+      {{/rad-state}}
+
+      {{#rad-state as |state stateActions|}}
+        {{#rad-button click=(action stateActions.open)}}
+          No header
+        {{/rad-button}}
+        {{#rad-modal
+          open=state
+          ariaHeader='This modal shows what a modal with no header looks like'
+          closeModal=(action stateActions.close)}}
+          <p>Inspect the HTML of this sucker to see the screen-reader friendly
+            header in action.</p>
+          <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
+        {{/rad-modal}}
+      {{/rad-state}}
+
+      {{#rad-state as |state stateActions|}}
+        {{#rad-button click=(action stateActions.open)}}
+          Non-Dismissable
+        {{/rad-button}}
+        {{#rad-modal
+          closeButton=false
+          open=state
+          Header='USER REQUIRED ACTION'}}
+          <p>
+            The only way for a user to close a modal with no passed
+            <code>closeModal</code> is through a user action that you
+            include.
+          </p>
+          <p>
+            Since the close button in the header won't do anything, it's
+            usually good practice to pass <code>closeButton=false</code> for
+            non-dismissable modals.
+          </p>
+          {{#rad-button click=(action stateActions.close)}}
+            Close The Modal
+          {{/rad-button}}
+        {{/rad-modal}}
+      {{/rad-state}}
+
+      {{#rad-state as |state stateActions|}}
+        {{#rad-button click=(action stateActions.open)}}
+          Animated
+        {{/rad-button}}
+        {{#rad-modal
+          animateFrom='left'
+          closeModal=(action stateActions.close)
+          open=state
+          Header='Animations So Classy'}}
+          <p>
+            Pass the <code>animateFrom</code> property of value,
+            <code>left</code>, <code>right</code>, <code>top</code> or
+            <code>bottom</code> to animate the modal entry.
+          </p>
+        {{/rad-modal}}
+      {{/rad-state}}
+    {{/components.body}}
+  {{/rad-card}}
+</section>
+<section>
+  <h3>Passed Properties</h3>
+
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ariaHeader</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>
+          Pass a label if the modal doesn't have a visible header and it will
+          be bound to a hidden div with the correct aria attributes.
+        </td>
+      </tr>
+      <tr>
+        <td><code>autoFocus</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>
+          Unless autoFocus is toggled to false, the modal will store a
+          reference to whatever element is currently active in the dom and
+          return focus to that element when the modal closes.
+        </td>
+      </tr>
+      <tr>
+        <td><code>animateFrom</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>
+          CSS transitions the modal on open. Accepts <code>left</code>,
+          <code>right</code>, <code>bottom</code>, <code>top</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>closeButton</code></td>
+        <td>Boolean</td>
+        <td>true</td>
+        <td>
+          Controls display of the modal header close button. Is defaulted to
+          true and can be set to false in order to suppress the header close
+          button.
+        </td>
+      </tr>
+      <tr>
+        <td><code>closeIcon</code></td>
+        <td>String</td>
+        <td>'close'</td>
+        <td>Controls the SVG Id of the close button.</td>
+      </tr>
+      <tr>
+        <td><code>closeModal</code></td>
+        <td>Function</td>
+        <td>() => {}</td>
+        <td>
+         Closure action passed into the modal. Is event delegated to the modal
+         background for close on click (unless 'hideBackground' is true)
+        </td>
+      </tr>
+      <tr>
+        <td><code>open</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>
+          Flag used to handle showing and hiding the modal. This property
+          should be passed in by a component/service+controller that controls
+          the state of the modal.
+        </td>
+      </tr>
+      <tr>
+        <td><code>removeFromDomOnClose</code></td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>
+          Determines if the modal should be removed from the DOM when it is
+          closed. This is to help performance on the beefier modals.
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>
+          The size of the modal to display. The default size caps the width of
+          the modal at 60% of the browser's viewport. Additional sizes available
+          are: <code>small</code>, <code>medium</code>, <code>large</code>.
+          Modals will always render at 100% on mobile/small screen view.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Header</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>
+          Pass a string for simple text modal header. If the modal should have
+          no header, pass null to this property. This will ensure that
+          <code>aria-labelledby</code>is not bound to the modal instance
+          (because there is no header to label the modal).
+        </td>
+      </tr>
+      <tr>
+        <td><code>tagClose</code></td>
+        <td>Object</td>
+        <td></td>
+        <td>
+          Pass a `(hash)` of tagging properties when you need to bind a tag fire
+          to close of the modal. Expects syntax:
+          <code>
+            (hash category="Tag Category" action="Tag Action" label="Tag Label")
+          </code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
