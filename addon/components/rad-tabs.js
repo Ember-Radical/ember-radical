@@ -52,17 +52,6 @@ const { $ } = Ember;
  * this pass an `onChange` closure into the component. It will be called with
  * the `elementId` of the selected tab any time a user changes tabs.
  *
- * TODO: Template && JS Examples
- *
- * Configuration | Type | Default | Description
- * --- | --- | ---
- * `activeId` | string | null | The `elementId` of the tab that should be opened
- * `buttonStyle` | boolean | true | Set to false for tab buttons without primary background-color
- * `defaultTab` | string | null | Tab to render shown by default
- * `onChange` | function | null | Optional closure that will be called when any tab is opened
- * `scrollOnClick` | boolean | false | Set to true to scroll page to top on tab click
- * `scrollTarget` | jQuery selector | 'body, html' | Specify scroll animation target
- *
  * ### A++ Accessibility
  * - Tabs have `aria-controls` set to the `elementId` of the `tabpanel` they show.
  * - Tabs have `role=tab` for role identification
@@ -86,6 +75,8 @@ export default Component.extend({
    * The elementId of the currently opened tab. This determines which tab is active and
    * which tab's content to display. If this is empty, no tabs are open.
    * @property activeId
+   * @passed
+   * @public
    * @type {String}
    * @default ''
    */
@@ -93,6 +84,8 @@ export default Component.extend({
   /**
    * Pass false to use tab style without primary color tabs.
    * @property buttonStyle
+   * @passed
+   * @public
    * @type {Boolean}
    * @default true
    */
@@ -102,6 +95,8 @@ export default Component.extend({
    * useful for cases where the user has come into a page and is expecting one
    * of the tabs to be shown by default.
    * @property defaultTab
+   * @passed
+   * @public
    * @type {String}
    * @default ''
    */
@@ -110,6 +105,8 @@ export default Component.extend({
    * Optional closure action that will be called whenever a tab is opened with
    * the id of that tab. Use this to create a controlled tabs instance.
    * @property onChange
+   * @passed
+   * @public
    * @type {function}
    * @default null
    */
@@ -118,6 +115,8 @@ export default Component.extend({
    * Whether the page should scroll the tab context back to the top when one of
    * the tabs is clicked. This can be a nice convenience for usabilitee.
    * @property scrollOnClick
+   * @passed
+   * @public
    * @type {Boolean}
    * @default false
    */
@@ -129,6 +128,8 @@ export default Component.extend({
    * be more desirable to execute a scroll against that instead of the entire
    * page. Simply pass a standard jQuery-like selector in as a string.
    * @property scrollTarget
+   * @passed
+   * @public
    * @type {string}
    * @default 'body, html'
    */

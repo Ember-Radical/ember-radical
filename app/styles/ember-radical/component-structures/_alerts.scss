@@ -4,8 +4,9 @@
 
 .rad-alert {
   display: flex;
-  position: relative;
+  flex: 1 100%;
   margin-bottom: 1rem;
+  position: relative;
 
   > p,
   > ul {

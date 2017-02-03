@@ -18,12 +18,6 @@ import hbs from 'htmlbars-inline-precompile';
  * {{/rad-tabs}}
  * ```
  *
- * Configuration | Type | Default | Description
- * --- | --- | --- | ---
- * `label` | string | null | Text label of the tab button for this panel
- * `elementId` | string | null | Set a specific id for this component when using container `defaultTab`
- * `tabDataTest` | string | null | `data-test` for the tab button
- *
  * @class Component.RadTabs.Content
  * @constructor
  * @extends Ember.Component
@@ -34,14 +28,6 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
-   * The id of the currently active tab in the scope of the rad-tabs component.
-   * This is provided privately in the `rad-tabs` yield hash.
-   * @property activeId
-   * @type {String}
-   * @default ''
-   */
-  activeId: '',
-  /**
    * Whether this tab should be hidden from view. Useful for situations where
    * a tab needs to exist in a particular place in the tab ordering but may
    * not have the data it needs to display information at the time when
@@ -49,9 +35,46 @@ export default Component.extend({
    * hidden while preserving its place in the list.
    *
    * @property hidden
+   * @passed
+   * @public
    * @type {Boolean}
    */
   hidden: false,
+  /**
+   * The button label text of this tab. This will be passed up via a closure
+   * action to the containing `rad-tabs` component.
+   *
+   * @property label
+   * @passed
+   * @public
+   * @type {String}
+   * @default ''
+   */
+  label: '',
+  /**
+   * Use this attribute to place a custom `data-test` attribute on the tab button
+   * for this tab. This will allow easier, specific/direct targeting of clicking
+   * this tab in automated testing.
+   *
+   * @property tabDataTest
+   * @passed
+   * @public
+   * @type {string}
+   * @default ''
+   */
+  tabDataTest: '',
+
+  // Auto-Passed Properties
+  // ---------------------------------------------------------------------------
+
+  /**
+   * The id of the currently active tab in the scope of the rad-tabs component.
+   * This is provided privately in the `rad-tabs` yield hash.
+   * @property activeId
+   * @type {String}
+   * @default ''
+   */
+  activeId: '',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -93,24 +116,6 @@ export default Component.extend({
       return 'false';
     }
   }),
-  /**
-   * The button label text of this tab. This will be passed up via a closure
-   * action to the containing `rad-tabs` component.
-   *
-   * @property label
-   * @type {String}
-   * @default ''
-   */
-  label: '',
-  /**
-   * Use this attribute to place a custom data-test attribute on the tab button
-   * for this tab. This will allow easier, specific/direct targeting of clicking
-   * this tab in automated testing.
-   *
-   * @property tabDataTest
-   * @type {string}
-   */
-  tabDataTest: '',
 
   // Hooks
   // ---------------------------------------------------------------------------

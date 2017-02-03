@@ -28,10 +28,12 @@
   .card-body {
     display: flex;
     flex-direction: row;
+
     align-items: center;
+    flex-flow: row wrap;
   }
 
-  .rad-dropdown {
+  .rad-button {
     margin-right: 1rem;
   }
 }

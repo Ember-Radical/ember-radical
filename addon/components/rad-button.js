@@ -10,7 +10,7 @@ import hbs from 'htmlbars-inline-precompile';
  * - Tag firing when enabled
  * - Aria and html attributes
  *
- * {{#rad-button}}Core Button{{/rad-button}}
+ * {{#rad-button}}Rad Button{{/rad-button}}
  *
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
@@ -56,6 +56,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Pass a brand to have `btn-${brand}` class applied
    * @property brand
+   * @passed
+   * @public
    * @type {?string}
    * @default null
    */
@@ -64,6 +66,8 @@ export default Component.extend(taggingAssets, {
    * Pass true to create a button that looks and behaves like a link. This is
    * useful for creating accessible interaction targets.
    * @property link
+   * @passed
+   * @public
    * @type {Boolean}
    * @default false
    */
@@ -71,6 +75,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagcategory
+   * @passed
+   * @public
    * @type {string}
    * @default ''
    */
@@ -78,6 +84,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagaction
+   * @passed
+   * @public
    * @type {string}
    * @default ''
    */
@@ -87,6 +95,8 @@ export default Component.extend(taggingAssets, {
    * so the tagging service will properly correct an un-passed value.
    *
    * @property taglabel
+   * @passed
+   * @public
    * @type {string}
    * @default null
    */
@@ -94,6 +104,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagvalue
+   * @passed
+   * @public
    * @type {string}
    * @default ''
    */
@@ -101,6 +113,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagcd
+   * @passed
+   * @public
    * @type {Object}
    * @default null
    */
@@ -108,6 +122,8 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. Handles firing a tag on hover when true.
    * @property taghover
+   * @passed
+   * @public
    * @type {Boolean}
    * @default false
    */
@@ -115,10 +131,22 @@ export default Component.extend(taggingAssets, {
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagonce
+   * @passed
+   * @public
    * @type {Boolean}
    * @default false
    */
   tagonce: false,
+
+  // Events
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Behavior to execute when clicking the button; pass any closure action in and Ember's built-in click event listener will execute it for you.
+   * @property click
+   * @public
+   * @passed
+   */
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -156,7 +184,7 @@ export default Component.extend(taggingAssets, {
     'type'
   ],
   /**
-   * Bind standard core classname for component: `rad-button`
+   * Bind standard rad classname for component: `rad-button`
    * @property classNames
    * @type {Array}
    */

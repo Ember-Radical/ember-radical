@@ -1,8 +1,10 @@
-# Ember Radical [![Build Status](https://travis-ci.org/healthsparq/ember-radical.svg?branch=master)](https://travis-ci.org/healthsparq/ember-radical) [![Code Climate](https://codeclimate.com/github/healthsparq/ember-radical/badges/gpa.svg)](https://codeclimate.com/github/healthsparq/ember-radical)
+# Ember Radical
+
+[![TravisCI](https://travis-ci.org/healthsparq/ember-radical.svg?branch=master)](https://travis-ci.org/healthsparq/ember-radical) [![Code Climate](https://codeclimate.com/github/healthsparq/ember-radical/badges/gpa.svg)](https://codeclimate.com/github/healthsparq/ember-radical)
 
 Feather light, dead simple and fully accessible Ember DDAU components. Ember
 Radical is a set of core components that make writing consistent, quality
-components simple.
+applications simple.
 
 The addon includes an optional theme based off of [Skeleton CSS](http://getskeleton.com/)
 for drop in usage. If you'd prefer a different look, all component classes are
@@ -14,7 +16,23 @@ Bootstrap compatible.
 ember install ember-radical
 ```
 
-See [healthsparq.github.io/ember-radical/](https://healthsparq.github.io/ember-radical/) for details and a demo.
+### Usage
+
+Ember Radical's robust set of components gets you off and running with easy to use implementations of common UX patterns that are fully accessible, testable, and follow DDAU principles:
+
+- `{{rad-alert}}`
+- `{{rad-button}}`
+- `{{rad-card}}`
+- `{{rad-drawer}}`
+- `{{rad-dropdown}}`
+- `{{rad-modal}}`
+- `{{rad-popover}}`
+- `{{rad-state}}`
+- `{{rad-svg}}`
+- `{{rad-tabs}}`
+- `{{rad-tooltip}}`
+
+See [healthsparq.github.io/ember-radical/](https://healthsparq.github.io/ember-radical/) for full, in-depth documentation and demos.
 
 ### Styles
 _Stylesheets are written in SCSS. The [ember-cli-sass](https://github.com/aexmachina/ember-cli-sass)

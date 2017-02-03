@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  disableAddTabButton: false,
+
   tabs: Ember.A([
     {
       label: 'bar',
@@ -23,6 +25,7 @@ export default Ember.Controller.extend({
         elementId: 'foo',
         content: 'The foo tab added after'
       });
+      this.set('disableAddTabButton', true);
     }
   }
 });
