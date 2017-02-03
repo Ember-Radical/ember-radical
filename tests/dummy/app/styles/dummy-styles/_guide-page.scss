@@ -45,7 +45,15 @@
   }
 }
 
+p.enums {
+  margin-bottom: 0;
+}
+
 // Tables
 table {
   margin-bottom: 1rem;
+
+  &.full-width {
+    width: 100%;
+  }
 }

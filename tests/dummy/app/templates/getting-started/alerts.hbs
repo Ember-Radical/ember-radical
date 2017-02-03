@@ -35,35 +35,49 @@
   {{/rad-card}}
 </section>
 <section>
-  <h3>Passed Properties</h3>
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>brand</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>What brand class to use to style the alert</td>
-      </tr>
-      <tr>
-        <td><code>canDismiss</code></td>
-        <td>Boolean</td>
-        <td>true</td>
-        <td>Whether the alert can be dismissed by the user with a close button</td>
-      </tr>
-      <tr>
-        <td><code>onDismiss</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Additional behavior to execute when the alert is dismissed</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>What brand class to use to style the alert</p>
+              <p class="small enums"><strong>Enums:</strong> primary, secondary, success, info, warning, danger</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>canDismiss</code></td>
+            <td>{Boolean}</td>
+            <td>true</td>
+            <td>Whether the alert can be dismissed by the user with a close button</td>
+          </tr>
+          <tr>
+            <td><code>onDismiss</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Additional behavior to execute when the alert is dismissed</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>

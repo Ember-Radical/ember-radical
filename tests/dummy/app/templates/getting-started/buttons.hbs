@@ -24,88 +24,101 @@
   {{/rad-card}}
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>brand</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>The brand class to use to style the button</td>
-      </tr>
-      <tr>
-        <td><code>click</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Behavior to execute when the button is clicked. Typically a closure action.</td>
-      </tr>
-      <tr>
-        <td><code>link</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>Applies a <code>.btn-link</code> class to the button to give the same visual appearance as a hyperlink</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-<section>
-  <h3>Analytics Tagging Properties</h3>
+  <hr>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>tagcategory</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Value for a Google Analytics event tag category</td>
-      </tr>
-      <tr>
-        <td><code>tagaction</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Value for a Google Analytics event tag action</td>
-      </tr>
-      <tr>
-        <td><code>taglabel</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Value for a Google Analytics event tag label</td>
-      </tr>
-      <tr>
-        <td><code>tagcd</code></td>
-        <td>String|Object</td>
-        <td>''</td>
-        <td>Use Ember's <code>hash</code> helper to construct a hash of custom dimensions to associate with this specific event</td>
-      </tr>
-      <tr>
-        <td><code>taghover</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>Whether to fire the analytics event on hover instead of click</td>
-      </tr>
-      <tr>
-        <td><code>tagonce</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>Whether to fire the analytics event a single time only. Useful in conjunction with <code>taghover</code></td>
-      </tr>
-    </tbody>
-  </table>
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the button</p>
+              <p class="small enums"><strong>Enums:</strong>primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>click</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Behavior to execute when the button is clicked. Typically a closure action.</td>
+          </tr>
+          <tr>
+            <td><code>link</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Applies a <code>.btn-link</code> class to the button to give the same visual appearance as a hyperlink</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Analytics'
+      elementId='analyticsProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tagcategory</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag category</td>
+          </tr>
+          <tr>
+            <td><code>tagaction</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag action</td>
+          </tr>
+          <tr>
+            <td><code>taglabel</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag label</td>
+          </tr>
+          <tr>
+            <td><code>tagcd</code></td>
+            <td>{String|Object}</td>
+            <td>''</td>
+            <td>Use Ember's <code>hash</code> helper to construct a hash of custom dimensions to associate with this specific event</td>
+          </tr>
+          <tr>
+            <td><code>taghover</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to fire the analytics event on hover instead of click</td>
+          </tr>
+          <tr>
+            <td><code>tagonce</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to fire the analytics event a single time only. Useful in conjunction with <code>taghover</code></td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>

@@ -91,6 +91,16 @@ export default Component.extend({
    */
   buttonStyle: true,
   /**
+   * Whether the content pane subcomponents should take on the appearance of
+   * a `rad-card`.
+   *
+   * @property card
+   * @passed
+   * @public
+   * @type {Boolean}
+   */
+  card: false,
+  /**
    * The optional elementId of the tab that should be shown by default. This is
    * useful for cases where the user has come into a page and is expecting one
    * of the tabs to be shown by default.
@@ -285,7 +295,7 @@ export default Component.extend({
         </li>
       {{/each}}
     </ul>
-    <div class="content-container">
+    <div class="content-container {{if card 'rad-card'}}">
       {{! Yield the rad-tabs/content component pre-bound with internal props }}
       {{yield (hash
         content=(component 'rad-tabs/content'

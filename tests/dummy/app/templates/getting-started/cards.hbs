@@ -44,45 +44,71 @@
 
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>brand</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>The brand class to use to style the header and footer subcomponents</td>
-      </tr>
-    </tbody>
-  </table>
+  <hr>
 
-  <h3>Yielded Properties</h3>
-
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>components</code></td>
-        <td>Object</td>
-        <td>N/A</td>
-        <td>Available subcomponents: <code>components.body</code>, <code>components.footer</code>, <code>components.title</code> (See example source code)</td>
-      </tr>
-    </tbody>
-  </table>
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the header and footer subcomponents.</p>
+              <p class="small enums"><strong>Enums:</strong> primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>card</code></td>
+            <td>{String}</td>
+            <td>false</td>
+            <td>
+              <p>Whether the tab content panels should display using the card styling. Applies a <code>rad-card</code> class to the <code>&lt;div class='content-container'&gt;</code> that the tab content panels are rendered within.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'
+      classNames='card'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>Object</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the parent.</p>
+              <p class="small enums"><strong>Enums:</strong>
+              components.body, components.footer, components.title</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>
