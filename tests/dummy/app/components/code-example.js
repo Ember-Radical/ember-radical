@@ -34,6 +34,7 @@ export default Component.extend({
         </div>
         <div class="rendered-sample">
           {{!-- {{code}} --}}
+          {{! @TODO: get an auto-rendered version of the example, make it optional in case the functional version needs to differ from the example version }}
           {{yield}}
         </div>
       {{/components.body}}
