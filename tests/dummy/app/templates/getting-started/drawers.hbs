@@ -68,45 +68,78 @@
   {{/rad-card}}
 </section>
 <section>
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>buttonStyle</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          By default, the `target` subcomponent will display as a plain link.
-          If you would like it to display as a button, set this to
-          <code>true</code>.
-        </td>
-      </tr>
-      <tr>
-        <td><code>externalToggle</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          Allow for external controls to update the open/closed state of a
-          <code>rad-drawer</code>.
-        </td>
-      </tr>
-      <tr>
-        <td><code>icon</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>
-          If you want to use a different SVG icon from the default on your
-          <code>target</code>, specify it by name/id here. If you don't want to
-          display an icon at all, pass <code>false</code> into this property.
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>buttonStyle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>
+              By default, the <code>target</code> subcomponent will display as a plain link. If you would like it to display as a button, set this to <code>true</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>externalToggle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>
+              Allow for external controls to update the open/closed state of a
+              <code>rad-drawer</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              If you want to use a different SVG icon from the default on your <code>target</code>, specify it by name/id here. If you don't want to display an icon at all, pass <code>false</code> into this property.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'
+      classNames='card'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the component</p>
+              <p class="small enums"><strong>Enums:</strong> components.content, components.target</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>

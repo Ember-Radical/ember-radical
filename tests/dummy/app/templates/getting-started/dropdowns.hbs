@@ -41,85 +41,99 @@
 
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>buttonStyle</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>Whether to style the `target` to look like a button</td>
-      </tr>
-      <tr>
-        <td><code>brand</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>The brand class to use to style the `target`</td>
-      </tr>
-      <tr>
-        <td><code>Target</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Simple way to define a the target element's content</td>
-      </tr>
-      <tr>
-        <td><code>Content</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Simple way to define content</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-<section>
-  <h3>Yielded Properties</h3>
+  <hr>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>components</code></td>
-        <td>Object</td>
-        <td>N/A</td>
-        <td>
-          <strong>Enums:</strong> components.content, components.menu-item,
-          components.target.
-        </td>
-      </tr>
-      <tr>
-        <td><code>show</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Closure action to show the dropdown. Example: <code>onclick=(action show)</code></td>
-      </tr>
-      <tr>
-        <td><code>hide</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Closure action to close the dropdown. Example: <code>onclick=(action hide)</code></td>
-      </tr>
-      <tr>
-        <td><code>hidden</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>Whether or not the dropdown is hidden.</td>
-      </tr>
-    </tbody>
-  </table>
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>buttonStyle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to style the <code>target</code> child component to look like a button</td>
+          </tr>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the <code>target</code> child component</p>
+              <p class="small enums">primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>Target</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Simple/string-only definition of the <code>target</code> child component</td>
+          </tr>
+          <tr>
+            <td><code>Content</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Simple/string-only definition of the <code>content</code> child component</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'
+      classNames='card'}}
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the component</p>
+              <p class="small enums"><strong>Enums:</strong> components.content, components.menu-item,
+              components.target</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>show</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action to show the dropdown. Example: <code>onclick=(action show)</code></td>
+          </tr>
+          <tr>
+            <td><code>hide</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action to close the dropdown. Example: <code>onclick=(action hide)</code></td>
+          </tr>
+          <tr>
+            <td><code>hidden</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether or not the dropdown is hidden from view.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>

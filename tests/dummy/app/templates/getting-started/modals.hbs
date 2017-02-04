@@ -103,125 +103,138 @@
   {{/rad-card}}
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>ariaHeader</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>
-          Pass a label if the modal doesn't have a visible header and it will
-          be bound to a hidden div with the correct aria attributes.
-        </td>
-      </tr>
-      <tr>
-        <td><code>autoFocus</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          Unless autoFocus is toggled to false, the modal will store a
-          reference to whatever element is currently active in the dom and
-          return focus to that element when the modal closes.
-        </td>
-      </tr>
-      <tr>
-        <td><code>animateFrom</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>
-          CSS transitions the modal on open. <strong>Enums:</strong> left,
-          right, bottom, and top.
-        </td>
-      </tr>
-      <tr>
-        <td><code>closeButton</code></td>
-        <td>Boolean</td>
-        <td>true</td>
-        <td>
-          Controls display of the modal header close button. Is defaulted to
-          true and can be set to false in order to suppress the header close
-          button.
-        </td>
-      </tr>
-      <tr>
-        <td><code>closeIcon</code></td>
-        <td>String</td>
-        <td>'close'</td>
-        <td>Controls the SVG Id of the close button.</td>
-      </tr>
-      <tr>
-        <td><code>closeModal</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>
-         Closure action passed into the modal. Is event delegated to the modal
-         background for close on click (unless 'hideBackground' is true)
-        </td>
-      </tr>
-      <tr>
-        <td><code>open</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          Flag used to handle showing and hiding the modal. This property
-          should be passed in by a component/service+controller that controls
-          the state of the modal.
-        </td>
-      </tr>
-      <tr>
-        <td><code>removeFromDomOnClose</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          Determines if the modal should be removed from the DOM when it is
-          closed. This is to help performance on the beefier modals.
-        </td>
-      </tr>
-      <tr>
-        <td><code>size</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>
-          The size of the modal to display. The default size caps the width of
-          the modal at 60% of the browser's viewport. Modals will always render
-          at 100% on mobile/small screen view.
+  <hr>
 
-          <strong>Enums:</strong> small, medium, and large.
-        </td>
-      </tr>
-      <tr>
-        <td><code>Header</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>
-          Pass a string for simple text modal header. If the modal should have
-          no header, pass null to this property. This will ensure that
-          <code>aria-labelledby</code>is not bound to the modal instance
-          (because there is no header to label the modal).
-        </td>
-      </tr>
-      <tr>
-        <td><code>tagClose</code></td>
-        <td>Object</td>
-        <td></td>
-        <td>
-          Pass a `(hash)` of tagging properties when you need to bind a tag fire
-          to close of the modal. Expects syntax:
-          <code>
-            (hash category="Tag Category" action="Tag Action" label="Tag Label")
-          </code>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ariaHeader</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Pass a label if the modal doesn't have a visible header and it will be bound to a hidden div with the correct aria attributes.</td>
+          </tr>
+          <tr>
+            <td><code>autoFocus</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Unless autoFocus is toggled to false, the modal will store a reference to whatever element is currently active in the DOM and return focus to that element when the modal closes.</td>
+          </tr>
+          <tr>
+            <td><code>animateFrom</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>CSS transitions the modal on open.</p>
+              <p class="small enums"><strong>Enums:</strong> left, right, bottom, and top.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>closeButton</code></td>
+            <td>Boolean</td>
+            <td>true</td>
+            <td>Controls display of the modal header close button. Is defaulted to true and can be set to false in order to suppress the header close button.</td>
+          </tr>
+          <tr>
+            <td><code>closeIcon</code></td>
+            <td>{String}</td>
+            <td>'close'</td>
+            <td>Controls the SVG Id of the close button.</td>
+          </tr>
+          <tr>
+            <td><code>closeModal</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action passed into the modal. Is event delegated to the modal background for close on click (unless 'hideBackground' is true)</td>
+          </tr>
+          <tr>
+            <td><code>open</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Flag used to handle showing and hiding the modal. This property should be passed in by a component/service+controller that controls the state of the modal.</td>
+          </tr>
+          <tr>
+            <td><code>removeFromDomOnClose</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Determines if the modal should be removed from the DOM when it is closed. This is to help performance on the beefier modals.</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The size of the modal to display. The default size caps the width of the modal at 60% of the browser's viewport. Modals will always render at 100% on mobile/small screen view.</p>
+              <p class="small enums"><strong>Enums:</strong> small, medium, and large.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>Header</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Pass a string for simple text modal header. If the modal should have no header, pass null to this property. This will ensure that <code>aria-labelledby</code>is not bound to the modal instance (because there is no header to label the modal).</td>
+          </tr>
+          <tr>
+            <td><code>tagClose</code></td>
+            <td>{Object}</td>
+            <td></td>
+            <td>
+              <p>Pass a <code>(hash)</code> of tagging properties when you need to bind a tag fire to close of the modal. Expects syntax:</p>
+              <p>
+                <code>(hash category="Tag Category" action="Tag Action" label="Tag Label")</code>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'
+      classNames='card'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the parent component.</p>
+              <p class="small enums"><strong>Enums:</strong> components.header, components.footer</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>open</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Property reflecting the current open/closed state of the modal. Made available to the block context for implementations that need to be aware of the modal's state.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+
+
 </section>
