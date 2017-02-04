@@ -13,30 +13,40 @@
   {{/rad-card}}
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>filePath</code></td>
-        <td>String</td>
-        <td>'/assets/symbol-defs.svg'</td>
-        <td>File path to svg definitions file.</td>
-      </tr>
-      <tr>
-        <td><code>svgId</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>The id of the svg.</td>
-      </tr>
-    </tbody>
-  </table>
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>filePath</code></td>
+            <td>{String}</td>
+            <td>'/assets/symbol-defs.svg'</td>
+            <td>File path to SVG definition file</td>
+          </tr>
+          <tr>
+            <td><code>svgId</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>The id of the SVG from your SVG sprite sheet</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>

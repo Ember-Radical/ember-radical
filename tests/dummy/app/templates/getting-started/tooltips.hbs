@@ -29,45 +29,52 @@
   {{/rad-card}}
 </section>
 <section>
-  <h3>Passed Properties</h3>
+  <h3>Properties</h3>
 
-  <table class="u-full-width">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>brand</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Styles the target component with a brand style.</td>
-      </tr>
-      <tr>
-        <td><code>buttonStyle</code></td>
-        <td>Boolean</td>
-        <td>false</td>
-        <td>
-          Whether or not to render the target component style as a button or a
-          link.
-        </td>
-      </tr>
-      <tr>
-        <td><code>onHide</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Closure action is called when the tooltop is hidden.</td>
-      </tr>
-      <tr>
-        <td><code>onShow</code></td>
-        <td>Function</td>
-        <td>() => {}</td>
-        <td>Closure action is called when the tooltop is shown.</td>
-      </tr>
-    </tbody>
-  </table>
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Styles the target component with a brand style.</td>
+          </tr>
+          <tr>
+            <td><code>buttonStyle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether or not to render the target component style as a button or alink.</td>
+          </tr>
+          <tr>
+            <td><code>onHide</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action is called when the tooltop is hidden.</td>
+          </tr>
+          <tr>
+            <td><code>onShow</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action is called when the tooltop is shown.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>
