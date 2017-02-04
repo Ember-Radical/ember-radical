@@ -21,5 +21,10 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
+  // Import Prism stuff
+  app.import('bower_components/prismjs/prism.js');
+  app.import('bower_components/prismjs/components/prism-handlebars.js');
+  app.import('bower_components/prismjs/components/prism-javascript.js');
+
   return app.toTree();
 };

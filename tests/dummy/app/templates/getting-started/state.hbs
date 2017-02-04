@@ -1,3 +1,79 @@
 <section>
-  <p class="intro">Fill me in, please.</p>
+  <p class="intro">Rad State is a purely functional component with no DOM output of its own. It provides the ability to create a sandboxed scope for basic state management and manipulation.</p>
+  <p>It allows for an easy, purely template-based means for controlling components like modals, drawers, and dropdowns, or any other interactive elements that need simple on/off style state management and control, which helps keep your class javascript leaner. The majority of the examples of modals and drawers throughout this guide are using Rad State for control!</p>
+  <p>Rad state yields a boolean state property and a hash of three actions for setting the state to true or false, or toggling the current value.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+  {{#rad-card as |components|}}
+    {{#components.title}}Simple Example With Modal{{/components.title}}
+    {{#components.body}}
+      {{#rad-tabs defaultTab='basic-code-example' as |tabComponents|}}
+        {{#tabComponents.content
+          label='Code'
+          elementId='basic-code-example'}}
+          {{highlight-code language='handlebars' code='{{#rad-state as |state stateActions|}}
+  {{#rad-button
+    click=(action stateActions.open)}}Toggle some state{{/rad-button}}
+  {{#rad-modal
+    open=state
+    Header="This modal brought to you by rad-state"
+    closeModal=(action stateActions.close) as |components|}}That is totally rad!{{/rad-modal}}
+{{/rad-state}}'}}
+        {{/tabComponents.content}}
+        {{#tabComponents.content
+          label='Rendered'}}
+          {{#rad-state as |state stateActions|}}
+            {{#rad-button
+              click=(action stateActions.open)}}Toggle some state{{/rad-button}}
+            {{#rad-modal
+              open=state
+              Header="This modal brought to you by rad-state"
+              closeModal=(action stateActions.close) as |components|}}<img src="https://media.giphy.com/media/30zBdDtNEJIYg/giphy.gif" alt="THAT IS TOTALLY RAD" style="width: 100%;" />{{/rad-modal}}
+          {{/rad-state}}
+        {{/tabComponents.content}}
+      {{/rad-tabs}}
+    {{/components.body}}
+  {{/rad-card}}
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    card=true
+    defaultTab='yielded-props' as |components|}}
+    {{#components.content
+      label='Yielded'
+      elementId='yielded-props'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>state</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Simple boolean for managing the state of components contained within the rad-state instance's block scope.</td>
+          </tr>
+          <tr>
+            <td><code>stateActions</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Hash of actions for manipulating the value of <code>state</code></p>
+              <p class="small enums"><strong>Enums:</strong> stateActions.open, stateActions.close, stateActions.toggleState</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
 </section>
