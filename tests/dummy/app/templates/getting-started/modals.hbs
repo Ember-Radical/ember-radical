@@ -1,7 +1,19 @@
 <section>
   <p class="intro">Modals are awesome! They're a great way to surface focused content to the user without completely removing them from the context of the page they're viewing!</p>
   <p class="intro">What's more awesome than a modal? A modal that can be controlled externally via one-way data flow, <i>obviously</i>. Yes, these modals can close themselves, but they do so by invoking an action passed into them that controls their open/closed state on the parent context.</p>
-  <p class="italic"><b>[mind-blown.gif]</b></p>
+  <p>
+    {{#rad-state as |state stateActions|}}
+      {{#rad-button
+        brand='primary'
+        click=(action stateActions.open)}}[mind-blown.gif]{{/rad-button}}
+      {{#rad-modal
+        open=state
+        ariaHeader='YOUR MIND IS NOW BLOWN'
+        closeModal=(action stateActions.close)}}
+        <img src="https://media.giphy.com/media/gTZT1gOfyzJ2E/giphy.gif" alt="cat gets its mind blown by a tiny mechanical cat in a box bank" />
+      {{/rad-modal}}
+    {{/rad-state}}
+  </p>
 </section>
 <section class="rad-modal-examples">
   <h3>Examples</h3>
@@ -204,8 +216,7 @@
       </table>
     {{/components.content}}
     {{#components.content
-      label='Yielded'
-      classNames='card'}}
+      label='Yielded'}}
       <table class="full-width">
         <thead>
           <tr>
@@ -230,6 +241,52 @@
             <td>{Boolean}</td>
             <td>false</td>
             <td>Property reflecting the current open/closed state of the modal. Made available to the block context for implementations that need to be aware of the modal's state.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='RadModal.Header'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the <code>target</code> child component</p>
+              <p class="small enums">primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>closeButton</code></td>
+            <td>{Boolean}</td>
+            <td>true</td>
+            <td>Whether to display a close button on the modal</td>
+          </tr>
+          <tr>
+            <td><code>closeIcon</code></td>
+            <td>{String}</td>
+            <td>'close'</td>
+            <td>The ID of the SVG icon from your SVG sprite sheet you would like to use for your close button.</td>
+          </tr>
+          <tr>
+            <td><code>tagClose</code></td>
+            <td>{Object}</td>
+            <td>null</td>
+            <td>
+              <p>A <code>(hash)</code> representing a set of analytics tagging attribuets to fire a tagging event with when the close button is clicked.</p>
+              <p>Example:<br>
+              <code>(hash category="Tag Category" action="Tag Action" label="Tag Label")</code></p>
+            </td>
           </tr>
         </tbody>
       </table>

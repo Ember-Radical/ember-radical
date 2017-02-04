@@ -76,7 +76,7 @@ export default Component.extend({
    *
    * `(hash category="Tag Category" action="Tag Action" label="Tag Label")`
    * @property tagclose
-   * @type {?Object}
+   * @type {Object}
    * @passed
    * @optional
    * @default null
