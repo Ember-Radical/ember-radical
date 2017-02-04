@@ -45,6 +45,32 @@
   }
 }
 
+// Code Examples
+.code-card-title {
+  display: flex;
+
+  align-items: center;
+
+  button.code-toggle-button {
+    display: flex;
+  }
+
+  .example-title {
+    flex: 1;
+  }
+}
+
+.code-sample {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $brand-primary;
+  transition: all 0.2s ease;
+  &.hidden {
+    display: none;
+    height: 0;
+  }
+}
+
 p.enums {
   margin-bottom: 0;
 }
