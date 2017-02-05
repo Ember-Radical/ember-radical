@@ -92,6 +92,12 @@ export default Component.extend({
     this.set('codeBlockHeightCSS', Ember.String.htmlSafe('max-height: 0px;'));
   },
 
+  willDestroyElement() {
+    if (!this.get('isDestroyed')) {
+      getOwner(this).unregister(`template:${this.get('renderPartialName')}`);
+    }
+  },
+
   // Actions
   // ---------------------------------------------------------------------------
 
