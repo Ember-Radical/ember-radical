@@ -5,29 +5,17 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-button}}Hey, I'm a rad button!{{/rad-button}}
-    {{/components.body}}
-  {{/rad-card}}
-
-  {{#code-example
+  {{code-example
     title='Basic Example'
-    language='handlebars' code="{{#rad-button}}SAMPLE BUTTON!{{/rad-button}}"}}
-    {{#rad-button}}SAMPLE BUTTON!{{/rad-button}}
-  {{/code-example}}
+    language='handlebars' code="{{#rad-button}}Hey, I'm a rad button!{{/rad-button}}"}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Extended Options{{/components.title}}
-    {{#components.body}}
-      {{#rad-button brand="primary"}}Primary Brand Button{{/rad-button}}
-      {{#rad-button brand="secondary"}}Secondary Brand Button{{/rad-button}}
-      {{#rad-button link="true"}}Link/Anchor-like Button{{/rad-button}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Extended Options'
+    language='handlebars' code="{{#rad-button brand='primary'}}Primary Brand Button{{/rad-button}}
+{{#rad-button brand='secondary'}}Secondary Brand Button{{/rad-button}}
+{{#rad-button link='true'}}Link/Anchor-like Button{{/rad-button}}"}}
 </section>
 <section>
   <h3>Properties</h3>
