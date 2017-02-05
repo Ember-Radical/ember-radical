@@ -4,43 +4,37 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-card as |components|}}
-        {{#components.body}}Simple card{{/components.body}}
-      {{/rad-card}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code="{{#rad-card as |components|}}
+  {{#components.body}}Simple card{{/components.body}}
+{{/rad-card}}"}}
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Extended Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-card as |components|}}
-        {{#components.title}}Simple card w/ header{{/components.title}}
-        {{#components.body}}Some content{{/components.body}}
-      {{/rad-card}}
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code="{{#rad-card as |components|}}
+  {{#components.title}}Simple card w/ header{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+{{/rad-card}}
 
-      {{#rad-card as |components|}}
-        {{#components.title}}Simple card w/ header and footer{{/components.title}}
-        {{#components.body}}Some content{{/components.body}}
-        {{#components.footer}}Footer content{{/components.footer}}
-      {{/rad-card}}
+{{#rad-card as |components|}}
+  {{#components.title}}Simple card w/ header and footer{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+  {{#components.footer}}Footer content{{/components.footer}}
+{{/rad-card}}
 
-      {{#rad-card brand="primary" as |components|}}
-        {{#components.title}}Branded Header{{/components.title}}
-        {{#components.body}}Some content{{/components.body}}
-      {{/rad-card}}
+{{#rad-card brand='primary' as |components|}}
+  {{#components.title}}Branded Header{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+{{/rad-card}}
 
-      {{#rad-card brand="primary" as |components|}}
-        {{#components.title}}Branded card w/ custom content{{/components.title}}
-        {{#components.body}}
-          {{#rad-button}}Button{{/rad-button}}
-        {{/components.body}}
-        {{#components.footer}}Footer content{{/components.footer}}
-      {{/rad-card}}
-    {{/components.body}}
-  {{/rad-card}}
+{{#rad-card brand='primary' as |components|}}
+  {{#components.title}}Branded card w/ custom content{{/components.title}}
+  {{#components.body}}
+    {{#rad-button}}Button{{/rad-button}}
+  {{/components.body}}
+  {{#components.footer}}Footer content{{/components.footer}}
+{{/rad-card}}"}}
 
 </section>
 <section>
