@@ -4,11 +4,11 @@
   <p>
     {{#rad-state as |state stateActions|}}
       {{#rad-button
-        brand='primary'
+        brand="primary"
         click=(action stateActions.open)}}[mind-blown.gif]{{/rad-button}}
       {{#rad-modal
         open=state
-        ariaHeader='YOUR MIND IS NOW BLOWN'
+        ariaHeader="YOUR MIND IS NOW BLOWN"
         closeModal=(action stateActions.close)}}
         <img src="https://media.giphy.com/media/gTZT1gOfyzJ2E/giphy.gif" alt="cat gets its mind blown by a tiny mechanical cat in a box bank" />
       {{/rad-modal}}
@@ -18,101 +18,87 @@
 <section class="rad-modal-examples">
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-state as |state stateActions|}}
-        {{#rad-button click=(action stateActions.open)}}
-          Open Modal
-        {{/rad-button}}
-        {{#rad-modal
-          open=state
-          Header='This is a totally rad modal right here!'
-          closeModal=(action stateActions.close)
-          as |components|}}
-          <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
-          {{#components.footer}}
-            {{#rad-button brand='success'}}Neat{{/rad-button}}
-            {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
-          {{/components.footer}}
-        {{/rad-modal}}
-      {{/rad-state}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code='{{#rad-state as |state stateActions|}}
+  {{#rad-button click=(action stateActions.open)}}Open Modal{{/rad-button}}
+  {{#rad-modal
+    open=state
+    Header="This is a totally rad modal right here!"
+    closeModal=(action stateActions.close)
+    as |components|}}
+    <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
+    {{#components.footer}}
+      {{#rad-button brand="success"}}Neat{{/rad-button}}
+      {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
+    {{/components.footer}}
+  {{/rad-modal}}
+{{/rad-state}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-state as |state stateActions|}}
-        {{#rad-button
-          click=(action stateActions.open)
-          brand='primary'}}Branded header{{/rad-button}}
-        {{#rad-modal
-          open=state
-          closeModal=(action stateActions.close) as |components|}}
-          {{#components.header brand='primary'}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
-          <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
-        {{/rad-modal}}
-      {{/rad-state}}
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code='{{#rad-state as |state stateActions|}}
+  {{#rad-button
+    click=(action stateActions.open)
+    brand="primary"}}Branded header{{/rad-button}}
+  {{#rad-modal
+    open=state
+    closeModal=(action stateActions.close) as |components|}}
+    {{#components.header brand="primary"}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
+    <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
+  {{/rad-modal}}
+{{/rad-state}}
 
-      {{#rad-state as |state stateActions|}}
-        {{#rad-button click=(action stateActions.open)}}
-          No header
-        {{/rad-button}}
-        {{#rad-modal
-          open=state
-          ariaHeader='This modal shows what a modal with no header looks like'
-          closeModal=(action stateActions.close)}}
-          <p>Inspect the HTML of this sucker to see the screen-reader friendly
-            header in action.</p>
-          <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
-        {{/rad-modal}}
-      {{/rad-state}}
+{{#rad-state as |state stateActions|}}
+  {{#rad-button click=(action stateActions.open)}}No header{{/rad-button}}
+  {{#rad-modal
+    open=state
+    ariaHeader="This modal shows what a modal with no header looks like"
+    closeModal=(action stateActions.close)}}
+    <p>Inspect the HTML of this sucker to see the screen-reader friendly
+      header in action.</p>
+    <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
+  {{/rad-modal}}
+{{/rad-state}}
 
-      {{#rad-state as |state stateActions|}}
-        {{#rad-button click=(action stateActions.open)}}
-          Non-Dismissable
-        {{/rad-button}}
-        {{#rad-modal
-          closeButton=false
-          open=state
-          Header='USER REQUIRED ACTION'}}
-          <p>
-            The only way for a user to close a modal with no passed
-            <code>closeModal</code> is through a user action that you
-            include.
-          </p>
-          <p>
-            Since the close button in the header won't do anything, it's
-            usually good practice to pass <code>closeButton=false</code> for
-            non-dismissable modals.
-          </p>
-          {{#rad-button click=(action stateActions.close)}}
-            Close The Modal
-          {{/rad-button}}
-        {{/rad-modal}}
-      {{/rad-state}}
+{{#rad-state as |state stateActions|}}
+  {{#rad-button click=(action stateActions.open)}}Non-Dismissable{{/rad-button}}
+  {{#rad-modal
+    closeButton=false
+    open=state
+    Header="USER REQUIRED ACTION"}}
+    <p>
+      The only way for a user to close a modal with no passed
+      <code>closeModal</code> is through a user action that you
+      include.
+    </p>
+    <p>
+      Since the close button in the header will not do anything, it is
+      usually good practice to pass <code>closeButton=false</code> for
+      non-dismissable modals.
+    </p>
+    {{#rad-button click=(action stateActions.close)}}
+      Close The Modal
+    {{/rad-button}}
+  {{/rad-modal}}
+{{/rad-state}}
 
-      {{#rad-state as |state stateActions|}}
-        {{#rad-button click=(action stateActions.open)}}
-          Animated
-        {{/rad-button}}
-        {{#rad-modal
-          animateFrom='left'
-          closeModal=(action stateActions.close)
-          open=state
-          Header='Animations So Classy'}}
-          <p>
-            Pass the <code>animateFrom</code> property of value,
-            <code>left</code>, <code>right</code>, <code>top</code> or
-            <code>bottom</code> to animate the modal entry.
-          </p>
-        {{/rad-modal}}
-      {{/rad-state}}
-    {{/components.body}}
-  {{/rad-card}}
+{{#rad-state as |state stateActions|}}
+  {{#rad-button click=(action stateActions.open)}}Animated{{/rad-button}}
+  {{#rad-modal
+    animateFrom="left"
+    closeModal=(action stateActions.close)
+    open=state
+    Header="Animations So Classy"}}
+    <p>
+      Pass the <code>animateFrom</code> property of value,
+      <code>left</code>, <code>right</code>, <code>top</code> or
+      <code>bottom</code> to animate the modal entry.
+    </p>
+  {{/rad-modal}}
+{{/rad-state}}'}}
 </section>
 <section>
   <h3>Properties</h3>

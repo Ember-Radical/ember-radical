@@ -5,99 +5,105 @@
 
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Example{{/components.title}}
-    {{#components.body}}
-      {{#rad-tabs defaultTab='tab-a' as |components|}}
-        {{#components.content label='Tab A' elementId='tab-a'}}
-          <p>Tab A Content</p>
-        {{/components.content}}
-        {{#components.content label='Tab B'}}
-          <p>Tab B Content</p>
-        {{/components.content}}
-        {{#components.content label='Tab C'}}
-          <p>Tab C Content</p>
-        {{/components.content}}
-      {{/rad-tabs}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code='{{#rad-tabs defaultTab="tab-a" as |components|}}
+  {{#components.content label="Tab A" elementId="tab-a"}}
+    <p>Tab A Content</p>
+  {{/components.content}}
+  {{#components.content label="Tab B"}}
+    <p>Tab B Content</p>
+  {{/components.content}}
+  {{#components.content label="Tab C"}}
+    <p>Tab C Content</p>
+  {{/components.content}}
+{{/rad-tabs}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Plain Style{{/components.title}}
-    {{#components.body}}
-      {{#rad-tabs defaultTab='dumpsterShrimp' buttonStyle=false as |components|}}
-        {{#components.content label='Shrimp' elementId='dumpsterShrimp'}}
-          <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
-        {{/components.content}}
-        {{#components.content label='Capn Jack'}}
-          <p>This here is salty sea captain name of Jack Springo</p>
-        {{/components.content}}
-        {{#components.content label='Fresh Water'}}
-          <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
-        {{/components.content}}
-      {{/rad-tabs}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Plain Style'
+    language='handlebars' code='{{#rad-tabs defaultTab="dumpsterShrimp" buttonStyle=false as |components|}}
+  {{#components.content label="Shrimp" elementId="dumpsterShrimp"}}
+    <p>BRINGO! There be some pretty good lil shrimpers in here, lets check it out.</p>
+  {{/components.content}}
+  {{#components.content label="Capn Jack"}}
+    <p>This here is salty sea captain name of Jack Springo</p>
+  {{/components.content}}
+  {{#components.content label="Fresh Water"}}
+    <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
+  {{/components.content}}
+{{/rad-tabs}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Scroll to Tab on Click{{/components.title}}
-    {{#components.body}}
-      {{#rad-tabs defaultTab='scrimp' scrollOnClick=true as |components|}}
-        {{#components.content label='Shrimp' elementId='scrimp'}}
-          <p>BRINGO! There's some pretty good lil' shrimpers in here, lets check it out.</p>
-        {{/components.content}}
-        {{#components.content label='Capn Jack'}}
-          <p>This here is salty sea captain name of Jack Springo</p>
-        {{/components.content}}
-        {{#components.content label='Fresh Water'}}
-          <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
-        {{/components.content}}
-      {{/rad-tabs}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Plain Style'
+    language='handlebars' code='{{#rad-tabs defaultTab="scrimp" scrollOnClick=true as |components|}}
+  {{#components.content label="Shrimp" elementId="scrimp"}}
+    <p>BRINGO! There be some pretty good lil shrimpers in here, lets check it out.</p>
+  {{/components.content}}
+  {{#components.content label="Capn Jack"}}
+    <p>This here is salty sea captain name of Jack Springo</p>
+  {{/components.content}}
+  {{#components.content label="Fresh Water"}}
+    <p>Boy I sure did work up a thirst after eating all them shramps. Time to wash it down with a cool glass of marina water.</p>
+  {{/components.content}}
+{{/rad-tabs}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Show/Hide Tabs{{/components.title}}
-    {{#components.body}}
-      {{#rad-state as |stateValue stateActions|}}
-        <p>{{#rad-button click=(action stateActions.toggleState)}}Show/hide the "Baz" tab{{/rad-button}}</p>
-        <br>
-        {{#rad-tabs defaultTab='quux' as |components|}}
-          {{#components.content label='Quux' elementId='quux'}}
-            <p>This is the Quux tab.</p>
-          {{/components.content}}
-          {{#components.content label='Baz' elementId='baz' hidden=stateValue}}
-            <p>I am the sometimes hidden Baz tab.</p>
-          {{/components.content}}
-        {{/rad-tabs}}
-      {{/rad-state}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Show/Hide Tabs'
+    language='handlebars' code='{{#rad-state as |stateValue stateActions|}}
+  <p>{{#rad-button click=(action stateActions.toggleState)}}Show/hide the "Baz" tab{{/rad-button}}</p>
+  <br>
+  {{#rad-tabs defaultTab="quux" as |components|}}
+    {{#components.content label="Quux" elementId="quux"}}
+      <p>This is the Quux tab.</p>
+    {{/components.content}}
+    {{#components.content label="Baz" elementId="baz" hidden=stateValue}}
+      <p>I am the sometimes hidden Baz tab.</p>
+    {{/components.content}}
+  {{/rad-tabs}}
+{{/rad-state}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Dynamically Add Tabs{{/components.title}}
-    {{#components.body}}
-      <p>{{#rad-button
-        click=(action 'addTab')
-        disabled=disableAddTabButton}}Add a tab{{/rad-button}}</p>
-      <br>
-      {{#rad-tabs defaultTab='bar' as |components|}}
-        {{#each tabs as |tab|}}
-          {{#components.content label=tab.label elementId=tab.elementId}}
-            <p>{{tab.content}}</p>
-          {{/components.content}}
-        {{/each}}
-      {{/rad-tabs}}
-    {{/components.body}}
-  {{/rad-card}}
+{{! ------------------------------------------------------------------------- }}
+{{! This example has auto-render disabled because the references to           }}
+{{! properties on the controller won't survive the transition into the        }}
+{{! component itself. Luckily we can use `code-example` in block form to      }}
+{{! display whatever rendered output we want like a normal real boy template. }}
+{{! ------------------------------------------------------------------------- }}
+  {{#code-example
+    autoRender=false
+    title='Show/Hide Tabs'
+    language='handlebars' code='{{#rad-button
+  click=(action "addTab")
+  disabled=disableAddTabButton}}Add a tab{{/rad-button}}
+
+{{#rad-tabs defaultTab="bar" as |components|}}
+  {{#each tabs as |tab|}}
+    {{#components.content label=tab.label elementId=tab.elementId}}
+      <p>{{tab.content}}</p>
+    {{/components.content}}
+  {{/each}}
+{{/rad-tabs}}'}}
+    <p>
+      {{#rad-button
+        click=(action "addTab")
+        disabled=disableAddTabButton}}Add a tab{{/rad-button}}
+    </p>
+    <br>
+    {{#rad-tabs defaultTab="bar" as |components|}}
+      {{#each tabs as |tab|}}
+        {{#components.content label=tab.label elementId=tab.elementId}}
+          <p>{{tab.content}}</p>
+        {{/components.content}}
+      {{/each}}
+    {{/rad-tabs}}
+  {{/code-example}}
 </section>
 
 <section>

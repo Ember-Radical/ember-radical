@@ -4,40 +4,33 @@
 <section class="rad-dropdown-examples">
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{rad-dropdown Target="Link" Content="Oh hi, mark" buttonStyle=false}}
-      {{rad-dropdown Target="Button" Content="Heyy" buttonStyle=true}}
-      {{rad-dropdown Target="Branded" Content="Heyy" buttonStyle=true brand="primary"}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{rad-dropdown Target="Link" Content="Oh hi, mark" buttonStyle=false}}
+{{rad-dropdown Target="Button" Content="Heyy" buttonStyle=true}}
+{{rad-dropdown Target="Branded" Content="Heyy" buttonStyle=true brand="primary"}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Extended Examples{{/components.title}}
-    {{#components.body}}
-      {{#rad-dropdown
-        Target="Dropdown Menu"
-        dropdownMenu=true
-        buttonStyle=true as |components showMenu hideMenu|}}
-        {{#components.content}}
-          {{#components.menu-item}}Menu Option One{{/components.menu-item}}
-          {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
-          {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
-        {{/components.content}}
-      {{/rad-dropdown}}
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code='{{#rad-dropdown
+  Target="Dropdown Menu"
+  dropdownMenu=true
+  buttonStyle=true as |components showMenu hideMenu|}}
+  {{#components.content}}
+    {{#components.menu-item}}Menu Option One{{/components.menu-item}}
+    {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
+    {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
+  {{/components.content}}
+{{/rad-dropdown}}
 
-      {{#rad-dropdown buttonStyle=true as |components|}}
-        {{#components.target}}Custom Content{{/components.target}}
-        {{#components.content}}
-          <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
-        {{/components.content}}
-      {{/rad-dropdown}}
-
-    {{/components.body}}
-  {{/rad-card}}
+{{#rad-dropdown buttonStyle=true as |components|}}
+  {{#components.target}}Custom Content{{/components.target}}
+  {{#components.content}}
+    <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+  {{/components.content}}
+{{/rad-dropdown}}'}}
 
 </section>
 <section>

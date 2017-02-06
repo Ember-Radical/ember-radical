@@ -4,35 +4,27 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Example{{/components.title}}
-    {{#components.body}}
-      {{#rad-alert}}A fairly simple alert. Look, you can dismiss it!{{/rad-alert}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code="{{#rad-alert}}A fairly simple alert. Look, you can dismiss it!{{/rad-alert}}"}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Branded Alerts{{/components.title}}
-    {{#components.body}}
-      {{#rad-alert brand="primary"}}This alert has the primary branding applied to it.{{/rad-alert}}
-      {{#rad-alert brand="secondary"}}This alert has the secondary branding applied to it.{{/rad-alert}}
-      {{#rad-alert brand="success"}}This alert probably indicates something good happened!{{/rad-alert}}
-      {{#rad-alert brand="info"}}This alert wants to inform you about something.{{/rad-alert}}
-      {{#rad-alert brand="warning"}}This alert probably has a warning of some kind.{{/rad-alert}}
-      {{#rad-alert brand="danger"}}This alert means it's too late, something has already blown up.{{/rad-alert}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Branded Alerts'
+    language='handlebars' code="{{#rad-alert brand='primary'}}This alert has the primary branding applied to it.{{/rad-alert}}
+{{#rad-alert brand='secondary'}}This alert has the secondary branding applied to it.{{/rad-alert}}
+{{#rad-alert brand='success'}}This alert probably indicates something good happened!{{/rad-alert}}
+{{#rad-alert brand='info'}}This alert wants to inform you about something.{{/rad-alert}}
+{{#rad-alert brand='warning'}}This alert probably has a warning of some kind.{{/rad-alert}}
+{{#rad-alert brand='danger'}}This alert means it's too late, something has already blown up.{{/rad-alert}}"}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Non-Dismissable{{/components.title}}
-    {{#components.body}}
-      {{#rad-alert brand="info" canDismiss=false}}You can't dismiss this alert. Sorry.{{/rad-alert}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Non-Dismissable'
+    language='handlebars' code="{{#rad-alert brand='info' canDismiss=false}}You can't dismiss this alert. Sorry.{{/rad-alert}}"}}
+
 </section>
 <section>
   <h3>Properties</h3>

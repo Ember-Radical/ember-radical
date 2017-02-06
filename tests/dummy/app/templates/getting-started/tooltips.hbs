@@ -7,26 +7,22 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{rad-tooltip
-        buttonStyle=true
-        Title="Button"
-        Content="Some rad info"}}
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{rad-tooltip
+      Title="Link"
+      Content="Some rad information that is really really long"}}
 
-      {{rad-tooltip
-        buttonStyle=true
-        brand="primary"
-        Title="Branded button"
-        Content="Some rad information"}}
+{{rad-tooltip
+  buttonStyle=true
+  Title="Button"
+  Content="Some rad info"}}
 
-      {{rad-tooltip
-        Title="Link"
-        Content="Some rad information that is really really long"}}
-
-    {{/components.body}}
-  {{/rad-card}}
+{{rad-tooltip
+  buttonStyle=true
+  brand="primary"
+  Title="Branded button"
+  Content="Some rad information"}}'}}
 </section>
 <section>
   <h3>Properties</h3>

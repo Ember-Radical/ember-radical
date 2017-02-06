@@ -32,16 +32,16 @@
 // Rad Dropdown Styles
 .rad-dropdown-examples,
 .rad-modal-examples {
-  .card-body {
+  .rendered-example {
     display: flex;
     flex-direction: row;
 
     align-items: center;
     flex-flow: row wrap;
-  }
 
-  .rad-button {
-    margin-right: 1rem;
+    .rad-button {
+      margin-right: 1rem;
+    }
   }
 }
 

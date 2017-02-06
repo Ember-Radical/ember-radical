@@ -4,83 +4,68 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{#rad-popover as |components|}}
+  {{#components.target}}Popover button{{/components.target}}
+  {{#components.content position="bottom"}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
 
-      {{#rad-popover as |components|}}
-        {{#components.target}}Popover button{{/components.target}}
-        {{#components.content position="bottom"}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
+{{#rad-popover as |components|}}
+  {{#components.target link=true}}Popover link{{/components.target}}
+  {{#components.content position="bottom"}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}'}}
 
-      {{#rad-popover as |components|}}
-        {{#components.target link=true}}Popover link{{/components.target}}
-        {{#components.content position="bottom"}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
+{{code-example
+  title='Positions'
+  language='handlebars' code='{{#rad-popover position="top" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Top{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
 
-    {{/components.body}}
-  {{/rad-card}}
+{{#rad-popover position="bottom" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Bottom{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Positions{{/components.title}}
-    {{#components.body}}
+{{#rad-popover position="left" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Left{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
 
-      {{#rad-popover position="top" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}Top{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
+{{#rad-popover position="right" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Right{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+'}}
 
-      {{#rad-popover position="bottom" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}Bottom{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
+  {{code-example
+    title='Sizes'
+    language='handlebars' code='{{#rad-popover position="top" size="large" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Large{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
 
-      {{#rad-popover position="left" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}Left{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
-
-      {{#rad-popover position="right" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}Right{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
-
-    {{/components.body}}
-  {{/rad-card}}
-
-  {{#rad-card as |components|}}
-    {{#components.title}}Sizes{{/components.title}}
-    {{#components.body}}
-
-      {{#rad-popover position="top" size="large" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}Large{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
-
-      {{#rad-popover position="top" size="x-large" as |components aria-describedby|}}
-        {{#rad-button aria-describedby=aria-describedby}}X-Large{{/rad-button}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-popover}}
-
-    {{/components.body}}
-  {{/rad-card}}
-
+{{#rad-popover position="top" size="x-large" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}X-Large{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}'}}
 </section>
 <section>
   <h3>Properties</h3>

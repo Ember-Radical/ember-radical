@@ -4,13 +4,11 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-      {{rad-svg svgId="heart"}}
-      {{rad-svg svgId="close"}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{rad-svg svgId="heart"}}
+{{rad-svg svgId="close"}}'}}
+
 </section>
 <section>
   <h3>Properties</h3>

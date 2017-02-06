@@ -4,68 +4,67 @@
 <section>
   <h3>Examples</h3>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}Basic Examples{{/components.title}}
-    {{#components.body}}
-
-      {{#rad-drawer buttonStyle=true as |components|}}
-        {{#components.target}}Button Drawer{{/components.target}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-drawer}}
-
-      {{#rad-drawer as |components|}}
-        {{#components.target}}Link Drawer{{/components.target}}
-        {{#components.content}}
-          <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-        {{/components.content}}
-      {{/rad-drawer}}
-
-      {{rad-drawer
-        Target='Custom SVG icon'
-        Content="Isn't that something!"
-        icon='heart'}}
-
-      {{rad-drawer
-        Target='No icon'
-        Content="Isn't that something!"
-        icon=false}}
-    {{/components.body}}
-  {{/rad-card}}
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code='{{#rad-drawer as |components|}}
+  {{#components.target}}Link Drawer{{/components.target}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-drawer}}'}}
 
   <br>
 
-  {{#rad-card as |components|}}
-    {{#components.title}}External Control{{/components.title}}
-    {{#components.body}}
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code='{{#rad-drawer buttonStyle=true as |components|}}
+  {{#components.target}}Button Drawer{{/components.target}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-drawer}}
 
-      {{#rad-state as |openState stateActions|}}
-        <p>
-          {{#rad-button
-            click=(action stateActions.toggleState)
-            classNames='btn-primary'}}
-            {{if openState 'Collapse All' 'Expand All'}}
-          {{/rad-button}}
-        </p>
-        {{#rad-drawer Target='Drawer One' externalToggle=openState as |components|}}
-          {{#components.content}}
-            <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-          {{/components.content}}
-        {{/rad-drawer}}
-        {{#rad-drawer Target='Drawer Two' externalToggle=openState as |components|}}
-          {{#components.content}}
-            <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-          {{/components.content}}
-        {{/rad-drawer}}
-        {{#rad-drawer Target='Drawer Three' externalToggle=openState as |components|}}
-          {{#components.content}}
-            <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-          {{/components.content}}
-        {{/rad-drawer}}
-      {{/rad-state}}
-    {{/components.body}}
-  {{/rad-card}}
+
+{{rad-drawer
+  Target="Custom SVG icon"
+  Content="That is amazing!"
+  icon="heart"}}
+
+{{rad-drawer
+  Target="No icon"
+  Content="Totally RAD!"
+  icon=false}}'}}
+
+  <br>
+
+  {{code-example
+    title='External Control'
+    language='handlebars' code='{{#rad-state as |openState stateActions|}}
+  <p>
+    {{#rad-button
+      click=(action stateActions.toggleState)
+      classNames="btn-primary"}}
+      {{if openState "Collapse All" "Expand All"}}
+    {{/rad-button}}
+  </p>
+  {{#rad-drawer Target="Drawer One" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+  {{#rad-drawer Target="Drawer Two" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+  {{#rad-drawer Target="Drawer Three" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+{{/rad-state}}'}}
+
+
 </section>
 <section>
   <h3>Properties</h3>

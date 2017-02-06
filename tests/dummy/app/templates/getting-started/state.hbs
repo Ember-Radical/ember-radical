@@ -5,36 +5,38 @@
 </section>
 <section>
   <h3>Examples</h3>
-  {{#rad-card as |components|}}
-    {{#components.title}}Simple Example With Modal{{/components.title}}
-    {{#components.body}}
-      {{#rad-tabs defaultTab='basic-code-example' as |tabComponents|}}
-        {{#tabComponents.content
-          label='Code'
-          elementId='basic-code-example'}}
-          {{highlight-code language='handlebars' code='{{#rad-state as |state stateActions|}}
+
+  {{#code-example
+    title='Simple Example With Modal'
+    language='handlebars' code='{{#rad-state as |state stateActions|}}
   {{#rad-button
-    click=(action stateActions.open)}}Toggle some state{{/rad-button}}
+    click=(action stateActions.open)}}Open a rad modal{{/rad-button}}
   {{#rad-modal
     open=state
-    Header="This modal brought to you by rad-state"
-    closeModal=(action stateActions.close) as |components|}}That is totally rad!{{/rad-modal}}
+    Header="Just Do Less"
+    closeModal=(action stateActions.close) as |components|}}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/PKIpCPS-oZc?rel=0" frameborder="0" allowfullscreen></iframe>{{/rad-modal}}
 {{/rad-state}}'}}
-        {{/tabComponents.content}}
-        {{#tabComponents.content
-          label='Rendered'}}
-          {{#rad-state as |state stateActions|}}
-            {{#rad-button
-              click=(action stateActions.open)}}Toggle some state{{/rad-button}}
-            {{#rad-modal
-              open=state
-              Header="This modal brought to you by rad-state"
-              closeModal=(action stateActions.close) as |components|}}<img src="https://media.giphy.com/media/30zBdDtNEJIYg/giphy.gif" alt="THAT IS TOTALLY RAD" style="width: 100%;" />{{/rad-modal}}
-          {{/rad-state}}
-        {{/tabComponents.content}}
-      {{/rad-tabs}}
-    {{/components.body}}
-  {{/rad-card}}
+      <hr class="divider">
+      <p>This example uses the yielded <code>state</code> property to control the modal's state, and the <code>open</code> &amp; <code>close</code> actions from the yielded <code>stateActions</code> hash to manipulate the state itself.</p>
+{{/code-example}}
+
+{{#code-example
+  title='Simple Toggle Example'
+  language='handlebars' code='{{#rad-state as |state stateActions|}}
+  <p>
+    {{#rad-button
+    click=(action stateActions.toggleState)}}Toggle visibility!{{/rad-button}}
+  </p>
+  {{#if state}}
+    <h5>Awwwww yisssssssss.</h5>
+    <img src="https://media.giphy.com/media/30zBdDtNEJIYg/giphy.gif" alt="THAT IS TOTALLY RAD" style="width: 100%;" />
+  {{/if}}
+{{/rad-state}}'}}
+    <hr class="divider">
+    <p>This example uses the yielded <code>state</code> property to control the visibility of some arbitrary content, and the <code>toggleState</code> action from the yielded <code>stateActions</code> hash to manipulate the state itself.</p>
+{{/code-example}}
+
 </section>
 <section>
   <h3>Properties</h3>

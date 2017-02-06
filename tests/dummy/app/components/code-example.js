@@ -83,8 +83,8 @@ export default Component.extend({
   didInsertElement() {
     if (this.get('autoRender')) {
       this._renderCode(this.get('code'));
-      this._calculateCodeBlockHeight();
     }
+    this._calculateCodeBlockHeight();
   },
 
   init() {
@@ -93,7 +93,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-    if (!this.get('isDestroyed')) {
+    if (!this.get('isDestroyed') && this.get('autoRender')) {
       getOwner(this).unregister(`template:${this.get('renderPartialName')}`);
     }
   },
