@@ -29,7 +29,8 @@
   }
 
   &.card-primary {
-    .card-title {
+    .card-title,
+    .card-footer {
       background: $brand-primary;
       color: white;
     }

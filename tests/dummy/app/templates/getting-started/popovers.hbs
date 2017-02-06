@@ -1,87 +1,113 @@
-<div class="page-title">
-  <h1>Popovers</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Popovers are like tooltips on steroids. They allow you to display any amount of arbitrary content simply by hovering over the target text.</p>
-        </section>
-        <section>
-          <h4>Basic Usage</h4>
-          {{#rad-popover as |components|}}
-            {{#components.target}}PRETTY SWEET CONTENT INSIDE!{{/components.target}}
-            {{#components.content position="bottom"}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-          <hr>
-          <p>The <code>target</code> subcomponents are just <code>rad-button</code> instances! That means you can pass properties like <code>brand</code> and <code>link</code> into them!</p>
-          {{#rad-popover as |components|}}
-            {{#components.target link=true}}This component target looks like regular ol text{{/components.target}}
-            {{#components.content position="bottom"}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-        </section>
-        <section>
-          <h4>Positions!</h4>
-          <h5><code>position="top"</code></h5>
-          {{#rad-popover position="top" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover appears above{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-          <hr>
-          <h5><code>position="left"</code></h5>
-          {{#rad-popover position="left" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover appears to the left{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-          <hr>
-          <h5><code>position="right"</code></h5>
-          {{#rad-popover position="right" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover appears to the right{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-          <hr>
-          <h5><code>position="bottom-left"</code></h5>
-          {{#rad-popover position="bottom-left" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover appears to the bottom and left{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-        </section>
-        <section>
-          <h4>Sizes!</h4>
-          <h5><code>size="large"</code></h5>
-          {{#rad-popover position="top" size="large" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover is bigger than usual{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-          <hr>
-          <h5><code>size="x-large"</code></h5>
-          {{#rad-popover position="top" size="x-large" as |components aria-describedby|}}
-            {{#rad-button aria-describedby=aria-describedby}}This popover is REALLY BIG{{/rad-button}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-popover}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Popovers are like tooltips on steroids. They allow you to display any amount of arbitrary content simply by hovering over the target text.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{#rad-popover as |components|}}
+  {{#components.target}}Popover button{{/components.target}}
+  {{#components.content position="bottom"}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+
+{{#rad-popover as |components|}}
+  {{#components.target link=true}}Popover link{{/components.target}}
+  {{#components.content position="bottom"}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}'}}
+
+{{code-example
+  title='Positions'
+  language='handlebars' code='{{#rad-popover position="top" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Top{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+
+{{#rad-popover position="bottom" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Bottom{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+
+{{#rad-popover position="left" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Left{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+
+{{#rad-popover position="right" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Right{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+'}}
+
+  {{code-example
+    title='Sizes'
+    language='handlebars' code='{{#rad-popover position="top" size="large" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}Large{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}
+
+{{#rad-popover position="top" size="x-large" as |components aria-describedby|}}
+  {{#rad-button aria-describedby=aria-describedby}}X-Large{{/rad-button}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-popover}}'}}
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>position</code></td>
+            <td>{String}</td>
+            <td>'bottom'</td>
+            <td>
+              <p>The position that the tooltip is created in relative to its anchor element.</p>
+              <p class="small enums"><strong>Enums:</strong> top, bottom, left, right, bottom-left, bottom-right</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>String</td>
+            <td>'medium'</td>
+            <td>
+              <p>The size of the tooltip itself.</p>
+              <p class="small enums"><strong>Enums:</strong> small, medium, large, x-large</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

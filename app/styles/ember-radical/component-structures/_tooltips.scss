@@ -21,41 +21,32 @@
  * readable width for the narrow text.
  */
 .tooltip-content-wrapper {
-  width: 500px;
+  width: $tooltip-max-width;
   position: absolute;
 }
 
 // Tooltip Content
 .tooltip-content {
-  margin-top: 10px;
-  padding: 0.5rem;
+  margin-top: $tooltip-arrow-width;
   position: absolute;
-  z-index: 1000;
-
-  // Remove margins for consistent whitespace
-  p {
-    margin-top: 0;
-  }
-  *:last-child {
-    margin-bottom: 0;
-  }
+  z-index: $zindex-tooltip;
 
   // Tooltip Content Tip
   .tip {
     overflow: hidden;
-    height: 24px;
-    width: 24px;
+    height: $tooltip-arrow-width * 2;
+    width: $tooltip-arrow-width * 2;
     position: absolute;
-    top: -24px;
+    top: $tooltip-arrow-width * -2;
     left: 0.5rem;
 
     &:after {
       content: "";
-      height: 12px;
-      width: 12px;
+      height: $tooltip-arrow-width;
+      width: $tooltip-arrow-width;
       position: absolute;
-      top: 18px;
-      left: 6px;
+      top: $tooltip-arrow-width * 1.5;
+      left: $tooltip-arrow-width / 2;
       transform: rotate(45deg);
     }
   }

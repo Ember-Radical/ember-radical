@@ -1,0 +1,75 @@
+<section>
+  <p class="intro">Alerts allow you to display important messages to users. Whether it's feedback from user interaction, a status notification, or just something really important you want users to know about, Alerts have you covered.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code="{{#rad-alert}}A fairly simple alert. Look, you can dismiss it!{{/rad-alert}}"}}
+
+  <br>
+
+  {{code-example
+    title='Branded Alerts'
+    language='handlebars' code="{{#rad-alert brand='primary'}}This alert has the primary branding applied to it.{{/rad-alert}}
+{{#rad-alert brand='secondary'}}This alert has the secondary branding applied to it.{{/rad-alert}}
+{{#rad-alert brand='success'}}This alert probably indicates something good happened!{{/rad-alert}}
+{{#rad-alert brand='info'}}This alert wants to inform you about something.{{/rad-alert}}
+{{#rad-alert brand='warning'}}This alert probably has a warning of some kind.{{/rad-alert}}
+{{#rad-alert brand='danger'}}This alert means it's too late, something has already blown up.{{/rad-alert}}"}}
+
+  <br>
+
+  {{code-example
+    title='Non-Dismissable'
+    language='handlebars' code="{{#rad-alert brand='info' canDismiss=false}}You can't dismiss this alert. Sorry.{{/rad-alert}}"}}
+
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>What brand class to use to style the alert</p>
+              <p class="small enums"><strong>Enums:</strong> primary, secondary, success, info, warning, danger</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>canDismiss</code></td>
+            <td>{Boolean}</td>
+            <td>true</td>
+            <td>Whether the alert can be dismissed by the user with a close button</td>
+          </tr>
+          <tr>
+            <td><code>onDismiss</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Additional behavior to execute when the alert is dismissed</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

@@ -1,0 +1,118 @@
+<section>
+  <p class="intro">Buttons are a fairly ubiquitous element around the web, however there are some very special requirements for using them. For example, did you know that any clickable element that produces some kind of interactive behavior and isn't a hyperlink is <b>required</b> to be a <code>&lt;button&gt;</code> to meet accessibility standards? It's true!</p>
+  <p class="intro">This can make <code>&lt;button&gt;</code>s an extremely important part of your app, so why not use a convenient, totally rad component-ized version that meets accessibility requirements, is visually customizable, and supports DDAU behavior?</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code="{{#rad-button}}Hey, I'm a rad button!{{/rad-button}}"}}
+
+  <br>
+
+  {{code-example
+    title='Extended Options'
+    language='handlebars' code="{{#rad-button brand='primary'}}Primary Brand Button{{/rad-button}}
+{{#rad-button brand='secondary'}}Secondary Brand Button{{/rad-button}}
+{{#rad-button link='true'}}Link/Anchor-like Button{{/rad-button}}"}}
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the button</p>
+              <p class="small enums"><strong>Enums:</strong>primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>click</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Behavior to execute when the button is clicked. Typically a closure action.</td>
+          </tr>
+          <tr>
+            <td><code>link</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Applies a <code>.btn-link</code> class to the button to give the same visual appearance as a hyperlink</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Analytics'
+      elementId='analyticsProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tagcategory</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag category</td>
+          </tr>
+          <tr>
+            <td><code>tagaction</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag action</td>
+          </tr>
+          <tr>
+            <td><code>taglabel</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Value for a Google Analytics event tag label</td>
+          </tr>
+          <tr>
+            <td><code>tagcd</code></td>
+            <td>{String|Object}</td>
+            <td>''</td>
+            <td>Use Ember's <code>hash</code> helper to construct a hash of custom dimensions to associate with this specific event</td>
+          </tr>
+          <tr>
+            <td><code>taghover</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to fire the analytics event on hover instead of click</td>
+          </tr>
+          <tr>
+            <td><code>tagonce</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to fire the analytics event a single time only. Useful in conjunction with <code>taghover</code></td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

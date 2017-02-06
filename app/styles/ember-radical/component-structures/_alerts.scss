@@ -3,17 +3,17 @@
 // ========================================================
 
 .rad-alert {
-  position: relative;
+  display: flex;
+  flex: 1 100%;
   margin-bottom: 1rem;
+  position: relative;
 
   > p,
   > ul {
     margin-bottom: 0;
   }
-}
 
-.alert-dismissible {
-  .close {
-    position: absolute;
+  .alert-content {
+    flex-grow: 1;
   }
 }

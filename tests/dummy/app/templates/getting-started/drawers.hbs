@@ -1,82 +1,143 @@
-<div class="page-title">
-  <h1>Drawers</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Drawers offer a means for displaying short, concise content as a call to action that will reveal extended content within. Rad drawers are highly customizable for use in a variety of situations.</p>
-        </section>
-        <section>
-          <h4>Basic usage</h4>
-          <br>
-          {{#rad-drawer as |components|}}
-            {{#components.target}}
-              <strong>Check out this super rad drawer</strong>
-            {{/components.target}}
-            {{#components.content}}
-              <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-drawer}}
-        </section>
-        <section>
-          <h4><code>buttonStyle=true</code></h4>
-          {{#rad-drawer
-            Target='This Drawer Target is a Button!'
-            buttonStyle=true as |components|}}
-            {{#components.content}}
-              <img src="http://i.giphy.com/125RIkH7IluIpy.gif" style="width: 100%;" alt="" />
-            {{/components.content}}
-          {{/rad-drawer}}
-        </section>
-        <section>
-          <h4><code>icon='heart'</code></h4>
-          {{rad-drawer
-            Target='This drawer has a custom svg icon'
-            Content="Isn't that something!"
-            icon='heart'}}
-        </section>
-        <section>
-          <h4><code>icon=false</code></h4>
-          {{rad-drawer
-            Target='This drawer has NO ICON AT ALL :('
-            Content="Poor fella"
-            icon=false}}
-        </section>
-        <section>
-          <h4><code>external control</code></h4>
-          <br>
-          {{#rad-state as |openState stateActions|}}
-            <p>
-              {{#rad-button
-                click=(action stateActions.toggleState)
-                classNames='btn-primary'}}
-                {{if openState 'Collapse All' 'Expand All'}}
-              {{/rad-button}}
-            </p>
-            {{#rad-drawer Target='Drawer One' externalToggle=openState as |components|}}
-              {{#components.content}}
-                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-              {{/components.content}}
-            {{/rad-drawer}}
-            {{#rad-drawer Target='Drawer Two' externalToggle=openState as |components|}}
-              {{#components.content}}
-                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-              {{/components.content}}
-            {{/rad-drawer}}
-            {{#rad-drawer Target='Drawer Three' externalToggle=openState as |components|}}
-              {{#components.content}}
-                <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
-              {{/components.content}}
-            {{/rad-drawer}}
-          {{/rad-state}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Drawers offer a means for displaying short, concise content as a call to action that will reveal extended content within. Rad drawers are highly customizable for use in a variety of situations.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code='{{#rad-drawer as |components|}}
+  {{#components.target}}Link Drawer{{/components.target}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-drawer}}'}}
+
+  <br>
+
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code='{{#rad-drawer buttonStyle=true as |components|}}
+  {{#components.target}}Button Drawer{{/components.target}}
+  {{#components.content}}
+    <img src="https://media.giphy.com/media/KVUhxQAqrAV3i/giphy.gif" style="width: 100%;" alt="" />
+  {{/components.content}}
+{{/rad-drawer}}
+
+
+{{rad-drawer
+  Target="Custom SVG icon"
+  Content="That is amazing!"
+  icon="heart"}}
+
+{{rad-drawer
+  Target="No icon"
+  Content="Totally RAD!"
+  icon=false}}'}}
+
+  <br>
+
+  {{code-example
+    title='External Control'
+    language='handlebars' code='{{#rad-state as |openState stateActions|}}
+  <p>
+    {{#rad-button
+      click=(action stateActions.toggleState)
+      classNames="btn-primary"}}
+      {{if openState "Collapse All" "Expand All"}}
+    {{/rad-button}}
+  </p>
+  {{#rad-drawer Target="Drawer One" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+  {{#rad-drawer Target="Drawer Two" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+  {{#rad-drawer Target="Drawer Three" externalToggle=openState as |components|}}
+    {{#components.content}}
+      <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
+    {{/components.content}}
+  {{/rad-drawer}}
+{{/rad-state}}'}}
+
+
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>buttonStyle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>
+              By default, the <code>target</code> subcomponent will display as a plain link. If you would like it to display as a button, set this to <code>true</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>externalToggle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>
+              Allow for external controls to update the open/closed state of a
+              <code>rad-drawer</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>icon</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              If you want to use a different SVG icon from the default on your <code>target</code>, specify it by name/id here. If you don't want to display an icon at all, pass <code>false</code> into this property.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the component</p>
+              <p class="small enums"><strong>Enums:</strong> components.content, components.target</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

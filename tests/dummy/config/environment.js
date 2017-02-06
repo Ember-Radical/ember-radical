@@ -22,7 +22,7 @@ module.exports = function(environment) {
 
     featureFlags: {
       RADICAL: true,
-      TAGGING: false
+      TAGGING: true
     }
   };
 

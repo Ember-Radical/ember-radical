@@ -38,7 +38,8 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
     "ember-cli-htmlbars": "^1.0.10",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.3"
+    "ember-cli-htmlbars-inline-precompile": "^0.3.3",
+    "ember-cli-version-checker": "^1.2.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

@@ -1,55 +1,131 @@
-<div class="page-title">
-  <h1>Dropdowns</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Dropdowns can be used for displaying arbitrary content, and are also useful as a stand-in for select boxes/menus.</p>
-        </section>
-        <section>
-          <h4>Basic usage (as a menu)</h4>
-          {{#rad-dropdown
-            Target="Pretty cool menu"
-            buttonStyle=true as |components showMenu hideMenu|}}
-            {{#components.content}}
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option One{{/rad-button}}<br>
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option Two{{/rad-button}}<br>
-              {{#rad-button link=true click=(action hideMenu)}}Menu Option Three{{/rad-button}}
-            {{/components.content}}
-          {{/rad-dropdown}}
-        </section>
-        <section>
-          <h4><code>buttonStyle=false</code></h4>
-          {{rad-dropdown Target="Open dropdown!" Content="Oh hi, mark" buttonStyle=false}}
-        </section>
-        <section>
-          <h5><code>buttonStyle=true</code></h5>
-          {{#rad-dropdown Target="Open me!" buttonStyle=true as |components|}}
-            {{#components.content}}Heyy{{/components.content}}
-          {{/rad-dropdown}}
-        </section>
-        <section>
-          <h4><code>Branded</code></h4>
-          {{#rad-dropdown Target="Click me!" brand="primary" buttonStyle=true as |components|}}
-            {{#components.content}}Heyy{{/components.content}}
-          {{/rad-dropdown}}
-        </section>
-        <section>
-          <h4><code>Custom Content</code></h4>
-          {{#rad-dropdown buttonStyle=true as |components|}}
-            {{#components.target}}Oh hi{{/components.target}}
-            {{#components.content}}
-              <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
-            {{/components.content}}
-          {{/rad-dropdown}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Dropdowns can be used for displaying arbitrary content, and are also useful as a stand-in for select boxes/menus.</p>
+</section>
+<section class="rad-dropdown-examples">
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Examples'
+    language='handlebars' code='{{rad-dropdown Target="Link" Content="Oh hi, mark" buttonStyle=false}}
+{{rad-dropdown Target="Button" Content="Heyy" buttonStyle=true}}
+{{rad-dropdown Target="Branded" Content="Heyy" buttonStyle=true brand="primary"}}'}}
+
+  <br>
+
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code='{{#rad-dropdown
+  Target="Dropdown Menu"
+  dropdownMenu=true
+  buttonStyle=true as |components showMenu hideMenu|}}
+  {{#components.content}}
+    {{#components.menu-item}}Menu Option One{{/components.menu-item}}
+    {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
+    {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
+  {{/components.content}}
+{{/rad-dropdown}}
+
+{{#rad-dropdown buttonStyle=true as |components|}}
+  {{#components.target}}Custom Content{{/components.target}}
+  {{#components.content}}
+    <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+  {{/components.content}}
+{{/rad-dropdown}}'}}
+
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>buttonStyle</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether to style the <code>target</code> child component to look like a button</td>
+          </tr>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the <code>target</code> child component</p>
+              <p class="small enums"><strong>Enums:</strong> primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>Target</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Simple/string-only definition of the <code>target</code> child component</td>
+          </tr>
+          <tr>
+            <td><code>Content</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>Simple/string-only definition of the <code>content</code> child component</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'}}
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>{Object}</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the component</p>
+              <p class="small enums"><strong>Enums:</strong> components.content, components.menu-item,
+              components.target</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>show</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action to show the dropdown. Example: <code>onclick=(action show)</code></td>
+          </tr>
+          <tr>
+            <td><code>hide</code></td>
+            <td>{Function}</td>
+            <td>() => {}</td>
+            <td>Closure action to close the dropdown. Example: <code>onclick=(action hide)</code></td>
+          </tr>
+          <tr>
+            <td><code>hidden</code></td>
+            <td>{Boolean}</td>
+            <td>false</td>
+            <td>Whether or not the dropdown is hidden from view.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

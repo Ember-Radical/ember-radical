@@ -1,44 +1,107 @@
-<div class="page-title">
-  <h1>Cards</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-      <div class="guide-content">
-        <section>
-          <p class="intro">Cards are simple presentational components with no real functionality but with a consistent visual language for displaying card-like content.</p>
-        </section>
-        <section>
-          <h4>Basic usage</h4>
-          <br>
-          {{#rad-card as |components|}}
-            {{#components.body}}Hey, I'm in a card.{{/components.body}}
-          {{/rad-card}}
-        </section>
-        <section>
-          <h4>Using Subcomponents</h4>
-          <br>
-          {{#rad-card as |components|}}
-            {{#components.title}}Card title{{/components.title}}
-            {{#components.body}}Card content{{/components.body}}
-            {{#components.footer}}Card footer{{/components.footer}}
-          {{/rad-card}}
-        </section>
-        <section>
-          <h4>With branding</h4>
-          <br>
-          {{#rad-card brand="primary" as |components|}}
-            {{#components.title}}Party time{{/components.title}}
-            {{#components.body}}
-              <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
-            {{/components.body}}
-          {{/rad-card}}
-        </section>
-      </div>
-    </div>
-    <div class="sidebar col-xs-4">
-      {{sidebar-nav}}
-    </div>
-  </div>
-</div>
+<section>
+  <p class="intro">Cards are simple presentational components with no real functionality but with a consistent visual language for displaying card-like content.</p>
+</section>
+<section>
+  <h3>Examples</h3>
+
+  {{code-example
+    title='Basic Example'
+    language='handlebars' code="{{#rad-card as |components|}}
+  {{#components.body}}Simple card{{/components.body}}
+{{/rad-card}}"}}
+
+  {{code-example
+    title='Extended Examples'
+    language='handlebars' code="{{#rad-card as |components|}}
+  {{#components.title}}Simple card w/ header{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+{{/rad-card}}
+
+{{#rad-card as |components|}}
+  {{#components.title}}Simple card w/ header and footer{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+  {{#components.footer}}Footer content{{/components.footer}}
+{{/rad-card}}
+
+{{#rad-card brand='primary' as |components|}}
+  {{#components.title}}Branded Header{{/components.title}}
+  {{#components.body}}Some content{{/components.body}}
+{{/rad-card}}
+
+{{#rad-card brand='primary' as |components|}}
+  {{#components.title}}Branded card w/ custom content{{/components.title}}
+  {{#components.body}}
+    {{#rad-button}}Button{{/rad-button}}
+  {{/components.body}}
+  {{#components.footer}}Footer content{{/components.footer}}
+{{/rad-card}}"}}
+
+</section>
+<section>
+  <h3>Properties</h3>
+
+  <hr>
+
+  {{#rad-tabs
+    defaultTab='passedProps'
+    card=true as |components|}}
+    {{#components.content
+      label='Passed'
+      elementId='passedProps'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>brand</code></td>
+            <td>{String}</td>
+            <td>''</td>
+            <td>
+              <p>The brand class to use to style the header and footer subcomponents.</p>
+              <p class="small enums"><strong>Enums:</strong> primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>card</code></td>
+            <td>{String}</td>
+            <td>false</td>
+            <td>
+              <p>Whether the tab content panels should display using the card styling. Applies a <code>rad-card</code> class to the <code>&lt;div class='content-container'&gt;</code> that the tab content panels are rendered within.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+    {{#components.content
+      label='Yielded'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>components</code></td>
+            <td>Object</td>
+            <td>N/A</td>
+            <td>
+              <p>Child components yielded by the parent.</p>
+              <p class="small enums"><strong>Enums:</strong>
+              components.body, components.footer, components.title</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+  {{/rad-tabs}}
+</section>

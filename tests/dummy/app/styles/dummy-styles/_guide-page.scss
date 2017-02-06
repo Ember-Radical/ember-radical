@@ -23,3 +23,72 @@
     font-size: 1.1rem;
   }
 }
+
+// Card styles
+.rad-card {
+  margin-bottom: 1rem;
+}
+
+// Rad Dropdown Styles
+.rad-dropdown-examples,
+.rad-modal-examples {
+  .rendered-example {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    flex-flow: row wrap;
+
+    .rad-button {
+      margin-right: 1rem;
+    }
+  }
+}
+
+// Code Examples
+.code-card-title {
+  display: flex;
+
+  align-items: center;
+
+  button.code-toggle-button {
+    display: flex;
+  }
+
+  .example-title {
+    flex: 1;
+  }
+}
+
+.code-example {
+  .code-block {
+    overflow: hidden;
+    height: auto;
+    max-height: 500px;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $brand-primary;
+    transition: all 0.3s ease-in;
+
+    &.hidden {
+      max-height: 0;
+      margin: 0;
+      padding: 0;
+      border: none;
+      transition: all 0.3s ease-out;
+    }
+  }
+}
+
+p.enums {
+  margin-bottom: 0;
+}
+
+// Tables
+table {
+  margin-bottom: 1rem;
+
+  &.full-width {
+    width: 100%;
+  }
+}

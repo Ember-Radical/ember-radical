@@ -1,0 +1,12 @@
+// ========================================================
+// Browser Scrollbar Width
+// ========================================================
+
+// This allows for the scrollbar width sniffing hack in app.js
+.scrollbar-measure {
+  overflow: scroll;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: -9999px;
+}

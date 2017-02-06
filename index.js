@@ -1,4 +1,6 @@
 'use strict';
+const path = require('path');
+const VersionChecker = require('ember-cli-version-checker');
 
 /**
  * Ember Radical addon that extends Ember CLI root Addon class. Read in
@@ -67,6 +69,7 @@ module.exports = {
     // ========================================================
 
     // Collect addon variables and references
+    const checker = new VersionChecker(this);
     const env = process.env.EMBER_ENV || 'development';
     const vendorPath = this.treePaths.vendor;
     // This is the config specified in consuming application's config/environment.js
@@ -83,10 +86,10 @@ module.exports = {
         PRODUCTION: env === 'production',
         TEST: env === 'test'
       },
+      // Radical features defaults, will be overriden by any consumer specified flags
+      this.radicalDefaultFeatureFlags,
       // Matches https://github.com/kategengler/ember-feature-flags name convention
-      applicationConfig.featureFlags || {},
-      // Radical specific defaults if not specified by consumer
-      this.radicalDefaultFeatureFlags
+      applicationConfig.featureFlags || {}
     );
     const minifyJSOptions = {
       options: {
@@ -118,6 +121,22 @@ module.exports = {
     // want to do it for production builds b/c it will crush the dev rebuild time
     if (radicalOptions.stripCode && env === 'production') {
       app.options.minifyJS = Object.assign(app.options.minifyJS, minifyJSOptions);
+    }
+
+    // We need to import the template compiler to the bundle in order to compile
+    // templates at runtime. Use Ember version to construct correct path
+    if (checker.forEmber().satisfies('>= 2.11.0')) {
+      // Normally you can't app.import node deps and need to use a `treeForVendor`
+      // like this: http://stackoverflow.com/questions/28201036/add-node-module-to-ember-cli-app
+      // to Funnel node deps into the vendor dir AND THEN you can app.import them
+      // in the include hook. For some reason though, this appears to work now,
+      // hopefully this is part of the 2.11 improvements. If this ends up not
+      // working for some people we'll need to conditionally do a treeFor Funnel
+      // and then import from the /vendor dir here.
+      // tl;dr: full resolve needed for cli and node_modules import, Ember 🔮
+      app.import(path.resolve('node_modules', 'ember-source', 'dist', 'ember-template-compiler.js'));
+    } else {
+      app.import(path.join(app.bowerDirectory, 'ember', 'ember-template-compiler.js'));
     }
   },
   /**
