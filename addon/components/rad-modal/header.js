@@ -9,7 +9,7 @@ import computed from 'ember-computed';
  * ### Accessibility
  *
  * This component should only be used as a contextual component within a
- * `core-modal` instance. The parent `core-modal` handles setting the `elementId`
+ * `rad-modal` instance. The parent `rad-modal` handles setting the `elementId`
  * of this component to match an `aria-labelledby` on the parent modal.
  * This ensures that screen readers are able to correctly associate the modal
  * header with the modal that it labels. Some form of a Header is always
@@ -36,7 +36,7 @@ export default Component.extend({
   /**
    * The elementId of this component must be set to match the `aria-labelledby`
    * of the parent component. This is handled through the contextual component
-   * setup of `core-modal`
+   * setup of `rad-modal`
    * @property elementId
    * @type {string}
    * @passed Component.RadModal

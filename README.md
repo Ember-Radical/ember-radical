@@ -32,7 +32,7 @@ Ember Radical's robust set of components gets you off and running with easy to u
 - `{{rad-tabs}}`
 - `{{rad-tooltip}}`
 
-See [healthsparq.github.io/ember-radical/](https://healthsparq.github.io/ember-radical/) for full, in-depth documentation and demos.
+See [healthsparq.github.io/ember-radical/](https://healthsparq.github.io/ember-radical/) for full documentation and demos.
 
 ### Styles
 _Stylesheets are written in SCSS. The [ember-cli-sass](https://github.com/aexmachina/ember-cli-sass)

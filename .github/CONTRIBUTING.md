@@ -62,36 +62,14 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 ### Accessibility
 - Components should use aria attrs for A++ Accessibility
 - Additional accessibility validations created for dev builds
-- Any interactive target without an `href` should be a `core-button`
+- Any interactive target without an `href` should be a `rad-button`
 
 ### Other
 - We use [gitmoji](https://gitmoji.carloscuesta.me/) in our commit messages to help quickly identify the nature of a commit and request you do as well.
 
 ## Feature Roadmap
 
-### Core Components
-
-- [x] Core Alert
-- [x] Core Button
-- [x] Core Card
-- [x] Core Drawer
-- [x] Core Dropdown
-- [x] Core Modal
-- [x] Core Popover
-- [x] Core State
-- [x] Core SVG
-- [x] Core Tabs
-- [x] Core Tooltip
-
-### Services
-
-- [ ] Tagging (GA)
-
-### Misc
-
-- [ ] Tagging setup utility
-- [x] Base styles/variables created (Skeleton theme for Bootstrap)
-- [x] Feature flag system for build code stripping
-- [ ] Documentation page for accessibility guidelines and tools
-- [ ] Full public-facing documentation (gh-pages) (separate repo?)
-- [ ] Handle funneling out tagging.js when tagging feature flag is off
+- Improve mobile layout for guides
+- Bangin' new TOTALLY RAD theme for the guides
+- Update to CLI 2.11 soonish
+- Add more new components once we assess what else should be created
