@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 (02-07-2017)
+Fixed:
+- 🐛 Added missing `tabButtonClassNames` property to `rad-tabs`
+
 ## 1.1.0 (02-07-2017)
 Added:
 - ✨ `rad-tabs` now accepts the following new properties for better customization:
