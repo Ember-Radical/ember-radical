@@ -63,6 +63,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Bound attributes:
+   * - `data-test`: for precise testing identification
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * Computed css class for the brand bound to the component.
    * @property brandClass
    * @type {String}

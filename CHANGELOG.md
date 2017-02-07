@@ -8,6 +8,8 @@ Added:
   - `cardBodyClassNames` (applies to the body subcomponent root element)
   - `cardFooterClassNames` (applies to the footer subcomponent root element)
   - `cardTitleClassNames` (applies to the title subcomponent root element)
+- ✨ `rad-card` and its children now support binding `data-test` attributes
+- ✅ Tests added to verify custom classNames are properly passed through to `rad-card`'s subcomponents
 
 ## 1.1.1 (02-07-2017)
 Fixed:

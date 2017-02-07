@@ -22,6 +22,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Bound attributes:
+   * - `data-test`: for precise testing identification
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * Bind props to classes on the root component element.
    * @property classNameBindings
    * @type {Array}
