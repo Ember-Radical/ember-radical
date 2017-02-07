@@ -229,13 +229,14 @@ test('it applies custom classNames from passed props to the component template e
 
   this.render(hbs`{{#rad-tabs
     buttonStyleClassNames='totally-rad-buttons'
+    tabButtonClassNames='tab-button'
     tabClassNames='custom-tab-class'
     tabListClassNames='totally-effing-rad-tab-list'
     defaultTab='tab-1'
     data-test='custom-classes-test' as |components|}}
     {{#components.content
       elementId='tab-1'
-      data-test='custom-classes-test-first-tab'}}Hi there.{{/components.content}}
+      tabDataTest='custom-classes-test-first-button'}}Hi there.{{/components.content}}
   {{/rad-tabs}}`);
 
   assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-rad-buttons'), 'The custom buttonStyleClassNames should be applied to the ul');
@@ -243,4 +244,6 @@ test('it applies custom classNames from passed props to the component template e
   assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-effing-rad-tab-list'), 'The custom tabListClassNames should be applied to the ul');
 
   assert.ok(this.$('[data-test="custom-classes-test"] li:first-child').hasClass('custom-tab-class'), 'The custom tabClassNames should be applied to the tab item li elements');
+
+  assert.ok(this.$('[data-test="custom-classes-test-first-button"]').hasClass('tab-button'), 'The custom tabButtonClassNames should be applied to the tab item button elements');
 });

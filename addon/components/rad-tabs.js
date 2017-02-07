@@ -155,6 +155,12 @@ export default Component.extend({
    */
   scrollTarget: 'body, html',
   /**
+   * Class name(s) to apply to the tab `<button>` elements.
+   * @property tabButtonClassNames
+   * @type {string}
+   */
+  tabButtonClassNames: '',
+  /**
    * Class name(s) to use for the individual tab `<li>` elements.
    * @property tabClassNames
    * @passed
@@ -310,7 +316,7 @@ export default Component.extend({
           {{#rad-button
             ariaRole="tab"
             aria-controls=tab.elementId
-            class=(concat 'tab' (if (eq tab.elementId activeId) ' active'))
+            class=(concat 'tab' (if (eq tab.elementId activeId) ' active') ' ' tabButtonClassNames)
             link=true
             click=(action 'showTab' tab.elementId)
             data-test=tab.tabDataTest
