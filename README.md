@@ -1,6 +1,6 @@
 # Ember Radical
 
-[![TravisCI](https://travis-ci.org/healthsparq/ember-radical.svg?branch=master)](https://travis-ci.org/healthsparq/ember-radical) [![Code Climate](https://codeclimate.com/github/healthsparq/ember-radical/badges/gpa.svg)](https://codeclimate.com/github/healthsparq/ember-radical)
+[![TravisCI](https://travis-ci.org/healthsparq/ember-radical.svg?branch=master)](https://travis-ci.org/healthsparq/ember-radical) [![Code Climate](https://codeclimate.com/github/healthsparq/ember-radical/badges/gpa.svg)](https://codeclimate.com/github/healthsparq/ember-radical) [![Ember Observer Score](https://emberobserver.com/badges/ember-radical.svg)](https://emberobserver.com/addons/ember-radical)
 
 Feather light, dead simple and fully accessible Ember DDAU components. Ember
 Radical is a set of core components that make writing consistent, quality
