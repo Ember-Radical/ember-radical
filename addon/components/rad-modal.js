@@ -409,9 +409,11 @@ export default Component.extend({
       // aria-labelledby is required for A++ Accessibility
       const elementId = this.get('elementId');
       const headerId = `#aria-labelledby-${elementId}`;
-      if (!$(headerId).is('header')) {
+      // @TODO: Figure out how to make this check _reliably_ for modals that
+      // have `removeFromDomOnClose` enabled
+      if (!this.get('removeFromDomOnClose') && !$(headerId).is('header')) {
         console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2);
-        throw new Error('{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus');
+        throw new Error('{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus', headerId);
       }
     }
   },
