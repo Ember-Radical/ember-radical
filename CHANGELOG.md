@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 (02-07-2017)
+Added:
+- ✨ `rad-drawer` now yields its `hidden` state
+
 ## 1.1.1 (02-07-2017)
 Fixed:
 - 🐛 Added missing `tabButtonClassNames` property to `rad-tabs`
