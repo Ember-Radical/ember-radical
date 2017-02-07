@@ -11,6 +11,7 @@ Added:
   - `cardTitleClassNames` (applies to the title subcomponent root element)
 - ✨ `rad-card` and its children now support binding `data-test` attributes
 - ✅ Tests added to verify custom classNames are properly passed through to `rad-card`'s subcomponents
+- 📝 Guides updated with new passed and yielded props
 
 ## 1.1.1 (02-07-2017)
 Fixed:
