@@ -34,6 +34,30 @@ export default Component.extend({
    * @default ''
    */
   brand: '',
+  /**
+   * Custom className(s) to use on the body subcomponent's root element
+   * @property cardBodyClassNames
+   * @type {string}
+   */
+  cardBodyClassNames: 'card-body',
+  /**
+   * Custom className(s) to use on `rad-card`'s root element
+   * @property cardClassNames
+   * @type {string}
+   */
+  cardClassNames: '',
+  /**
+   * Custom className(s) to use on the footer subcomponent's root element
+   * @property cardFooterClassNames
+   * @type {string}
+   */
+  cardFooterClassNames: 'card-footer',
+  /**
+   * Custom className(s) to use on the title subcomponent's root element
+   * @property cardTitleClassNames
+   * @type {string}
+   */
+  cardTitleClassNames: 'card-title',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -44,7 +68,7 @@ export default Component.extend({
    * @type {String}
    */
   brandClass: computed(function() {
-    return `card-${this.get('brand') ? this.get('brand') : 'default'}`
+    return `card-${this.get('brand') ? this.get('brand') : 'default'}`;
   }),
   /**
    * Bind standard core class: `card-footer`
@@ -57,15 +81,18 @@ export default Component.extend({
    * @property classNameBindings
    * @type {Array}
    */
-  classNameBindings: ['brandClass'],
+  classNameBindings: ['brandClass', 'cardClassNames'],
 
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{yield (hash
-      title=(component 'rad-card/title')
-      body=(component 'rad-card/body')
-      footer=(component 'rad-card/footer')
+      title=(component 'rad-card/title'
+        cardTitleClassNames=cardTitleClassNames)
+      body=(component 'rad-card/body'
+        cardBodyClassNames=cardBodyClassNames)
+      footer=(component 'rad-card/footer'
+        cardFooterClassNames=cardFooterClassNames)
     )}}
   `
 });

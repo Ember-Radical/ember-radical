@@ -3,6 +3,11 @@
 ## 1.2.0 (02-07-2017)
 Added:
 - ✨ `rad-drawer` now yields its `hidden` state
+- ✨ `rad-card` now accepts the following new properties for better customization:
+  - `cardClassNames` (applies to the root component element)
+  - `cardBodyClassNames` (applies to the body subcomponent root element)
+  - `cardFooterClassNames` (applies to the footer subcomponent root element)
+  - `cardTitleClassNames` (applies to the title subcomponent root element)
 
 ## 1.1.1 (02-07-2017)
 Fixed:

@@ -8,15 +8,25 @@ import hbs from 'htmlbars-inline-precompile';
  */
 export default Component.extend({
 
-  // Properties
+  // Passed Props
   // ---------------------------------------------------------------------------
 
   /**
    * Bind standard core class: `card-title`
-   * @property classNames
+   * @property cardTitleClassNames
    * @type {Array}
    */
-  classNames: ['card-title'],
+  cardTitleClassNames: 'card-title',
+
+  // Properties
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Bind props to classes on the root component element.
+   * @property classNameBindings
+   * @type {Array}
+ */
+  classNameBindings: ['cardTitleClassNames'],
 
   // Layout
   // ---------------------------------------------------------------------------
