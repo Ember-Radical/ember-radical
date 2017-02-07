@@ -231,7 +231,7 @@ export default Component.extend({
         buttonStyle=buttonStyle
         tagcategory=tagcategory tagaction=tagaction taglabel=taglabel tagvalue=tagvalue tagcd=tagcd
         data-test=data-test)
-    )}}
+    ) hidden}}
 
     {{#if Content}}
       {{#rad-drawer/content hidden=hidden ariaId=ariaId data-test=data-test}}
