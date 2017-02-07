@@ -2,6 +2,7 @@
 
 ## 1.2.0 (02-07-2017)
 Added:
+- ✨ `rad-tabs` now yields its `activeTab` state
 - ✨ `rad-drawer` now yields its `hidden` state
 - ✨ `rad-card` now accepts the following new properties for better customization:
   - `cardClassNames` (applies to the root component element)
