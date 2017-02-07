@@ -222,3 +222,25 @@ test('it works as a controlled tabs instance by passing activeId and onChange cl
   assert.ok(this.$('[data-test="tab-b"]').hasClass('active'), 'user click activates tab');
   assert.equal(this.$('[data-test="panel-b"]').attr('aria-hidden'), 'false', 'user click shows panel');
 });
+
+// Test Custom classNames application
+// ---------------------------------------------------------------------------
+test('it applies custom classNames from passed props to the component template elements', function(assert) {
+
+  this.render(hbs`{{#rad-tabs
+    buttonStyleClassNames='totally-rad-buttons'
+    tabClassNames='custom-tab-class'
+    tabListClassNames='totally-effing-rad-tab-list'
+    defaultTab='tab-1'
+    data-test='custom-classes-test' as |components|}}
+    {{#components.content
+      elementId='tab-1'
+      data-test='custom-classes-test-first-tab'}}Hi there.{{/components.content}}
+  {{/rad-tabs}}`);
+
+  assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-rad-buttons'), 'The custom buttonStyleClassNames should be applied to the ul');
+
+  assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-effing-rad-tab-list'), 'The custom tabListClassNames should be applied to the ul');
+
+  assert.ok(this.$('[data-test="custom-classes-test"] li:first-child').hasClass('custom-tab-class'), 'The custom tabClassNames should be applied to the tab item li elements');
+});

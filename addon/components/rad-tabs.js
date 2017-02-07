@@ -91,6 +91,16 @@ export default Component.extend({
    */
   buttonStyle: true,
   /**
+   * Class name(s) to use when utilizing tabs in a "button style"
+   * implementation.
+   * @property buttonStyleClassNames
+   * @passed
+   * @public
+   * @type {String}
+   * @default 'button-style'
+   */
+  buttonStyleClassNames: 'button-style',
+  /**
    * Whether the content pane subcomponents should take on the appearance of
    * a `rad-card`.
    *
@@ -140,10 +150,27 @@ export default Component.extend({
    * @property scrollTarget
    * @passed
    * @public
-   * @type {string}
+   * @type {String}
    * @default 'body, html'
    */
   scrollTarget: 'body, html',
+  /**
+   * Class name(s) to use for the individual tab `<li>` elements.
+   * @property tabClassNames
+   * @passed
+   * @type {String}
+   * @default ''
+   */
+  tabClassNames: 'tab-li',
+  /**
+   * Class name(s) to use on the enclosing tabs `<ul>` element.
+   * @property tabListClassNames
+   * @passed
+   * @public
+   * @type {String}
+   * @default ''
+   */
+  tabListClassNames: '',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -276,9 +303,9 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{! A list of buttons that are all automagically added to the tabList based on the number of rad-tabs.content components are nested inside the component. }}
-    <ul class="tab-list{{if buttonStyle ' button-style'}}" role="tablist" data-test="tab-list">
+    <ul class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
       {{#each tabList as |tab|}}
-        <li class="tab-li"
+        <li class={{tabClassNames}}
           aria-hidden="{{if tab.hidden true false}}">
           {{#rad-button
             ariaRole="tab"
