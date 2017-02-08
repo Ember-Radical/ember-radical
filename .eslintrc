@@ -21,7 +21,8 @@
   globals: {
     DEVELOPMENT: true,
     PRODUCTION: true,
-    TAGGING: true
+    TAGGING: true,
+    RAD_VERSION: true
   },
 
   rules: {

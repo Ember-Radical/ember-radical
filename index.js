@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const VersionChecker = require('ember-cli-version-checker');
+const packageJSON = require('./package.json');
 
 /**
  * Ember Radical addon that extends Ember CLI root Addon class. Read in
@@ -79,12 +80,15 @@ module.exports = {
       this.radicalOptions,
       app.options.emberRadical
     );
+    // Grab the app version from package.json for use in the env
+    const radicalVersion = packageJSON.version;
     // Create feature flags using env, specified flags && default Radical feature flags
     const featureFlags = Object.assign(
       {
         DEVELOPMENT: env === 'development',
         PRODUCTION: env === 'production',
-        TEST: env === 'test'
+        TEST: env === 'test',
+        RAD_VERSION: radicalVersion || '0.0.0'
       },
       // Radical features defaults, will be overriden by any consumer specified flags
       this.radicalDefaultFeatureFlags,
