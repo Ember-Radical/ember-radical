@@ -241,6 +241,26 @@ export default Component.extend({
    */
   closeModal: () => {},
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property footerComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-modal/footer'
+   */
+  footerComponent: 'rad-modal/footer',
+  /**
+   * @property headerComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-modal/header'
+   */
+  headerComponent: 'rad-modal/header',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -499,13 +519,13 @@ export default Component.extend({
         {{! ----------------------------------------------------------------- }}
         {{yield
           (hash
-            header=(component 'rad-modal/header'
+            header=(component headerComponent
               closeModal=closeModal
               elementId=(concat 'aria-labelledby-' elementId)
               closeButton=closeButton
               tagClose=tagClose
             )
-            footer=(component 'rad-modal/footer')
+            footer=(component footerComponent)
           )
           open
         }}

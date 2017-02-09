@@ -178,6 +178,18 @@ export default Component.extend({
    */
   tabListClassNames: '',
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-tabs/content'
+   */
+  contentComponent: 'rad-tabs/content',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -331,7 +343,7 @@ export default Component.extend({
     <div class="content-container {{if card 'rad-card'}}">
       {{! Yield the rad-tabs/content component pre-bound with internal props }}
       {{yield (hash
-        content=(component 'rad-tabs/content'
+        content=(component contentComponent
           registerTab=(action 'registerTab')
           updateTab=(action 'updateTab')
           activeId=activeId)

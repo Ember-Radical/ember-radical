@@ -120,6 +120,34 @@ export default Component.extend({
    * @optional
    */
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-dropdown/content'
+   */
+  contentComponent: 'rad-dropdown/content',
+  /**
+   * @property menuItemComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-dropdown/menu-item'
+   */
+  menuItemComponent: 'rad-dropdown/menu-item',
+  /**
+   * @property menuItemComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-dropdown/target'
+   */
+  targetComponent: 'rad-dropdown/target',
+
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -309,17 +337,17 @@ export default Component.extend({
 
     {{yield
       (hash
-        target=(component 'rad-dropdown/target'
+        target=(component targetComponent
           id=(concat 'aria-labelledby-' elementId)
           brand=brand
           click=(action (if hidden 'show' 'hide'))
           link=(not buttonStyle)
           hidden=hidden)
-        content=(component 'rad-dropdown/content'
+        content=(component contentComponent
           aria-labelledby=(concat 'aria-labelledby-' elementId)
           dropdownMenu=dropdownMenu
           hidden=hidden)
-        menu-item=(component 'rad-dropdown/menu-item'
+        menu-item=(component menuItemComponent
           hide=(action 'hide'))
       )
       (action 'show')
