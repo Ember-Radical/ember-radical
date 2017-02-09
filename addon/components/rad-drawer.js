@@ -151,6 +151,12 @@ export default Component.extend({
    */
   ariaId: computed('elementId', controls),
   /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['hidden::active']
+   */
+  classNameBindings: ['hidden::active'],
+  /**
    * Bind `rad-drawer` to component
    * @property classNames
    * @type {Array}

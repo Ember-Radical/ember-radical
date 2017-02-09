@@ -261,6 +261,16 @@ export default Component.extend({
    */
   headerComponent: 'rad-modal/header',
 
+  // Ember Props
+  // ---------------------------------------------------------------------------
+  /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['_active:active']
+   */
+  classNameBindings: ['_active:active'],
+
+
   // Properties
   // ---------------------------------------------------------------------------
 
