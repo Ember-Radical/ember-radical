@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+Fixed:
+- 🐛 `rad-tabs` now yields the correct property for the active tab id (`activeId`)
+
 ## 1.2.0 (02-07-2017)
 Added:
 - ✨ `rad-tabs` now yields its `activeTab` state
