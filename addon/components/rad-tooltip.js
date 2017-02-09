@@ -89,6 +89,12 @@ export default Component.extend({
    */
   'aria-describedby': computed('elementId', describedby),
   /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['hidden::active']
+   */
+  classNameBindings: ['hidden::active'],
+  /**
    * State boolean for display of the tooltip content. Is toggled true/false to
    * handle show/hide. Updated in `_showContent` and `_hideContent`
    * @property hidden

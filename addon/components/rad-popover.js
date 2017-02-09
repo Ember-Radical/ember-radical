@@ -106,6 +106,12 @@ export default Component.extend({
    */
   attributeBindings: ['data-test'],
   /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['hidden::active']
+   */
+  classNameBindings: ['hidden::active'],
+  /**
    * Bind standard core class: `rad-popover`
    * @property classNames
    * @type {Array}

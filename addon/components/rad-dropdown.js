@@ -149,6 +149,12 @@ export default Component.extend({
    */
   attributeBindings: ['data-test'],
   /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['hidden::active']
+   */
+  classNameBindings: ['hidden::active'],
+  /**
    * Bind `rad-dropdown`
    * @property classNames
    * @type {Array}

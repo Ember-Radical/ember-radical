@@ -241,6 +241,15 @@ export default Component.extend({
    */
   closeModal: () => {},
 
+  // Ember Props
+  // ---------------------------------------------------------------------------
+  /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['_active:active']
+   */
+  classNameBindings: ['_active:active'],
+
   // Properties
   // ---------------------------------------------------------------------------
 
