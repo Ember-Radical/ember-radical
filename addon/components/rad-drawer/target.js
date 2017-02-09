@@ -1,6 +1,6 @@
 import hbs from 'htmlbars-inline-precompile';
 import computed from 'ember-computed';
-import CoreButton from '../rad-button';
+import RadButton from '../rad-button';
 import {expanded} from '../../utils/arias';
 
 /**
@@ -8,16 +8,17 @@ import {expanded} from '../../utils/arias';
  *
  * @class Component.RadDrawer.Target
  * @constructor
- * @extends Component.CoreButton
+ * @extends Component.RadButton
  */
-export default CoreButton.extend({
+export default RadButton.extend({
 
   // Properties
   // ---------------------------------------------------------------------------
 
   /**
    * Display the target content as a button instead of a plain link. Passed in
-   * from the parent `rad-drawer`.
+   * from the parent `rad-drawer` and passed ultimately updates the `link`
+   * property on `rad-button`.
    * @property buttonStyle
    * @type {Boolean}
    */
@@ -56,12 +57,6 @@ export default CoreButton.extend({
    * @type {Array}
    */
   classNames: ['drawer-target'],
-  /**
-   * Bind `link` to `!useButtonStyle`
-   * @property classNameBindings
-   * @type {Array}
-   */
-  classNameBindings: ['buttonStyle::btn-link'],
 
   // Hooks
   // ---------------------------------------------------------------------------

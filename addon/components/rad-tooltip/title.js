@@ -1,4 +1,4 @@
-import CoreButton from '../rad-button';
+import RadButton from '../rad-button';
 const devAssets = {};
 
 // Development Assets
@@ -15,7 +15,7 @@ if (DEVELOPMENT) {
 }
 
 /**
- * CoreTooltip subcomponent extends the `CoreButton` component. Requires
+ * CoreTooltip subcomponent extends the `RadButton` component. Requires
  * `aria-describedby` to bind to html attribute.
  *
  * Properties | Default | Description
@@ -26,9 +26,9 @@ if (DEVELOPMENT) {
  *
  * @class Component.RadTooltip.Title
  * @constructor
- * @extends Component.CoreButton
+ * @extends Component.RadButton
  */
-export default CoreButton.extend(devAssets, {
+export default RadButton.extend(devAssets, {
 
   // Passed Properties
   // ---------------------------------------------------------------------------
@@ -44,7 +44,7 @@ export default CoreButton.extend(devAssets, {
   // ---------------------------------------------------------------------------
 
   /**
-   * Tooltips are tagged on hover by default. `CoreButton` will check this flag
+   * Tooltips are tagged on hover by default. `RadButton` will check this flag
    * and the existence of `tagcategory` on mouseEnter. This means if you need
    * to fire a tag on hover, you only have to pass `tagcategory`.
    * @property taghover
