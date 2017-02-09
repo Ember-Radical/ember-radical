@@ -59,6 +59,34 @@ export default Component.extend({
    */
   cardTitleClassNames: 'card-title',
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property bodyComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-card/body'
+   */
+  bodyComponent: 'rad-card/body',
+  /**
+   * @property footerComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-card/footer'
+   */
+  footerComponent: 'rad-card/footer',
+  /**
+   * @property titleComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-card/title'
+   */
+  titleComponent: 'rad-card/title',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -94,11 +122,11 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{yield (hash
-      title=(component 'rad-card/title'
+      title=(component titleComponent
         cardTitleClassNames=cardTitleClassNames)
-      body=(component 'rad-card/body'
+      body=(component bodyComponent
         cardBodyClassNames=cardBodyClassNames)
-      footer=(component 'rad-card/footer'
+      footer=(component footerComponent
         cardFooterClassNames=cardFooterClassNames)
     )}}
   `

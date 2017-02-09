@@ -86,6 +86,26 @@ export default Component.extend({
    */
   size: '',
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-popover/content'
+   */
+  contentComponent: 'rad-popover/content',
+  /**
+   * @property targetComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-button'
+   */
+  targetComponent: 'rad-button',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -204,13 +224,13 @@ export default Component.extend({
 
   layout: hbs`
     {{yield (hash
-      content=(component 'rad-popover/content'
+      content=(component contentComponent
         aria-describedby=aria-describedby
         hidden=hidden
         position=position
         size=size
         data-test=(concat data-test '-content'))
-      target=(component 'rad-button'
+      target=(component targetComponent
         aria-describedby=aria-describedby
         data-test=(concat data-test '-target'))
       ) aria-describedby

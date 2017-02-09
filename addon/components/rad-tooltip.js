@@ -76,6 +76,26 @@ export default Component.extend({
    */
   onShow: null,
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-tooltip/content'
+   */
+  contentComponent: 'rad-tooltip/content',
+  /**
+   * @property titleComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-tooltip/title'
+   */
+  titleComponent: 'rad-tooltip/title',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -191,7 +211,7 @@ export default Component.extend({
     {{/if}}
 
     {{yield (hash
-      title=(component 'rad-tooltip/title'
+      title=(component titleComponent
         aria-describedby=aria-describedby
         brand=brand
         link=(not buttonStyle)
@@ -200,7 +220,7 @@ export default Component.extend({
         taglabel=taglabel
         tagvalue=tagvalue
         tagcd=tagcd)
-      content=(component 'rad-tooltip/content'
+      content=(component contentComponent
         aria-describedby=aria-describedby
         hidden=hidden)
     ) aria-describedby hidden}}
