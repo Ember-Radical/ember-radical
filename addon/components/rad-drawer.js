@@ -120,6 +120,26 @@ export default Component.extend({
    */
   icon: 'arrow-down',
 
+  // Contextual Component Specifications
+  // ---------------------------------------------------------------------------
+
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-drawer/content'
+   */
+  contentComponent: 'rad-drawer/content',
+  /**
+   * @property contentComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-drawer/content'
+   */
+  targetComponent: 'rad-drawer/target',
+
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -130,6 +150,12 @@ export default Component.extend({
    * @param elementId
    */
   ariaId: computed('elementId', controls),
+  /**
+   * @property classNameBindings
+   * @type {Array}
+   * @default ['hidden::active']
+   */
+  classNameBindings: ['hidden::active'],
   /**
    * Bind `rad-drawer` to component
    * @property classNames
@@ -219,11 +245,11 @@ export default Component.extend({
     {{/if}}
 
     {{yield (hash
-      content=(component 'rad-drawer/content'
+      content=(component contentComponent
         ariaId=ariaId
         hidden=hidden
         data-test=data-test)
-      target=(component 'rad-drawer/target'
+      target=(component targetComponent
         ariaId=ariaId
         click=(action 'toggleHidden')
         hidden=hidden
