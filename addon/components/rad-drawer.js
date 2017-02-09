@@ -211,7 +211,7 @@ export default Component.extend({
         click=(action 'toggleHidden')
         hidden=hidden
         icon=icon
-        buttonStyle=buttonStyle
+        link=(not buttonStyle)
         tagcategory=tagcategory tagaction=tagaction taglabel=taglabel tagvalue=tagvalue tagcd=tagcd
         data-test=data-test}}
         {{{Target}}}
@@ -228,7 +228,7 @@ export default Component.extend({
         click=(action 'toggleHidden')
         hidden=hidden
         icon=icon
-        buttonStyle=buttonStyle
+        link=(not buttonStyle)
         tagcategory=tagcategory tagaction=tagaction taglabel=taglabel tagvalue=tagvalue tagcd=tagcd
         data-test=data-test)
     ) hidden}}

@@ -1,7 +1,7 @@
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
-import CoreButton from '../rad-button';
+import RadButton from '../rad-button';
 import { expanded } from '../../utils/arias';
 
 /**
@@ -9,9 +9,9 @@ import { expanded } from '../../utils/arias';
  *
  * @class Component.RadDropdown.Target
  * @constructor
- * @extends Component.CoreButton
+ * @extends Component.RadButton
  */
-export default CoreButton.extend({
+export default RadButton.extend({
   // Properties
   // ---------------------------------------------------------------------------
   /**

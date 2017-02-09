@@ -1,14 +1,14 @@
 import hbs from 'htmlbars-inline-precompile';
-import CoreButton from '../rad-button';
+import RadButton from '../rad-button';
 
 /**
  * Core dropdown menu item
  *
  * @class Component.RadDropdown.MenuItem
  * @constructor
- * @extends Ember.CoreButton
+ * @extends Ember.RadButton
  */
-export default CoreButton.extend({
+export default RadButton.extend({
   // Properties
   // ---------------------------------------------------------------------------
   /**
