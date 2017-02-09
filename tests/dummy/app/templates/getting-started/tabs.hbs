@@ -38,7 +38,7 @@
   <br>
 
   {{code-example
-    title='Plain Style'
+    title='Scroll on Click'
     language='handlebars' code='{{#rad-tabs defaultTab="scrimp" scrollOnClick=true as |components|}}
   {{#components.content label="Shrimp" elementId="scrimp"}}
     <p>BRINGO! There be some pretty good lil shrimpers in here, lets check it out.</p>
@@ -78,7 +78,7 @@
 {{! ------------------------------------------------------------------------- }}
   {{#code-example
     autoRender=false
-    title='Show/Hide Tabs'
+    title='Dynamically Add Tabs'
     language='handlebars' code='{{#rad-button
   click=(action "addTab")
   disabled=disableAddTabButton}}Add a tab{{/rad-button}}
@@ -103,6 +103,30 @@
         {{/components.content}}
       {{/each}}
     {{/rad-tabs}}
+  {{/code-example}}
+
+  <br>
+
+  {{#code-example
+    title='Change Tabs Internally'
+    language='handlebars'
+    code="{{#rad-tabs
+  defaultTab='tab-is-rad' as |components activeTab showTab|}}
+  {{#components.content label='Rad' elementId='tab-is-rad'}}
+    <img src='https://media.giphy.com/media/yoJC2H0rOyjDS4zgxq/giphy.gif' class='img-fluid' alt='A pretty rad gif. It says rad.'>
+    <p>Pretend there is some arbitrary content in here talking about a subject that may be related to content in the totally rad tab.</p>
+    {{#rad-button click=(action showTab 'tab-is-totally-rad')}}
+      Select the totally rad tab
+    {{/rad-button}}
+  {{/components.content}}
+  {{#components.content label='Totally Rad' elementId='tab-is-totally-rad'}}
+    <img src='https://media.giphy.com/media/3yFr6ODcNHhrW/giphy.gif' class='img-fluid' alt='A totally rad gif. It says TOTALLY RAD'>
+    <p>This tab is not just rad, but TOTALLY rad. If that's too rad for you, might I suggest that you go back to the rad (but not AS rad) tab where you came from.</p>
+    {{#rad-button click=(action showTab 'tab-is-rad')}}
+      Select the regular boring rad tab
+    {{/rad-button}}
+  {{/components.content}}
+{{/rad-tabs}}"}}
   {{/code-example}}
 </section>
 
@@ -225,6 +249,14 @@
             <td>''</td>
             <td>
               <p>The elementId of the currently active tab</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>showTab</code></td>
+            <td>{Function}</td>
+            <td>N/A</td>
+            <td>
+              <p>Use this action with a tab's <code>elementId</code> as the sole argument to cause that tab to become selected. Useful for manipulating the tab state within the tab context.</p>
             </td>
           </tr>
         </tbody>
