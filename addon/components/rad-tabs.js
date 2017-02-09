@@ -335,7 +335,7 @@ export default Component.extend({
           registerTab=(action 'registerTab')
           updateTab=(action 'updateTab')
           activeId=activeId)
-      ) activeTab}}
+      ) activeId}}
     </div>
   `
 });
