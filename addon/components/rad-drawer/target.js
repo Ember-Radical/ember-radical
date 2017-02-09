@@ -17,7 +17,7 @@ export default RadButton.extend({
 
   /**
    * Display the target content as a button instead of a plain link. Passed in
-   * from the parent `rad-drawer` and passed ultimately updates the `link`
+   * from the parent `rad-drawer` and ultimately updates the `link`
    * property on `rad-button`.
    * @property buttonStyle
    * @type {Boolean}
