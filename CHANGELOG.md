@@ -1,8 +1,27 @@
 # Changelog
 
-## Next
+## 1.3.0 (02-09-2017)
+Added:
+- ✨ `rad-tabs` now yields its `showTab` action
+- ✨ All components that yield children via contextual components allow you to specify a custom component to render their children as:
+  - `rad-card`
+  - `rad-drawer`
+  - `rad-dropdown`
+  - `rad-modal`
+  - `rad-popover`
+  - `rad-tabs`
+  - `rad-tooltip`
+- ✨ Components that have toggleable visibility now apply an `active` class to their root element for improved custom styling control:
+  - `rad-drawer`
+  - `rad-dropdown`
+  - `rad-modal`
+  - `rad-popover`
+  - `rad-tooltip`
+
 Fixed:
 - 🐛 `rad-tabs` now yields the correct property for the active tab id (`activeId`)
+- 🐛 Binding of `buttonStyle` prop on `rad-drawer` now correctly updates `link` property of child `rad-button` instance
+- 
 
 ## 1.2.0 (02-07-2017)
 Added:
