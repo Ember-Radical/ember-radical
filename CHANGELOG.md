@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (02-10-2017)
+Fixed:
+- 🐛 `rad-tabs` now yields correct `activeId` property instead of `activeTab`
+
 ## 1.3.0 (02-09-2017)
 Added:
 - ✨ `rad-tabs` now yields its `showTab` action
@@ -21,7 +25,6 @@ Added:
 Fixed:
 - 🐛 `rad-tabs` now yields the correct property for the active tab id (`activeId`)
 - 🐛 Binding of `buttonStyle` prop on `rad-drawer` now correctly updates `link` property of child `rad-button` instance
-- 
 
 ## 1.2.0 (02-07-2017)
 Added:
