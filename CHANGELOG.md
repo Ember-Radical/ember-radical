@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2 (02-14-2017)
+Fixed:
+- 🐛 `rad-dropdown` now has `position: relative` on its root element to ensure proper display/positioning of the menu in all scenarios
+
 ## 1.3.1 (02-10-2017)
 Fixed:
 - 🐛 `rad-tabs` now yields correct `activeId` property instead of `activeTab`
