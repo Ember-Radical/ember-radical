@@ -1,0 +1,80 @@
+// ========================================================
+// Mixins for creating util classes and shared styles
+// ========================================================
+
+
+// Background Colors
+// ---------------------------------------------------------------------------
+@mixin bg-black() {
+  background-color: $black;
+}
+
+@mixin bg-blue() {
+  background-color: $blue;
+}
+
+@mixin bg-green() {
+  background-color: $green;
+}
+
+@mixin bg-pink() {
+  background-color: $pink;
+}
+
+// Box Shadows (Glow)
+// ---------------------------------------------------------------------------
+@mixin box-glow-blue() {
+  box-shadow: 0 0 8px $blue;
+}
+
+@mixin box-glow-green() {
+  box-shadow: 0 0 8px $green;
+}
+
+@mixin box-glow-pink() {
+  box-shadow: 0 0 8px $pink;
+}
+
+@mixin box-glow-white() {
+  box-shadow: 0 0 8px $white;
+}
+
+// Text Colors
+// ---------------------------------------------------------------------------
+@mixin text-black() {
+  color: $black;
+}
+
+@mixin text-blue() {
+  color: $blue;
+}
+
+@mixin text-green() {
+  color: $green;
+}
+
+@mixin text-pink() {
+  color: $pink;
+}
+
+@mixin text-white() {
+  color: $white;
+}
+
+// Text Shadows (Glow)
+// ---------------------------------------------------------------------------
+@mixin text-glow-blue() {
+  text-shadow: 0 0 8px $blue;
+}
+
+@mixin text-glow-green() {
+  text-shadow: 0 0 8px $green;
+}
+
+@mixin text-glow-pink() {
+  text-shadow: 0 0 8px $pink;
+}
+
+@mixin text-glow-white() {
+  text-shadow: 0 0 8px $white;
+}

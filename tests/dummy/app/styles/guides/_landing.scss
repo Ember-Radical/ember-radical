@@ -1,0 +1,119 @@
+// ========================================================
+// Landing Page Styles
+// ========================================================
+
+// Home page hero
+// ---------------------------------------------------------------------------
+
+.home-hero {
+  overflow: hidden;
+  padding: 4rem 0 12rem;
+  position: relative;
+  background: $black;
+  color: $white;
+  text-align: center;
+
+  p.intro {
+    font-size: 1.2rem;
+  }
+}
+
+.horizon {
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  bottom: 180px;
+  background-image: linear-gradient(
+  rgba($black, 0.8) 0%,
+  rgba(darken($pink, 5%), 0.5) 70%,
+  rgba(darken($pink, 5%), 0.8) 80%,
+  rgba(darken($pink, 5%), 0.2) 90%,
+  rgba($black, 0.2) 95%,
+  rgba($black, 0) 100%);
+}
+
+.grid {
+  position: absolute;
+  top: -175px;
+  right: -400px;
+  bottom: -400px;
+  left: -400px;
+  background-color: $black;
+  background-image: linear-gradient(darken($pink, 5%) 1px, transparent 2px),
+  linear-gradient(90deg, darken($pink, 5%) 1px, transparent 2px);
+  background-position: 0 0, 0 0;
+  background-size: 3% 3%, 3% 3%;
+  transform: perspective(200px) rotateX(80deg);
+  animation: throughSpace 2s linear;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (min-width: 62em) {
+  .horizon {
+    bottom: 110px;
+  }
+}
+
+@keyframes throughSpace {
+  0% {
+    transform: perspective(200px) rotateX(80deg) translateY(0%);
+  }
+  100% {
+    transform: perspective(200px) rotateX(80deg) translateY(5.8%);
+  }
+}
+
+// Links wrapper
+.hero-links {
+  margin-top: 35px;
+}
+
+// Individual hero link - looks like a button
+.hero-link {
+  margin: 10px 5px;
+  padding: 9px 0;
+  background: rgba($black, 0.4);
+  border: 2px solid $blue;
+  border-radius: 4px;
+  box-shadow: 0 0 5px $blue;
+  font-size: 18px;
+  color: $blue;
+  text-shadow: 0 0 5px $blue;
+
+  &:hover {
+    background: $blue;
+    box-shadow: 0 0 20px $blue;
+    color: $black;
+    text-shadow: none;
+  }
+}
+
+// Feature show case divs
+// ---------------------------------------------------------------------------
+
+.landing-features {
+  padding: 12rem 0 10rem;
+  background-color: $black;
+  background-image: linear-gradient(
+  rgba(darken($pink, 5%), 0.8) 0%,
+  $black 7.5%);
+
+  hr {
+    margin: 3rem 0;
+    background: $green;
+    border: $green 1px solid;
+    box-shadow: 0 0 20px $green;
+  }
+
+  code {
+    margin: 0 0.15em;
+    background: lighten($black, 20%);
+    border: 1px solid lighten($black, 40%);
+    box-shadow: 0 0 5px lighten($black, 40%);
+    color: $pink;
+  }
+
+  a {
+    color: $green;
+  }
+}

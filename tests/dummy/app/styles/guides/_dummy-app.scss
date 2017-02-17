@@ -1,5 +1,5 @@
-@import "dummy-styles/divider";
-@import "dummy-styles/sidebar";
+@import "divider";
+@import "sidebar";
 
 // Flexy layout for sticky footer goodness
 // ---------------------------------------------------------------------------
@@ -15,9 +15,6 @@
 }
 
 .site-footer {
-  margin-top: 10em;
   padding: 15px;
-  background: #50676B;
-  color: #FFFFFF;
   text-align: center;
 }

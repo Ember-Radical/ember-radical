@@ -4,14 +4,32 @@
 
 // Page wrapper
 .guide-page {
-  display: flex;
+  padding-bottom: 5rem;
 }
 
 .page-title {
   width: 100%;
-  padding: 100px;
-  background-color: #50676B;
-  color: #FFFFFF;
+  padding: 3em 1em;
+  background-image: linear-gradient(
+  $black 70%,
+  rgba($blue, 0.7) 100%
+  );
+  color: $white;
+
+  @include bg-black();
+
+  h1 {
+    @include text-blue();
+    @include text-glow-blue();
+  }
+
+  @media screen and (min-width: 41em) {
+    padding: 3em;
+  }
+
+  @media screen and (min-width: 62em) {
+    padding: 6em;
+  }
 }
 
 // Page content wrapper

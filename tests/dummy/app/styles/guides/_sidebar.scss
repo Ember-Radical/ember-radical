@@ -4,6 +4,10 @@
   img {
     width: 100%;
   }
+
+  @media screen and (min-width: 61em) {
+    margin-top: 3.5rem;
+  }
 }
 
 nav {
@@ -19,10 +23,11 @@ nav {
 
       a {
         font-weight: 400;
+        color: darken($blue, 10%);
       }
 
       .active {
-        color: #292B2C;
+        color: darken($pink, 10%);
       }
     }
   }

@@ -1,56 +1,74 @@
-<div class="hero">
-  <div class="hero-wrapper">
-    {{!-- <div class="message"> --}}
-      {{!-- <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"> --}}
-      <h1>ember-radical</h1>
-      <p class="text-white">v{{version}}</p>
-      <br>
-      <span class="italic">Accessible, Testable, Taggable, DDAU Components for your Ember application</span>
-      <div class="hero-links">
-        {{link-to 'User Guide' 'getting-started' classNames='rad-button btn hero-link'}}
-        {{link-to 'API Docs' 'docs' classNames='rad-button btn hero-link'}}
-        <a href="https://www.github.com/healthsparq/ember-radical/" class='rad-button btn hero-link'>Source on Github</a>
+<section class="home-hero">
+  <div class="grid"></div>
+  <div class="horizon"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-2"></div>
+      <div class="col-xs-12 col-lg-8">
+        {{!-- <div class="message"> --}}
+        {{!-- <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"> --}}
+        <h1 class="text-blue text-glow-blue big-time">ember-radical</h1>
+        <p class="text-green text-glow-green">v{{version}}</p>
+        <br>
+        <p class="italic intro text-glow-white">Accessible, Testable, Taggable, DDAU Components for your Ember application</p>
+        <div class="row">
+          <div class="col-xs-12 col-lg-4">
+            {{link-to 'User Guide' 'getting-started' classNames='rad-button btn hero-link btn-block'}}
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            {{link-to 'API Docs' 'docs' classNames='rad-button btn hero-link btn-block'}}
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            <a href="https://www.github.com/healthsparq/ember-radical/" class='rad-button btn hero-link btn-block'>Source on Github</a>
+          </div>
+        </div>
+        {{!-- </div> --}}
       </div>
-    {{!-- </div> --}}
-  </div>
-</div>
-
-<hr>
-
-<div class="landing-features-container">
-  <div class="feature-intro feature-section">
-    <h2>What is <b>ember-radical</b>?</h2>
-    <p><b>ember-radical</b> is a <i>library of components</i> designed to create <i>consistent implementations</i> of <i>common interaction patterns</i> found in web modern web applications.</p>
-    <p>Whether you're a team of one, fifteen or over a hundred, this library will enable you to enforce conventions, facilitate testing and provide access for your site to all audiences.</p>
-  </div>
-  <div class="row">
-    <div class="col-sm">
-      <h4>Fully Accessible</h4>
-      <p>Typically, ensuring that your application is fully accessible to screen readers and other assistive technologies requires a fair amount of extra education and effort. Radical has been built with <b>accessibility standards</b> in front of mind, and all of it's components are <b>508/WCAG compliant</b> right out of the box. It also self-enforces these standards by issuing warnings when its accesibility features aren't being used correctly.</p>
-      <hr>
-      <h4>Data Down, Actions Up</h4>
-      <p><b>One-way data flow</b> (better known in the Ember community as <b>DDAU</b>/Data Down, Actions Up) has practically become the de facto means for displaying and updating your application's data and state. All of Radical's components have been built strictly using one-way data flow. Not only does this help enforce one-way data flow as a development convention, it helps future proof your app as Ember continues to move forward. It's also a great way to educate your team on DDAU if you're still using two-way binding in your application.</p>
-      <hr>
-      <h4>Themeable</h4>
-      <p>Radical's visual presentation is easy to customize. Radical ships with a base set of structural styles and styles for controlling its visual theme, and it gives you the flexibility of choosing how much or how little of its styles to consume in your app. It's not explicitly tied to any CSS framework, so making it fit in with your app's existing styles is a breeze.</p>
-      <hr>
-      <h4>Bootstrap Compatible</h4>
-      <p>While Radical doesn't require any particular CSS framework, if you're using Bootstrap, Radical will automatically inherit and make use of its branding classes to ensure that it automatically picks up on whatever visual theming you've established.</p>
-      <hr>
-      <h4>Easy-to-use API</h4>
-      <p>Every component in Radical has been thoughtfully considered to ensure that its usage is as simple as possible for most implementations, but still offers a variety of options to make them as flexible as possible. Additionally, some components like Modals and Drawers offer dead-simple subcomponent access via Ember's <a href="https://guides.emberjs.com/v2.11.0/components/wrapping-content-in-a-component/#toc_sharing-component-data-with-its-wrapped-content">contextual components</a> functionality so you don't have to remember to yield and pass a whole bunch of properties. Nice.</p>
-      {{!--<pre>
-        {{#rad-modal as |components|}}
-          {{#components.header}}This modal is totally rad{{/components.header}}
-          <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif">
-        {{/rad-modal}}
-      </pre>--}}
-      <hr>
-      <h4>Fully testable</h4>
-      <p>All of the components Radical are fully tested against its internal test suite. As a bonus to you, all of the major elements in radical support passing in <code>data-test</code> attributes that you can use to easily target instances of radical's components in your own testing framework.</p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="landing-features text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-2"></div>
+      <div class="col-xs-12 col-lg-8">
+        <h2 class="text-blue text-glow-blue">What is <b>ember-radical</b>?</h2>
+        <p><b>ember-radical</b> is a <i>library of components</i> designed to create <i>consistent implementations</i> of <i>common interaction patterns</i> found in web modern web applications.</p>
+        <p>Whether you're a team of one, fifteen or over a hundred, this library will enable you to enforce conventions, facilitate testing and provide access for your site to all audiences.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-lg-2"></div>
+      <div class="col-xs-12 col-lg-8">
+        <hr>
+        <h4 class="text-blue text-glow-blue">Fully Accessible</h4>
+        <p>Typically, ensuring that your application is fully accessible to screen readers and other assistive technologies requires a fair amount of extra education and effort. Radical has been built with <b>accessibility standards</b> in front of mind, and all of it's components are <b>508/WCAG compliant</b> right out of the box. It also self-enforces these standards by issuing warnings when its accesibility features aren't being used correctly.</p>
+        <hr>
+        <h4 class="text-blue text-glow-blue">Data Down, Actions Up</h4>
+        <p><b>One-way data flow</b> (better known in the Ember community as <b>DDAU</b>/Data Down, Actions Up) has practically become the de facto means for displaying and updating your application's data and state. All of Radical's components have been built strictly using one-way data flow. Not only does this help enforce one-way data flow as a development convention, it helps future proof your app as Ember continues to move forward. It's also a great way to educate your team on DDAU if you're still using two-way binding in your application.</p>
+        <hr>
+        <h4 class="text-blue text-glow-blue">Themeable</h4>
+        <p>Radical's visual presentation is easy to customize. Radical ships with a base set of structural styles and styles for controlling its visual theme, and it gives you the flexibility of choosing how much or how little of its styles to consume in your app. It's not explicitly tied to any CSS framework, so making it fit in with your app's existing styles is a breeze.</p>
+        <hr>
+        <h4 class="text-blue text-glow-blue">Bootstrap Compatible</h4>
+        <p>While Radical doesn't require any particular CSS framework, if you're using Bootstrap, Radical will automatically inherit and make use of its branding classes to ensure that it automatically picks up on whatever visual theming you've established.</p>
+        <hr>
+        <h4 class="text-blue text-glow-blue">Easy-to-use API</h4>
+        <p>Every component in Radical has been thoughtfully considered to ensure that its usage is as simple as possible for most implementations, but still offers a variety of options to make them as flexible as possible. Additionally, some components like Modals and Drawers offer dead-simple subcomponent access via Ember's <a href="https://guides.emberjs.com/v2.11.0/components/wrapping-content-in-a-component/#toc_sharing-component-data-with-its-wrapped-content">contextual components</a> functionality so you don't have to remember to yield and pass a whole bunch of properties. Nice.</p>
+        {{!--<pre>
+          {{#rad-modal as |components|}}
+            {{#components.header}}This modal is totally rad{{/components.header}}
+            <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif">
+          {{/rad-modal}}
+        </pre>--}}
+        <hr>
+        <h4 class="text-blue text-glow-blue">Fully testable</h4>
+        <p>All of the components Radical are fully tested against its internal test suite. As a bonus to you, all of the major elements in radical support passing in <code>data-test</code> attributes that you can use to easily target instances of radical's components in your own testing framework.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 {{!-- <div class="row">
   <div class="col-sm">
