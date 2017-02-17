@@ -2,6 +2,7 @@
 
 ## Next
 Fixed:
+- 🐛 `rad-dropdown` now supports touch events inside of `dropdown-content`
 - 🐛 `rad-tabs` now yields the correct property for the active tab id (`activeId`)
 
 ## 1.2.0 (02-07-2017)
