@@ -12,9 +12,12 @@
 
 // Demo Site Elements
 // ---------------------------------------------------------------------------
-@import "dummy-app";
-@import "landing";
-@import "dummy-styles/guide-page";
+@import "guides/variables";
+@import "guides/mixins";
+@import "guides/utilities";
+@import "guides/dummy-app";
+@import "guides/guide-page";
+@import "guides/landing";
 
 // Keep paragraphs at a readable length
 p {

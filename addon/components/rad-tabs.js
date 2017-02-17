@@ -349,7 +349,7 @@ export default Component.extend({
             updateTab=(action 'updateTab')
             activeId=activeId)
         )
-        activeTab
+        activeId
         (action 'showTab')}}
     </div>
   `
