@@ -58,6 +58,23 @@ export default Component.extend({
    */
   classNameBindings: ['dropdownMenu:dropdown-menu'],
 
+  // Events
+  //----------------------------------------------------------------------------
+
+  /**
+   * Nasty touch eventses. Tricksy touch eventses. Any short touch event on this
+   * content component will fire the focusOut and the mouseLeave on the
+   * `rad-popover` element. Real abnoxious when you're trying to click something.
+   * Fire the link or button manually. Through the wonderful power of JavaScript.
+   *
+   * @event touchEnd
+   */
+  touchEnd(evt) {
+    if(evt.target.tagName === 'A' || evt.target.tagName === 'BUTTON') {
+      evt.target.click();
+    }
+  },
+
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`{{{yield}}}`
