@@ -27,6 +27,7 @@ Added:
   - `rad-tooltip`
 
 Fixed:
+- 🐛 `rad-dropdown` now supports touch events inside of `dropdown-content`
 - 🐛 `rad-tabs` now yields the correct property for the active tab id (`activeId`)
 - 🐛 Binding of `buttonStyle` prop on `rad-drawer` now correctly updates `link` property of child `rad-button` instance
 
