@@ -10,15 +10,55 @@
   package can be used for compilation.</p>
   <p>To import the base theme:</p>
   <p>
-    <pre>// In your /app/styles.css file
-@import 'ember-radical/styles';
-    </pre>
+    {{highlight-code language='javascript' code="// In your /app/styles.css file
+@import 'ember-radical/styles';"}}
   </p>
   <p>To import only the structural styles for components:</p>
   <p>
-    <pre>// In your /app/styles.css file
-@import 'ember-radical/component-structures';
-    </pre>
+    {{highlight-code language='javascript' code="// In your /app/styles.css file
+@import 'ember-radical/component-structures';"}}
+  </p>
+</section>
+<section>
+  <h4>Contextual Components</h4>
+  <p>Ember Radical uses Ember's contextual components feature to automatically pass important props from parent components to their children and provide easy access to child components within the template markup. This is a pattern you will see throughout the Ember Radical component suite.</p>
+  <p>What this means is that instead of having to yield and remember to pass a large number of accessibility and state properties to pass down from a parent <code>rad-drawer</code> to a <code>rad-drawer/target</code>, you simply yield a <code>components</code> hash in the template block and access subcomponents directly. In most cases, invoking the subcomponents by name is all you'll have to do.</p>
+  <h5>Example:</h5>
+  <p>
+    {{highlight-code language='handlebars' code="{{#rad-drawer as |components|}}
+  {{#components.target}}Open me!{{/components.target}}
+  {{#components.content}}Pretend there's a gif of a cute kitten in here{{/components.content}}
+{{/rad-drawer}}
+"}}
+  </p>
+  <p>The <code>rad-drawer</code> component's template uses the <code>hash</code> helper to automatically yield a hash of subcomponents and pass in any properties that those components might need for accessibility compliance and state management, essentially providing a simple public API for using subcomponents to customize output.</p>
+</section>
+<section>
+  <h4>Extending Components</h4>
+  <p>In some cases, you may find the need to introduce customizations to your application's implementation of Ember Radical's components, or you may want to add to its base features. To do this, you can simply extend one of Radical's components within your own app code and export it with the same name.</p>
+  <h5>Example</h5>
+  <p>We'll use <code>rad-svg</code> to demonstrate this technique, as you will likely want to use a different default value for the <code>filePath</code> property without having to override it every time you invoke the component.</p>
+  <p>
+    {{highlight-code language='javascript' code="// your-app/components/rad-svg.js
+
+import RadSVG from 'ember-radical/components/rad-svg';
+
+/**
+ * Custom extension of RadSVG for this application
+ * @class YourApp.Component.RadSVG
+ * @constructor
+ * @extends EmberRadical.Component.RadSVG
+ */
+export default RadSVG.extend({
+  /**
+   * Overridden filePath property to always check our custom SVG sprite file for
+   * getting SVG icons instead of the default value the library ships with.
+   * @property filePath
+   * @type {String}
+   */
+  filePath: 'assets/super-cool-svgs/amazing-svg-sprite.svg'
+});
+"}}
   </p>
 </section>
 <section>

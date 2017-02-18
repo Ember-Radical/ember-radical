@@ -12,8 +12,9 @@
   padding: 3em 1em;
   background-image: linear-gradient(
   $black 70%,
-  rgba($blue, 0.7) 100%
+  rgba(darken($blue, 5%), 0.8) 100%
   );
+  border-bottom: 3px lighten($blue, 7.5%) solid;
   color: $white;
 
   @include bg-black();
@@ -39,6 +40,13 @@
   }
   p.intro {
     font-size: 1.1rem;
+  }
+
+  pre {
+    border: 1px solid $pink;
+    border-radius: 0.25em;
+
+    @include box-glow-pink();
   }
 }
 

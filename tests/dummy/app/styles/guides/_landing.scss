@@ -93,10 +93,14 @@
 
 .landing-features {
   padding: 12rem 0 10rem;
+  position: relative;
   background-color: $black;
   background-image: linear-gradient(
   rgba(darken($pink, 5%), 0.8) 0%,
+  rgba(darken($pink, 5%), 0.5) 2.5%,
   $black 7.5%);
+  border-top: 3px lighten($pink, 5%) solid;
+  box-shadow: 0 -5px 25px darken($pink, 10%);
 
   hr {
     margin: 3rem 0;
