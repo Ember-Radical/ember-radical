@@ -12,25 +12,47 @@
 
   <br>
 
-  {{code-example
+  {{#code-example
     title='Extended Examples'
-    language='handlebars' code='{{#rad-dropdown
-  Target="Dropdown Menu"
+    autoRender=false
+    language='handlebars' code="{{! Open your console to see the menu item actions in effect; }}
+{{! This custom action is set up on this page's controller }}
+{{#rad-dropdown
+  Target='Dropdown Menu'
   dropdownMenu=true
   buttonStyle=true as |components showMenu hideMenu|}}
   {{#components.content}}
-    {{#components.menu-item}}Menu Option One{{/components.menu-item}}
-    {{#components.menu-item}}Menu Option Two{{/components.menu-item}}
-    {{#components.menu-item}}Menu Option Three{{/components.menu-item}}
+    {{#components.menu-item click=(action 'customAction' 'hi')}}Menu Option One{{/components.menu-item}}
+    {{#components.menu-item click=(action 'customAction' 'hello')}}Menu Option Two{{/components.menu-item}}
+    {{#components.menu-item click=(action 'customAction' 'howdy!')}}Menu Option Three{{/components.menu-item}}
   {{/components.content}}
 {{/rad-dropdown}}
 
 {{#rad-dropdown buttonStyle=true as |components|}}
   {{#components.target}}Custom Content{{/components.target}}
   {{#components.content}}
-    <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+    <img src='http://i.giphy.com/125RIkH7IluIpy.gif'/>
   {{/components.content}}
-{{/rad-dropdown}}'}}
+{{/rad-dropdown}}"}}
+
+    {{#rad-dropdown
+      Target='Dropdown Menu'
+      dropdownMenu=true
+      buttonStyle=true as |components showMenu hideMenu|}}
+      {{#components.content}}
+        {{#components.menu-item click=(action 'customAction' 'hi')}}Menu Option One{{/components.menu-item}}
+        {{#components.menu-item click=(action 'customAction' 'hello')}}Menu Option Two{{/components.menu-item}}
+        {{#components.menu-item click=(action 'customAction' 'howdy!')}}Menu Option Three{{/components.menu-item}}
+      {{/components.content}}
+    {{/rad-dropdown}}
+
+    {{#rad-dropdown buttonStyle=true as |components|}}
+      {{#components.target}}Custom Content{{/components.target}}
+      {{#components.content}}
+        <img src='http://i.giphy.com/125RIkH7IluIpy.gif'/>
+      {{/components.content}}
+    {{/rad-dropdown}}
+  {{/code-example}}
 
 </section>
 <section>
@@ -127,5 +149,28 @@
         </tbody>
       </table>
     {{/components.content}}
+    {{#components.content
+      label='RadDropdown.MenuItem'
+      elementId='rad-dropdown-menu-item-props'}}
+      <table class="full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>click</code></td>
+            <td>{Function}</td>
+            <td>N/A</td>
+            <td>Closure action to perform when clicking on this menu item. Will also automatically close/hide the menu.</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/components.content}}
+
   {{/rad-tabs}}
 </section>
