@@ -24,10 +24,7 @@ export default RadButton.extend({
    * @event click
    * @return {undefined}
    */
-  click() {
-    this._super(...arguments);
-    this.hide();
-  },
+  click: () => {},
   /**
    * Closure action that hides the dropdown
    * @property hide
@@ -46,7 +43,9 @@ export default RadButton.extend({
    *
    * So, we will compare the new value of `click` with an old value that we
    * manually store. If they are not equal, we set up a new method that calls
-   * super, runs the new behavior, and then runs the passed-in hide action.
+   * super, runs the new behavior, and then runs the passed-in hide action. This
+   * also works well for setting up default click behavior when no click action
+   * is passed in, as the initial value of click is a dummy closure.
    *
    * This method is then stored on both the `click` and `_click` properties so
    * that it can be used by default for clicks, and so that it is preserved
@@ -56,6 +55,10 @@ export default RadButton.extend({
    * some crazy dynamic action switching, and even if they are, we have that
    * case covered here.
    *
+   * This is also useful to safeguard against unnecessary repeated sets if OTHER
+   * passed properties (like branding or classNames/class or whatever else) get
+   * updated even if the click action doesn't change.
+   *
    * @event didReceiveAttrs
    * @return {undefined}
    */
@@ -64,7 +67,7 @@ export default RadButton.extend({
     const passedClick = this.get('click');
 
     if (passedClick !== oldClick) {
-      const newClick = () => {
+      let newClick = () => {
         this._super(...arguments);
         passedClick();
         this.hide();

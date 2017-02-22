@@ -54,8 +54,6 @@ test('it applies custom classNames from passed props to the component template e
     {{/rad-card}}
   `);
 
-  console.log(this.$().html());
-
   assert.ok(this.$('[data-test="class-test-root"]').hasClass('custom-card-root-class'), 'The custom cardClassNames should be applied to the component root element');
 
   assert.ok(this.$('[data-test="class-test-title"]').hasClass('supes-amazing-title'), 'The custom cardClassNames should be applied to the component root element');
