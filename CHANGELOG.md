@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 (02-21-2017)
+Added:
+- ⬆️ Updated to Ember CLI 2.11
+
+Fixed:
+- 🐛 `rad-dropdown` child component `menu-item`s will now correctly close the dropdown on click when a custom click action is passed in 
+
 ## 1.3.3 (02-17-2017)
 Fixed:
 - 🐛 `rad-dropdown` now supports touch events inside of `dropdown-content`
