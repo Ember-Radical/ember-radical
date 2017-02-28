@@ -33,7 +33,27 @@
   {{#components.content}}
     <img src='http://i.giphy.com/125RIkH7IluIpy.gif'/>
   {{/components.content}}
+{{/rad-dropdown}}
+
+{{#rad-dropdown
+  Target='Top-Aligned'
+  buttonStyle=true
+  position='top' as |components|}}
+  {{#components.content}}
+    <img src='https://media.giphy.com/media/l0Y3LLQBGY9pK/giphy.gif' alt='Dr. Steve Brule winking at you'/>
+  {{/components.content}}
+{{/rad-dropdown}}
+
+{{#rad-dropdown
+  Target='Right-Aligned'
+  buttonStyle=true
+  position='right' as |components|}}
+  {{#components.content}}
+    <img src='https://media.giphy.com/media/l0Y3LLQBGY9pK/giphy.gif'/>
+  {{/components.content}}
 {{/rad-dropdown}}"}}
+
+    <p>Note: Positional properties allow you to combine classes, so if you want a menu aligned to the top AND the right, use <code>position="top right"</code>.</p>
 
     {{#rad-dropdown
       Target='Dropdown Menu'
@@ -50,6 +70,24 @@
       {{#components.target}}Custom Content{{/components.target}}
       {{#components.content}}
         <img src='http://i.giphy.com/125RIkH7IluIpy.gif'/>
+      {{/components.content}}
+    {{/rad-dropdown}}
+
+    {{#rad-dropdown
+      Target='Top-Aligned'
+      buttonStyle=true
+      position='top' as |components|}}
+      {{#components.content}}
+        <img src='https://media.giphy.com/media/l0Y3LLQBGY9pK/giphy.gif' alt='Dr. Steve Brule winking at you'/>
+      {{/components.content}}
+    {{/rad-dropdown}}
+
+    {{#rad-dropdown
+      Target='Right-Aligned'
+      buttonStyle=true
+      position='right' as |components|}}
+      {{#components.content}}
+        <img src='https://media.giphy.com/media/l0Y3LLQBGY9pK/giphy.gif' alt='Dr. Steve Brule winking at you'/>
       {{/components.content}}
     {{/rad-dropdown}}
   {{/code-example}}
@@ -89,6 +127,15 @@
             <td>
               <p>The brand class to use to style the <code>target</code> child component</p>
               <p class="small enums"><strong>Enums:</strong> primary, secondary</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td>{String}</td>
+            <td>'left'</td>
+            <td>
+              <p>The position that the tooltip is created in relative to its anchor element.</p>
+              <p class="small enums"><strong>Enums:</strong> left, right, top</p>
             </td>
           </tr>
           <tr>

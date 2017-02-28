@@ -23,6 +23,23 @@ export default Component.extend({
    * @passed
    */
   dropdownMenu: false,
+  /**
+  /**
+   * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
+   * Valid options are:
+   * - `"left"`
+   * - `"top"`
+   * - `"right"`
+   * - `"top right"`
+   *
+   * Defaults to `"left"` if no value is supplied. Passed in from parent.
+   *
+   * @property position
+   * @type {string}
+   * @passed
+   * @default ''
+   */
+  position: '',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -52,11 +69,12 @@ export default Component.extend({
    */
   classNames: ['dropdown-content'],
   /**
-   * Binds `dropdown-menu` class if {{cross-link class="Component.RadDropdown.Content" item="dropdownMenu"}} is true
+   * Binds `dropdown-menu` class if {{cross-link class="Component.RadDropdown.Content" item="dropdownMenu"}} is true. Also
+   * binds the positional class to the container
    * @property classNameBindings
    * @type {Array}
    */
-  classNameBindings: ['dropdownMenu:dropdown-menu'],
+  classNameBindings: ['dropdownMenu:dropdown-menu', 'position'],
 
   // Events
   //----------------------------------------------------------------------------

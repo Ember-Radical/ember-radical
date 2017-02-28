@@ -119,6 +119,21 @@ export default Component.extend({
    * @passed
    * @optional
    */
+   /**
+    * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
+    * Valid options are:
+    * - `"left"`
+    * - `"top"`
+    * - `"right"`
+    * - `"top right"`
+    *
+    * Defaults to `"left"` if no value is supplied.
+    *
+    * @property position
+    * @type {string}
+    * @default ''
+    */
+   position: '',
 
   // Contextual Component Specifications
   // ---------------------------------------------------------------------------
@@ -222,6 +237,17 @@ export default Component.extend({
   // Hooks
   // ---------------------------------------------------------------------------
 
+  /**
+   * Checks for a position prop value; if none was supplied, set a default
+   * of `bottom`
+   * @event didReceiveAttrs
+   * @return {undefined}
+   */
+  didReceiveAttrs() {
+    if (!this.get('position')) {
+      this.set('position', 'left');
+    }
+  },
   /**
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan
@@ -336,6 +362,7 @@ export default Component.extend({
     {{#if Content}}
       {{#rad-dropdown/content
         aria-labelledby=(concat 'aria-labelledby-' elementId)
+        position=position
         hidden=hidden}}
         {{{Content}}}
       {{/rad-dropdown/content}}
@@ -352,7 +379,8 @@ export default Component.extend({
         content=(component contentComponent
           aria-labelledby=(concat 'aria-labelledby-' elementId)
           dropdownMenu=dropdownMenu
-          hidden=hidden)
+          hidden=hidden
+          position=position)
         menu-item=(component menuItemComponent
           hide=(action 'hide'))
       )
