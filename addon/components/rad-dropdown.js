@@ -111,6 +111,7 @@ export default Component.extend({
    * @closure
    * @passed
    * @optional
+   * @type {Function}
    */
   /**
    * Fires when the dropdown is opened
@@ -118,6 +119,7 @@ export default Component.extend({
    * @closure
    * @passed
    * @optional
+   * @type {Function}
    */
    /**
     * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
@@ -130,10 +132,11 @@ export default Component.extend({
     * Defaults to `"left"` if no value is supplied.
     *
     * @property position
-    * @type {string}
-    * @default ''
+    * @type {String}
+    * @passed
+    * @default 'left'
     */
-   position: '',
+   position: 'left',
 
   // Contextual Component Specifications
   // ---------------------------------------------------------------------------
@@ -237,17 +240,6 @@ export default Component.extend({
   // Hooks
   // ---------------------------------------------------------------------------
 
-  /**
-   * Checks for a position prop value; if none was supplied, set a default
-   * of `bottom`
-   * @event didReceiveAttrs
-   * @return {undefined}
-   */
-  didReceiveAttrs() {
-    if (!this.get('position')) {
-      this.set('position', 'left');
-    }
-  },
   /**
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan
