@@ -43,6 +43,13 @@ test('property buttonStyles binds the appropriate classes', function(assert) {
   assert.notOk(this.$('.dropdown-target').hasClass('btn-link'), 'class btn-link is suppressed with buttonStyle prop');
 });
 
+test('property position binds the appropriate classes', function(assert) {
+  this.render(hbs`{{rad-dropdown Target='Dropdown Target' Content='Dropdown Content' position='top right' data-test="position-test"}}`);
+
+  assert.ok(this.$('[data-test="position-test"] .dropdown-content').hasClass('top'), 'top positioning class should be applied');
+  assert.ok(this.$('[data-test="position-test"] .dropdown-content').hasClass('right'), 'right positioning class should be applied');
+});
+
 test('content is shown on click', function(assert) {
   this.render(hbs`{{rad-dropdown Target="Dropdown Target" Content="Dropdown Content"}}`);
 
