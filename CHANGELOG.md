@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 (03-01-2017)
+Added:
+- ✨ `rad-dropdown` has a new `position` property for controlling the position of the content relative to the target:
+  - 'left'
+  - 'right'
+  - 'top'
+
 ## 1.4.0 (02-21-2017)
 Added:
 - ⬆️ Updated to Ember CLI 2.11
