@@ -30,7 +30,7 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['hiddenForArias:aria-hidden', 'dataTest:data-test'],
+  attributeBindings: ['hiddenForArias:aria-hidden', 'data-test'],
   /**
    * Bind `dropdown-content`
    * @property classNames
@@ -40,13 +40,6 @@ export default Component.extend({
 
   // Hooks
   // ---------------------------------------------------------------------------
-
-  didReceiveAttrs() {
-    let dataTest = this.get('data-test');
-    if (dataTest) {
-      this.set('dataTest', `${dataTest}-content`);
-    }
-  },
 
   init() {
     this._super(...arguments);

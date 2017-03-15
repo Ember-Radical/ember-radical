@@ -239,7 +239,7 @@ export default Component.extend({
         icon=icon
         link=(not buttonStyle)
         tagcategory=tagcategory tagaction=tagaction taglabel=taglabel tagvalue=tagvalue tagcd=tagcd
-        data-test=data-test}}
+        data-test=(if data-test (concat data-test '-target'))}}
         {{{Target}}}
       {{/rad-drawer/target}}
     {{/if}}
@@ -248,7 +248,7 @@ export default Component.extend({
       content=(component contentComponent
         ariaId=ariaId
         hidden=hidden
-        data-test=data-test)
+        data-test=(if data-test data-test))
       target=(component targetComponent
         ariaId=ariaId
         click=(action 'toggleHidden')
@@ -260,7 +260,7 @@ export default Component.extend({
     ) hidden}}
 
     {{#if Content}}
-      {{#rad-drawer/content hidden=hidden ariaId=ariaId data-test=data-test}}
+      {{#rad-drawer/content hidden=hidden ariaId=ariaId data-test=(if data-test (concat data-test '-content'))}}
         {{{Content}}}
       {{/rad-drawer/content}}
     {{/if}}

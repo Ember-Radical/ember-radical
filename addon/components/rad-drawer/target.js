@@ -50,7 +50,7 @@ export default RadButton.extend({
   attributeBindings: [
     'expanded:aria-expanded',
     'ariaId:aria-controls',
-    'dataTest:data-test'],
+    'data-test'],
   /**
    * Bind `drawer-target` and `basic-b`
    * @property classNames
@@ -58,23 +58,13 @@ export default RadButton.extend({
    */
   classNames: ['drawer-target'],
 
-  // Hooks
-  // ---------------------------------------------------------------------------
-
-  didReceiveAttrs() {
-    let dataTest = this.get('data-test');
-    if (dataTest) {
-      this.set('dataTest', `${dataTest}-target`);
-    }
-  },
-
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{#if (and icon (not buttonStyle))}}
-      {{rad-svg svgId=icon classNames='drawer-icon' class=(if hidden '' 'active') data-test=(concat dataTest '-icon')}}
+      {{rad-svg svgId=icon classNames='drawer-icon' class=(if hidden '' 'active') data-test=(concat data-test '-icon')}}
     {{/if}}
-    <span data-test="{{dataTest}}-yield">
+    <span data-test="{{data-test}}-yield">
       {{yield}}
     </span>
   `

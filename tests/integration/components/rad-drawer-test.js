@@ -22,12 +22,10 @@ test('it renders (simple invocation)', function(assert) {
   `);
 
   // Validate basic output
-  assert.ok(this.$('.drawer-target').length, 'component renders target div via simple invocation');
-  assert.ok(this.$('.drawer-content').length, 'component renders content div via simple invocation');
+  assert.ok(this.$('[data-test="basic-render-test-target"]').length, 'component renders target div via simple invocation');
+  assert.ok(this.$('[data-test="basic-render-test-content"]').length, 'component renders content div via simple invocation');
 
   // Test data-test existence and passage of text content
-  assert.ok(this.$('[data-test="basic-render-test-target"]').length, 'target subcomponent renders data-test attr');
-  assert.ok(this.$('[data-test="basic-render-test-content"]').length, 'content subcomponent renders data-test attr');
   assert.equal(this.$('[data-test="basic-render-test-target-yield"]').text().trim(), this.get('targetText'), 'component renders the target text supplied via Target attr into the target subcomponent');
   assert.equal(this.$('[data-test="basic-render-test-content"]').text().trim(), this.get('contentText'), 'component renders the target text supplied via Content attr into the content subcomponent');
 
@@ -47,8 +45,14 @@ test('it yields target and content contextual subcomponents', function(assert) {
 
   this.render(hbs`
     {{#rad-drawer data-test='subcomponent-test' as |components|}}
-      {{#components.target}}Test Target{{/components.target}}
-      {{#components.content}}{{testContent}}{{/components.content}}
+      {{#components.target
+        data-test='subcomponent-test-target'}}
+        Test Target
+      {{/components.target}}
+      {{#components.content
+        data-test='subcomponent-test-content'}}
+        {{testContent}}
+      {{/components.content}}
     {{/rad-drawer}}
   `);
 
@@ -79,8 +83,12 @@ test('it uses the correct style for the target subcomponent', function(assert) {
     {{#rad-drawer
       buttonStyle=false
       data-test='buttonStyle-test' as |components|}}
-      {{#components.target}}Test Target{{/components.target}}
-      {{#components.content}}{{testContent}}{{/components.content}}
+      {{#components.target data-test='buttonStyle-test-target'}}
+        Test Target
+      {{/components.target}}
+      {{#components.content data-test='buttonStyle-test-content'}}
+        {{testContent}}
+      {{/components.content}}
     {{/rad-drawer}}
   `);
 
@@ -104,8 +112,12 @@ test('it expands and collapses the drawer when the target is clicked', function(
 
   this.render(hbs`
     {{#rad-drawer data-test='open-test' as |components|}}
-      {{#components.target}}Open Up{{/components.target}}
-      {{#components.content}}Check me out{{/components.content}}
+      {{#components.target data-test='open-test-target'}}
+        Open Up
+      {{/components.target}}
+      {{#components.content data-test='open-test-content'}}
+        Check me out
+      {{/components.content}}
     {{/rad-drawer}}
   `);
 
@@ -138,8 +150,12 @@ test('it expands when external state is manipulated', function(assert) {
     {{#rad-drawer
       externalToggle=isExpanded
       data-test='externalToggle-test' as |components|}}
-      {{#components.target}}Open Up{{/components.target}}
-      {{#components.content}}Check me out{{/components.content}}
+      {{#components.target data-test='externalToggle-test-target'}}
+        Open Up
+      {{/components.target}}
+      {{#components.content data-test='externalToggle-test-content'}}
+        Check me out
+      {{/components.content}}
     {{/rad-drawer}}
   `);
 
