@@ -1,9 +1,11 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
+import $ from 'jquery';
 
 // Utils
 import { describedby } from '../utils/arias';
+import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
 
 /**
  * Popover tooltips to Make UI Great Again.™
@@ -156,20 +158,52 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
-   * Handle showing tooltip content
-   * @method _showContent
-   * @return undefined
-   */
-  _showContent() {
-    this.set('hidden', false);
-  },
-  /**
-   * Handle showing tooltip content
+   * Handle hiding tooltip content; unbind touch event listeners, unbind escape
+   * key listener, set hidden state to true.
    * @method _hideContent
-   * @return undefined
+   * @return {undefined}
    */
   _hideContent() {
     this.set('hidden', true);
+    this._unbindPopoverListeners();
+    unbindOnEscape(this.get('elementId'));
+  },
+  /**
+   * When the popover is opened, bind an event listener that will close it if
+   * the user touches anywhere other than the popover.
+   * @method _bindPopoverListeners
+   * @protected
+   */
+  _bindPopoverListeners() {
+    $('body').on(`touchend.popover.${this.get('elementId')}`, e => {
+      // Check if the click was inside the popover
+      let clickInPopover = $(e.target).closest(`#${this.get('elementId')}`).length ? true : false;
+
+      // If the click was ouside popover, close the popover and then cleanup the listener
+      if (!clickInPopover) {
+        this._hideContent();
+      }
+    });
+  },
+  /**
+   * Handle showing tooltip content; bind an event listener for mobile for
+   * touch events that occur outside of the popover, set hidden state to false
+   * @method _showContent
+   * @return {undefined}
+   */
+  _showContent() {
+    this._bindPopoverListeners();
+    bindOnEscape(this.get('elementId'), this.get('_hideContent').bind(this));
+    this.set('hidden', false);
+  },
+  /**
+   * Remove mouseleave and touchend listeners from body. Used to DRY up our
+   * cleanup code in the supported mouseleave and touchend close liseners.
+   * @method _unbindClickListener
+   * @protected
+   */
+  _unbindPopoverListeners() {
+    $('body').off(`touchend.popover.${this.get('elementId')}`);
   },
 
   // Hooks
@@ -186,10 +220,37 @@ export default Component.extend({
       this.set('position', 'bottom');
     }
   },
+  /**
+   * Safety first!
+   * If we leave the page without closing the popover we don't want to orphan
+   * listeners.
+   * @method willDestroyElement
+   */
+  willDestroyElement() {
+    // Check for passed closures
+    if (this.get('onDestroy')) { this.get('onDestroy')(); }
+
+    this._unbindPopoverListeners();
+    unbindOnEscape(this.get('elementId'));
+  },
 
   // Events
   // ---------------------------------------------------------------------------
 
+  /**
+   * Show content on focus
+   * @event focusIn
+   */
+  focusIn(evt) {
+    this._showContent();
+  },
+  /**
+   * Hide content on focusOut
+   * @event focusOut
+   */
+  focusOut(evt) {
+    this._hideContent();
+  },
   /**
    * Show content on mouse enter
    * @event mouseEnter
@@ -204,19 +265,27 @@ export default Component.extend({
   mouseLeave(evt) {
     this._hideContent();
   },
-  /**
-   * Show content on focus
-   * @event focusIn
-   */
-  focusIn() {
-    this._showContent();
-  },
-  /**
-   * Hide content on focusOut
-   * @event focusOut
-   */
-  focusOut() {
-    this._hideContent();
+
+  // Actions
+  // ---------------------------------------------------------------------------
+
+  actions: {
+    /**
+     * Proxy action for the {{c-l '_hideContent'}} method.
+     * @method hide
+     * @return {undefined}
+     */
+    hide() {
+      this._hideContent();
+    },
+    /**
+     * Proxy action for the {{c-l '_showContent'}} method.
+     * @method show
+     * @return {undefined}
+     */
+    show() {
+      this._showContent();
+    }
   },
 
   // Layout
@@ -234,5 +303,8 @@ export default Component.extend({
         aria-describedby=aria-describedby
         data-test=(concat data-test '-target'))
       ) aria-describedby
+      (action 'show')
+      (action 'hide')
+      hidden
     }}`
 });

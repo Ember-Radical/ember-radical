@@ -217,7 +217,7 @@ export default Component.extend({
    * @protected
    */
   _bindDropdownListeners() {
-    $('body').on(`mouseup.${this.get('elementId')}`, e => {
+    $('body').on(`mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`, e => {
       // Check if the click was inside the dropdown
       let clickInDropdown = $(e.target).closest(`#${this.get('elementId')}`).length ? true : false;
 
@@ -230,11 +230,11 @@ export default Component.extend({
   /**
    * Remove click listener from body. Used to DRY up our cleanup code in the
    * supported click and mouse out close liseners.
-   * @method _unbindClickListener
+   * @method _unbindDropdownListeners
    * @protected
    */
-  _unbindClickListener() {
-    $('body').off(`mouseup.${this.get('elementId')}`);
+  _unbindDropdownListeners() {
+    $('body').off(`mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`);
   },
 
   // Hooks
@@ -251,7 +251,7 @@ export default Component.extend({
     if (this.get('onDestroy')) { this.get('onDestroy')(); }
 
     // Remove listeners
-    this._unbindClickListener();
+    this._unbindDropdownListeners();
     unbindOnEscape(this.get('elementId'));
   },
 
@@ -329,7 +329,7 @@ export default Component.extend({
       this.set('hidden', true);
 
       // Remove listeners
-      this._unbindClickListener();
+      this._unbindDropdownListeners();
       unbindOnEscape(this.get('elementId'));
 
       // Fire user hooks
