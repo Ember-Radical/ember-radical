@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 (03-15-2017)
+Fixed:
+- 🐛 Rad Dropdowns and Rad Popovers can now be closed on touch screen devices by tapping anywhere outside of their content [#84]
+- 🐛 Rad Dropdown's child components no longer auto-suffix `data-test` values with their own names unless they are invoked via props [#76]
+
 ## 1.5.0 (03-01-2017)
 Added:
 - ✨ `rad-dropdown` has a new `position` property for controlling the position of the content relative to the target:
