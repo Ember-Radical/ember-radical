@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.2 (03-20-2017)
+Fixed:
+- 🐛 Passes down `${data-test}-target` to `rad-drawer.content` in all situations and not just when Content is declared.
+
 ## 1.5.1 (03-15-2017)
 Fixed:
 - 🐛 Rad Dropdowns and Rad Popovers can now be closed on touch screen devices by tapping anywhere outside of their content [#84]
@@ -17,7 +21,7 @@ Added:
 - ⬆️ Updated to Ember CLI 2.11
 
 Fixed:
-- 🐛 `rad-dropdown` child component `menu-item`s will now correctly close the dropdown on click when a custom click action is passed in 
+- 🐛 `rad-dropdown` child component `menu-item`s will now correctly close the dropdown on click when a custom click action is passed in
 
 ## 1.3.3 (02-17-2017)
 Fixed:

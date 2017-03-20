@@ -256,7 +256,7 @@ export default Component.extend({
         icon=icon
         link=(not buttonStyle)
         tagcategory=tagcategory tagaction=tagaction taglabel=taglabel tagvalue=tagvalue tagcd=tagcd
-        data-test=(if data-test (concat data-test '-target')))
+        data-test=data-test)
     ) hidden}}
 
     {{#if Content}}
