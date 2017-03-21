@@ -1,6 +1,7 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
+import $ from 'jquery';
 
 import { hiddenForArias } from '../../utils/arias';
 
@@ -75,6 +76,50 @@ export default Component.extend({
    * @type {Array}
    */
   classNameBindings: ['dropdownMenu:dropdown-menu', 'position'],
+
+  // Hooks
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Handle checking component width against window width on render. If
+   * overflowing reset the width of the popover to prevent overflow.
+   * @TODO: Adjust width of dropdown to be 90/100% of viewport and center it
+   * instead of shrinking it to fit.
+   * @event didRender
+   * @return {undefined}
+   */
+  didRender() {
+    const boundingRect = document.getElementById(this.get('elementId')).getBoundingClientRect();
+    const bodyWidth = $('body').width();
+
+    /*
+     * If the box is centered, it will center itself back off of the page when we
+     * subtract the necessary width from the component width. In these cases, we
+     * will need to subtract twice the necessary width. The box is only ever centered
+     * when position does not contain `-left`/`-right`.
+     */
+    const boxIsCentered = this.get('position') !== 'left' && this.get('position') !== 'right';
+
+    // If the left offset of content is negative, then the content is to the left of the viewport.
+    if (boundingRect.left < 0 ) {
+      // determine length deduction based on centered.
+      const widthDeduction = boxIsCentered ? boundingRect.left * 2 : boundingRect.left;
+
+      // note `boundingRect.left` is negative so we add the deduction.
+      const newWidth = boundingRect.width + widthDeduction;
+      // Udpate component with new width, problem solved
+      this.$().css({ width: newWidth });
+    } // if the right right offset is greater than the body width, it is outside of our application.
+    else if (boundingRect.right > bodyWidth ) {
+      // determine length deduction based on centered.
+      // The general deduction in this case would be the right offset of popover content minus the body width
+      const widthDeduction = boxIsCentered ? (boundingRect.right - bodyWidth) * 2 : (boundingRect.right - bodyWidth);
+
+      const newWidth = boundingRect.width - widthDeduction - 5;
+      // Udpate component with new width, problem solved
+      this.$().css({ width: newWidth, minWidth: 'auto' });
+    }
+  },
 
   // Events
   // ---------------------------------------------------------------------------
