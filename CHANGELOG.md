@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.3 (03-21-2017)
+Fixed:
+- 🐛 In some cases, Rad Dropdowns could overflow past the width of the viewport; they will now be dynamically resized to fit within the constraints of
+the viewport instead. This fix is targeted primarily at mobile/small screen devices.
+
 ## 1.5.2 (03-20-2017)
 Fixed:
 - 🐛 Passes down `${data-test}-target` to `rad-drawer.content` in all situations and not just when Content is declared.
