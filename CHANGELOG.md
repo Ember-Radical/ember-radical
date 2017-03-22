@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.4 (03-22-2017)
+Fixed:
+- svg use xlink:href is deprecated. Use href.
+
 ## 1.5.3 (03-21-2017)
 Fixed:
 - 🐛 In some cases, Rad Dropdowns could overflow past the width of the viewport; they will now be dynamically resized to fit within the constraints of
