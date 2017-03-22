@@ -202,6 +202,6 @@ test('the custom drawer icon is correctly referenced', function(assert) {
       data-test='custom-icon-test'}}
   `);
 
-  assert.ok(this.$('[data-test="custom-icon-test-target-icon"] use').attr('xlink:href').includes('#steve-brule'),
+  assert.ok(this.$('[data-test="custom-icon-test-target-icon"] use').attr('href').includes('#steve-brule'),
     'The custom icon reference should be correctly rendered');
 });

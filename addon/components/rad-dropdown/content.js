@@ -25,8 +25,9 @@ export default Component.extend({
    */
   dropdownMenu: false,
   /**
-  /**
-   * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
+   * The position that the tooltip is created in relative to its anchor element.
+   * Combine "top" with "right" to get a top and right aligned menu.
+   *
    * Valid options are:
    * - `"left"`
    * - `"top"`
