@@ -2,7 +2,6 @@ const common = {
   liveEdit: true, // Generate fountainhead docs before a build is run for live reloading
   includeVendorStyles: false, // We directly import styles for dev hot reloading
   quiet: false, // Supresses error logging
-  whiteListTags: ['passed', 'action'], // Whitelist unknown tags
   name: 'Ember Radical Docs',
   description: 'API documentation for Ember Radical Components, Helpers and Services',
   entry: ['addon', 'app'],

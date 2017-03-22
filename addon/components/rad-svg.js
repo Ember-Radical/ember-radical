@@ -64,6 +64,6 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     <title>{{svgId}} icon</title>
-    <use xlink:href="{{filePath}}#{{svgId}}"></use>
+    <use href="{{filePath}}#{{svgId}}"></use>
   `
 });
