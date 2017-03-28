@@ -14,15 +14,16 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * ## Usage
  *
- * Instances of `rad-state` yield an `active` property and a hash of `actions`
- * for manipulating that state: `open`, `close`, and `toggleState`.
+ * Instances of `rad-state` yield a {{c-l state}} property and a hash of
+ * `actions` for manipulating that state: {{c-l setTrue}}, {{c-l setFalse}},
+ * and {{c-l toggleState}}.
  *
  * ```handlebars
  * {{#rad-state as |state stateActions|}}
  *   {{bank-vault
  *     isOpen=state
- *     closeVault=stateActions.close
- *     openVault=stateActions.open}}
+ *     closeVault=stateActions.setFalse
+ *     openVault=stateActions.setTrue}}
  * {{/rad-state}}
  * ```
  *
@@ -48,11 +49,12 @@ export default Component.extend({
   // Properties
   // ---------------------------------------------------------------------------
   /**
-   * Boolean state tracking property. Use this to handle show/hide status.
-   * @property active
+   * Boolean state tracking property. Use this to handle show/hide status or
+   * any arbitrary state that can be represented by a boolean.
+   * @property state
    * @type {Boolean}
    */
-  active: false,
+  state: false,
   /**
    * Rad State is a purely functional component with no rendered output of its
    * own, so it doesn't need a root element cluttering up the DOM when it's
@@ -71,36 +73,36 @@ export default Component.extend({
    */
   actions: {
     /**
-     * Sets the [active](#property_active) property to false.
-     * @method closeModal
-     */
-    close() {
-      this.set('active', false);
-    },
-    /**
-     * Sets the [active](#property_active) property to true.
-     * @method openModal
+     * Sets the {{c-l state}} property to false.
+     * @method setFalse
      * @return {undefined}
      */
-    open() {
-      this.set('active', true);
+    setFalse() {
+      this.set('state', false);
     },
     /**
-     * Sets the [active](#property_active) property to passed state.
+     * Sets the {{c-l state}} property to true.
+     * @method setTrue
+     * @return {undefined}
+     */
+    setTrue() {
+      this.set('state', true);
+    },
+    /**
+     * Sets the {{c-l 'state'}} property to passed state.
      * @method toggleState
-     * @param {boolean} state State to set active to
      * @return {undefined}
      */
     toggleState() {
-      this.toggleProperty('active');
+      this.toggleProperty('state');
     }
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{yield active (hash
-    open=(action 'open')
-    close=(action 'close')
+  layout: hbs`{{yield state (hash
+    setTrue=(action 'setTrue')
+    setFalse=(action 'setFalse')
     toggleState=(action 'toggleState')
   )}}`
 });

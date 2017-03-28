@@ -10,11 +10,11 @@
     title='Simple Example With Modal'
     language='handlebars' code='{{#rad-state as |state stateActions|}}
   {{#rad-button
-    click=(action stateActions.open)}}Open a rad modal{{/rad-button}}
+    click=(action stateActions.setTrue)}}Open a rad modal{{/rad-button}}
   {{#rad-modal
     open=state
     Header="Just Do Less"
-    closeModal=(action stateActions.close) as |components|}}
+    closeModal=(action stateActions.setFalse) as |components|}}
     <iframe width="560" height="315" src="https://www.youtube.com/embed/PKIpCPS-oZc?rel=0" frameborder="0" allowfullscreen></iframe>{{/rad-modal}}
 {{/rad-state}}'}}
       <hr class="divider">
@@ -71,7 +71,7 @@
             <td>N/A</td>
             <td>
               <p>Hash of actions for manipulating the value of <code>state</code></p>
-              <p class="small enums"><strong>Enums:</strong> stateActions.open, stateActions.close, stateActions.toggleState</p>
+              <p class="small enums"><strong>Enums:</strong> stateActions.setTrue, stateActions.setFalse, stateActions.toggleState</p>
             </td>
           </tr>
         </tbody>
