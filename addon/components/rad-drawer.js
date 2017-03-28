@@ -63,12 +63,12 @@ import {controls} from '../utils/arias';
  * ```handlebars
  * {{#rad-button click=(action 'changeSomeProp')}}Toggle Drawer{{/rad-button}}
  *
- * {{rad-drawer Target='Hello' Content='I am open now' externalToggle=someProp}}
+ * {{rad-drawer Target='Hello' Content='I am open now' hidden=someProp}}
  * ```
  *
  * {{#rad-state as |state stateActions|}}
  *   {{#rad-button click=(action stateActions.toggleState)}}Toggle Drawer{{/rad-button}}
- *   {{rad-drawer Target='Hello' Content='I am open now' externalToggle=state}}
+ *   {{rad-drawer Target='Hello' Content='I am open now' hidden=state}}
  * {{/rad-state}}
  *
  * `rad-drawer` will still continue to function normally with this property
@@ -78,9 +78,9 @@ import {controls} from '../utils/arias';
  *
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
- * `externalToggle` | boolean | false | Pass in any other property to cause `rad-drawer` to update when that property updates
- * `icon` | string/boolean | 'arrow-down' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
  * `buttonStyle` | boolean | false | Whether to style the `target` to look like a button
+ * `hidden` | boolean | false | Pass in any other property to cause `rad-drawer` to update when that property updates
+ * `icon` | string/boolean | 'arrow-down' | Specifies which SVG icon to show in the `target`. Hides the icon if set to `false`
  *
  * ## A++ Accessibility Features
  *
@@ -105,11 +105,16 @@ export default Component.extend({
    */
   buttonStyle: false,
   /**
-   * Allow for external controls to update the open/closed state of a `rad-drawer`
-   * @property externalToggle
+   * State boolean for display of the drawer content. Is toggled true/false to
+   * handle show/hide. Updated in `toggleHidden`.
+   *
+   * You may optionally pass a boolean property into this component to control
+   * its state from the outside (one-way only).
+   * @property hidden
    * @type {Boolean}
+   * @default true
    */
-  externalToggle: false,
+  hidden: true,
   /**
    * If you want to use a different SVG icon from the default on your `target`,
    * specify it by name/id here. If you don't want to display an icon
@@ -162,14 +167,6 @@ export default Component.extend({
    * @type {Array}
    */
   classNames: ['rad-drawer'],
-  /**
-   * State boolean for display of the drawer content. Is toggled true/false to
-   * handle show/hide. Updated in `toggleHidden`
-   * @property hidden
-   * @type {Boolean}
-   * @default true
-   */
-  hidden: true,
 
   // Ember Properties
   // ---------------------------------------------------------------------------
@@ -181,29 +178,6 @@ export default Component.extend({
    */
   attributeBindings: ['data-test'],
 
-  // Hooks
-  // ---------------------------------------------------------------------------
-
-  /**
-   * The component's `didReceiveAttrs` hook. Allows udpates from external state
-   * to adjust the `hidden` state of a `rad-drawer` instance.
-   *
-   * @event didReceiveAttrs
-   * @return {undefined}
-   */
-  didReceiveAttrs() {
-    let externalToggle = this.get('externalToggle');
-    let oldExternalToggle = this.get('_oldExternalToggle');
-
-    if (oldExternalToggle !== externalToggle) {
-      this.set('hidden', !externalToggle);
-    }
-
-    // Update the private hidden state so it can be used for comparison
-    // on the next attrs update
-    this.set('_oldExternalToggle', externalToggle);
-  },
-
   // Actions
   // ---------------------------------------------------------------------------
 
@@ -214,7 +188,7 @@ export default Component.extend({
    */
   actions: {
     /**
-     * Toggle internal hidden property. Pass state boolean if specific state is needed.
+     * Toggle internal {{c-l hidden}} property. Pass state boolean if specific state is needed.
      * @method toggleHidden
      * @param {Object}  evt     Event object
      * @param {boolean} [state] Specific state to set

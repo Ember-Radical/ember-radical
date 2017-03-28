@@ -47,17 +47,17 @@
       {{if openState "Collapse All" "Expand All"}}
     {{/rad-button}}
   </p>
-  {{#rad-drawer Target="Drawer One" externalToggle=openState as |components|}}
+  {{#rad-drawer Target="Drawer One" hidden=(not openState) as |components|}}
     {{#components.content}}
       <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
     {{/components.content}}
   {{/rad-drawer}}
-  {{#rad-drawer Target="Drawer Two" externalToggle=openState as |components|}}
+  {{#rad-drawer Target="Drawer Two" hidden=(not openState) as |components|}}
     {{#components.content}}
       <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
     {{/components.content}}
   {{/rad-drawer}}
-  {{#rad-drawer Target="Drawer Three" externalToggle=openState as |components|}}
+  {{#rad-drawer Target="Drawer Three" hidden=(not openState) as |components|}}
     {{#components.content}}
       <p><img src="https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif" style="width: 100%;" alt="" /></p>
     {{/components.content}}
@@ -96,12 +96,11 @@
             </td>
           </tr>
           <tr>
-            <td><code>externalToggle</code></td>
+            <td><code>hidden</code></td>
             <td>{Boolean}</td>
-            <td>false</td>
+            <td>true</td>
             <td>
-              Allow for external controls to update the open/closed state of a
-              <code>rad-drawer</code>.
+              This property is used to control the internal open/closed state of a drawer, however you can pass a value in directly to manipulate the state of the drawer from outside of the component.
             </td>
           </tr>
           <tr>
