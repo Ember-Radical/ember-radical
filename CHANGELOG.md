@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.6.0
+Added:
+- Components will now automatically pass `data-test` attributes to their children when appropriate (unless custom `data-tests` are supplied to those children) [#77]
+- Rad State now yields `setTrue` and `setFalse` in its `stateActions` hash [#82]
+- Rad Drawer officially prefers passing a value to `hidden` instead of `externalToggle` [#80]
+
+Deprecated:
+- Rad State's `open` and `close` actions on the `stateActions` hash have been deprecated and will be removed in 2.0
+- Rad Drawer's `externalToggle` property has been deprecated and will be removed in 2.0
+
+
 ## 1.5.4 (03-22-2017)
 Fixed:
 - svg use xlink:href is deprecated. Use href.
