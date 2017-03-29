@@ -56,13 +56,15 @@ export default Component.extend({
   // Ember Props
   // ---------------------------------------------------------------------------
   /**
-   * Bind `aria-hidden` for A+ usability
+   * Bind `aria-hidden` for A+ usability;
+   * Auto-binds `data-test` attribute
    * @property attributeBindings
    * @type {Array}
    */
   attributeBindings: [
     'hiddenForArias:aria-hidden',
-    'aria-labelledby:aria-labelledby'
+    'aria-labelledby:aria-labelledby',
+    'data-test'
   ],
   /**
    * Bind `dropdown-content`

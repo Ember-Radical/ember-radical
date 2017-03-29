@@ -346,7 +346,8 @@ export default Component.extend({
         brand=brand
         click=(action (if hidden 'show' 'hide'))
         link=(not buttonStyle)
-        hidden=hidden}}
+        hidden=hidden
+        data-test=(if data-test (concat data-test '-target'))}}
         {{{Target}}}
       {{/rad-dropdown/target}}
     {{/if}}
@@ -355,7 +356,8 @@ export default Component.extend({
       {{#rad-dropdown/content
         aria-labelledby=(concat 'aria-labelledby-' elementId)
         position=position
-        hidden=hidden}}
+        hidden=hidden
+        data-test=(if data-test (concat data-test '-content'))}}
         {{{Content}}}
       {{/rad-dropdown/content}}
     {{/if}}
@@ -367,14 +369,17 @@ export default Component.extend({
           brand=brand
           click=(action (if hidden 'show' 'hide'))
           link=(not buttonStyle)
-          hidden=hidden)
+          hidden=hidden
+          data-test=(if data-test (concat data-test '-target')))
         content=(component contentComponent
           aria-labelledby=(concat 'aria-labelledby-' elementId)
           dropdownMenu=dropdownMenu
           hidden=hidden
-          position=position)
+          position=position
+          data-test=(if data-test (concat data-test '-content')))
         menu-item=(component menuItemComponent
-          hide=(action 'hide'))
+          hide=(action 'hide')
+          data-test=(if data-test (concat data-test '-menu-item')))
       )
       (action 'show')
       (action 'hide')

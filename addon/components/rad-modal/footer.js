@@ -12,6 +12,13 @@ export default Component.extend({
   // Properties
   // ---------------------------------------------------------------------------
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * @property classNames
    * @type {Array}
    * @default ['modal-footer']

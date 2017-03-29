@@ -107,6 +107,16 @@ export default Component.extend({
   brandClass: computed('brand', function() {
     return this.get('brand') ? `${this.get('brand')}-bg`: null;
   }),
+
+  // Ember
+  // ---------------------------------------------------------------------------
+  /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
   /**
    * @property classNameBindings
    * @type {Array}

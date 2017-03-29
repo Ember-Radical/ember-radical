@@ -56,6 +56,13 @@ export default RadButton.extend(devAssets, {
   // Ember Props
   // ---------------------------------------------------------------------------
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * Handle binding standard core class name `tooltip-title` and `basic-b`
    * bound for display purposes
    * @property classNames

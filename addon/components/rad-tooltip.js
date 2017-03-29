@@ -127,6 +127,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * Core component class for targeting element when necessary
    * @property classNames
    * @type {Array}
@@ -205,7 +212,8 @@ export default Component.extend({
         tagaction=tagaction
         taglabel=taglabel
         tagvalue=tagvalue
-        tagcd=tagcd}}
+        tagcd=tagcd
+        data-test=(if data-test (concat data-test '-title'))}}
         {{{Title}}}
       {{/rad-tooltip/title}}
     {{/if}}
@@ -219,16 +227,19 @@ export default Component.extend({
         tagaction=tagaction
         taglabel=taglabel
         tagvalue=tagvalue
-        tagcd=tagcd)
+        tagcd=tagcd
+        data-test=(if data-test (concat data-test '-title')))
       content=(component contentComponent
         aria-describedby=aria-describedby
-        hidden=hidden)
+        hidden=hidden
+        data-test=(if data-test (concat data-test '-content')))
     ) aria-describedby hidden}}
 
     {{#if Content}}
       {{#rad-tooltip/content
         aria-describedby=aria-describedby
-        hidden=hidden}}
+        hidden=hidden
+        data-test=(if data-test (concat data-test '-target'))}}
         {{{Content}}}
       {{/rad-tooltip/content}}
     {{/if}}

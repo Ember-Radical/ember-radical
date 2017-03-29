@@ -93,7 +93,10 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['data-test', '_hidden:aria-hidden'],
+  attributeBindings: [
+    'data-test',
+    '_hidden:aria-hidden'
+  ],
   /**
    * Class names: `tabs-content`
    * @property classNames

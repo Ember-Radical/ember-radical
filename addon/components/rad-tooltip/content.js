@@ -41,6 +41,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * Handle binding standard core class names: `jsTooltipTarget` && `tooltip-content`
    * `jsTooltipTarget` is being used for css positioning. Do we want to pass that
    * directly instead? probably.

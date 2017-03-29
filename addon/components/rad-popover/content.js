@@ -83,7 +83,10 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['hiddenForArias:aria-hidden', 'data-test'],
+  attributeBindings: [
+    'hiddenForArias:aria-hidden',
+    'data-test'
+  ],
   /**
    * Bind wrapping classname `popover-content`
    * @property classNames

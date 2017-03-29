@@ -31,11 +31,16 @@ export default RadButton.extend({
   // Ember Props
   // ---------------------------------------------------------------------------
   /**
-   * Bind `aria-haspopup` and `aria-expanded` for A+ usability
+   * Bind `aria-haspopup` and `aria-expanded` for A+ usability;
+   * Auto-binds `data-test` attribute
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['aria-haspopup', 'expanded:aria-expanded'],
+  attributeBindings: [
+    'aria-haspopup',
+    'data-test',
+    'expanded:aria-expanded'
+  ],
   /**
    * Bind `dropdown-target`
    * @property classNames

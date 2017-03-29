@@ -123,11 +123,14 @@ export default Component.extend({
   layout: hbs`
     {{yield (hash
       title=(component titleComponent
-        cardTitleClassNames=cardTitleClassNames)
+        cardTitleClassNames=cardTitleClassNames
+        data-test=(if data-test (concat data-test '-title')))
       body=(component bodyComponent
-        cardBodyClassNames=cardBodyClassNames)
+        cardBodyClassNames=cardBodyClassNames
+        data-test=(if data-test (concat data-test '-body')))
       footer=(component footerComponent
-        cardFooterClassNames=cardFooterClassNames)
+        cardFooterClassNames=cardFooterClassNames
+        data-test=(if data-test (concat data-test '-footer')))
     )}}
   `
 });

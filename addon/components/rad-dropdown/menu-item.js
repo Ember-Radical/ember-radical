@@ -9,14 +9,9 @@ import RadButton from '../rad-button';
  * @extends Ember.RadButton
  */
 export default RadButton.extend({
+
   // Properties
   // ---------------------------------------------------------------------------
-  /**
-   * Binds `dropdown-item` class
-   * @property classNames
-   * @type {Array}
-   */
-  classNames: ['dropdown-item'],
   /**
    * Placeholder closure action for click events. If no value is passed in it
    * will just call `_super` from the original `RadButton` class and then call
@@ -32,9 +27,24 @@ export default RadButton.extend({
    */
   hide: () => {},
 
+  // Ember Props
+  // ---------------------------------------------------------------------------
+  /**
+   * Auto-binds `data-test` attribute
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
+   * Binds `dropdown-item` class
+   * @property classNames
+   * @type {Array}
+   */
+  classNames: ['dropdown-item'],
+
   // Hooks
   // ---------------------------------------------------------------------------
-
   /**
    * When attributes are received, if a prop exists for click, we assume that
    * some custom behavior has been passed in. However, this custom behavior will
