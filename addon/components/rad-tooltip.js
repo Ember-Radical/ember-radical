@@ -239,7 +239,7 @@ export default Component.extend({
       {{#rad-tooltip/content
         aria-describedby=aria-describedby
         hidden=hidden
-        data-test=(if data-test (concat data-test '-target'))}}
+        data-test=(if data-test (concat data-test '-content'))}}
         {{{Content}}}
       {{/rad-tooltip/content}}
     {{/if}}

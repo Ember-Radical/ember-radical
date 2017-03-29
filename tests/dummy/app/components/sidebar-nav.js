@@ -22,7 +22,8 @@ export default Ember.Component.extend({
             <li>{{link-to 'Tooltips' 'getting-started.tooltips'}}</li>
           </ul>
         </li>
-        <li>{{link-to 'API Docs' 'docs'}}</li>
+        <li>{{link-to 'Testing' 'testing'}}</li>
+        <li>{{link-to 'API Docs' 'api'}}</li>
         <li><a href="https://www.github.com/healthsparq/ember-radical/">Source on Github</a></li>
       </ul>
     </nav>
