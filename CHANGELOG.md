@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.6.0
+## 1.6.0 (03-29-2017)
 Added:
 - Components will now automatically pass `data-test` attributes to their children when appropriate (unless custom `data-tests` are supplied to those children) [#77]
 - Rad State now yields `setTrue` and `setFalse` in its `stateActions` hash [#82]
