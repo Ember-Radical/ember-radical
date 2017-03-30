@@ -1,6 +1,4 @@
 'use strict';
-const path = require('path');
-const VersionChecker = require('ember-cli-version-checker');
 const packageJSON = require('./package.json');
 
 /**
@@ -70,7 +68,6 @@ module.exports = {
     // ========================================================
 
     // Collect addon variables and references
-    const checker = new VersionChecker(this);
     const env = process.env.EMBER_ENV || 'development';
     const vendorPath = this.treePaths.vendor;
     // This is the config specified in consuming application's config/environment.js
@@ -125,14 +122,6 @@ module.exports = {
     // want to do it for production builds b/c it will crush the dev rebuild time
     if (radicalOptions.stripCode && env === 'production') {
       app.options.minifyJS = Object.assign(app.options.minifyJS, minifyJSOptions);
-    }
-
-    // We need to import the template compiler to the bundle in order to compile
-    // templates at runtime. 2.11+ ember-source moves compiler into vendor folder
-    if (checker.forEmber().satisfies('>= 2.11.0')) {
-      app.import('vendor/ember/ember-template-compiler.js');
-    } else {
-      app.import(path.join(app.bowerDirectory, 'ember', 'ember-template-compiler.js'));
     }
   },
   /**
