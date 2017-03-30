@@ -2,13 +2,16 @@
 
 ## 1.6.0 (03-29-2017)
 Added:
-- Components will now automatically pass `data-test` attributes to their children when appropriate (unless custom `data-tests` are supplied to those children) [#77]
-- Rad State now yields `setTrue` and `setFalse` in its `stateActions` hash [#82]
-- Rad Drawer officially prefers passing a value to `hidden` instead of `externalToggle` [#80]
+- ✨ Components will now automatically pass `data-test` attributes to their children when appropriate (unless custom `data-tests` are supplied to those children) [#77]
+- ✨ Rad State now yields `setTrue` and `setFalse` in its `stateActions` hash [#82]
+- ✨ Rad Drawer officially prefers passing a value to `hidden` instead of `externalToggle` [#80]
+- 📝 New docs for using custom components [#65]
+- 📝 New docs explaining testing capabilities [#65]
+- 📝 Updated docs for contextual components [#65]
 
 Deprecated:
-- Rad State's `open` and `close` actions on the `stateActions` hash have been deprecated and will be removed in 2.0
-- Rad Drawer's `externalToggle` property has been deprecated and will be removed in 2.0
+- 😢 Rad State's `open` and `close` actions on the `stateActions` hash have been deprecated and will be removed in 2.0
+- 😢 Rad Drawer's `externalToggle` property has been deprecated and will be removed in 2.0
 
 
 ## 1.5.4 (03-22-2017)
