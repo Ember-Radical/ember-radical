@@ -5,8 +5,6 @@
     <div class="row">
       <div class="col-xs-12 col-md-2"></div>
       <div class="col-xs-12 col-lg-8">
-        {{!-- <div class="message"> --}}
-        {{!-- <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"> --}}
         <h1 class="text-blue text-glow-blue big-time">ember-radical</h1>
         <p class="text-green text-glow-green">v{{version}}</p>
         <br>
@@ -22,7 +20,6 @@
             <a href="https://www.github.com/healthsparq/ember-radical/" class='rad-button btn hero-link btn-block'>Source on Github</a>
           </div>
         </div>
-        {{!-- </div> --}}
       </div>
     </div>
   </div>
@@ -56,12 +53,6 @@
         <hr>
         <h4 class="text-blue text-glow-blue">Easy-to-use API</h4>
         <p>Every component in Radical has been thoughtfully considered to ensure that its usage is as simple as possible for most implementations, but still offers a variety of options to make them as flexible as possible. Additionally, some components like Modals and Drawers offer dead-simple subcomponent access via Ember's <a href="https://guides.emberjs.com/v2.11.0/components/wrapping-content-in-a-component/#toc_sharing-component-data-with-its-wrapped-content">contextual components</a> functionality so you don't have to remember to yield and pass a whole bunch of properties. Nice.</p>
-        {{!--<pre>
-          {{#rad-modal as |components|}}
-            {{#components.header}}This modal is totally rad{{/components.header}}
-            <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif">
-          {{/rad-modal}}
-        </pre>--}}
         <hr>
         <h4 class="text-blue text-glow-blue">Fully testable</h4>
         <p>All of the components Radical are fully tested against its internal test suite. As a bonus to you, all of the major elements in radical support passing in <code>data-test</code> attributes that you can use to easily target instances of radical's components in your own testing framework.</p>
@@ -69,69 +60,3 @@
     </div>
   </div>
 </section>
-
-{{!-- <div class="row">
-  <div class="col-sm">
-    <h1>Ember Radical</h1>
-    <h2>Ember Radical</h2>
-    <h3>Ember Radical</h3>
-    <h4>Ember Radical</h4>
-    <h5>Ember Radical</h5>
-    <p>Coloring book banh mi sriracha helvetica, edison bulb pop-up church-key gochujang whatever vice. Butcher before they sold out sartorial offal ethical, 8-bit kogi celiac bitters polaroid lo-fi normcore copper mug. Beard actually affogato seitan 3 wolf moon. Street art selfies pop-up cred migas craft beer fingerstache next level viral. Plaid wayfarers roof party, {{#rad-button link=true id="test"}}Link Button{{/rad-button}} venmo occupy <a href="#">ANCHOR</a> 90's tilde bicycle rights ennui coloring book. Chillwave irony neutra, slow-carb activated charcoal blue bottle jean shorts everyday carry hot chicken next level. Ramps neutra 3 wolf moon bicycle rights helvetica gochujang, vice humblebrag.</p>
-
-    <h3>Tables</h3>
-    <table class="w-100 clearfix">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Sex</th>
-          <th>Location</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Dave Gamache</td>
-          <td>26</td>
-          <td>Male</td>
-          <td>San Francisco</td>
-        </tr>
-        <tr>
-          <td>Dwayne Johnson</td>
-          <td>42</td>
-          <td>Male</td>
-          <td>Hayward</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="col-sm">
-    <h3>Buttons:</h3>
-    {{#rad-button}}Standard Button{{/rad-button}}
-    {{#rad-button brand='primary'}}Primary Button{{/rad-button}}
-    {{#rad-button link=true}}Link Button{{/rad-button}}
-    <h3>Code</h3>
-    <code>x + y = z</code>
-    <pre>
-      <code>const radArray = Array(11).fill('rad');</code>
-    </pre>
-    <h3>Lists</h3>
-    <ul>
-      <li>Item 1</li>
-      <li>
-        Item 2
-        <ul>
-          <li>Item 2.1</li>
-          <li>Item 2.2</li>
-        </ul>
-      </li>
-      <li>Item 3</li>
-    </ul>
-    <h3>Blockquote</h3>
-    <blockquote class="blockquote">
-      <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div> --}}

@@ -104,6 +104,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * @property classNames
    * @type {Array}
    * @default ['rad-alert']
@@ -170,7 +177,8 @@ export default Component.extend({
           class="close"
           click=(action "dismiss")
           link=true
-          aria-label="close"}}
+          aria-label="close"
+          data-test=(if data-test (concat data-test '-close'))}}
           {{rad-svg svgId="close"}}
         {{/rad-button}}
       </div>

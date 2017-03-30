@@ -65,7 +65,7 @@ test('it yields target and content contextual subcomponents', function(assert) {
   assert.equal(this.$('[data-test="subcomponent-test-content"]').text().trim(), this.get('testContent'), 'the content subcomponent renders its content correctly');
 
   // Validate aria-expanded on target subcomponent
-  assert.equal(this.$('[data-test="subcomponent-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not exapnded by default');
+  assert.equal(this.$('[data-test="subcomponent-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not expanded by default');
 
   // Validate aria-hidden on content subcomponent
   assert.equal(this.$('[data-test="subcomponent-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden by default');
@@ -143,37 +143,37 @@ test('it expands and collapses the drawer when the target is clicked', function(
 test('it expands when external state is manipulated', function(assert) {
 
   this.setProperties({
-    isExpanded: false
+    isHidden: true
   });
 
   this.render(hbs`
     {{#rad-drawer
-      externalToggle=isExpanded
-      data-test='externalToggle-test' as |components|}}
-      {{#components.target data-test='externalToggle-test-target'}}
+      hidden=isHidden
+      data-test='external-state-test' as |components|}}
+      {{#components.target data-test='external-state-test-target'}}
         Open Up
       {{/components.target}}
-      {{#components.content data-test='externalToggle-test-content'}}
+      {{#components.content data-test='external-state-test-content'}}
         Check me out
       {{/components.content}}
     {{/rad-drawer}}
   `);
 
   // Validate that the content container is collapsed
-  assert.equal(this.$('[data-test="externalToggle-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not aria-expanded by default');
-  assert.equal(this.$('[data-test="externalToggle-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden by default');
+  assert.equal(this.$('[data-test="external-state-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not aria-expanded by default');
+  assert.equal(this.$('[data-test="external-state-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden by default');
 
-  this.set('isExpanded', true);
+  this.set('isHidden', false);
 
   // Validate that the content container has expanded
-  assert.equal(this.$('[data-test="externalToggle-test-target"]').attr('aria-expanded'), 'true', 'target subcomponent is aria-expanded after external state changes');
-  assert.equal(this.$('[data-test="externalToggle-test-content"]').attr('aria-hidden'), 'false', 'content subcomponent is no longer aria-hidden after external state changes');
+  assert.equal(this.$('[data-test="external-state-test-target"]').attr('aria-expanded'), 'true', 'target subcomponent is aria-expanded after external state changes');
+  assert.equal(this.$('[data-test="external-state-test-content"]').attr('aria-hidden'), 'false', 'content subcomponent is no longer aria-hidden after external state changes');
 
-  this.set('isExpanded', false);
+  this.set('isHidden', true);
 
   // Validate that the content container collapses again
-  assert.equal(this.$('[data-test="externalToggle-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not aria-expanded after external state changes back to false');
-  assert.equal(this.$('[data-test="externalToggle-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden after external state changes back to false');
+  assert.equal(this.$('[data-test="external-state-test-target"]').attr('aria-expanded'), 'false', 'target subcomponent is not aria-expanded after external state changes back to false');
+  assert.equal(this.$('[data-test="external-state-test-content"]').attr('aria-hidden'), 'true', 'content subcomponent is hidden after external state changes back to false');
 });
 
 // #6 Test icons are disabled when `icon=false`

@@ -1,0 +1,130 @@
+{{#page-layout}}
+  <section>
+    <p class="intro">One of the key features baked into Ember Radical is an easy interface for writing automated tests around its components.</p>
+
+    <p class="intro">Every Radical Component that produces direct DOM output of its own supports passing a value to its <code>data-test</code> attribute and having this attribute rendered onto the component's root element. Additionally, any component that yields children will automatically pass its <code>data-test</code> value to its children with an appropriately suffixed value to distinguish those children from the parent. Alternatively, you can supply your own <code>data-test</code> values for children components.</p>
+
+    <p class="intro">The goal is to deliver a testing story that is both simple to use and highly flexible, depending on your needs.</p>
+
+    <hr>
+
+    <h4>Why <code>data-test</code>?</h4>
+
+    <p>Anybody who has ever written tests for their app and used HTML <code>id</code>s or <code>class</code>es to target output knows the pain of updating and maintaining tests to deal with markup changes. <code>id</code>s and <code>class</code>es are simply not reliable for long-lived tests; both are prone to change as the result of refactors, or for no reason at all, and it is not immediately apparent to any developer that a test may have been written based on a class name.</p>
+
+    <p>However, a <code>data-test</code> attribute stands out in the code as something unique, and its purpose should be immediately obvious to anybody who touches the code. The risk of a <code>data-test</code> attribute disappearing as part of a refactor is (or should be) significantly less than that of <code>id</code>s or <code>class</code>es.</p>
+
+    <p>Using a testing-specific html attribute like <code>data-test</code> also helps with specificity in targeting for your tests; instead of using class names that may be shared among a wide array of elements in your app, you can supply unique values to <code>data-test</code> and ensure you can reliably target the elements you want to target in your integration testing.</p>
+
+    <hr>
+
+    <h4>Usage in Tests</h4>
+    <p>Utilizing these attributes in your integration tests is as simple as working with any other jQuery selector.</p>
+
+    <p>In your component template:</p>
+
+    {{highlight-code language='handlebars' code="{{#rad-button
+  data-test='rad-button-test'}}
+  This is a totally Rad Button.
+{{/rad-button}}"}}
+
+    <p>In your component test file:</p>
+
+    {{highlight-code language='javascript' code="test('it renders', function(assert) {
+  assert.equal(this.$('[data-test=\"rad-button-test\"]').length, 1, 'A rad button is rendered');
+});"}}
+  </section>
+  <section>
+
+    <h3>Examples</h3>
+
+    {{#rad-card as |components|}}
+      {{#components.title}}Simple <code>data-test</code> usage{{/components.title}}
+      {{#components.body}}
+        <h5>This code:</h5>
+        {{highlight-code language='handlebars' code="{{#rad-button data-test='very-specific-rad-button'}}
+  Inspect me!
+{{/rad-button}}"}}
+
+        <h5>Produces this HTML:</h5>
+        {{highlight-code language='html' code='<button type="button" data-test="very-specific-rad-button" class="rad-button btn">
+  Inspect me!
+</button>'}}
+
+        <h5>Rendered output:</h5>
+        {{#rad-button data-test='very-specific-rad-button'}}Inspect me!{{/rad-button}}
+      {{/components.body}}
+    {{/rad-card}}
+  </section>
+  <section>
+    {{#rad-card as |components|}}
+      {{#components.title}}Automatic <code>data-test</code> passing to children{{/components.title}}
+      {{#components.body}}
+
+        <h5>Overview</h5>
+        <p>In this example, just by passing a <code>data-test</code> value into the top-level <code>rad-drawer</code> not only decorates the parent DOM node, but automatically passes the value through to the children and appends a suffix with the child component's name. Pretty cool!</p>
+
+        <h5>This code:</h5>
+        {{highlight-code language='handlebars' code="{{rad-drawer
+  Target='Drawer Target'
+  Content='This is some rad drawer content'
+  data-test='rad-drawer-test-example'}}"}}
+
+        <h5>Produces this HTML:</h5>
+        {{highlight-code language='html' code='<div data-test="rad-drawer-test-example" id="amber443" class="rad-drawer">
+  <button data-test="rad-drawer-test-example-target" aria-controls="cntrls-amber443" aria-expanded="false" type="button" id="amber452" class="rad-button btn drawer-target btn-link" style="">
+    <svg data-test="rad-drawer-test-example-target-icon" id="amber455" class=" rad-svg drawer-icon arrow-down">
+      <title>arrow-down icon</title>
+      <use href="/assets/symbol-defs.svg#arrow-down"></use>
+    </svg>
+    <span data-test="rad-drawer-test-example-target-yield">
+      Drawer Target
+    </span>
+  </button>
+  <div data-test="rad-drawer-test-example-content" aria-hidden="true" id="cntrls-amber443" class="drawer-content">
+    This is some rad drawer content
+  </div>
+</div>'}}
+
+        <h5>Rendered output:</h5>
+        {{rad-drawer
+          Target='Drawer Target'
+          Content='This is some rad drawer content'
+          data-test='rad-drawer-test-example'}}
+      {{/components.body}}
+    {{/rad-card}}
+
+  </section>
+  <section>
+    {{#rad-card as |components|}}
+      {{#components.title}}Custom <code>data-test</code> attributes on children{{/components.title}}
+      {{#components.body}}
+        <h5>Overview</h5>
+        <p>For this example, a value is passed into the main component's <code>data-test</code> attribute, and a custom value is also passed into the child <code>title</code> component. In the rendered markup, the <code>title</code> component's HTML has the custom <code>data-test</code> value we supplied, but the <code>content</code> component still utilizes the auto-passed and suffixed <code>data-test</code> value as nothing custom was passed in.</p>
+
+        <h5>This code:</h5>
+        {{highlight-code language='handlebars' code="{{#rad-tooltip data-test='a-pretty-rad-tooltip' as |components|}}
+  {{#components.title data-test='custom-test-value'}}A tooltip is here{{/components.title}}
+  {{#components.content}}Very important information, obviously.{{/components.content}}
+{{/rad-tooltip}}"}}
+
+        <h5>Produces this HTML:</h5>
+        {{highlight-code language='html' code='<span data-test="a-pretty-rad-tooltip" id="amber398" class="rad-tooltip">
+  <button data-test="custom-test-value" type="button" aria-describedby="dscbdy-amber398" id="amber408" class="rad-button btn tooltip-title btn-link">A tooltip is here</button>
+  <div data-test="a-pretty-rad-tooltip-content" id="amber417" class="tooltip-content-wrapper">
+    <div aria-hidden="true" role="tooltip" id="dscbdy-amber398" class="tooltip-content">
+      Very important information, obviously.
+      <div class="tip"></div>
+    </div>
+  </div>
+</span>'}}
+
+        <h5>Rendered output:</h5>
+        {{#rad-tooltip data-test='a-pretty-rad-tooltip' as |components|}}
+          {{#components.title data-test='custom-test-value'}}A tooltip is here{{/components.title}}
+          {{#components.content}}Very important information, obviously.{{/components.content}}
+        {{/rad-tooltip}}
+      {{/components.body}}
+    {{/rad-card}}
+  </section>
+{{/page-layout}}

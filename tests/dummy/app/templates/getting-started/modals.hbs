@@ -5,11 +5,11 @@
     {{#rad-state as |state stateActions|}}
       {{#rad-button
         brand="primary"
-        click=(action stateActions.open)}}[mind-blown.gif]{{/rad-button}}
+        click=(action stateActions.setTrue)}}[mind-blown.gif]{{/rad-button}}
       {{#rad-modal
         open=state
         ariaHeader="YOUR MIND IS NOW BLOWN"
-        closeModal=(action stateActions.close)}}
+        closeModal=(action stateActions.setFalse)}}
         <img src="https://media.giphy.com/media/gTZT1gOfyzJ2E/giphy.gif" alt="cat gets its mind blown by a tiny mechanical cat in a box bank" />
       {{/rad-modal}}
     {{/rad-state}}
@@ -21,16 +21,16 @@
   {{code-example
     title='Basic Example'
     language='handlebars' code='{{#rad-state as |state stateActions|}}
-  {{#rad-button click=(action stateActions.open)}}Open Modal{{/rad-button}}
+  {{#rad-button click=(action stateActions.setTrue)}}Open Modal{{/rad-button}}
   {{#rad-modal
     open=state
     Header="This is a totally rad modal right here!"
-    closeModal=(action stateActions.close)
+    closeModal=(action stateActions.setFalse)
     as |components|}}
     <img src="https://media.giphy.com/media/l2R077quXSVyuV4bK/giphy.gif" alt="" style="width: 100%;" />
     {{#components.footer}}
       {{#rad-button brand="success"}}Neat{{/rad-button}}
-      {{#rad-button click=(action stateActions.close)}}Close{{/rad-button}}
+      {{#rad-button click=(action stateActions.setFalse)}}Close{{/rad-button}}
     {{/components.footer}}
   {{/rad-modal}}
 {{/rad-state}}'}}
@@ -41,22 +41,22 @@
     title='Extended Examples'
     language='handlebars' code='{{#rad-state as |state stateActions|}}
   {{#rad-button
-    click=(action stateActions.open)
+    click=(action stateActions.setTrue)
     brand="primary"}}Branded header{{/rad-button}}
   {{#rad-modal
     open=state
-    closeModal=(action stateActions.close) as |components|}}
+    closeModal=(action stateActions.setFalse) as |components|}}
     {{#components.header brand="primary"}}<h3>YAS YAS YAS YAS</h3>{{/components.header}}
     <img src="https://media.giphy.com/media/kGZ4jJguXT5C0/giphy.gif" alt="" style="width: 100%;" />
   {{/rad-modal}}
 {{/rad-state}}
 
 {{#rad-state as |state stateActions|}}
-  {{#rad-button click=(action stateActions.open)}}No header{{/rad-button}}
+  {{#rad-button click=(action stateActions.setTrue)}}No header{{/rad-button}}
   {{#rad-modal
     open=state
     ariaHeader="This modal shows what a modal with no header looks like"
-    closeModal=(action stateActions.close)}}
+    closeModal=(action stateActions.setFalse)}}
     <p>Inspect the HTML of this sucker to see the screen-reader friendly
       header in action.</p>
     <img src="https://media.giphy.com/media/RDG5Q86EJiNTG/giphy.gif" alt="" style="width: 100%;" />
@@ -64,7 +64,7 @@
 {{/rad-state}}
 
 {{#rad-state as |state stateActions|}}
-  {{#rad-button click=(action stateActions.open)}}Non-Dismissable{{/rad-button}}
+  {{#rad-button click=(action stateActions.setTrue)}}Non-Dismissable{{/rad-button}}
   {{#rad-modal
     closeButton=false
     open=state
@@ -79,17 +79,17 @@
       usually good practice to pass <code>closeButton=false</code> for
       non-dismissable modals.
     </p>
-    {{#rad-button click=(action stateActions.close)}}
+    {{#rad-button click=(action stateActions.setFalse)}}
       Close The Modal
     {{/rad-button}}
   {{/rad-modal}}
 {{/rad-state}}
 
 {{#rad-state as |state stateActions|}}
-  {{#rad-button click=(action stateActions.open)}}Animated{{/rad-button}}
+  {{#rad-button click=(action stateActions.setTrue)}}Animated{{/rad-button}}
   {{#rad-modal
     animateFrom="left"
-    closeModal=(action stateActions.close)
+    closeModal=(action stateActions.setFalse)
     open=state
     Header="Animations So Classy"}}
     <p>
@@ -278,6 +278,4 @@
       </table>
     {{/components.content}}
   {{/rad-tabs}}
-
-
 </section>

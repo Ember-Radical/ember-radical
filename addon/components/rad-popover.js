@@ -298,10 +298,10 @@ export default Component.extend({
         hidden=hidden
         position=position
         size=size
-        data-test=(concat data-test '-content'))
+        data-test=(if data-test (concat data-test '-content')))
       target=(component targetComponent
         aria-describedby=aria-describedby
-        data-test=(concat data-test '-target'))
+        data-test=(if data-test (concat data-test '-target')))
       ) aria-describedby
       (action 'show')
       (action 'hide')

@@ -32,6 +32,32 @@
 "}}
   </p>
   <p>The <code>rad-drawer</code> component's template uses the <code>hash</code> helper to automatically yield a hash of subcomponents and pass in any properties that those components might need for accessibility compliance and state management, essentially providing a simple public API for using subcomponents to customize output.</p>
+
+  <h5>Further Reading</h5>
+  <ul>
+    <li>
+      <a href="https://github.com/poteto/emberconf-2017/blob/master" target="_blank" rel="noopener noreferrer">Higher Order Components</a> by <a href="https://twitter.com/miguelcamba" target="_blank" rel="noopener noreferrer">Miguel Camba</a>
+    </li>
+    <li>
+      <a href="https://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components" target="_blank" rel="noopener noreferrer">Ember 2.3 Release Notes</a>
+    </li>
+  </ul>
+</section>
+<section>
+  <h4>Specifying Custom Components for Child Component Instances</h4>
+  <p>One of the main drawbacks of working with a component suite is that you are typically forced to work within the constraints of the the suite, and the decisions that its authors have made. Sometimes this works out fine, other times it can be a huge source of frustration.</p>
+  <p>Radical was built specifically to be as flexible as possible, and to help facilitate this, many of Radical's components support specifying what component to use to render any of its subcomponents.</p>
+  <p>What this means for you is that if you want to use a custom component from within your own app, or another addon, you can simply pass in an htmlbars-like reference to that component's name as a property to child components in Radical that support this feature.</p>
+  <h5>Example</h5>
+  <p>Let's say you want to use a Rad Dropdown, but instead of using the default Rad Button as the child <code>target</code>, you want to use your own <code>super-awesome-button</code> from your own app, which comes with some extra functionality you really need:</p>
+  <p>
+    {{highlight-code language='handlebars' code="{{#rad-dropdown targetComponent='super-awesome-button' as |component|}}
+  {{#components.target}}Custom Super Awesome Button!{{/components.target}}
+  {{#components.content}}Standard rad-dropdown/content component.{{/components.content}}
+{{/rad-dropdown}}"}}
+  </p>
+  <p>The above code will automatically use your custom <code>super-awesome-button</code> component as the <code>target</code> for the Rad Dropdown, and you can pass any props into the <code>components.target</code> instance that you would normally pass into <code>super-awesome-button</code>.</p>
+  <p>See the individual guide/doc pages for each component to see which components support child component customization; if you don't see support for one that you would like, <b><a href="https://github.com/healthsparq/ember-radical/issues/new" target="_blank" rel="noopener noreferrer">please submit an issue!</a></b></p>
 </section>
 <section>
   <h4>Extending Components</h4>
@@ -61,9 +87,10 @@ export default RadSVG.extend({
 "}}
   </p>
 </section>
-<section>
+{{! This shouldn't be an issue as of Fountainhead 3, but maintaining as commented-out code until we confirm it is not an issue in the wild. }}
+{{!-- <section>
   <h4>Troubleshooting</h4>
   <p>If you are experiencing infinite reloads while developing and running the dummy application, and have watchman installed, you may need to restart your local watchman server:</p>
   <p><code>$ watchman shutdown-server</code></p>
   <p>The server will be restarted automatically the next time you run <code>ember serve</code></p>
-</section>
+</section> --}}

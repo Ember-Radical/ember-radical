@@ -264,6 +264,13 @@ export default Component.extend({
   // Ember Props
   // ---------------------------------------------------------------------------
   /**
+   * Auto-binds `data-test` attributes
+   *
+   * @property attributeBindings
+   * @type {Array}
+   */
+  attributeBindings: ['data-test'],
+  /**
    * @property classNameBindings
    * @type {Array}
    * @default ['_active:active']
@@ -496,14 +503,16 @@ export default Component.extend({
             closeIcon=closeIcon
             closeModal=closeModal
             elementId=(concat 'aria-labelledby-' elementId)
-            tagClose=tagClose}}
+            tagClose=tagClose
+            data-test=(if data-test (concat data-test '-header'))}}
             <h2>{{{Header}}}</h2>
           {{/rad-modal/header}}
         {{/if}}
 
         {{#if ariaHeader}}
           {{!-- Render aria label for screen readers --}}
-          <header id='aria-labelledby-{{elementId}}' class='aria-header'>{{ariaHeader}}</header>
+          <header id='aria-labelledby-{{elementId}}' class='aria-header'
+          data-test={{if data-test (concat data-test '-aria-header')}}>{{ariaHeader}}</header>
           {{#if closeButton}}
             <div class='clearfix'>
               {{#rad-button
@@ -534,8 +543,11 @@ export default Component.extend({
               elementId=(concat 'aria-labelledby-' elementId)
               closeButton=closeButton
               tagClose=tagClose
+              data-test=(if data-test (concat data-test '-header'))
             )
-            footer=(component footerComponent)
+            footer=(component footerComponent
+              data-test=(if data-test (concat data-test '-footer'))
+            )
           )
           open
         }}

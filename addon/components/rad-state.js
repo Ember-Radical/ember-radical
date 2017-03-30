@@ -1,5 +1,6 @@
 import Component from 'ember-component';
 import hbs from 'htmlbars-inline-precompile';
+import deprecated from '../utils/deprecated';
 
 /**
  * Component that can be used for tracking state changes with modals or drawers.
@@ -14,15 +15,16 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * ## Usage
  *
- * Instances of `rad-state` yield an `active` property and a hash of `actions`
- * for manipulating that state: `open`, `close`, and `toggleState`.
+ * Instances of `rad-state` yield a {{c-l state}} property and a hash of
+ * `actions` for manipulating that state: {{c-l setTrue}}, {{c-l setFalse}},
+ * and {{c-l toggleState}}.
  *
  * ```handlebars
  * {{#rad-state as |state stateActions|}}
  *   {{bank-vault
  *     isOpen=state
- *     closeVault=stateActions.close
- *     openVault=stateActions.open}}
+ *     closeVault=stateActions.setFalse
+ *     openVault=stateActions.setTrue}}
  * {{/rad-state}}
  * ```
  *
@@ -48,11 +50,12 @@ export default Component.extend({
   // Properties
   // ---------------------------------------------------------------------------
   /**
-   * Boolean state tracking property. Use this to handle show/hide status.
-   * @property active
+   * Boolean state tracking property. Use this to handle show/hide status or
+   * any arbitrary state that can be represented by a boolean.
+   * @property state
    * @type {Boolean}
    */
-  active: false,
+  state: false,
   /**
    * Rad State is a purely functional component with no rendered output of its
    * own, so it doesn't need a root element cluttering up the DOM when it's
@@ -71,34 +74,63 @@ export default Component.extend({
    */
   actions: {
     /**
-     * Sets the [active](#property_active) property to false.
-     * @method closeModal
+     * Sets the {{c-l state}} property to `false`.
+     * This action is now deprecated as of Ember Radical 1.6 and will be
+     * removed in Ember Radical 2.0. you should use {{c-l actions.setFalse}}
+     * instead.
+     * @method close
+     * @return {undefined}
+     * @deprecated
      */
     close() {
-      this.set('active', false);
+      deprecated('stateActions.close', 'stateActions.setFalse');
+      this.send('setFalse');
     },
     /**
-     * Sets the [active](#property_active) property to true.
-     * @method openModal
+     * Sets the {{c-l state}} property to `true`.
+     * This action is now deprecated as of Ember Radical 1.6 and will be
+     * removed in Ember Radical 2.0. you should use {{c-l actions.setTrue}}
+     * instead.
+     * @method open
      * @return {undefined}
+     * @deprecated
      */
     open() {
-      this.set('active', true);
+      deprecated('stateActions.open', 'stateActions.setTrue');
+      this.send('setTrue');
     },
     /**
-     * Sets the [active](#property_active) property to passed state.
+     * Sets the {{c-l state}} property to `false`.
+     * @method setFalse
+     * @return {undefined}
+     */
+    setFalse() {
+      this.set('state', false);
+    },
+    /**
+     * Sets the {{c-l state}} property to `true`.
+     * @method setTrue
+     * @return {undefined}
+     */
+    setTrue() {
+      this.set('state', true);
+    },
+    /**
+     * Toggles the value of {{c-l 'state'}} to the opposite of its current
+     * value.
      * @method toggleState
-     * @param {boolean} state State to set active to
      * @return {undefined}
      */
     toggleState() {
-      this.toggleProperty('active');
+      this.toggleProperty('state');
     }
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{yield active (hash
+  layout: hbs`{{yield state (hash
+    setTrue=(action 'setTrue')
+    setFalse=(action 'setFalse')
     open=(action 'open')
     close=(action 'close')
     toggleState=(action 'toggleState')

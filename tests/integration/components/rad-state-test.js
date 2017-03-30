@@ -14,8 +14,8 @@ test('it renders', function(assert) {
 test('it can be used as a state tracker', function(assert) {
   this.render(hbs`
     {{#rad-state as |state stateActions|}}
-      {{#rad-button click=(action stateActions.open) id="open"}}Open{{/rad-button}}
-      {{#rad-button click=(action stateActions.close) id="close"}}Close{{/rad-button}}
+      {{#rad-button click=(action stateActions.setTrue) id="open"}}Open{{/rad-button}}
+      {{#rad-button click=(action stateActions.setFalse) id="close"}}Close{{/rad-button}}
 
       <div aria-hidden={{if state 'false' 'true'}} id="secrets">SECRET CONTENT</div>
     {{/rad-state}}

@@ -42,6 +42,7 @@ Router.map(function() {
     this.route('tabs');
     this.route('tooltips');
   });
+  this.route('testing');
 });
 
 export default Router;
