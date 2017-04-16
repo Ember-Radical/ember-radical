@@ -47,7 +47,7 @@ test('Position attribute applies the correct classes', function(assert) {
 
 // #4 Size attribute test
 // ---------------------------------------------------------------------------
-test('Position attribute applies the correct classes', function(assert) {
+test('Size attribute applies the correct classes', function(assert) {
 
   this.set('size', 'large');
 

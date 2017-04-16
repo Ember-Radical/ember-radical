@@ -128,7 +128,7 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   /**
    * Nasty touch eventses. Tricksy touch eventses. Any short touch event on this
-   * content component will fire the focusOut and the mouseLeave on the
+   * content component will fire the `focusOut` and the `mouseLeave` on the
    * `rad-dropdown` element. Real abnoxious when you're trying to click
    * something. Fire the link or button manually. Through the wonderful power
    * of JavaScript.

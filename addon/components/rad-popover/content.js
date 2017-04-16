@@ -138,11 +138,21 @@ export default Component.extend({
   },
   /**
    * Handle checking component width against window width on render. If overflowing
-   * reset the width of the popover to prevent overflow
+   * reset the width of the popover to prevent overflow. If the popover expands beneath the body,
+   * we also set it to popover upwards instead.
    * @event didRender
    * @return {undefined}
    */
   didRender() {
+    // if the popover will expands beyond the total height of the body, we set the position to top.
+    const bodyHeight = $('body').height(),
+          distanceTop = $(`#${this.get('elementId')}`).offset().top,
+          thisHeight = $(`#${this.get('elementId')}`).outerHeight(true),
+          currentPosition = this.get('position');
+    if ( (distanceTop + thisHeight) > bodyHeight && currentPosition.includes('bottom')) {
+      this.set('position', currentPosition.replace('bottom', 'top'));
+    }
+
     const boundingRect = document.getElementById(this.get('elementId')).getBoundingClientRect();
     const bodyWidth = $('body').width();
 
