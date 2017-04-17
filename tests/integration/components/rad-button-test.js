@@ -20,6 +20,12 @@ test('it renders brand classes', function(assert) {
   assert.ok(this.$('button').hasClass('btn-success'), 'the component binds branding class');
 });
 
+test('it renders outline classes', function(assert) {
+  this.render(hbs`{{#rad-button brand="success" outline=true}}Default button{{/rad-button}}`);
+  assert.ok(this.$('button').hasClass('btn-outline-success'), 'the component binds outline class');
+  assert.notOk(this.$('button').hasClass('btn-success'), 'the component binds ONLY outline class');
+});
+
 test('it uses prop link to output link class', function(assert) {
   // Not configured default link=false
   this.render(hbs`{{#rad-button}}Default button{{/rad-button}}`);

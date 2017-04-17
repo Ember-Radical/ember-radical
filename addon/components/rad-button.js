@@ -14,8 +14,9 @@ import hbs from 'htmlbars-inline-precompile';
  *
  * Configuration | Type | Default | Description
  * --- | --- | --- | ---
- * `link` | boolean | `false` | Toggles the `.btn-link` class, making the button look and act like a link
- * `brand` | {'primary', 'secondary', 'info' etc. } | `null` | Toggles brand class for a branded button
+ * `brand` | {'primary', 'secondary', 'info' etc. } | `null` | Adds classes for a styled button
+ * `outline` | boolean | `false` | Adds outline button class. _(Requires a `brand` property.)_
+ * `link` | boolean | `false` | Adds classes to make the button look and act like a link
  *
  * @class Component.RadButton
  * @constructor
@@ -72,6 +73,14 @@ export default Component.extend(taggingAssets, {
    * @default false
    */
   link: false,
+  /**
+   * Pass a {{c-l 'brand'}} along with `true` for `outline` to include outline style
+   * classes.
+   * @property outline
+   * @type {boolean}
+   * @default false
+   */
+  outline: false,
   /**
    * Tagging property. See `one-tag` for tagging documentation.
    * @property tagcategory
@@ -138,28 +147,23 @@ export default Component.extend(taggingAssets, {
    */
   tagonce: false,
 
-  // Events
-  // ---------------------------------------------------------------------------
-
-  /**
-   * Behavior to execute when clicking the button; pass any closure action in and Ember's built-in click event listener will execute it for you.
-   * @property click
-   * @public
-   * @passed
-   */
-
   // Properties
   // ---------------------------------------------------------------------------
 
   /**
-   * Computed css class bound to component. Handled by component to allow for
-   * flexibility in future updates to branding class names
+   * Generate color class using presence of {{c-l 'brand'}} and {{c-l 'outline'}}
+   * flags.
    * @property brandClass
    * @type {string}
    * @param 'brand'
+   * @param 'outline'
    */
-  brandClass: computed('brand', function() {
-    return this.get('brand') ? `btn-${this.get('brand')}` : null;
+  brandClass: computed('brand', 'outline', function() {
+    if (this.get('outline')) {
+      return this.get('brand') ? `btn-outline-${this.get('brand')}` : null;
+    } else {
+      return this.get('brand') ? `btn-${this.get('brand')}` : null;
+    }
   }),
 
   // Ember Props
@@ -199,7 +203,8 @@ export default Component.extend(taggingAssets, {
    */
   classNameBindings: [
     'brandClass',
-    'link:btn-link'
+    'link:btn-link',
+    'link:btn-unstyled'
   ],
   /**
    * Button DOM element
@@ -237,12 +242,12 @@ export default Component.extend(taggingAssets, {
   mouseDown() {
     // Hide outline b/c this was a legit mouse click
     // On blur, remove outline style in case the user switches to keyboard
-    this.$().css({ outline: 'none' });
+    this.$().css({ outline: 'none', boxShadow: 'none' });
     this.$().on('blur', () => {
       // If this button instance is destroying/destroyed, don't bother
       // (This is an issue with instances of `{{rad-alert}}`)
       if (this.get('isDestroying') || this.get('isDestroyed')) { return; }
-      this.$().off('blur').css('outline', '');
+      this.$().off('blur').css({ outline: '', boxShadow: '' });
     });
 
     if (TAGGING) {

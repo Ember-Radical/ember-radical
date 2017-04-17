@@ -102,6 +102,10 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   actions: {
+    // available as a regular syntax quoted action example
+    exampleAction() {
+      console.info('Example action called');
+    },
     toggleCode() {
       this.toggleProperty('showCode');
       let heightValue = this.get('showCode') ? this.get('codeBlockHeight') : 0;
