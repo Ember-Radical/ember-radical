@@ -1,4 +1,3 @@
-/*jshint node:true*/
 module.exports = {
   scenarios: [
     {
@@ -45,7 +44,7 @@ module.exports = {
       },
       npm: {
         devDependencies: {
-          'ember-source': '^2.11.0'
+          'ember-source': '^2.13.0'
         }
       }
     },

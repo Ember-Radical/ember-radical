@@ -16,7 +16,7 @@ import $ from 'jquery';
 export function bindOnEscape(namespace, cb) {
   $(document).bind(`keydown.${namespace}`, (evt) => {
     if (evt.which === 27) {
-      cb();
+      return cb();
     }
   });
 }
