@@ -62,8 +62,13 @@ export default Component.extend({
 
   // Layout
   // ---------------------------------------------------------------------------
+  // NOTE: ``xlink:href`` is deprecated according to MDN:
+  // (https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href),
+  // but Safari does not work with `href`, so we include both on the `use` element.
+  // In better future times test Safari w/out the xlink:href and if successful nuke
+  // it.
   layout: hbs`
     <title>{{svgId}} icon</title>
-    <use href="{{filePath}}#{{svgId}}"></use>
+    <use href="{{filePath}}#{{svgId}}" xlink:href="{{filePath}}#{{svgId}}"></use>
   `
 });
