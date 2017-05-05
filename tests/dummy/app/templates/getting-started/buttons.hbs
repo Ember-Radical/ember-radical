@@ -1,21 +1,51 @@
 <section>
-  <p class="intro">Buttons are a fairly ubiquitous element around the web, however there are some very special requirements for using them. For example, did you know that any clickable element that produces some kind of interactive behavior and isn't a hyperlink is <b>required</b> to be a <code>&lt;button&gt;</code> to meet accessibility standards? It's true!</p>
-  <p class="intro">This can make <code>&lt;button&gt;</code>s an extremely important part of your app, so why not use a convenient, totally rad component-ized version that meets accessibility requirements, is visually customizable, and supports DDAU behavior?</p>
+  <p>The <code>rad-button</code> is the base component used for composing any element
+  with an interactive target. Any element that can be clicked should always be either
+  an anchor with a valid href or a button. This ensures that screenreaders know the
+  element can be interacted with, and is required in mobile for touch events.</p>
+  <p class="intro">The button API is available for all interactive targets throughout
+  Radical because all target elements extend the <code>rad-button</code> component.
+  The component is also available for any custom elements or actions that you create
+  in your application. The benefit being access to the component's basic tagging,
+  focus styles and accessibility features.</p>
 </section>
 <section>
   <h3>Examples</h3>
 
   {{code-example
-    title='Basic Example'
-    language='handlebars' code="{{#rad-button}}Hey, I'm a rad button!{{/rad-button}}"}}
-
+    title='Basic Button with an Action'
+    language='handlebars' code="{{#rad-button click=(action 'exampleAction')}}Radical Button{{/rad-button}}"}}
   <br>
 
   {{code-example
-    title='Extended Options'
-    language='handlebars' code="{{#rad-button brand='primary'}}Primary Brand Button{{/rad-button}}
-{{#rad-button brand='secondary'}}Secondary Brand Button{{/rad-button}}
-{{#rad-button link='true'}}Link/Anchor-like Button{{/rad-button}}"}}
+    title='Style Options'
+    language='handlebars'
+    code="
+    {{#rad-button brand='primary'}}Primary{{/rad-button}}
+    {{#rad-button brand='success'}}Success{{/rad-button}}
+    {{#rad-button brand='info'}}Info{{/rad-button}}
+    {{#rad-button brand='warning'}}Warning{{/rad-button}}
+    {{#rad-button brand='danger'}}Danger{{/rad-button}}
+    {{#rad-button classNames='btn-link'}}Link{{/rad-button}}"}}
+
+  {{code-example
+    title='Outline Style'
+    language='handlebars'
+    code="
+    {{#rad-button brand='primary' outline=true}}Primary{{/rad-button}}
+    {{#rad-button brand='success' outline=true}}Success{{/rad-button}}
+    {{#rad-button brand='info' outline=true}}Info{{/rad-button}}
+    {{#rad-button brand='warning' outline=true}}Warning{{/rad-button}}
+    {{#rad-button brand='danger' outline=true}}Danger{{/rad-button}}"}}
+
+  {{code-example
+    title='Accessible Link Target'
+    language='handlebars'
+    code="When you need to include an interaction target that should look like an
+    anchor inside of a block of text, the <code>link</code> property can be used for
+    an accessible target {{#rad-button link=true click=(action 'exampleAction')}}that
+    looks like an anchor{{/rad-button}}"}}
+
 </section>
 <section>
   <h3>Properties</h3>
@@ -48,10 +78,18 @@
             </td>
           </tr>
           <tr>
+            <td><code>outline</code></td>
+            <td>{boolean}</td>
+            <td>false</td>
+            <td>
+              <p>When true the button will have the outline style class.</p>
+            </td>
+          </tr>
+          <tr>
             <td><code>click</code></td>
             <td>{Function}</td>
             <td>() => {}</td>
-            <td>Behavior to execute when the button is clicked. Typically a closure action.</td>
+            <td>Function called on button click.</td>
           </tr>
           <tr>
             <td><code>link</code></td>
