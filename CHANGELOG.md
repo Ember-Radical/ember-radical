@@ -1,5 +1,40 @@
 # Changelog
 
+## 1.7.0 (05-18-2017)
+Added:
+- Button component `outline` prop for outline style buttons
+- Button component `link` prop also binds `btn-unstyled` class
+
+Fixed:
+- Ember template compiler is no longer accidentally pulled into build
+- Popovers expanding beyond height of body
+- Safari not showing SVG bug due to removal of xlink:href
+
+Updated:
+- Ember v2.13
+
+#### On `btn-unstyled`:
+The button component `link=true` config is intended for creating a button element that
+looks exactly like an anchor element. This is to create accessible triggers in the
+app that are not links to other pages, but should look like links for UX reasons.
+Although the Ember Radical styles handle this, using Radical with Bootstrap does not.
+The `btn-unstyled` class is being added in this release. In v2 CSS will be added to
+the component CSS that styles it like an anchor:
+```css
+.btn-unstyled {
+  -webkit-appearance: none; // Remove Chrome native button styling
+  white-space: normal;
+  line-height: $line-height-base;
+  vertical-align: baseline;
+  user-select: auto;
+  border: none;
+  padding: 0;
+  font-family: $font-family-sans-serif;
+}
+```
+_These styles are not being added in 1.7 as they are considered a breaking change,
+but can be added to any consuming app prior to 2.0 if wanted._
+
 ## 1.6.0 (03-29-2017)
 Added:
 - ✨ Components will now automatically pass `data-test` attributes to their children when appropriate (unless custom `data-tests` are supplied to those children) [#77]
