@@ -3,7 +3,8 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     sassOptions: {
-      extension: 'scss'
+      extension: 'scss',
+      includePaths: ['node_modules/bootstrap/scss']
     },
     // Don't fingerprint the ember-logo b/c it is pulled using a path from the
     // docs meta which doesn't get updated with fingerprint hash

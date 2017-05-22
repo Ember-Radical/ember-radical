@@ -1,0 +1,19 @@
+// ========================================================
+// Visibility Utility
+// ========================================================
+
+*[aria-hidden="true"] {
+  display: none !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+*[aria-hidden="false"] {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+}
+*[role="presentation"] {
+  display: initial;
+  pointer-events: auto;
+  visibility: visible;;
+}

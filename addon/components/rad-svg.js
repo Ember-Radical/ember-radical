@@ -46,7 +46,7 @@ export default Component.extend({
    * @property classNames
    * @type {Array}
    */
-  classNames: ['rad-svg'],
+  classNames: ['icon', 'rad-svg'],
   /**
    * Bound classNames: `svgId`
    * @property classNameBindings
