@@ -1,14 +1,9 @@
 const common = {
   name: 'Ember Radical Docs',
   description: 'API documentation for Ember Radical Components, Helpers and Services',
-  entry: ['addon', 'app'],
   guides: [
     'guides/radical-v2.md'
   ],
-  output: {
-    filename: 'fountainhead-data.json',
-    path: 'tests/dummy/public/docs'
-  },
   external: {
     data: [
       {

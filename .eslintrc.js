@@ -2,8 +2,7 @@ module.exports = {
   root: true,
   extends: 'healthsparq',
   globals: {
-    DEVELOPMENT: true,
-    PRODUCTION: true,
+    NODE_ENV: true,
     TAGGING: true,
     RAD_VERSION: true
   }
