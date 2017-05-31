@@ -441,7 +441,7 @@ export default Component.extend({
       this._handleOpen();
     }
 
-    if (DEVELOPMENT) {
+    if (NODE_ENV === 'development') {
       // In dev builds, check for a header element with the correct aria bindings
       // aria-labelledby is required for A++ Accessibility
       const elementId = this.get('elementId');

@@ -21,7 +21,6 @@ module.exports = function(environment) {
     },
 
     featureFlags: {
-      RADICAL: true,
       TAGGING: true
     }
   };

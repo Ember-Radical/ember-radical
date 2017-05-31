@@ -3,7 +3,7 @@ const devAssets = {};
 
 // Development Assets
 // ---------------------------------------------------------------------------
-if (DEVELOPMENT) {
+if (NODE_ENV === 'development') {
   devAssets.init = function() {
     this._super(...arguments);
 
