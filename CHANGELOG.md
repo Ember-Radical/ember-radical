@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.1 (06-01-2017)
+Fixed:
+- Addon overwriting UglifyJS `global_defs` through shallow Object.assign
 ## 1.7.0 (05-18-2017)
 Added:
 - Button component `outline` prop for outline style buttons
