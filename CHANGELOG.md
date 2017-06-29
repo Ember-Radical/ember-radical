@@ -1,6 +1,8 @@
 # Changelog
 
-## UNRELEASED - Alerts, Buttons, Cards and SVG with Bootstrap
+## UNRELEASED
+
+## 1.8.0 (06-29-2017) Alerts, Buttons, Cards and SVG with Bootstrap
 Release 1.8.0 includes prep work and deprecation to prepare these elements for v2
 including:
 
