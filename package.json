@@ -36,6 +36,7 @@
     "svgdefs": "svg-sprite --defs --defs-dest=tests/dummy/public/assets --defs-sprite=symbol-defs.svg tests/dummy/public/svgs/*.svg"
   },
   "dependencies": {
+    "babel-plugin-inline-replace-variables": "^1.3.1",
     "bootstrap": "4.0.0-alpha.6",
     "ember-cli-babel": "^6.0.0",
     "ember-cli-htmlbars": "^1.1.1",
