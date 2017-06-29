@@ -1,8 +1,64 @@
 # Changelog
 
+## UNRELEASED - Alerts, Buttons, Cards and SVG with Bootstrap
+Release 1.8.0 includes prep work and deprecation to prepare these elements for v2
+including:
+
+#### Bootstrap
+Bootstrap v4 is a dependency of Ember Radical, it can now be imported through your
+node_modules. For example if you're using `ember-cli-sass-loader` you would set
+the following options in your `ember-cli-build.js` config:
+```javascript
+sassOptions: {
+  extension: 'scss',
+  includePaths: ['node_modules/bootstrap/scss']
+},
+```
+
+#### Alerts
+- Deprecated: `canDismiss` is deprecated and should be replaced with `dismissible`
+- Deprecated: `onDismiss` is deprecated and should be replaced with `onDeactivate`
+- Added: class `.alert`
+- Added: hook `onDeactivated`
+
+#### Buttons
+- Addition of `btn-unstyled` class bound to `link=true`. The intent of `link=true` is
+to create a button that looks/behaves just like a link element, and currently
+`btn-link` maintains the padding/margin of a button if addon is used with Bootstrap.
+In 2.0 styles will be introduced to remove that padding. If a traditional Bootstrap
+'link button' is needed, then class `btn-link` can be used.
+
+New Button CSS that can be included now:
+```css
+.btn-unstyled {
+  -webkit-appearance: none; // Remove Chrome native button styling
+  white-space: normal;
+  line-height: $line-height-base;
+  vertical-align: baseline;
+  user-select: auto;
+  border: none;
+  padding: 0;
+  font-family: $font-family-sans-serif;
+}
+```
+
+#### Cards
+Deprecated:
+- Contextual card `body` is deprecated and being replaced with `block`
+- Class `card-default` is deprecated and will be removed in v2
+- card class props are deprecated. If you need to pass class names use a contextual
+  component
+
+#### SVG
+- Added: class `'.icon'`
+
+#### General
+- Fixed `.aria-hidden` classes to work with all elements
+
 ## 1.7.1 (06-01-2017)
 Fixed:
 - Addon overwriting UglifyJS `global_defs` through shallow Object.assign
+
 ## 1.7.0 (05-18-2017)
 Added:
 - Button component `outline` prop for outline style buttons

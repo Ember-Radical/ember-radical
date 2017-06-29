@@ -1,0 +1,16 @@
+// ========================================================
+// SVG Element
+// ========================================================
+
+.rad-svg {
+  width: 1em;
+  height: 1em;
+  display: inline;
+  position: relative;
+  bottom: -0.15em; // svg baseline is a bit high
+  fill: currentColor;
+
+  &.b0 {
+    bottom: 0;
+  }
+}

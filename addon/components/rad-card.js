@@ -2,20 +2,26 @@ import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
 
+import deprecated from '../utils/deprecated';
+
 /**
  * Core card.
  *
  * ```handlebars
  * {{#rad-card as |components|}}
- *   {{#components.title}}Card title{{/components.title}}
- *   {{#components.body}}Card body{{/components.body}}
+ *   {{#components.block}}
+ *     {{#components.title}}Card title{{/components.title}}
+ *     Card body
+ *   {{/components.block}}
  *   {{#components.footer}}Card footer{{/components.footer}}
  * {{/rad-card}}
  * ```
  *
  * {{#rad-card as |components|}}
- *   {{#components.title}}Party Time{{/components.title}}
- *   {{#components.body}}<img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>{{/components.body}}
+ *   {{#components.block}}
+ *     {{#components.title}}Party Time{{/components.title}}
+ *     <img src="http://i.giphy.com/125RIkH7IluIpy.gif"/>
+ *   {{/components.block}}
  * {{/rad-card}}
  *
  * @class Component.RadCard
@@ -24,9 +30,8 @@ import hbs from 'htmlbars-inline-precompile';
  */
 export default Component.extend({
 
-  // Passed Properties
+  // Props
   // ---------------------------------------------------------------------------
-
   /**
    * Pass a brand to use to style the component and it's child components.
    * @property brand
@@ -34,103 +39,116 @@ export default Component.extend({
    * @default ''
    */
   brand: '',
-  /**
-   * Custom className(s) to use on the body subcomponent's root element
-   * @property cardBodyClassNames
-   * @type {string}
-   */
-  cardBodyClassNames: 'card-body',
-  /**
-   * Custom className(s) to use on `rad-card`'s root element
-   * @property cardClassNames
-   * @type {string}
-   */
-  cardClassNames: '',
-  /**
-   * Custom className(s) to use on the footer subcomponent's root element
-   * @property cardFooterClassNames
-   * @type {string}
-   */
-  cardFooterClassNames: 'card-footer',
-  /**
-   * Custom className(s) to use on the title subcomponent's root element
-   * @property cardTitleClassNames
-   * @type {string}
-   */
-  cardTitleClassNames: 'card-title',
 
-  // Contextual Component Specifications
+  // Default Component References
   // ---------------------------------------------------------------------------
-
   /**
-   * @property bodyComponent
+   * @property blockComponent
    * @type {string}
    * @passed
    * @optional
-   * @default 'rad-card/body'
+   * @default 'rad-classnamed'
    */
-  bodyComponent: 'rad-card/body',
+  blockComponent: 'rad-classnamed',
+  /**
+   * @property bodyComponent
+   * @deprecated
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-classnamed'
+   */
+  bodyComponent: 'rad-classnamed',
   /**
    * @property footerComponent
    * @type {string}
    * @passed
    * @optional
-   * @default 'rad-card/footer'
+   * @default 'rad-classnamed'
    */
-  footerComponent: 'rad-card/footer',
+  footerComponent: 'rad-classnamed',
+  /**
+   * @property headerComponent
+   * @type {string}
+   * @passed
+   * @optional
+   * @default 'rad-classnamed'
+   */
+  headerComponent: 'rad-classnamed',
   /**
    * @property titleComponent
    * @type {string}
    * @passed
    * @optional
-   * @default 'rad-card/title'
+   * @default 'rad-classnamed'
    */
-  titleComponent: 'rad-card/title',
+  titleComponent: 'rad-classnamed',
 
   // Properties
   // ---------------------------------------------------------------------------
-
   /**
-   * Bound attributes:
-   * - `data-test`: for precise testing identification
    * @property attributeBindings
    * @type {Array}
+   * @default 'data-test'
    */
   attributeBindings: ['data-test'],
   /**
    * Computed css class for the brand bound to the component.
+   * TODO: v2 remove card-default
    * @property brandClass
    * @type {String}
    */
   brandClass: computed(function() {
-    return `card-${this.get('brand') ? this.get('brand') : 'default'}`;
+    return this.get('brand') ? `card-${this.get('brand')}` : 'card-default';
   }),
   /**
-   * Bind standard core class: `card-footer`
    * @property classNames
    * @type {Array}
+   * @default 'card rad-card'
    */
-  classNames: ['rad-card'],
+  classNames: ['card', 'rad-card'],
   /**
    * Bind props to classes on the root component element.
    * @property classNameBindings
    * @type {Array}
    */
-  classNameBindings: ['brandClass', 'cardClassNames'],
+  classNameBindings: ['brandClass'],
+
+  // Hooks
+  // ---------------------------------------------------------------------------
+  init() {
+    this._super(...arguments);
+    if (this.get('cardClassNames')) { deprecated('cardClassNames', 'classNames directly on the component'); }
+    if (this.get('cardBodyClassNames')) { deprecated('cardBodyClassNames', 'classNames directly on the component'); }
+    if (this.get('cardFooterClassNames')) { deprecated('cardFooterClassNames', 'classNames directly on the component'); }
+    if (this.get('cardTitleClassNames')) { deprecated('cardTitleClassNames', 'classNames directly on the component'); }
+  },
 
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
+    {{! TODO: make title an h4 by default in v2, old titles should actually be
+        headers in v2 }}
     {{yield (hash
-      title=(component titleComponent
-        cardTitleClassNames=cardTitleClassNames
-        data-test=(if data-test (concat data-test '-title')))
+      block=(component blockComponent
+        _classNames='card-block'
+        data-test=(if data-test (concat data-test '-block')))
       body=(component bodyComponent
-        cardBodyClassNames=cardBodyClassNames
+        _classNames='card-block card-body'
+        class=cardBodyClassNames
         data-test=(if data-test (concat data-test '-body')))
       footer=(component footerComponent
-        cardFooterClassNames=cardFooterClassNames
+        _classNames='card-footer'
+        class=cardFooterClassNames
         data-test=(if data-test (concat data-test '-footer')))
+      header=(component headerComponent
+        _classNames='card-header'
+        data-test=(if data-test (concat data-test '-header')))
+      title=(component titleComponent
+        _classNames='card-title'
+        class=cardTitleClassNames
+        tagName='div'
+        data-test=(if data-test (concat data-test '-title')))
     )}}
   `
 });

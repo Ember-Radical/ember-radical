@@ -1,6 +1,9 @@
 import Component from 'ember-component';
+import run from 'ember-runloop';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
+
+import deprecated from '../utils/deprecated';
 
 /**
  * Multi-use alerts for in-page error messaging, pop-up alerts, notifications,
@@ -43,7 +46,7 @@ export default Component.extend({
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
-   * Specify brand, component handles assigning correct css class
+   * Alert style. Eg: `success`, `info`, `warning`, `danger`
    * @property brand
    * @default ''
    * @type {string}
@@ -51,6 +54,8 @@ export default Component.extend({
    */
   brand: '',
   /**
+   * **NOTE:** Use property {{c-l 'dismissible'}} instead of `canDismiss`.
+   *
    * Whether this alert can be dismissed via the close button in the upper right
    * corner. Defaults to true. Adds an interactive close button to the alert.
    *
@@ -65,33 +70,56 @@ export default Component.extend({
    *
    * @property canDismiss
    * @type {boolean}
+   * @deprecated
    * @default true
    * @public
    */
-  canDismiss: true,
+  canDismiss: null,
   /**
+   * If true, the alert will show the close button in upper right corner and hide
+   * itself on click. Is defaulted to true, pass `false` to create an alert that
+   * cannot be dismissed:
+   *
+   * ```glimmer
+   * {{#rad-alert style='danger' dismissible=false}}
+   *   This alert cannot be dismissed.
+   * {{/rad-alert}}
+   * ```
+   * @property dismissible
+   * @type {boolean}
+   * @default true
+   * @public
+   */
+  dismissible: true,
+  /**
+   * Component hook called when the component is dismissed by user. Is called with
+   * params of `this`, the component instance and the `evt`.
+   * @method onDeactivate
+   * @passed
+   */
+  onDeactivate: () => {},
+  /**
+   * Component hook called after the dismiss logic has fired. Is called with
+   * params of `this`, the component instance and the `evt`.
+   * @method onDeactivated
+   * @passed
+   */
+  onDeactivated: () => {},
+  /**
+   * **NOTE:** Use property {{c-l 'onDeactivated'}}
+   *
    * Contains optional action that is executed when the alert is dismissed.
    * This action will be executed before the alert is destroyed.
    * @property onDismiss
+   * @deprecated
    * @type {function}
    * @default () => {}
    * @public
    */
-  onDismiss: () => {},
+  onDismiss: null,
 
   // Properties
   // ---------------------------------------------------------------------------
-  /**
-   * Computed css class bound to component. Handled by component to allow for
-   * flexibility in future updates to branding class names
-   * @property brandClass
-   * @type {string}
-   * @param 'brand'
-   * @private
-   */
-  brandClass: computed('brand', function() {
-    return this.get('brand') ? `alert-${this.get('brand')}` : null;
-  }),
   /**
    * A++ accessibility. Tells a screen this component is an alert.
    * @property ariaRole
@@ -99,23 +127,32 @@ export default Component.extend({
    * @default 'alert'
    */
   ariaRole: 'alert',
+  /**
+   * Computed css class bound to component. Handled by component to allow for
+   * flexibility in future updates to branding class names
+   * @property brandClass
+   * @type {string}
+   * @param 'brand'
+   * @protected
+   */
+  brandClass: computed('brand', function() {
+    return this.get('brand') ? `alert-${this.get('brand')}` : null;
+  }),
 
   // Ember Properties
   // ---------------------------------------------------------------------------
-
   /**
-   * Auto-binds `data-test` attributes
-   *
    * @property attributeBindings
    * @type {Array}
+   * @default ['data-test']
    */
   attributeBindings: ['data-test'],
   /**
    * @property classNames
    * @type {Array}
-   * @default ['rad-alert']
+   * @default ['alert', 'rad-alert']
    */
-  classNames: ['rad-alert'],
+  classNames: ['alert', 'rad-alert'],
   /**
    * @property classNameBindings
    * @type {Array}
@@ -123,24 +160,22 @@ export default Component.extend({
    */
   classNameBindings: ['brandClass'],
 
-  // Methods
+  // Hooks
   // ---------------------------------------------------------------------------
-
   /**
-   * Allows for quick and easy dismissal of the alert. The alert is faded from
-   * view, then totally removed from the DOM and the component instance is
-   * destroyed.
-   * @method _selfDestruct
-   * @return {undefined}
+   * Provide deprecation warnings for v2 on init.
+   * @method init
    */
-  _selfDestruct() {
-    // Fade the element out
-    this.$().animate({ opacity: 0 }, 300, () => {
-      // When the animation is complete, destroy the component
-      if (!this.get('isDestroyed')) {
-        this.$().remove();
-      }
-    });
+  init() {
+    this._super(...arguments);
+    if (this.get('canDismiss') !== null) {
+      deprecated('canDismiss', 'dismissible');
+      this.set('dismissible', this.get('canDismiss'));
+    }
+    if (this.get('onDismiss')) {
+      deprecated('onDismiss', 'onDeactivate');
+      this.set('onDeactivate', this.get('onDismiss'));
+    }
   },
 
   // Actions
@@ -154,13 +189,19 @@ export default Component.extend({
     /**
      * A proxy action for the selfDestruct method
      * @method dismiss
-     * @return {undefined}
+     * @action
      */
-    dismiss() {
-      // check if a dismiss action was passed into the component
-      this.onDismiss();
-      // Internal method to handle all the destruction
-      this._selfDestruct();
+    dismiss(evt) {
+      this.get('onDeactivate')(this, evt); // Consumer Hooks
+      // Fade the element out
+      this.$().animate({ opacity: 0 }, 300, () => {
+        if (this.get('isDestroyed')) { return; }
+        // Sets display:none to pull from DOM flow
+        run(() => {
+          this.set('isVisible', false);
+          this.get('onDeactivated')(this, evt); // Consumer Hooks
+        });
+      });
     }
   },
 
@@ -171,15 +212,15 @@ export default Component.extend({
       {{yield}}
     </div>
 
-    {{#if canDismiss}}
+    {{#if dismissible}}
       <div class='alert-close-wrapper'>
         {{#rad-button
-          class="close"
-          click=(action "dismiss")
+          class='close'
+          click=(action 'dismiss')
           link=true
-          aria-label="close"
+          aria-label='close'
           data-test=(if data-test (concat data-test '-close'))}}
-          {{rad-svg svgId="close"}}
+          {{rad-svg svgId='close'}}
         {{/rad-button}}
       </div>
     {{/if}}

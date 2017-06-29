@@ -1,0 +1,61 @@
+// ========================================================
+// Componentry 'Clear' Theme
+// Used by Componentry Demo App
+// ========================================================
+
+// 1. Colors
+// ---------------------------------------------------------------------------
+$gray-dark:     #292b2c;
+$gray:          #464a4c;
+$gray-light:    #636c72;
+$gray-lighter:  #eceeef;
+$gray-lightest: #f7f7f9;
+
+$brand-primary: #000000;
+$brand-success: #19F9D8;
+$brand-info:    #6FC1FF;
+$brand-warning: #f0ad4e;
+$brand-danger:  #FF75B5;
+$brand-inverse: $gray-dark;
+
+// 9. Fonts
+// ---------------------------------------------------------------------------
+$font-size-base: 0.9375rem; // 14px base assuming 1 rem = 16px
+$font-size-lg:   $font-size-base * 1.25;
+$font-size-sm:   $font-size-base * 0.875;
+
+$headings-color: $gray;
+
+$small-font-size: 90%;
+
+// 10. Components
+// ---------------------------------------------------------------------------
+$border-radius: 0;
+
+// 26. Alerts
+// ---------------------------------------------------------------------------
+$state-success-text:             #19F9D8;
+$state-success-bg:               lighten($state-success-text, 37%);
+$state-success-border:           darken($state-success-bg, 5%);
+
+$state-info-text:                #6FC1FF;
+$state-info-bg:                  lighten($state-info-text, 20%);
+$state-info-border:              darken($state-info-bg, 7%);
+
+$state-warning-text:             #f0ad4e;
+$state-warning-bg:               lighten($state-warning-text, 25%);
+$state-warning-border:           darken($state-warning-bg, 5%);
+
+$state-danger-text:              #FF75B5;
+$state-danger-bg:                lighten($state-danger-text, 20%);
+$state-danger-border:            darken($state-danger-bg, 5%);
+
+
+// 35. Code
+// ---------------------------------------------------------------------------
+$code-bg: #f9f2f4;
+
+// ========================================================
+// Theme Styles
+// ========================================================
+p { max-width: 800px; }

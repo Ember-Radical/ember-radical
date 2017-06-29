@@ -1,14 +1,23 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const packageJSON = require('./package.json');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     sassOptions: {
-      extension: 'scss'
+      extension: 'scss',
+      includePaths: ['node_modules/bootstrap/scss']
     },
     // Don't fingerprint the ember-logo b/c it is pulled using a path from the
     // docs meta which doesn't get updated with fingerprint hash
     fingerprint: {
       exclude: ['ember-logo']
+    },
+
+    // Inline replace the version in the dummy app using babel
+    babel: {
+      plugins: [
+        ['inline-replace-variables', { RAD_VERSION: packageJSON.version || '0.0.0' }]
+      ]
     }
   });
 

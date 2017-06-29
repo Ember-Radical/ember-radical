@@ -1,0 +1,17 @@
+// ========================================================
+// Default Component Variables
+// These variables are fallbacks in case the Radical
+// component styles are directly consumed and values for
+// all variables aren't set by either the consumer
+//
+// It is also a convenient reference for all the style
+// variables that can be used to customize the Radical
+// component styles.
+// ========================================================
+
+// 9. Fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$line-height-base: 1.5 !default;
+
+// 10. Components
+$transition-fade: opacity .15s linear !default;

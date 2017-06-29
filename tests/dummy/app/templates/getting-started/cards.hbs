@@ -4,16 +4,21 @@
 <section>
   <h3>Examples</h3>
 
+  {{! V1 }}
   {{code-example
     title='Basic Example'
-    language='handlebars' code="{{#rad-card as |components|}}
+    language='handlebars'
+    code=
+"{{#rad-card as |components|}}
   {{#components.body}}Simple card{{/components.body}}
 {{/rad-card}}"}}
 
   {{code-example
     title='Extended Examples'
-    language='handlebars' code="{{#rad-card as |components|}}
-  {{#components.title}}Simple card w/ header{{/components.title}}
+    language='handlebars'
+    code=
+"{{#rad-card as |components|}}
+  {{#components.title}}Simple card w/ title{{/components.title}}
   {{#components.body}}Some content{{/components.body}}
 {{/rad-card}}
 
@@ -35,6 +40,57 @@
   {{/components.body}}
   {{#components.footer}}Footer content{{/components.footer}}
 {{/rad-card}}"}}
+
+  {{! V2 }}
+  {{!--{{code-example
+    title='Basic Example'
+    language='handlebars'
+    code=
+"{{#rad-card as |components|}}
+  {{#components.block}}
+    {{#components.title tagName='h4'}}
+      Card title
+    {{/components.title}}
+    <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  {{/components.block}}
+{{/rad-card}}"}}
+
+  {{code-example
+      title='Extended Examples'
+      language='handlebars'
+      code=
+  "{{#rad-card as |c|}}
+    {{#c.block}}
+    {{#c.title}}Card title{{/c.title}}
+    <h6 class='card-subtitle mb-2 text-muted'>Card subtitle</h6>
+    <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href='#' class='card-link'>Card link</a>
+    <a href='#' class='card-link'>Another link</a>
+  {{/c.block}}
+{{/rad-card}}
+
+{{#rad-card as |c|}}
+  {{#c.header}}
+    Featured
+  {{/c.header}}
+  {{#c.block}}
+    {{#c.title}}Special title treatment{{/c.title}}
+    <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
+    {{#rad-button brand='primary'}}Go somewhere{{/rad-button}}
+  {{/c.block}}
+{{/rad-card}}
+
+{{#rad-card
+  classNames='mb-3 text-center card-inverse'
+  brand='primary'
+  as |c|}}
+  {{#c.block}}
+    <blockquote class='card-blockquote'>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer>Someone famous in <cite title='Source Title'>Source Title</cite></footer>
+    </blockquote>
+  {{/c.block}}
+{{/rad-card}}"}}--}}
 
 </section>
 <section>
@@ -67,38 +123,6 @@
               <p class="small enums"><strong>Enums:</strong> primary, secondary</p>
             </td>
           </tr>
-          <tr>
-            <td><code>card</code></td>
-            <td>{String}</td>
-            <td>false</td>
-            <td>
-              <p>Whether the tab content panels should display using the card styling. Applies a <code>rad-card</code> class to the <code>&lt;div class='content-container'&gt;</code> that the tab content panels are rendered within.</p>
-            </td>
-          </tr>
-          <tr>
-            <td><code>cardBodyClassNames</code></td>
-            <td>{Boolean}</td>
-            <td>'card-body'</td>
-            <td>Custom className(s) to use on the body subcomponent's root element</td>
-          </tr>
-          <tr>
-            <td><code>cardClassNames</code></td>
-            <td>{Boolean}</td>
-            <td>''</td>
-            <td>Custom className(s) to use on `rad-card`'s root element</td>
-          </tr>
-          <tr>
-            <td><code>cardFooterClassNames</code></td>
-            <td>{Boolean}</td>
-            <td>'card-footer'</td>
-            <td>Custom className(s) to use on the footer subcomponent's root element</td>
-          </tr>
-          <tr>
-            <td><code>cardTitleClassNames</code></td>
-            <td>{Boolean}</td>
-            <td>'card-title'</td>
-            <td>Custom className(s) to use on the title subcomponent's root element</td>
-          </tr>
         </tbody>
       </table>
     {{/components.content}}
@@ -121,7 +145,7 @@
             <td>
               <p>Child components yielded by the parent.</p>
               <p class="small enums"><strong>Enums:</strong>
-              components.body, components.footer, components.title</p>
+              components.block, components.header, components.footer, components.title</p>
             </td>
           </tr>
         </tbody>

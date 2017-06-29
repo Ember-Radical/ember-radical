@@ -1,29 +1,25 @@
 <section>
-  <p class="intro">Alerts allow you to display important messages to users. Whether it's feedback from user interaction, a status notification, or just something really important you want users to know about, Alerts have you covered.</p>
+  <p class="intro">Alerts allow you to display contextual feedback to users with the
+  styles conveying the intent of the alert.</p>
 </section>
 <section>
   <h3>Examples</h3>
 
   {{code-example
-    title='Basic Example'
-    language='handlebars' code="{{#rad-alert}}A fairly simple alert. Look, you can dismiss it!{{/rad-alert}}"}}
+    title='Contexutal Alerts'
+    language='handlebars'
+    code="
+      {{#rad-alert brand='success'}}You just navigated to the Alerts overview guide, well done!{{/rad-alert}}
+      {{#rad-alert brand='info'}}Did you know that only 8% of the world’s currency is physical money, the rest only exists on computers.{{/rad-alert}}
+      {{#rad-alert brand='warning'}}Beware of ice on roadways once the air temperature drops below 37&deg;{{/rad-alert}}
+      {{#rad-alert brand='danger'}}If you just received an email from the king of Russia, don't open any attachments!{{/rad-alert}}"}}
 
   <br>
 
   {{code-example
-    title='Branded Alerts'
-    language='handlebars' code="{{#rad-alert brand='primary'}}This alert has the primary branding applied to it.{{/rad-alert}}
-{{#rad-alert brand='secondary'}}This alert has the secondary branding applied to it.{{/rad-alert}}
-{{#rad-alert brand='success'}}This alert probably indicates something good happened!{{/rad-alert}}
-{{#rad-alert brand='info'}}This alert wants to inform you about something.{{/rad-alert}}
-{{#rad-alert brand='warning'}}This alert probably has a warning of some kind.{{/rad-alert}}
-{{#rad-alert brand='danger'}}This alert means it's too late, something has already blown up.{{/rad-alert}}"}}
-
-  <br>
-
-  {{code-example
-    title='Non-Dismissable'
-    language='handlebars' code="{{#rad-alert brand='info' canDismiss=false}}You can't dismiss this alert. Sorry.{{/rad-alert}}"}}
+    title='Non-Dismissable Alerts'
+    language='handlebars'
+    code="{{#rad-alert brand='info' dismissible=false}}Pass <code>dismissible=false</code> for an alert that can't be dismissed{{/rad-alert}}"}}
 
 </section>
 <section>
@@ -37,7 +33,7 @@
     {{#components.content
       label='Passed'
       elementId='passedProps'}}
-      <table class="full-width">
+      <table class="table">
         <thead>
           <tr>
             <th>Name</th>

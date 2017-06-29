@@ -2,13 +2,46 @@
 // GH-Pages Demo Site Styles
 // ========================================================
 
+// ========================================================
+// Radical 2.0 Target: Radical CSS Integration
+// Radical v2 aims to solve one issue really well: a set of
+// DDAU, fully accessible Ember components. Support for the
+// custom Skeleton/Bootstrap theme will be removed.
+// Bootstrap v4 is modular and amazing. This will be the
+// *primary* target for Radical. However, components styles
+// will be generated using customizable variables, meaning
+// consumers wishing to create a set of variable and class
+// name shims for other CSS frameworks have that ability.
+// See below for an example of using Radical components
+// with Bootstrap for a set of totally radical Ember
+// components perfectly matched to an app theme.
+// ========================================================
+
+// Step #1: Import Theme Variables
+// ---------------------------------------------------------------------------
+// @import 'ember-radical/themes/clarity';
+
+// Step #2: Import Bootstrap
+// Note that any theme variables you declare will override the default
+// Bootstrap variables. Any variables you don't declare will be populated
+// with the Boostrap defaults.
+// ---------------------------------------------------------------------------
+// @import 'bootstrap';
+
+// Step #3: Import Component Styles
+// ---------------------------------------------------------------------------
+// @import 'ember-radical/components';
+
+
+
+
+// ========================================================
+// Radical 1.0 Styles Import
+// ========================================================
+
 // Base line set by Ember Radical styles
 // ---------------------------------------------------------------------------
 @import "ember-radical/styles";
-
-// Import Fountainhead styles directly for live reload in dev
-// ---------------------------------------------------------------------------
-@import "ember-fountainhead";
 
 // Demo Site Elements
 // ---------------------------------------------------------------------------

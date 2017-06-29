@@ -1,6 +1,9 @@
 const common = {
   name: 'Ember Radical Docs',
   description: 'API documentation for Ember Radical Components, Helpers and Services',
+  guides: [
+    'guides/radical-v2.md'
+  ],
   external: {
     data: [
       {

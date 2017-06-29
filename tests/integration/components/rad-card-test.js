@@ -43,7 +43,7 @@ test('it renders brand class', function(assert) {
 test('it applies custom classNames from passed props to the component template elements', function(assert) {
   this.render(hbs`
     {{#rad-card
-      cardClassNames='custom-card-root-class'
+      classNames='custom-card-root-class'
       cardBodyClassNames='crazy-card-body'
       cardFooterClassNames='totally-rad-footer'
       cardTitleClassNames='supes-amazing-title'
@@ -54,7 +54,7 @@ test('it applies custom classNames from passed props to the component template e
     {{/rad-card}}
   `);
 
-  assert.ok(this.$('[data-test="class-test-root"]').hasClass('custom-card-root-class'), 'The custom cardClassNames should be applied to the component root element');
+  assert.ok(this.$('[data-test="class-test-root"]').hasClass('custom-card-root-class'));
 
   assert.ok(this.$('[data-test="class-test-title"]').hasClass('supes-amazing-title'), 'The custom cardClassNames should be applied to the component root element');
 

@@ -1,5 +1,5 @@
 <section>
-  <p>The <code>rad-button</code> is the base component used for composing any element
+  <p class="intro">The <code>rad-button</code> is the base component used for composing any element
   with an interactive target. Any element that can be clicked should always be either
   an anchor with a valid href or a button. This ensures that screenreaders know the
   element can be interacted with, and is required in mobile for touch events.</p>
@@ -14,7 +14,8 @@
 
   {{code-example
     title='Basic Button with an Action'
-    language='handlebars' code="{{#rad-button click=(action 'exampleAction')}}Radical Button{{/rad-button}}"}}
+    language='handlebars'
+    code="{{#rad-button click=(action 'exampleAction')}}Radical Button{{/rad-button}}"}}
   <br>
 
   {{code-example
@@ -58,7 +59,7 @@
     {{#components.content
       label='Passed'
       elementId='passedProps'}}
-      <table class="full-width">
+      <table class="table">
         <thead>
           <tr>
             <th>Name</th>
