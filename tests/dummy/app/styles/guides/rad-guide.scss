@@ -2,7 +2,19 @@
 .hero-logo {
   background: url(./radical-logo.png) 50% 0 no-repeat;
   background-size: contain;
-  height: 200px;
+  height: 150px;
+
+    @media screen and (min-width: 41em) {
+      height: 200px;
+    }
+
+    @media screen and (min-width: 62em) {
+      height: 225px;
+    }
+
+    @media screen and (min-width: 83em) {
+      height: 250px;
+    }
 }
 
 // ========================================================
