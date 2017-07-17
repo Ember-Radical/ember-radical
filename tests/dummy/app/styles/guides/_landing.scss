@@ -18,11 +18,29 @@
   }
 }
 
+.hero-logo {
+  background: url(./radical-logo.png) 50% 0 no-repeat;
+  background-size: contain;
+  height: 150px;
+
+    @media screen and (min-width: 41em) {
+      height: 200px;
+    }
+
+    @media screen and (min-width: 62em) {
+      height: 225px;
+    }
+
+    @media screen and (min-width: 83em) {
+      height: 250px;
+    }
+}
+
 .horizon {
   height: 50%;
   width: 100%;
   position: absolute;
-  bottom: 180px;
+  bottom: 200px;
   background-image: linear-gradient(
   rgba($black, 0.8) 0%,
   rgba(darken($pink, 5%), 0.5) 70%,
@@ -30,6 +48,10 @@
   rgba(darken($pink, 5%), 0.2) 90%,
   rgba($black, 0.2) 95%,
   rgba($black, 0) 100%);
+
+   @media screen and (min-width: 62em) {
+      height: 180px;
+    }
 }
 
 .grid {
@@ -46,12 +68,6 @@
   transform: perspective(200px) rotateX(80deg);
   animation: throughSpace 2s linear;
   animation-iteration-count: infinite;
-}
-
-@media screen and (min-width: 62em) {
-  .horizon {
-    bottom: 110px;
-  }
 }
 
 @keyframes throughSpace {
