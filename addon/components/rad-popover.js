@@ -238,6 +238,13 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   /**
+   * Show content on click
+   * @event click
+   */
+  click(evt) {
+    this._showContent();
+  },
+  /**
    * Show content on focus
    * @event focusIn
    */
