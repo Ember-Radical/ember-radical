@@ -1,6 +1,14 @@
 # Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## UNRELEASED
+
+## 1.8.1 (01-15-2018)
+### Fixed
+- Fixed popover behavior in iOS
 
 ## 1.8.0 (06-29-2017) Alerts, Buttons, Cards and SVG with Bootstrap
 Release 1.8.0 includes prep work and deprecation to prepare these elements for v2
