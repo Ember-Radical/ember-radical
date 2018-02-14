@@ -142,6 +142,16 @@ export default Component.extend({
     );
   },
   /**
+   * Sets the props label and hidden on initializing these Properties
+   * and after `didUpdateAttrs` fires
+   * @event didReceiveAttrs
+   */
+  didReceiveAttrs(){
+    // Update the private hidden state so it can be used for comparison
+    // on the next attrs update
+    this.set('_oldProps', this.getProperties('label', 'hidden'));
+  },
+  /**
    * Actions Up: When something changes in this component we need to let the
    * container tabs know by firing the `updateTab` closure action with this
    * tabs changed data.
@@ -150,16 +160,17 @@ export default Component.extend({
    * @event didUpdateAttrs
    */
   didUpdateAttrs() {
-    let hidden = this.get('hidden'),
-        oldHidden = this.get('_oldHidden');
-
-    if (oldHidden !== hidden) {
-      this.updateTab(this.getProperties('elementId', 'hidden'));
+    const props = this.getProperties('label', 'hidden')
+    const oldProps = this.get('_oldProps')
+    for (const key in props){
+      if (props[key] === oldProps[key]) {
+        delete props[key]
+      }
+    }
+    if (Object.keys(props).length) {
+      this.updateTab(this.get('elementId'), props);
     }
 
-    // Update the private hidden state so it can be used for comparison
-    // on the next attrs update
-    this.set('_oldHidden', hidden);
   },
 
   // Layout
