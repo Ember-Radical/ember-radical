@@ -179,6 +179,24 @@ test('it shows tabpanels when a tab label is clicked', function(assert) {
   assert.equal(this.$('[data-test="panel-c"]').attr('aria-hidden'), 'false', 'tabpanel C shown');
 });
 
+// Update label property on content and test it was updated in component
+//----------------------------------------------------------------------------
+test('it properly updates the tab label when label changes', function(assert){
+  // assigning dummyLabel to component context so we can update it w/o forcing a re-render
+  this.set('dummyLabel', 'Yay Tab A')
+  this.render(hbs`
+    {{#rad-tabs as |components|}}
+      {{#components.content label=dummyLabel tabDataTest='tab-a' data-test='panel-a'}}
+        <p>Tab A Content</p>
+      {{/components.content}}
+    {{/rad-tabs}}
+  `);
+  assert.equal(this.$('[data-test="tab-a"]').text().trim(), 'Yay Tab A', 'default label was joyous')
+
+  this.set('dummyLabel', 'Definitely Not Tab A')
+  assert.equal(this.$('[data-test="tab-a"]').text().trim(), 'Definitely Not Tab A', 'updated label: also joyous')
+})
+
 test('it works as a controlled tabs instance by passing activeId and onChange closures', function(assert) {
   function onChangeClosure({ elementId }) {
     this.set('controlledId', elementId);
