@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import inject from 'ember-service/inject';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 
 /**
@@ -29,7 +29,7 @@ let taggingAssets = {};
 
 if (TAGGING) {
   taggingAssets = {
-    tagging: inject(),
+    tagging: service(),
 
     /**
      * Internal method that handles firiing a tag with or without custom dimensions.

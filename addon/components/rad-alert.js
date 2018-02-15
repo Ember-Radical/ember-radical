@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import run from 'ember-runloop';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 
 import deprecated from '../utils/deprecated';

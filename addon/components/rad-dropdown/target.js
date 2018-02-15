@@ -1,4 +1,4 @@
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 
 import RadButton from '../rad-button';

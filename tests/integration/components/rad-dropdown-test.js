@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -84,8 +85,8 @@ test('pressing escape closes the dropdown', function(assert) {
   assert.equal(this.$('.dropdown-content').css('display'), 'block', 'content is displayed after click');
 
   // Simulate pressing escape
-  Ember.run(() => {
-    let e = Ember.$.Event('keydown');
+  run(() => {
+    let e = $.Event('keydown');
     e.which = 27; // escape key
     this.$(document).trigger(e);
   });

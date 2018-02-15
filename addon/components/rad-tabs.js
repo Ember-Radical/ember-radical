@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import Component from 'ember-component';
+import { set } from '@ember/object';
+import { A } from '@ember/array';
+import $ from 'jquery';
+import Component from '@ember/component';
 import run from 'ember-runloop';
 import hbs from 'htmlbars-inline-precompile';
-
-const { $ } = Ember;
 
 /**
  * A++ Accessible tabs. The `rad-tabs` component is the parent container for
@@ -230,7 +230,7 @@ export default Component.extend({
     const tabList = this.get('tabList');
 
     this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab));
-    this.set('_tabsToCreate', Ember.A());
+    this.set('_tabsToCreate', A());
   },
 
   // Hooks
@@ -248,8 +248,8 @@ export default Component.extend({
 
     // Disabled prototype extensions require Ember.A for a new array:
     // https://guides.emberjs.com/v2.10.0/configuring-ember/disabling-prototype-extensions/#toc_arrays
-    this.set('tabList', Ember.A());
-    this.set('_tabsToCreate', Ember.A());
+    this.set('tabList', A());
+    this.set('_tabsToCreate', A());
 
     // When default tab is passed, update internal flag
     if (this.get('defaultTab')) {
@@ -312,7 +312,7 @@ export default Component.extend({
       if (tabToUpdate.length) {
         // TODO: when updating hidden in the tabList a double render is occuring
         // for some reason. Why???
-        run.once(this, () => Ember.set(tabToUpdate[0], 'hidden', hidden));
+        run.once(this, () => set(tabToUpdate[0], 'hidden', hidden));
       }
     }
   },

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -52,7 +52,7 @@ test('it binds passed attributes', function(assert) {
 });
 
 test('it calls the tagging service on click', function(assert) {
-  const taggingStub = Ember.Service.extend({
+  const taggingStub = Service.extend({
     fireTag({ tagcategory, tagaction, taglabel}) {
       assert.equal(tagcategory, 'Category', 'category is passed to tagging on click');
       assert.equal(tagaction, 'Action', 'action is passed to tagging on click');
@@ -82,7 +82,7 @@ test('it calls the tagging service on click', function(assert) {
 });
 
 test('it calls the tagging service on hover if specified', function(assert) {
-  const taggingStub = Ember.Service.extend({
+  const taggingStub = Service.extend({
     fireTag({ tagcategory, tagaction, taglabel }) {
       assert.equal(tagcategory, 'Category', 'category is passed to tagging on click');
       assert.equal(tagaction, 'Action', 'action is passed to tagging on click');

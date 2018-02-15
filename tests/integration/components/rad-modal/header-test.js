@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -114,7 +114,7 @@ test('it uses default no-op if a closeModal action isnt passed', function(assert
 });
 
 test('it binds tagging props when passed', function(assert) {
-  const tagging = Ember.Service.extend({
+  const tagging = Service.extend({
     fireTag({ tagcategory, tagaction, taglabel }) {
       assert.equal(tagcategory, 'Radical', 'fireTag is called with passed tagClose.category');
       assert.equal(tagaction, 'Action', 'fireTag is called with passed tagClose.action');

@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
-import {controls} from '../utils/arias';
+import { controls } from '../utils/arias';
 import deprecated from '../utils/deprecated';
 
 /**

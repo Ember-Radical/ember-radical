@@ -1,6 +1,11 @@
+import { htmlSafe } from '@ember/string';
+import Component from '@ember/component';
+import { getOwner } from '@ember/application';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
-const { Component, HTMLBars, getOwner } = Ember;
+const {
+  HTMLBars
+} = Ember;
 
 export default Component.extend({
 
@@ -89,7 +94,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('codeBlockHeightCSS', Ember.String.htmlSafe('max-height: 0px;'));
+    this.set('codeBlockHeightCSS', htmlSafe('max-height: 0px;'));
   },
 
   willDestroyElement() {
@@ -109,7 +114,7 @@ export default Component.extend({
     toggleCode() {
       this.toggleProperty('showCode');
       let heightValue = this.get('showCode') ? this.get('codeBlockHeight') : 0;
-      let heightCSS = Ember.String.htmlSafe(`max-height: ${heightValue}px;`);
+      let heightCSS = htmlSafe(`max-height: ${heightValue}px;`);
       this.set('codeBlockHeightCSS', heightCSS);
     }
   },

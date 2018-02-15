@@ -1,4 +1,4 @@
-import Service from 'ember-service';
+import Service from '@ember/service';
 
 /**
  * Base tagging class. Provides methods for pushing data into the data layer.
