@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## UNRELEASED
 
+## 1.8.2 (02-22-2018)
+### Fixed
+- Fixed issue with updated label on `rad-tab.contetn` not being updated in `rad-tab` context.
+
 ## 1.8.1 (01-15-2018)
 ### Fixed
 - Fixed popover behavior in iOS
