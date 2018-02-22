@@ -306,13 +306,13 @@ export default Component.extend({
      * @param {string}  tab.elementId HTML id of tab to update
      * @param {boolean} tab.hidden    Hidden status of changed tab
      */
-    updateTab({ elementId, hidden }) {
-      const tabToUpdate = this.get('tabList').filter(tab => tab.elementId === elementId);
+    updateTab( elementId, propsToUpdate) {
+      const tabToUpdate = this.get('tabList').find(tab => tab.elementId === elementId);
 
-      if (tabToUpdate.length) {
+      if (tabToUpdate) {
         // TODO: when updating hidden in the tabList a double render is occuring
         // for some reason. Why???
-        run.once(this, () => Ember.set(tabToUpdate[0], 'hidden', hidden));
+        run.once(this, () => Ember.setProperties(tabToUpdate, propsToUpdate));
       }
     }
   },
