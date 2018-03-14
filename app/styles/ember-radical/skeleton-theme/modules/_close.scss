@@ -20,5 +20,6 @@ button.rad-button.close {
   // in line with fonts
   .rad-svg {
     bottom: 0;
+    pointer-events: none; // prevent svg from stealing click in IE Edge
   }
 }
