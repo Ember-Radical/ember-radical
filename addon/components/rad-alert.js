@@ -3,7 +3,6 @@ import run from 'ember-runloop';
 import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 
-import deprecated from '../utils/deprecated';
 
 /**
  * Multi-use alerts for in-page error messaging, pop-up alerts, notifications,
@@ -54,28 +53,6 @@ export default Component.extend({
    */
   brand: '',
   /**
-   * **NOTE:** Use property {{c-l 'dismissible'}} instead of `canDismiss`.
-   *
-   * Whether this alert can be dismissed via the close button in the upper right
-   * corner. Defaults to true. Adds an interactive close button to the alert.
-   *
-   * **Usage:**
-   * Override by passing `false` into this param in your handlebars template:
-   *
-   * ```handlebars
-   * {{#rad-alert canDismiss=false}}
-   *   {{! Standard template content goes here }}
-   * {{/rad-alert}}
-   * ```
-   *
-   * @property canDismiss
-   * @type {boolean}
-   * @deprecated
-   * @default true
-   * @public
-   */
-  canDismiss: null,
-  /**
    * If true, the alert will show the close button in upper right corner and hide
    * itself on click. Is defaulted to true, pass `false` to create an alert that
    * cannot be dismissed:
@@ -105,18 +82,6 @@ export default Component.extend({
    * @passed
    */
   onDeactivated: () => {},
-  /**
-   * **NOTE:** Use property {{c-l 'onDeactivated'}}
-   *
-   * Contains optional action that is executed when the alert is dismissed.
-   * This action will be executed before the alert is destroyed.
-   * @property onDismiss
-   * @deprecated
-   * @type {function}
-   * @default () => {}
-   * @public
-   */
-  onDismiss: null,
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -159,24 +124,6 @@ export default Component.extend({
    * @default ['brandClass']
    */
   classNameBindings: ['brandClass'],
-
-  // Hooks
-  // ---------------------------------------------------------------------------
-  /**
-   * Provide deprecation warnings for v2 on init.
-   * @method init
-   */
-  init() {
-    this._super(...arguments);
-    if (this.get('canDismiss') !== null) {
-      deprecated('canDismiss', 'dismissible');
-      this.set('dismissible', this.get('canDismiss'));
-    }
-    if (this.get('onDismiss')) {
-      deprecated('onDismiss', 'onDeactivate');
-      this.set('onDeactivate', this.get('onDismiss'));
-    }
-  },
 
   // Actions
   // ---------------------------------------------------------------------------

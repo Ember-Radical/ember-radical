@@ -2,8 +2,6 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import hbs from 'htmlbars-inline-precompile';
 
-import deprecated from '../utils/deprecated';
-
 /**
  * Core card.
  *
@@ -114,15 +112,6 @@ export default Component.extend({
    */
   classNameBindings: ['brandClass'],
 
-  // Hooks
-  // ---------------------------------------------------------------------------
-  init() {
-    this._super(...arguments);
-    if (this.get('cardClassNames')) { deprecated('cardClassNames', 'classNames directly on the component'); }
-    if (this.get('cardBodyClassNames')) { deprecated('cardBodyClassNames', 'classNames directly on the component'); }
-    if (this.get('cardFooterClassNames')) { deprecated('cardFooterClassNames', 'classNames directly on the component'); }
-    if (this.get('cardTitleClassNames')) { deprecated('cardTitleClassNames', 'classNames directly on the component'); }
-  },
 
   // Layout
   // ---------------------------------------------------------------------------
@@ -135,18 +124,15 @@ export default Component.extend({
         data-test=(if data-test (concat data-test '-block')))
       body=(component bodyComponent
         _classNames='card-block card-body'
-        class=cardBodyClassNames
         data-test=(if data-test (concat data-test '-body')))
       footer=(component footerComponent
         _classNames='card-footer'
-        class=cardFooterClassNames
         data-test=(if data-test (concat data-test '-footer')))
       header=(component headerComponent
         _classNames='card-header'
         data-test=(if data-test (concat data-test '-header')))
       title=(component titleComponent
         _classNames='card-title'
-        class=cardTitleClassNames
         tagName='div'
         data-test=(if data-test (concat data-test '-title')))
     )}}
