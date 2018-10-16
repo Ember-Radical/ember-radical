@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## UNRELEASED
 
+## 1.8.4 (10-15-2018)
+### Fixed
+- Fixed bug where no `externalToggle` property was being passed but code was still being evaluated as though it was. 
+
 ## 1.8.3 (03-14-2018)
 ### Fixed
 - Fixed an IE Edge-specific issue where close svg steals click event, preventing modal close.

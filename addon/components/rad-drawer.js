@@ -1,7 +1,7 @@
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import hbs from 'htmlbars-inline-precompile';
-import {controls} from '../utils/arias';
+import { controls } from '../utils/arias';
 import deprecated from '../utils/deprecated';
 
 /**
@@ -94,7 +94,6 @@ import deprecated from '../utils/deprecated';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -109,14 +108,17 @@ export default Component.extend({
    * Allow for external controls to update the open/closed state of a
    * `rad-drawer`.
    *
+   * Default to `undefined` so if no value is passed to this component, the 
+   * `didReceiveAttrs` hook is not evaluated.
+   * 
    * This property is now deprecated as of Ember Radical 1.6 and will be
    * removed in Ember Radical 2.0. you should use {{c-l hidden}} instead.
-   * @property externalToggle
-   * @type {Boolean}
-   * @default false
+   * @property externalToggle;
+   * @type {?Boolean}
+   * @default undefined
    * @deprecated
    */
-  externalToggle: false,
+  externalToggle: undefined,
   /**
    * State boolean for display of the drawer content. Is toggled true/false to
    * handle show/hide. Updated in `toggleHidden`.
@@ -196,9 +198,13 @@ export default Component.extend({
 
     // @TODO: Remove in 2.0
     // @DEPRECATED
-    let externalToggle = this.get('externalToggle');
-    let oldExternalToggle = this.get('_oldExternalToggle');
-
+    const externalToggle = this.get('externalToggle');
+    // Don't even think about evaluating this statement if the user didn't pass 
+    // anything
+    if (externalToggle === undefined) {
+      return;
+    }
+    const oldExternalToggle = this.get('_oldExternalToggle');
     if (oldExternalToggle !== externalToggle) {
       this.set('hidden', !externalToggle);
     }
