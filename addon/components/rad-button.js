@@ -251,6 +251,7 @@ export default Component.extend(taggingAssets, {
    * @return {undefined}
    */
   mouseDown() {
+    // @TODO CSS solution ?
     // Hide outline b/c this was a legit mouse click
     // On blur, remove outline style in case the user switches to keyboard
     this.$().css({ outline: "none", boxShadow: "none" });
