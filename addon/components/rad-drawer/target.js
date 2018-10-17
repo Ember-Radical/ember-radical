@@ -1,7 +1,7 @@
 import hbs from 'htmlbars-inline-precompile';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import RadButton from '../rad-button';
-import {expanded} from '../../utils/arias';
+import { expanded } from '../../utils/arias';
 
 /**
  * Core drawer target component

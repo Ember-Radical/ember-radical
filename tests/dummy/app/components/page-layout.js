@@ -1,5 +1,5 @@
-import Component from 'ember-component';
-import inject from 'ember-service/inject';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import hbs from 'htmlbars-inline-precompile';
 
 /**
@@ -24,7 +24,7 @@ export default Component.extend({
 
   // Radical Service
   // ---------------------------------------------------------------------------
-  radical: inject(),
+  radical: service(),
 
   // Layout
   // ---------------------------------------------------------------------------

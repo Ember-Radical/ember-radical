@@ -1,8 +1,9 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 const packageJSON = require('./package.json');
 
+const env = EmberAddon.env()
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  const options =     {
     sassOptions: {
       extension: 'scss',
       includePaths: ['node_modules/bootstrap/scss']
@@ -19,7 +20,15 @@ module.exports = function(defaults) {
         ['inline-replace-variables', { RAD_VERSION: packageJSON.version || '0.0.0' }]
       ]
     }
-  });
+  }
+  // We don't need to include polyfill except for the tests. Make sure this is here
+  // in both dev and test
+  if (env === 'development' || env === 'test'){
+    options['ember-cli-babel'] = {
+      includePolyfill: true // All them sweet polyfills
+    }
+  }
+  const app = new EmberAddon(defaults, options);
 
   // We use the test app as our demo app with production and for development
   // with dev builds. In test, don't import external demo deps. (Trying to

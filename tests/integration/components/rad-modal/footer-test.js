@@ -1,17 +1,19 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('rad-modal/footer', 'Integration | Component | rad modal/footer', {
-  integration: true
-});
+module('Integration | Component | rad modal/footer', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`
-    {{#rad-modal/footer}}
-      Modal Footer
-    {{/rad-modal/footer}}
-  `);
+  test('it renders', async function(assert) {
+    await render(hbs`
+      {{#rad-modal/footer}}
+        Modal Footer
+      {{/rad-modal/footer}}
+    `);
 
-  assert.ok(this.$().text().includes('Modal Footer'),
-    'Component renders block form correctly');
+    assert.ok(find('*').textContent.includes('Modal Footer'),
+      'Component renders block form correctly');
+  });
 });

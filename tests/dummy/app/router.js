@@ -1,11 +1,15 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import EmberRouter from '@ember/routing/router';
+import { getOwner } from '@ember/application';
+import { get } from '@ember/object';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 import config from './config/environment';
-const { getOwner, get, inject, run, $ } = Ember;
 
-const Router = Ember.Router.extend({
+const Router = EmberRouter.extend({
 
   // Inject the dummy app's radical service
-  radical: inject.service(),
+  radical: service(),
 
   // Important things from the config
   location: config.locationType,

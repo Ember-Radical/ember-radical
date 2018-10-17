@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import hbs from 'htmlbars-inline-precompile';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 
 /**
  * Used to handle rendering a header for an Ember Radical Modal. Should always

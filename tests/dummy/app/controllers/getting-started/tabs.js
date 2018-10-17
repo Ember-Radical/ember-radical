@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   disableAddTabButton: false,
 
-  tabs: Ember.A([
+  tabs: A([
     {
       label: 'bar',
       elementId: 'bar',

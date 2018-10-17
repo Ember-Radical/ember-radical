@@ -1,5 +1,5 @@
 import Route from 'ember-route';
-import inject from 'ember-service/inject';
+import { inject as service } from '@ember/service';
 import config from '../config/environment';
 
 /**
@@ -10,7 +10,7 @@ import config from '../config/environment';
  * @extends Ember.Route
  */
 export default Route.extend({
-  fountainhead: inject(),
+  fountainhead: service(),
 
   /**
    * Handle setting the apiBase for Fountainhead API calls to match the

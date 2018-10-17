@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## UNRELEASED
 
+## 2.0.0
+### Release
+- Bump ember version all to current. 
+- Remove deprecations
+
 ## 1.8.4 (10-15-2018)
 ### Fixed
 - Fixed bug where no `externalToggle` property was being passed but code was still being evaluated as though it was. 

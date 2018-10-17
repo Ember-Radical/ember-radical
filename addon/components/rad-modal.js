@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import hbs from 'htmlbars-inline-precompile';
-import {later} from 'ember-runloop';
+import { later } from 'ember-runloop';
 import $ from 'jquery';
 
 // Utils
