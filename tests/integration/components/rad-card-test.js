@@ -37,30 +37,4 @@ module('Integration | Component | rad card', function(hooks) {
 
     assert.ok(find('.rad-card').classList.contains('card-primary'), 'renders primary brand class');
   });
-
-  // #3 Custom classNames Test
-  // ---------------------------------------------------------------------------
-
-  test('it applies custom classNames from passed props to the component template elements', async function(assert) {
-    await render(hbs`
-      {{#rad-card
-        classNames='custom-card-root-class'
-        cardBodyClassNames='crazy-card-body'
-        cardFooterClassNames='totally-rad-footer'
-        cardTitleClassNames='supes-amazing-title'
-        data-test='class-test-root' as |components|}}
-        {{#components.title data-test='class-test-title'}}Hey{{/components.title}}
-        {{#components.body data-test='class-test-body'}}Hi{{/components.body}}
-        {{#components.footer data-test='class-test-footer'}}Yo{{/components.footer}}
-      {{/rad-card}}
-    `);
-
-    assert.ok(find('[data-test="class-test-root"]').classList.contains('custom-card-root-class'));
-
-    assert.ok(find('[data-test="class-test-title"]').classList.contains('supes-amazing-title'), 'The custom cardClassNames should be applied to the component root element');
-
-    assert.ok(find('[data-test="class-test-body"]').classList.contains('crazy-card-body'), 'The custom cardClassNames should be applied to the component root element');
-
-    assert.ok(find('[data-test="class-test-footer"]').classList.contains('totally-rad-footer'), 'The custom cardClassNames should be applied to the component root element');
-  });
 });
