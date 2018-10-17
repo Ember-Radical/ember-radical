@@ -104,8 +104,6 @@ export default Component.extend({
   layout: hbs`{{yield state (hash
     setTrue=(action 'setTrue')
     setFalse=(action 'setFalse')
-    open=(action 'open')
-    close=(action 'close')
     toggleState=(action 'toggleState')
   )}}`
 });

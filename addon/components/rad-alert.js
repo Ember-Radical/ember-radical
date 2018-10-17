@@ -27,7 +27,7 @@ import hbs from 'htmlbars-inline-precompile';
  * `canDismiss` property.
  *
  * ```glimmer
- * {{#rad-alert brand="primary" canDismiss=false}}Try to dismiss this, ya dingus.{{/rad-alert}}
+ * {{#rad-alert brand="primary" dismissible=false}}Try to dismiss this, ya dingus.{{/rad-alert}}
  * ```
  *
  * When alerts are dismissed they also fire an `onDismiss` action.
