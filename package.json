@@ -29,7 +29,7 @@
   "repository": "https://github.com/healthsparq/ember-radical",
   "scripts": {
     "build": "ember build",
-    "bower": "bower i",
+    "bower": "npx bower i",
     "docs:prod": "NODE_ENV=production ember docs",
     "deploy": "npm run docs:prod && ember b -environment=production && gh-pages -d dist",
     "start": "ember server",
