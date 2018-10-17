@@ -29,7 +29,7 @@
   "repository": "https://github.com/healthsparq/ember-radical",
   "scripts": {
     "build": "ember build",
-    "postinstall": "bower install",
+    "postinstall": "npx bower install",
     "docs:prod": "NODE_ENV=production ember docs",
     "deploy": "npm run docs:prod && ember b -environment=production && gh-pages -d dist",
     "start": "ember server",
@@ -46,7 +46,6 @@
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
-    "bower": "^1.8.4",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.4.3",
