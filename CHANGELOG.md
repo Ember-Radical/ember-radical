@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## UNRELEASED
+## 2.0.2
+### Bugfix
+- Remove postinstall entirely
+
 ## 2.0.1
 ### Bugfix
 - Remove bower as a devDependency and use npx instead. 
@@ -26,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.8.2 (02-22-2018)
 ### Fixed
-- Fixed issue with updated label on `rad-tab.contetn` not being updated in `rad-tab` context.
+- Fixed issue with updated label on `rad-tab.content` not being updated in `rad-tab` context.
 
 ## 1.8.1 (01-15-2018)
 ### Fixed
