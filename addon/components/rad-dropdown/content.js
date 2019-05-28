@@ -1,9 +1,9 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
-import $ from 'jquery';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
+import $ from 'jquery'
 
-import { hiddenForArias } from '../../utils/arias';
+import { hiddenForArias } from '../../utils/arias'
 
 /**
  * Core dropdown content component
@@ -13,7 +13,6 @@ import { hiddenForArias } from '../../utils/arias';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -64,7 +63,7 @@ export default Component.extend({
   attributeBindings: [
     'hiddenForArias:aria-hidden',
     'aria-labelledby:aria-labelledby',
-    'data-test'
+    'data-test',
   ],
   /**
    * Bind `dropdown-content`
@@ -92,8 +91,10 @@ export default Component.extend({
    * @return {undefined}
    */
   didRender() {
-    const boundingRect = document.getElementById(this.get('elementId')).getBoundingClientRect();
-    const bodyWidth = $('body').width();
+    const boundingRect = document
+      .getElementById(this.get('elementId'))
+      .getBoundingClientRect()
+    const bodyWidth = $('body').width()
 
     /*
      * If the box is centered, it will center itself back off of the page when we
@@ -101,26 +102,31 @@ export default Component.extend({
      * will need to subtract twice the necessary width. The box is only ever centered
      * when position does not contain `-left`/`-right`.
      */
-    const boxIsCentered = this.get('position') !== 'left' && this.get('position') !== 'right';
+    const boxIsCentered =
+      this.get('position') !== 'left' && this.get('position') !== 'right'
 
     // If the left offset of content is negative, then the content is to the left of the viewport.
-    if (boundingRect.left < 0 ) {
+    if (boundingRect.left < 0) {
       // determine length deduction based on centered.
-      const widthDeduction = boxIsCentered ? boundingRect.left * 2 : boundingRect.left;
+      const widthDeduction = boxIsCentered
+        ? boundingRect.left * 2
+        : boundingRect.left
 
       // note `boundingRect.left` is negative so we add the deduction.
-      const newWidth = boundingRect.width + widthDeduction;
+      const newWidth = boundingRect.width + widthDeduction
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth });
+      this.$().css({ width: newWidth })
     } // if the right right offset is greater than the body width, it is outside of our application.
-    else if (boundingRect.right > bodyWidth ) {
+    else if (boundingRect.right > bodyWidth) {
       // determine length deduction based on centered.
       // The general deduction in this case would be the right offset of popover content minus the body width
-      const widthDeduction = boxIsCentered ? (boundingRect.right - bodyWidth) * 2 : (boundingRect.right - bodyWidth);
+      const widthDeduction = boxIsCentered
+        ? (boundingRect.right - bodyWidth) * 2
+        : boundingRect.right - bodyWidth
 
-      const newWidth = boundingRect.width - widthDeduction - 5;
+      const newWidth = boundingRect.width - widthDeduction - 5
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth, minWidth: 'auto' });
+      this.$().css({ width: newWidth, minWidth: 'auto' })
     }
   },
 
@@ -136,12 +142,12 @@ export default Component.extend({
    * @event touchEnd
    */
   touchEnd(evt) {
-    if(evt.target.tagName === 'A' || evt.target.tagName === 'BUTTON') {
-      evt.target.click();
+    if (evt.target.tagName === 'A' || evt.target.tagName === 'BUTTON') {
+      evt.target.click()
     }
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{{yield}}}`
-});
+  layout: hbs`{{{yield}}}`,
+})

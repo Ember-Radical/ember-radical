@@ -1,7 +1,7 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
-import { controls } from '../utils/arias';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
+import { controls } from '../utils/arias'
 
 /**
  * Fully accessible expandable drawer/expandable content component.
@@ -198,11 +198,11 @@ export default Component.extend({
      */
     toggleHidden(evt, state) {
       if (state !== undefined) {
-        this.set('hidden', state);
+        this.set('hidden', state)
       } else {
-        this.toggleProperty('hidden');
+        this.toggleProperty('hidden')
       }
-    }
+    },
   },
 
   // Layout
@@ -241,5 +241,5 @@ export default Component.extend({
         {{{Content}}}
       {{/rad-drawer/content}}
     {{/if}}
-  `
-});
+  `,
+})

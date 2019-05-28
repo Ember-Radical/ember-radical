@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-tooltip/title';
+export { default } from 'ember-radical/components/rad-tooltip/title'

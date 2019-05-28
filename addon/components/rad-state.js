@@ -1,5 +1,5 @@
-import Component from '@ember/component';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Component that can be used for tracking state changes with modals or drawers.
@@ -45,7 +45,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -78,7 +77,7 @@ export default Component.extend({
      * @return {undefined}
      */
     setFalse() {
-      this.set('state', false);
+      this.set('state', false)
     },
     /**
      * Sets the {{c-l state}} property to `true`.
@@ -86,7 +85,7 @@ export default Component.extend({
      * @return {undefined}
      */
     setTrue() {
-      this.set('state', true);
+      this.set('state', true)
     },
     /**
      * Toggles the value of {{c-l 'state'}} to the opposite of its current
@@ -95,8 +94,8 @@ export default Component.extend({
      * @return {undefined}
      */
     toggleState() {
-      this.toggleProperty('state');
-    }
+      this.toggleProperty('state')
+    },
   },
 
   // Layout
@@ -105,5 +104,5 @@ export default Component.extend({
     setTrue=(action 'setTrue')
     setFalse=(action 'setFalse')
     toggleState=(action 'toggleState')
-  )}}`
-});
+  )}}`,
+})

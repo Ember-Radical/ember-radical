@@ -1,8 +1,7 @@
-import Component from '@ember/component';
-import run from 'ember-runloop';
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
-
+import Component from '@ember/component'
+import run from 'ember-runloop'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Multi-use alerts for in-page error messaging, pop-up alerts, notifications,
@@ -41,7 +40,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -101,7 +99,7 @@ export default Component.extend({
    * @protected
    */
   brandClass: computed('brand', function() {
-    return this.get('brand') ? `alert-${this.get('brand')}` : null;
+    return this.get('brand') ? `alert-${this.get('brand')}` : null
   }),
 
   // Ember Properties
@@ -139,17 +137,19 @@ export default Component.extend({
      * @action
      */
     dismiss(evt) {
-      this.get('onDeactivate')(this, evt); // Consumer Hooks
+      this.get('onDeactivate')(this, evt) // Consumer Hooks
       // Fade the element out
       this.$().animate({ opacity: 0 }, 300, () => {
-        if (this.get('isDestroyed')) { return; }
+        if (this.get('isDestroyed')) {
+          return
+        }
         // Sets display:none to pull from DOM flow
         run(() => {
-          this.set('isVisible', false);
-          this.get('onDeactivated')(this, evt); // Consumer Hooks
-        });
-      });
-    }
+          this.set('isVisible', false)
+          this.get('onDeactivated')(this, evt) // Consumer Hooks
+        })
+      })
+    },
   },
 
   // Layout
@@ -171,5 +171,5 @@ export default Component.extend({
         {{/rad-button}}
       </div>
     {{/if}}
-  `
-});
+  `,
+})

@@ -1,5 +1,5 @@
-import Component from '@ember/component';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Core component for rendering svg icons. Expects an svg id as `svgId`.
@@ -13,7 +13,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -70,5 +69,5 @@ export default Component.extend({
   layout: hbs`
     <title>{{svgId}} icon</title>
     <use href="{{filePath}}#{{svgId}}" xlink:href="{{filePath}}#{{svgId}}"></use>
-  `
-});
+  `,
+})

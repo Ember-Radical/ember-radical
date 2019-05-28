@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-svg';
+export { default } from 'ember-radical/components/rad-svg'

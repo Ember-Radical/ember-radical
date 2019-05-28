@@ -1,1 +1,1 @@
-export { default, or } from 'ember-radical/helpers/or';
+export { default, or } from 'ember-radical/helpers/or'

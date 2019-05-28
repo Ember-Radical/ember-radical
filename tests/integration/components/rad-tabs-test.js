@@ -1,10 +1,10 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, find, click, findAll } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { module, test } from 'qunit'
+import { setupRenderingTest } from 'ember-qunit'
+import { render, find, click, findAll } from '@ember/test-helpers'
+import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad tabs', function(hooks) {
-  setupRenderingTest(hooks);
+  setupRenderingTest(hooks)
 
   // TODO: test dynamically adding a tab
 
@@ -18,25 +18,49 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab B Panel</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
-    assert.ok(findAll('.rad-tabs').length, 'component binds addon component class');
-    assert.ok(findAll('.button-style').length, 'component renders button style tabs by default');
-    assert.notOk(findAll('.active').length, 'component renders no active tabs by default');
-    assert.equal(findAll('[role="tab"]').length, 2, 'component tabs have aria role tab bound');
+    assert.ok(findAll('.rad-tabs').length, 'component binds addon component class')
+    assert.ok(
+      findAll('.button-style').length,
+      'component renders button style tabs by default',
+    )
+    assert.notOk(
+      findAll('.active').length,
+      'component renders no active tabs by default',
+    )
+    assert.equal(
+      findAll('[role="tab"]').length,
+      2,
+      'component tabs have aria role tab bound',
+    )
 
     // Test data-test existence and passage of name
-    assert.ok(find('[data-test="tab-a"]').textContent.indexOf('Tab A') !== -1, 'component renders passed tab name');
-    assert.ok(find('[data-test="tab-b"]').textContent.indexOf('Tab B') !== -1, 'component renders passed tab name');
+    assert.ok(
+      find('[data-test="tab-a"]').textContent.indexOf('Tab A') !== -1,
+      'component renders passed tab name',
+    )
+    assert.ok(
+      find('[data-test="tab-b"]').textContent.indexOf('Tab B') !== -1,
+      'component renders passed tab name',
+    )
 
     // Test aria-controls bound to id
-    const tabAControls = find('[data-test="tab-a"]').getAttribute('aria-controls');
-    const tabBControls = find('[data-test="tab-b"]').getAttribute('aria-controls');
-    assert.ok(tabAControls, 'component tabs have aria-controls value');
-    assert.ok(tabBControls, 'component tabs have aria-controls value');
-    assert.equal(this.$(`#${tabAControls}`).length, 1, 'component aria-controls matches one id in DOM');
-    assert.equal(this.$(`#${tabBControls}`).length, 1, 'component aria-controls matches one id in DOM');
-  });
+    const tabAControls = find('[data-test="tab-a"]').getAttribute('aria-controls')
+    const tabBControls = find('[data-test="tab-b"]').getAttribute('aria-controls')
+    assert.ok(tabAControls, 'component tabs have aria-controls value')
+    assert.ok(tabBControls, 'component tabs have aria-controls value')
+    assert.equal(
+      this.$(`#${tabAControls}`).length,
+      1,
+      'component aria-controls matches one id in DOM',
+    )
+    assert.equal(
+      this.$(`#${tabBControls}`).length,
+      1,
+      'component aria-controls matches one id in DOM',
+    )
+  })
 
   test('it yields content subcomponents', async function(assert) {
     await render(hbs`
@@ -48,17 +72,29 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab D Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
     // Validate content subcomponents
-    const tabConent = this.$('[role="tabpanel"]').toArray();
-    assert.equal(tabConent.length, 2, 'component yields each subcomponent with role tabpanel');
+    const tabConent = this.$('[role="tabpanel"]').toArray()
+    assert.equal(
+      tabConent.length,
+      2,
+      'component yields each subcomponent with role tabpanel',
+    )
     tabConent.forEach(tab => {
-      let $tab = this.$(tab);
-      assert.equal($tab.attr('aria-hidden'), 'true', 'subcomponent content is hidden by default');
-      assert.equal($tab.attr('role'), 'tabpanel', 'subcomponent aria role tabpanel is bound by default');
-    });
-  });
+      let $tab = this.$(tab)
+      assert.equal(
+        $tab.attr('aria-hidden'),
+        'true',
+        'subcomponent content is hidden by default',
+      )
+      assert.equal(
+        $tab.attr('role'),
+        'tabpanel',
+        'subcomponent aria role tabpanel is bound by default',
+      )
+    })
+  })
 
   test('it uses property defaultTab to show a tab by default', async function(assert) {
     await render(hbs`
@@ -70,16 +106,22 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab F Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
-    assert.equal(find('[data-test="tab-e-panel"]').getAttribute('aria-hidden'), 'false',
-      'defaultTab tab panel is shown on render');
-    assert.equal(find('[data-test="tab-f-panel"]').getAttribute('aria-hidden'), 'true',
-      'ONLY defaulTab tab panel is shown on render');
-  });
+    assert.equal(
+      find('[data-test="tab-e-panel"]').getAttribute('aria-hidden'),
+      'false',
+      'defaultTab tab panel is shown on render',
+    )
+    assert.equal(
+      find('[data-test="tab-f-panel"]').getAttribute('aria-hidden'),
+      'true',
+      'ONLY defaulTab tab panel is shown on render',
+    )
+  })
 
   test('it hides tab label when hidden is specified', async function(assert) {
-    this.set('tabHidden', true);
+    this.set('tabHidden', true)
 
     await render(hbs`
       {{#rad-tabs defaultTab='tab-g' as |components|}}
@@ -90,37 +132,61 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab H Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
     // Tab H tab button should be hidden
-    assert.equal(this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'), 'false',
-      'show default tab button');
-    assert.equal(this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'), 'true',
-      'pizza tab is hidden');
+    assert.equal(
+      this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'),
+      'false',
+      'show default tab button',
+    )
+    assert.equal(
+      this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'),
+      'true',
+      'pizza tab is hidden',
+    )
     // Tab H panel should be hidden
-    assert.equal(find('[data-test="tab-g-panel"]').getAttribute('aria-hidden'), 'false',
-      'defaultTab tab panel is shown on render');
-    assert.equal(find('[data-test="tab-h-panel"]').getAttribute('aria-hidden'), 'true',
-      'ONLY defaulTab tab panel is shown on render');
+    assert.equal(
+      find('[data-test="tab-g-panel"]').getAttribute('aria-hidden'),
+      'false',
+      'defaultTab tab panel is shown on render',
+    )
+    assert.equal(
+      find('[data-test="tab-h-panel"]').getAttribute('aria-hidden'),
+      'true',
+      'ONLY defaulTab tab panel is shown on render',
+    )
 
     // Update hidden prop and retest that tab button is now showing
     // ---------------------------------------------------------------------------
-    this.set('tabHidden', false);
+    this.set('tabHidden', false)
 
     // Both tab buttons should be shown
-    assert.equal(this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'), 'false',
-      'show default tab button');
-    assert.equal(this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'), 'false',
-      'show tab h tab button');
+    assert.equal(
+      this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'),
+      'false',
+      'show default tab button',
+    )
+    assert.equal(
+      this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'),
+      'false',
+      'show tab h tab button',
+    )
     // Tab H panel should still be hidden
-    assert.equal(find('[data-test="tab-g-panel"]').getAttribute('aria-hidden'), 'false',
-      'defaultTab tab panel is shown on render');
-    assert.equal(find('[data-test="tab-h-panel"]').getAttribute('aria-hidden'), 'true',
-      'ONLY defaulTab tab panel is shown on render');
-  });
+    assert.equal(
+      find('[data-test="tab-g-panel"]').getAttribute('aria-hidden'),
+      'false',
+      'defaultTab tab panel is shown on render',
+    )
+    assert.equal(
+      find('[data-test="tab-h-panel"]').getAttribute('aria-hidden'),
+      'true',
+      'ONLY defaulTab tab panel is shown on render',
+    )
+  })
 
   test('it shows tabpanels when a tab label is clicked', async function(assert) {
-    this.set('tabHidden', true);
+    this.set('tabHidden', true)
 
     await render(hbs`
       {{#rad-tabs as |components|}}
@@ -134,51 +200,90 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab C Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
-    const tabPanels = this.$('[role="tabpanel"]').toArray();
-    const tabs = this.$('[role="tab"]').toArray();
+    const tabPanels = this.$('[role="tabpanel"]').toArray()
+    const tabs = this.$('[role="tab"]').toArray()
     // No panels should be shown by default
     tabPanels.forEach(tabPanel => {
-      assert.equal(this.$(tabPanel).attr('aria-hidden'), 'true', 'tab panels hidden on render');
-    });
+      assert.equal(
+        this.$(tabPanel).attr('aria-hidden'),
+        'true',
+        'tab panels hidden on render',
+      )
+    })
     tabs.forEach(tab => {
-      assert.notOk(this.$(tab).hasClass('active'), 'no tab should be active');
-    });
+      assert.notOk(this.$(tab).hasClass('active'), 'no tab should be active')
+    })
 
     // Click Tab A
     // ---------------------------------------------------------------------------
-    await click('[data-test="tab-a"]');
+    await click('[data-test="tab-a"]')
     // Tab A should now have class active
     tabs.forEach(tab => {
       if (this.$(tab).attr('data-test') === 'tab-a') {
-        assert.ok(this.$(tab).hasClass('active'), 'tab a should have class active after being clicked');
+        assert.ok(
+          this.$(tab).hasClass('active'),
+          'tab a should have class active after being clicked',
+        )
       } else {
-        assert.notOk(this.$(tab).hasClass('active'), 'other tabs should not have class active');
+        assert.notOk(
+          this.$(tab).hasClass('active'),
+          'other tabs should not have class active',
+        )
       }
-    });
+    })
     // Panel for Tab A only should show
-    assert.equal(find('[data-test="panel-a"]').getAttribute('aria-hidden'), 'false',
-      'tabpanel A shows after clicking tab');
-    assert.equal(find('[data-test="panel-b"]').getAttribute('aria-hidden'), 'true', 'tabpanel B still hidden');
-    assert.equal(find('[data-test="panel-c"]').getAttribute('aria-hidden'), 'true', 'tabpanel C still hidden');
+    assert.equal(
+      find('[data-test="panel-a"]').getAttribute('aria-hidden'),
+      'false',
+      'tabpanel A shows after clicking tab',
+    )
+    assert.equal(
+      find('[data-test="panel-b"]').getAttribute('aria-hidden'),
+      'true',
+      'tabpanel B still hidden',
+    )
+    assert.equal(
+      find('[data-test="panel-c"]').getAttribute('aria-hidden'),
+      'true',
+      'tabpanel C still hidden',
+    )
 
     // Click Tab C
     // ---------------------------------------------------------------------------
-    await click('[data-test="tab-c"]');
+    await click('[data-test="tab-c"]')
     // Tab C should now have active class
     tabs.forEach(tab => {
       if (this.$(tab).attr('data-test') === 'tab-c') {
-        assert.ok(this.$(tab).hasClass('active'), 'tab c should have class active after being clicked');
+        assert.ok(
+          this.$(tab).hasClass('active'),
+          'tab c should have class active after being clicked',
+        )
       } else {
-        assert.notOk(this.$(tab).hasClass('active'), 'other tabs should not have class active');
+        assert.notOk(
+          this.$(tab).hasClass('active'),
+          'other tabs should not have class active',
+        )
       }
-    });
+    })
     // Panel for Tab C only should show
-    assert.equal(find('[data-test="panel-a"]').getAttribute('aria-hidden'), 'true', 'tabpanel A hidden');
-    assert.equal(find('[data-test="panel-b"]').getAttribute('aria-hidden'), 'true', 'tabpanel B hidden');
-    assert.equal(find('[data-test="panel-c"]').getAttribute('aria-hidden'), 'false', 'tabpanel C shown');
-  });
+    assert.equal(
+      find('[data-test="panel-a"]').getAttribute('aria-hidden'),
+      'true',
+      'tabpanel A hidden',
+    )
+    assert.equal(
+      find('[data-test="panel-b"]').getAttribute('aria-hidden'),
+      'true',
+      'tabpanel B hidden',
+    )
+    assert.equal(
+      find('[data-test="panel-c"]').getAttribute('aria-hidden'),
+      'false',
+      'tabpanel C shown',
+    )
+  })
 
   // Update label property on content and test it was updated in component
   //----------------------------------------------------------------------------
@@ -191,22 +296,30 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab A Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
-    assert.equal(find('[data-test="tab-a"]').textContent.trim(), 'Yay Tab A', 'default label was joyous')
+    `)
+    assert.equal(
+      find('[data-test="tab-a"]').textContent.trim(),
+      'Yay Tab A',
+      'default label was joyous',
+    )
 
     this.set('dummyLabel', 'Definitely Not Tab A')
-    assert.equal(find('[data-test="tab-a"]').textContent.trim(), 'Definitely Not Tab A', 'updated label: also joyous')
+    assert.equal(
+      find('[data-test="tab-a"]').textContent.trim(),
+      'Definitely Not Tab A',
+      'updated label: also joyous',
+    )
   })
 
   test('it works as a controlled tabs instance by passing activeId and onChange closures', async function(assert) {
     function onChangeClosure({ elementId }) {
-      this.set('controlledId', elementId);
+      this.set('controlledId', elementId)
     }
 
-    this.set('controlledId', 'tabA');
+    this.set('controlledId', 'tabA')
     this.set('actions', {
-      onChange: onChangeClosure
-    });
+      onChange: onChangeClosure,
+    })
 
     await render(hbs`
       {{#rad-tabs
@@ -224,30 +337,50 @@ module('Integration | Component | rad tabs', function(hooks) {
           <p>Tab C Content</p>
         {{/components.content}}
       {{/rad-tabs}}
-    `);
+    `)
 
-    assert.ok(find('[data-test="tab-a"]').classList.contains('active'), 'tab is active by default');
-    assert.equal(find('[data-test="panel-a"]').getAttribute('aria-hidden'), 'false', 'panel is shown by default');
+    assert.ok(
+      find('[data-test="tab-a"]').classList.contains('active'),
+      'tab is active by default',
+    )
+    assert.equal(
+      find('[data-test="panel-a"]').getAttribute('aria-hidden'),
+      'false',
+      'panel is shown by default',
+    )
 
     // Simulate user click
     // ---------------------------------------------------------------------------
-    await click('[data-test="tab-c"]');
+    await click('[data-test="tab-c"]')
 
-    assert.ok(find('[data-test="tab-c"]').classList.contains('active'), 'user click activates tab');
-    assert.equal(find('[data-test="panel-c"]').getAttribute('aria-hidden'), 'false', 'user click shows panel');
+    assert.ok(
+      find('[data-test="tab-c"]').classList.contains('active'),
+      'user click activates tab',
+    )
+    assert.equal(
+      find('[data-test="panel-c"]').getAttribute('aria-hidden'),
+      'false',
+      'user click shows panel',
+    )
 
     // Simulate controlled change
     // ---------------------------------------------------------------------------
-    this.set('controlledId', 'tabB');
+    this.set('controlledId', 'tabB')
 
-    assert.ok(find('[data-test="tab-b"]').classList.contains('active'), 'user click activates tab');
-    assert.equal(find('[data-test="panel-b"]').getAttribute('aria-hidden'), 'false', 'user click shows panel');
-  });
+    assert.ok(
+      find('[data-test="tab-b"]').classList.contains('active'),
+      'user click activates tab',
+    )
+    assert.equal(
+      find('[data-test="panel-b"]').getAttribute('aria-hidden'),
+      'false',
+      'user click shows panel',
+    )
+  })
 
   // Test Custom classNames application
   // ---------------------------------------------------------------------------
   test('it applies custom classNames from passed props to the component template elements', async function(assert) {
-
     await render(hbs`{{#rad-tabs
       buttonStyleClassNames='totally-rad-buttons'
       tabButtonClassNames='tab-button'
@@ -258,14 +391,34 @@ module('Integration | Component | rad tabs', function(hooks) {
       {{#components.content
         elementId='tab-1'
         tabDataTest='custom-classes-test-first-button'}}Hi there.{{/components.content}}
-    {{/rad-tabs}}`);
+    {{/rad-tabs}}`)
 
-    assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-rad-buttons'), 'The custom buttonStyleClassNames should be applied to the ul');
+    assert.ok(
+      this.$('[data-test="custom-classes-test"]')
+        .find('ul')
+        .hasClass('totally-rad-buttons'),
+      'The custom buttonStyleClassNames should be applied to the ul',
+    )
 
-    assert.ok(this.$('[data-test="custom-classes-test"]').find('ul').hasClass('totally-effing-rad-tab-list'), 'The custom tabListClassNames should be applied to the ul');
+    assert.ok(
+      this.$('[data-test="custom-classes-test"]')
+        .find('ul')
+        .hasClass('totally-effing-rad-tab-list'),
+      'The custom tabListClassNames should be applied to the ul',
+    )
 
-    assert.ok(find('[data-test="custom-classes-test"] li:first-child').classList.contains('custom-tab-class'), 'The custom tabClassNames should be applied to the tab item li elements');
+    assert.ok(
+      find('[data-test="custom-classes-test"] li:first-child').classList.contains(
+        'custom-tab-class',
+      ),
+      'The custom tabClassNames should be applied to the tab item li elements',
+    )
 
-    assert.ok(find('[data-test="custom-classes-test-first-button"]').classList.contains('tab-button'), 'The custom tabButtonClassNames should be applied to the tab item button elements');
-  });
-});
+    assert.ok(
+      find('[data-test="custom-classes-test-first-button"]').classList.contains(
+        'tab-button',
+      ),
+      'The custom tabButtonClassNames should be applied to the tab item button elements',
+    )
+  })
+})

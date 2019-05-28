@@ -1,6 +1,6 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Core card.
@@ -27,7 +27,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Props
   // ---------------------------------------------------------------------------
   /**
@@ -97,7 +96,7 @@ export default Component.extend({
    * @type {String}
    */
   brandClass: computed(function() {
-    return this.get('brand') ? `card-${this.get('brand')}` : 'card-default';
+    return this.get('brand') ? `card-${this.get('brand')}` : 'card-default'
   }),
   /**
    * @property classNames
@@ -111,7 +110,6 @@ export default Component.extend({
    * @type {Array}
    */
   classNameBindings: ['brandClass'],
-
 
   // Layout
   // ---------------------------------------------------------------------------
@@ -136,5 +134,5 @@ export default Component.extend({
         tagName='div'
         data-test=(if data-test (concat data-test '-title')))
     )}}
-  `
-});
+  `,
+})

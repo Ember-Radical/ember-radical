@@ -1,6 +1,6 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * This component is yielded by the `rad-tabs` component. The `activeId` and
@@ -23,7 +23,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -93,10 +92,7 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: [
-    'data-test',
-    '_hidden:aria-hidden'
-  ],
+  attributeBindings: ['data-test', '_hidden:aria-hidden'],
   /**
    * Class names: `tabs-content`
    * @property classNames
@@ -114,9 +110,9 @@ export default Component.extend({
    */
   _hidden: computed('activeId', 'hidden', function() {
     if (this.get('hidden') || this.get('activeId') !== this.get('elementId')) {
-      return 'true';
+      return 'true'
     } else {
-      return 'false';
+      return 'false'
     }
   }),
 
@@ -129,27 +125,29 @@ export default Component.extend({
    * @event init
    */
   init() {
-    this._super(...arguments);
+    this._super(...arguments)
 
-    this.registerTab(this.getProperties(
-      'elementId',
-      'label',
-      'hidden',
-      'tabDataTest',
-      'tagcategory',
-      'tagaction',
-      'taglabel')
-    );
+    this.registerTab(
+      this.getProperties(
+        'elementId',
+        'label',
+        'hidden',
+        'tabDataTest',
+        'tagcategory',
+        'tagaction',
+        'taglabel',
+      ),
+    )
   },
   /**
    * Sets the props label and hidden on initializing these Properties
    * and after `didUpdateAttrs` fires
    * @event didReceiveAttrs
    */
-  didReceiveAttrs(){
+  didReceiveAttrs() {
     // Update the private hidden state so it can be used for comparison
     // on the next attrs update
-    this.set('_oldProps', this.getProperties('label', 'hidden'));
+    this.set('_oldProps', this.getProperties('label', 'hidden'))
   },
   /**
    * Actions Up: When something changes in this component we need to let the
@@ -162,18 +160,17 @@ export default Component.extend({
   didUpdateAttrs() {
     const props = this.getProperties('label', 'hidden')
     const oldProps = this.get('_oldProps')
-    for (const key in props){
+    for (const key in props) {
       if (props[key] === oldProps[key]) {
         delete props[key]
       }
     }
     if (Object.keys(props).length) {
-      this.updateTab(this.get('elementId'), props);
+      this.updateTab(this.get('elementId'), props)
     }
-
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{yield}}`
-});
+  layout: hbs`{{yield}}`,
+})

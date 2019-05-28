@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-dropdown/menu-item';
+export { default } from 'ember-radical/components/rad-dropdown/menu-item'

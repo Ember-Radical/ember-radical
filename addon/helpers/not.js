@@ -1,13 +1,13 @@
-import { helper } from '@ember/component/helper';
-import truthConvert from '../utils/truth-convert';
+import { helper } from '@ember/component/helper'
+import truthConvert from '../utils/truth-convert'
 
 export function not(params) {
-  for (var i=0, len=params.length; i<len; i++) {
+  for (var i = 0, len = params.length; i < len; i++) {
     if (truthConvert(params[i]) === true) {
-      return false;
+      return false
     }
   }
-  return true;
+  return true
 }
 
-export default helper(not);
+export default helper(not)

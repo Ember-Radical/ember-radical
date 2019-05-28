@@ -11,8 +11,8 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -21,9 +21,9 @@ module.exports = function(environment) {
     },
 
     featureFlags: {
-      TAGGING: true
-    }
-  };
+      TAGGING: true,
+    },
+  }
 
   if (environment === 'test') {
     // Testem prefers this...
@@ -40,18 +40,18 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.locationType = 'none';
+    ENV.locationType = 'none'
 
     // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false
+    ENV.APP.LOG_VIEW_LOOKUPS = false
 
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.rootElement = '#ember-testing'
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/ember-radical/';
+    ENV.rootURL = '/ember-radical/'
   }
 
-  return ENV;
-};
+  return ENV
+}

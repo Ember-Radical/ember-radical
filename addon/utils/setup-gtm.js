@@ -14,22 +14,25 @@
  * @return {undefined}
  */
 export default function(containerId) {
-  const scriptTag = document.createElement('script');
-  const firstScriptTag = document.getElementsByTagName('script')[0];
+  const scriptTag = document.createElement('script')
+  const firstScriptTag = document.getElementsByTagName('script')[0]
 
   // Create an empty dataLayer, unless it's already somehow magically created?
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
 
   // Push some sort of start event into the data layer?
   window.dataLayer.push({
     'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
-  });
+    event: 'gtm.js',
+  })
 
   // Set up script attributes
-  scriptTag.setAttribute('async', true);
-  scriptTag.setAttribute('src', `//www.googletagmanager.com/gtm.js?id=${containerId}`);
+  scriptTag.setAttribute('async', true)
+  scriptTag.setAttribute(
+    'src',
+    `//www.googletagmanager.com/gtm.js?id=${containerId}`,
+  )
 
   // Add script to dom to fetch tag manager script
-  firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
+  firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag)
 }
