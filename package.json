@@ -34,7 +34,8 @@
     "deploy": "npm run docs:prod && ember b -environment=production && gh-pages -d dist",
     "start": "ember server",
     "test": "ember try:each",
-    "svgdefs": "svg-sprite --defs --defs-dest=tests/dummy/public/assets --defs-sprite=symbol-defs.svg tests/dummy/public/svgs/*.svg"
+    "svgdefs": "svg-sprite --defs --defs-dest=tests/dummy/public/assets --defs-sprite=symbol-defs.svg tests/dummy/public/svgs/*.svg",
+    "format": "./node_modules/.bin/prettier --write \"{addon,app,tests}/**/*.js\""
   },
   "dependencies": {
     "babel-plugin-inline-replace-variables": "^1.3.1",
@@ -66,6 +67,7 @@
     "eslint-config-healthsparq": "^1.0.0",
     "gh-pages": "^0.12.0",
     "loader.js": "^4.2.3",
+    "prettier": "^1.17.1",
     "svg-sprite": "^1.3.6"
   },
   "engines": {
