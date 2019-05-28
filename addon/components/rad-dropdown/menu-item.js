@@ -1,5 +1,5 @@
-import hbs from 'htmlbars-inline-precompile';
-import RadButton from '../rad-button';
+import hbs from 'htmlbars-inline-precompile'
+import RadButton from '../rad-button'
 
 /**
  * Core dropdown menu item
@@ -9,7 +9,6 @@ import RadButton from '../rad-button';
  * @extends Ember.RadButton
  */
 export default RadButton.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -73,24 +72,24 @@ export default RadButton.extend({
    * @return {undefined}
    */
   didReceiveAttrs() {
-    const oldClick = this.get('_click');
-    const passedClick = this.get('click');
+    const oldClick = this.get('_click')
+    const passedClick = this.get('click')
 
     if (passedClick !== oldClick) {
       let newClick = () => {
-        this._super(...arguments);
-        passedClick();
-        this.hide();
-      };
+        this._super(...arguments)
+        passedClick()
+        this.hide()
+      }
 
       this.setProperties({
         _click: newClick,
-        click: newClick
-      });
+        click: newClick,
+      })
     }
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{{yield}}}`
-});
+  layout: hbs`{{{yield}}}`,
+})

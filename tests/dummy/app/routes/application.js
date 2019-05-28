@@ -1,6 +1,6 @@
-import Route from 'ember-route';
-import { inject as service } from '@ember/service';
-import config from '../config/environment';
+import Route from 'ember-route'
+import { inject as service } from '@ember/service'
+import config from '../config/environment'
 
 /**
  * Demo site root application route
@@ -21,6 +21,6 @@ export default Route.extend({
    * @method init
    */
   init() {
-    this.set('fountainhead.apiNamespace', `${config.rootURL}docs`);
-  }
-});
+    this.set('fountainhead.apiNamespace', `${config.rootURL}docs`)
+  },
+})

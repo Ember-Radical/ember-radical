@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
-  extends: 'healthsparq',
+  extends: ['healthsparq', 'prettier'],
   globals: {
     NODE_ENV: true,
     TAGGING: true,
-    RAD_VERSION: true
-  }
-};
+    RAD_VERSION: true,
+  },
+}

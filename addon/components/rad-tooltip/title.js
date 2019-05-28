@@ -1,17 +1,17 @@
-import RadButton from '../rad-button';
-const devAssets = {};
+import RadButton from '../rad-button'
+const devAssets = {}
 
 // Development Assets
 // ---------------------------------------------------------------------------
 if (NODE_ENV === 'development') {
   devAssets.init = function() {
-    this._super(...arguments);
+    this._super(...arguments)
 
     // aria-describedby is required for A++ Accessibility
     if (!this.get('aria-describedby')) {
-      console.warn(`tooltip requires aria-describedby: ${this.get('elementId')}`);
+      console.warn(`tooltip requires aria-describedby: ${this.get('elementId')}`)
     }
-  };
+  }
 }
 
 /**
@@ -29,7 +29,6 @@ if (NODE_ENV === 'development') {
  * @extends Component.RadButton
  */
 export default RadButton.extend(devAssets, {
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -68,5 +67,5 @@ export default RadButton.extend(devAssets, {
    * @property classNames
    * @type {Array}
    */
-  classNames: ['tooltip-title']
-});
+  classNames: ['tooltip-title'],
+})

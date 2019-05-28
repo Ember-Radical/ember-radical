@@ -1,5 +1,5 @@
-import Component from '@ember/component';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * CoreTooltip subcomponent for inner content. Requires properties `hidden` and
@@ -15,7 +15,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -71,8 +70,10 @@ export default Component.extend({
    * @return {undefined}
    */
   init() {
-    this._super(...arguments);
-    if (!this.get('aria-describedby')) { return console.warn('Tooltip requires aria-describedby'); }
+    this._super(...arguments)
+    if (!this.get('aria-describedby')) {
+      return console.warn('Tooltip requires aria-describedby')
+    }
   },
   /**
    * On render validate that the tooltip content is not overflowing the window.
@@ -84,15 +85,19 @@ export default Component.extend({
    */
   didRender() {
     // If the content is hidden, do less
-    if (this.get('hidden')) { return; }
+    if (this.get('hidden')) {
+      return
+    }
 
-    const { right, width } = document.getElementById(this.get('aria-describedby')).getBoundingClientRect();
-    const windowWidth = window.innerWidth;
+    const { right, width } = document
+      .getElementById(this.get('aria-describedby'))
+      .getBoundingClientRect()
+    const windowWidth = window.innerWidth
 
     // If the tooltip's right bound is outside the window, it's overflowing, no bueno
     if (right > windowWidth) {
       // Set the width of the magical width wrapper to the current width minuse how much the tooltip is overflowing
-      this.$().css({ width: width - (right - windowWidth) });
+      this.$().css({ width: width - (right - windowWidth) })
     }
   },
 
@@ -102,5 +107,5 @@ export default Component.extend({
     <div class="tooltip-content" aria-hidden="{{hidden}}" role="tooltip" id="{{aria-describedby}}">
       {{yield}}
       <div class="tip"></div>
-    </div>`
-});
+    </div>`,
+})

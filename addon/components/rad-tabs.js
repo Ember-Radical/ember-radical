@@ -1,9 +1,9 @@
-import { setProperties } from "@ember/object";
-import { A } from "@ember/array";
-import $ from "jquery";
-import Component from "@ember/component";
-import run from "ember-runloop";
-import hbs from "htmlbars-inline-precompile";
+import { setProperties } from '@ember/object'
+import { A } from '@ember/array'
+import $ from 'jquery'
+import Component from '@ember/component'
+import run from 'ember-runloop'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * A++ Accessible tabs. The `rad-tabs` component is the parent container for
@@ -79,7 +79,7 @@ export default Component.extend({
    * @type {String}
    * @default ''
    */
-  activeId: "",
+  activeId: '',
   /**
    * Pass false to use tab style without primary color tabs.
    * @property buttonStyle
@@ -98,7 +98,7 @@ export default Component.extend({
    * @type {String}
    * @default 'button-style'
    */
-  buttonStyleClassNames: "button-style",
+  buttonStyleClassNames: 'button-style',
   /**
    * Whether the content pane subcomponents should take on the appearance of
    * a `rad-card`.
@@ -119,7 +119,7 @@ export default Component.extend({
    * @type {String}
    * @default ''
    */
-  defaultTab: "",
+  defaultTab: '',
   /**
    * Optional closure action that will be called whenever a tab is opened with
    * the id of that tab. Use this to create a controlled tabs instance.
@@ -152,13 +152,13 @@ export default Component.extend({
    * @type {String}
    * @default 'body, html'
    */
-  scrollTarget: "body, html",
+  scrollTarget: 'body, html',
   /**
    * Class name(s) to apply to the tab `<button>` elements.
    * @property tabButtonClassNames
    * @type {string}
    */
-  tabButtonClassNames: "",
+  tabButtonClassNames: '',
   /**
    * Class name(s) to use for the individual tab `<li>` elements.
    * @property tabClassNames
@@ -166,7 +166,7 @@ export default Component.extend({
    * @type {String}
    * @default ''
    */
-  tabClassNames: "tab-li",
+  tabClassNames: 'tab-li',
   /**
    * Class name(s) to use on the enclosing tabs `<ul>` element.
    * @property tabListClassNames
@@ -175,7 +175,7 @@ export default Component.extend({
    * @type {String}
    * @default ''
    */
-  tabListClassNames: "",
+  tabListClassNames: '',
 
   // Contextual Component Specifications
   // ---------------------------------------------------------------------------
@@ -187,7 +187,7 @@ export default Component.extend({
    * @optional
    * @default 'rad-tabs/content'
    */
-  contentComponent: "rad-tabs/content",
+  contentComponent: 'rad-tabs/content',
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -198,13 +198,13 @@ export default Component.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ["data-test"],
+  attributeBindings: ['data-test'],
   /**
    * Class names: `rad-tabs`
    * @property classNames
    * @type {Array}
    */
-  classNames: ["rad-tabs"],
+  classNames: ['rad-tabs'],
   /**
    * List of tabs to display. This is iterated through in the template to
    * rendered the buttons that are used to change tabs.
@@ -226,10 +226,10 @@ export default Component.extend({
    * @method _createTabsList
    */
   _createTabsList() {
-    const tabList = this.get("tabList");
+    const tabList = this.get('tabList')
 
-    this.get("_tabsToCreate").forEach(tab => tabList.pushObject(tab));
-    this.set("_tabsToCreate", A());
+    this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab))
+    this.set('_tabsToCreate', A())
   },
 
   // Hooks
@@ -243,16 +243,16 @@ export default Component.extend({
    * @return {undefined}
    */
   init() {
-    this._super(...arguments);
+    this._super(...arguments)
 
     // Disabled prototype extensions require Ember.A for a new array:
     // https://guides.emberjs.com/v2.10.0/configuring-ember/disabling-prototype-extensions/#toc_arrays
-    this.set("tabList", A());
-    this.set("_tabsToCreate", A());
+    this.set('tabList', A())
+    this.set('_tabsToCreate', A())
 
     // When default tab is passed, update internal flag
-    if (this.get("defaultTab")) {
-      this.set("activeId", this.get("defaultTab"));
+    if (this.get('defaultTab')) {
+      this.set('activeId', this.get('defaultTab'))
     }
   },
 
@@ -267,22 +267,22 @@ export default Component.extend({
      * @param {String} elementId HTML id of the tab to show
      */
     showTab(elementId) {
-      if (this.get("scrollOnClick")) {
-        let scrollTarget = this.get("scrollTarget");
+      if (this.get('scrollOnClick')) {
+        let scrollTarget = this.get('scrollTarget')
         $(scrollTarget).animate(
           {
-            scrollTop: $("#" + this.get("elementId")).offset().top - 120
+            scrollTop: $('#' + this.get('elementId')).offset().top - 120,
           },
-          1000
-        );
+          1000,
+        )
       }
 
       // If an onChange closure was passed in, call it with change data. This
       // allows for 'controlled' tabs
-      if (this.get("onChange")) {
-        this.get("onChange")({ elementId: elementId });
+      if (this.get('onChange')) {
+        this.get('onChange')({ elementId: elementId })
       } else {
-        this.set("activeId", elementId);
+        this.set('activeId', elementId)
       }
     },
     /**
@@ -295,9 +295,9 @@ export default Component.extend({
      * @param {Object} tab Object model of tab to be registered
      */
     registerTab(tab) {
-      this.get("_tabsToCreate").pushObject(tab);
+      this.get('_tabsToCreate').pushObject(tab)
       // We only want this to run once
-      run.once(this, "_createTabsList");
+      run.once(this, '_createTabsList')
     },
     /**
      * Closure action passed to content subcomponents that is called whenever
@@ -309,16 +309,16 @@ export default Component.extend({
      * @param {boolean} tab.hidden    Hidden status of changed tab
      */
     updateTab(elementId, propsToUpdate) {
-      const tabToUpdate = this.get("tabList").find(
-        tab => tab.elementId === elementId
-      );
+      const tabToUpdate = this.get('tabList').find(
+        tab => tab.elementId === elementId,
+      )
 
       if (tabToUpdate) {
         // TODO: when updating hidden in the tabList a double render is occuring
         // for some reason. Why???
-        run.once(this, () => setProperties(tabToUpdate, propsToUpdate));
+        run.once(this, () => setProperties(tabToUpdate, propsToUpdate))
       }
-    }
+    },
   },
 
   // Layout
@@ -356,5 +356,5 @@ export default Component.extend({
         activeId
         (action 'showTab')}}
     </div>
-  `
-});
+  `,
+})

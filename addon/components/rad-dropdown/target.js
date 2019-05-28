@@ -1,8 +1,8 @@
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
-import RadButton from '../rad-button';
-import { expanded } from '../../utils/arias';
+import RadButton from '../rad-button'
+import { expanded } from '../../utils/arias'
 
 /**
  * Core dropdown target component
@@ -36,11 +36,7 @@ export default RadButton.extend({
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: [
-    'aria-haspopup',
-    'data-test',
-    'expanded:aria-expanded'
-  ],
+  attributeBindings: ['aria-haspopup', 'data-test', 'expanded:aria-expanded'],
   /**
    * Bind `dropdown-target`
    * @property classNames
@@ -50,5 +46,5 @@ export default RadButton.extend({
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{{yield}}}`
-});
+  layout: hbs`{{{yield}}}`,
+})

@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from 'jquery'
 
 /**
  * @class Utils.Listeners
@@ -14,11 +14,11 @@ import $ from 'jquery';
  * @return {undefined}
  */
 export function bindOnEscape(namespace, cb) {
-  $(document).bind(`keydown.${namespace}`, (evt) => {
+  $(document).bind(`keydown.${namespace}`, evt => {
     if (evt.which === 27) {
-      return cb();
+      return cb()
     }
-  });
+  })
 }
 
 /**
@@ -28,5 +28,5 @@ export function bindOnEscape(namespace, cb) {
  * @return {undefined}
  */
 export function unbindOnEscape(namespace) {
-  $(document).unbind(`keydown.${namespace}`);
+  $(document).unbind(`keydown.${namespace}`)
 }

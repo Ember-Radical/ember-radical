@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/services/tagging';
+export { default } from 'ember-radical/services/tagging'

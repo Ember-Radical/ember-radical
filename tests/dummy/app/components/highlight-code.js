@@ -1,11 +1,10 @@
 /* global Prism */
-import Component from '@ember/component';
+import Component from '@ember/component'
 
-import { computed } from '@ember/object';
-import hbs from 'htmlbars-inline-precompile';
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
 export default Component.extend({
-
   // Passed props
   // ---------------------------------------------------------------------------
 
@@ -17,7 +16,7 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   languageClass: computed('language', function() {
-    return `language-${this.get('language')}`;
+    return `language-${this.get('language')}`
   }),
 
   // Props
@@ -31,11 +30,11 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   didInsertElement() {
-    Prism.highlightElement(this.get('element'));
+    Prism.highlightElement(this.get('element'))
   },
 
   // Layout
   // ---------------------------------------------------------------------------
 
-  layout: hbs`{{code}}`
-});
+  layout: hbs`{{code}}`,
+})

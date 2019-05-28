@@ -1,5 +1,5 @@
-import Component from '@ember/component';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 export default Component.extend({
   layout: hbs`
@@ -27,5 +27,5 @@ export default Component.extend({
         <li><a href="https://www.github.com/healthsparq/ember-radical/">Source on Github</a></li>
       </ul>
     </nav>
-  `
-});
+  `,
+})
