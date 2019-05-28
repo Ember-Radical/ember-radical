@@ -28,12 +28,11 @@
   },
   "repository": "https://github.com/healthsparq/ember-radical",
   "scripts": {
-    "build": "ember build",
-    "bower": "npx bower i",
+    "build": "./node_modules/.bin/ember build",
     "docs:prod": "NODE_ENV=production ember docs",
     "deploy": "npm run docs:prod && ember b -environment=production && gh-pages -d dist",
-    "start": "ember server",
-    "test": "ember try:each",
+    "start": "./node_modules/.bin/ember server",
+    "test": "./node_modules/.bin/ember try:each",
     "svgdefs": "svg-sprite --defs --defs-dest=tests/dummy/public/assets --defs-sprite=symbol-defs.svg tests/dummy/public/svgs/*.svg",
     "format": "./node_modules/.bin/prettier --write \"{addon,app,tests}/**/*.js\""
   },
@@ -65,6 +64,7 @@
     "ember-source": "~3.4.0",
     "ember-try": "^0.2.23",
     "eslint-config-healthsparq": "^1.0.0",
+    "eslint-config-prettier": "^4.3.0",
     "gh-pages": "^0.12.0",
     "loader.js": "^4.2.3",
     "prettier": "^1.17.1",
