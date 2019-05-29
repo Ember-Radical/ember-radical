@@ -27,7 +27,7 @@ module('Integration | Component | rad state', function(hooks) {
     `)
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'none',
       'active state is false by default, so things can start hidden',
     )
@@ -35,7 +35,7 @@ module('Integration | Component | rad state', function(hooks) {
     await click('#open') // Call the `open` action
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'block',
       'active state is true after open action is called',
     )
@@ -43,7 +43,7 @@ module('Integration | Component | rad state', function(hooks) {
     await click('#close') // Call the `close` action
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'none',
       'active state is false after close action is called',
     )
@@ -58,7 +58,7 @@ module('Integration | Component | rad state', function(hooks) {
     `)
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'none',
       'active state is false by default, so things can start hidden',
     )
@@ -66,7 +66,7 @@ module('Integration | Component | rad state', function(hooks) {
     await click('#toggle') // Call the `open` action
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'block',
       'active state is true after open action is called',
     )
@@ -74,7 +74,7 @@ module('Integration | Component | rad state', function(hooks) {
     await click('#toggle') // Call the `close` action
 
     assert.equal(
-      this.$('#secrets').css('display'),
+      getComputedStyle(find('#secrets')).display,
       'none',
       'active state is false after close action is called',
     )
