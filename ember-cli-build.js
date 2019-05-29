@@ -21,6 +21,7 @@ module.exports = function(defaults) {
           'inline-replace-variables',
           { RAD_VERSION: packageJSON.version || '0.0.0' },
         ],
+        require.resolve('ember-auto-import/babel-plugin'),
       ],
     },
   }

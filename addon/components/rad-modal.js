@@ -1,10 +1,14 @@
 import Component from '@ember/component'
 import hbs from 'htmlbars-inline-precompile'
 import { later } from 'ember-runloop'
-import $ from 'jquery'
 
 // Utils
-import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
+import {
+  bindOnEscape,
+  unbindOnEscape,
+  bindTabLock,
+  unbindTabLock,
+} from '../utils/listeners'
 
 /**
  * ### Ember Radical DDAU Modal
@@ -332,7 +336,7 @@ export default Component.extend({
     }
 
     // Remove body scroll freeze
-    $('body').removeClass('fixed-body')
+    document.body.classList.remove('fixed-body')
 
     // Remove active classes in case modal stays in DOM while it is closed
     this.set('_active', false)
@@ -347,7 +351,8 @@ export default Component.extend({
 
     // Unbind escape listener
     unbindOnEscape(this.get('elementId'))
-
+    //unbind tab
+    unbindTabLock(this.element)
     // The modal isn't the quickest of components, and needs some more time
     // finish it's transition/animation.
     later(() => {
@@ -377,25 +382,27 @@ export default Component.extend({
    * @return {undefined}
    */
   _handleOpen() {
+    const { element, autoFocus, elementId } = this
     // Fire user hooks
-    if (this.get('onShow')) {
-      this.get('onShow')()
+    if (this.onShow) {
+      this.onShow()
     }
-
     // Prevent body scroll while modal is open
-    $('body').addClass('fixed-body')
+    document.body.classList.add('fixed-body')
 
     // Set the modal to be shown in the DOM first to allow for transitions
     // to work properly.
     this.set('_visible', true)
 
     // Set the current `activeElement` from the document to focus on close
-    if (this.get('autoFocus')) {
+    if (autoFocus) {
       this.set('_lastFocusedElement', document.activeElement)
     }
 
     // Bind the keycommand `esc` to close modal
-    bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this))
+    bindOnEscape(elementId, this.closeModal.bind(this))
+    // bind tab lock for accessibility
+    bindTabLock(element)
 
     // Wait to add active to modal elements until next run loop. This is
     // required for when we wait to render the modal until it should be active
@@ -406,15 +413,14 @@ export default Component.extend({
 
       // Focus the modal wrapper for usability
       // @TODO: A method to handle checking for an autoFocus element would be A++
-      this.$('.rad-modal-wrapper').focus()
+      element.querySelector('.rad-modal-wrapper').focus()
 
       // Fire user hooks
-      if (this.get('onShown')) {
-        this.get('onShown')()
+      if (this.onShown) {
+        this.onShown()
       }
     }, 15)
   },
-
   // Hooks
   // ---------------------------------------------------------------------------
 
@@ -426,8 +432,9 @@ export default Component.extend({
    * @return {undefined}
    */
   didReceiveAttrs() {
-    const background = this.$('.rad-modal-background')
-    const hidden = background ? background.attr('aria-hidden') : null
+    const background =
+      this.element && this.element.querySelector('.rad-modal-background')
+    const hidden = background && background.getAttribute('aria-hidden')
 
     if (this.get('open') && hidden === 'true') {
       this._handleOpen()
@@ -446,19 +453,22 @@ export default Component.extend({
     if (this.get('open')) {
       this._handleOpen()
     }
-
     if (NODE_ENV === 'development') {
       // In dev builds, check for a header element with the correct aria bindings
       // aria-labelledby is required for A++ Accessibility
       const elementId = this.get('elementId')
-      const headerId = `#aria-labelledby-${elementId}`
+      const headerId = `aria-labelledby-${elementId}`
       // @TODO: Figure out how to make this check _reliably_ for modals that
       // have `removeFromDomOnClose` enabled
-      if (!this.get('removeFromDomOnClose') && !$(headerId).is('header')) {
+      const headerEl = document.getElementById(headerId)
+      if (
+        !this.get('removeFromDomOnClose') &&
+        (!headerEl || headerEl.tagName.toLowerCase() !== 'header')
+      ) {
         console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2)
         throw new Error(
           '{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus',
-          headerId,
+          `#${headerId}`,
         )
       }
     }
@@ -479,7 +489,6 @@ export default Component.extend({
   willDestroyElement() {
     this._handleClose()
   },
-
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`
@@ -493,7 +502,6 @@ export default Component.extend({
       data-taglabel={{tagClose.label}}
       data-test='rad-modal-background'>
     </div>
-
     {{#if (or _visible (not removeFromDomOnClose))}}
       {{! The actual modal div. { role, labelledby, hidden } => 508 compliance attrs  }}
       {{! Note that if passed Header is null, we do not bind aria-labelledby }}

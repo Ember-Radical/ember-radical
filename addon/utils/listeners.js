@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import tabbable from 'tabbable'
 
 /**
  * @class Utils.Listeners
@@ -29,4 +30,30 @@ export function bindOnEscape(namespace, cb) {
  */
 export function unbindOnEscape(namespace) {
   $(document).unbind(`keydown.${namespace}`)
+}
+
+function tabLock(evt) {
+  const { shiftKey, which, target } = evt
+  if (which === 9) {
+    const allTabbableItems = tabbable(this)
+    const firstItem = allTabbableItems.shift()
+    const lastItem = allTabbableItems.pop()
+    if (shiftKey) {
+      if (target === firstItem) {
+        evt.preventDefault()
+        lastItem.focus()
+      }
+    } else if (target === lastItem) {
+      evt.preventDefault()
+      firstItem.focus()
+    }
+  }
+}
+
+export function bindTabLock(element) {
+  element.addEventListener('keydown', tabLock)
+}
+
+export function unbindTabLock(element) {
+  element.removeEventListener('keydown', tabLock)
 }
