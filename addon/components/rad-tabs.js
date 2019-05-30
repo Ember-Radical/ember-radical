@@ -5,6 +5,7 @@ import Component from '@ember/component'
 import run from 'ember-runloop'
 import hbs from 'htmlbars-inline-precompile'
 
+import deprecated from '../utils/deprecated'
 /**
  * A++ Accessible tabs. The `rad-tabs` component is the parent container for
  * a given set of tabs and handles managing the active state of the tabs and tab
@@ -139,7 +140,7 @@ export default Component.extend({
    * @type {Boolean}
    * @default false
    */
-  scrollOnClick: false,
+  scrollOnClick: null,
   /**
    * What the target of the `scrollOnClick` behavior should be. By default,
    * the entire page/body scrolls, however if this instance of `rad-tabs` is
@@ -152,7 +153,7 @@ export default Component.extend({
    * @type {String}
    * @default 'body, html'
    */
-  scrollTarget: 'body, html',
+  scrollTarget: null,
   /**
    * Class name(s) to apply to the tab `<button>` elements.
    * @property tabButtonClassNames
@@ -255,7 +256,20 @@ export default Component.extend({
       this.set('activeId', this.get('defaultTab'))
     }
   },
-
+  /**
+   * Deprecate scroll on click
+   * @DEV_NOTE this was a bit of an ambitious feature that I'm not sure we see a valid
+   * use case for.
+   * @event didReceiveAttrs
+   * @return {undefined}
+   */
+  didReceiveAttrs() {
+    this._super(...arguments)
+    const { scrollOnClick, scrollTarget } = this
+    if (scrollOnClick !== null || scrollTarget !== null) {
+      deprecated('scrollOnClick/scrollTarget')
+    }
+  },
   // Actions
   // ---------------------------------------------------------------------------
 
@@ -268,13 +282,14 @@ export default Component.extend({
      */
     showTab(elementId) {
       if (this.get('scrollOnClick')) {
-        let scrollTarget = this.get('scrollTarget')
-        $(scrollTarget).animate(
-          {
-            scrollTop: $('#' + this.get('elementId')).offset().top - 120,
-          },
-          1000,
-        )
+        const { scrollTarget: target, element } = this
+        const { scrollingElement = document.body } = document
+        const scrollTarget = document.querySelector(target) || scrollingElement
+        const boundingRect = element.getBoundingClientRect()
+        scrollTarget.scroll({
+          top: boundingRect.top + document.body.scrollTop - 120,
+          behavior: 'smooth',
+        })
       }
 
       // If an onChange closure was passed in, call it with change data. This

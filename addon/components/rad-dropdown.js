@@ -1,9 +1,9 @@
 import Component from '@ember/component'
 import hbs from 'htmlbars-inline-precompile'
 import run from 'ember-runloop'
-import $ from 'jquery'
 
 import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
+import { isChild } from '../utils/elements'
 
 /**
  * Core dropdown component.
@@ -217,21 +217,8 @@ export default Component.extend({
    * @protected
    */
   _bindDropdownListeners() {
-    $('body').on(
-      `mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`,
-      e => {
-        // Check if the click was inside the dropdown
-        let clickInDropdown = $(e.target).closest(`#${this.get('elementId')}`)
-          .length
-          ? true
-          : false
-
-        // If the click was ouside dropdown, close the dropdown and then cleanup the listener
-        if (!clickInDropdown) {
-          this.send('hide')
-        }
-      },
-    )
+    document.body.addEventListener(`mouseup`, this._onMouseTouchEnd)
+    document.body.addEventListener(`touchend`, this._onMouseTouchEnd)
   },
   /**
    * Remove click listener from body. Used to DRY up our cleanup code in the
@@ -240,14 +227,26 @@ export default Component.extend({
    * @protected
    */
   _unbindDropdownListeners() {
-    $('body').off(
-      `mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`,
-    )
+    document.body.removeEventListener('mouseup', this._onMouseTouchEnd)
+    document.body.removeEventListener('touchend', this._onMouseTouchEnd)
+  },
+  _onMouseTouchEnd(evt) {
+    // Check if the click was inside the dropdown
+    const clickInDropdown = isChild(evt.target, this.element)
+
+    // If the click was ouside dropdown, close the dropdown and then cleanup the listener
+    if (!clickInDropdown) {
+      this._unbindDropdownListeners()
+      this.send('hide')
+    }
   },
 
   // Hooks
   // ---------------------------------------------------------------------------
-
+  init() {
+    this._super(...arguments)
+    this.set('_onMouseTouchEnd', this._onMouseTouchEnd.bind(this))
+  },
   /**
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan

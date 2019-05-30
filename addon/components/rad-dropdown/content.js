@@ -94,7 +94,7 @@ export default Component.extend({
     const boundingRect = document
       .getElementById(this.get('elementId'))
       .getBoundingClientRect()
-    const bodyWidth = $('body').width()
+    const bodyWidth = document.body.offsetWidth
 
     /*
      * If the box is centered, it will center itself back off of the page when we
@@ -115,7 +115,7 @@ export default Component.extend({
       // note `boundingRect.left` is negative so we add the deduction.
       const newWidth = boundingRect.width + widthDeduction
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth })
+      this.element.style.width = `${newWidth}px`
     } // if the right right offset is greater than the body width, it is outside of our application.
     else if (boundingRect.right > bodyWidth) {
       // determine length deduction based on centered.
@@ -126,7 +126,10 @@ export default Component.extend({
 
       const newWidth = boundingRect.width - widthDeduction - 5
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth, minWidth: 'auto' })
+      Object.assign(this.element.style, {
+        width: `${newWidth}px`,
+        minWidth: 'auto',
+      })
     }
   },
 
