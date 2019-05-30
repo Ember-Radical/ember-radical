@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper'
 
 /**
  * Helper to compare two values to see if they are equal. Uses strict equal
@@ -8,7 +8,7 @@ import Ember from 'ember';
  * @return {boolean}
  */
 export function eq([arg1, arg2]) {
-  return arg1 === arg2;
+  return arg1 === arg2
 }
 
-export default Ember.Helper.helper(eq);
+export default helper(eq)

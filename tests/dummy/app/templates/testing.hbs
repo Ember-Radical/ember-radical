@@ -31,8 +31,8 @@
     <p>In your component test file:</p>
 
     {{highlight-code language='javascript' code="test('it renders', function(assert) {
-  assert.equal(this.$('[data-test=\"rad-button-test\"]').length, 1, 'A rad button is rendered');
-});"}}
+      assert.equal(findAll('[data-test=\"rad-button-test\"]').length, 1, 'A rad button is rendered');
+    });"}}
   </section>
   <section>
 

@@ -1,9 +1,9 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
-import run from 'ember-runloop';
-import $ from 'jquery';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
+import run from 'ember-runloop'
+import $ from 'jquery'
 
-import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
+import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
 
 /**
  * Core dropdown component.
@@ -121,22 +121,22 @@ export default Component.extend({
    * @optional
    * @type {Function}
    */
-   /**
-    * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
-    * Valid options are:
-    * - `"left"`
-    * - `"top"`
-    * - `"right"`
-    * - `"top right"`
-    *
-    * Defaults to `"left"` if no value is supplied.
-    *
-    * @property position
-    * @type {String}
-    * @passed
-    * @default 'left'
-    */
-   position: 'left',
+  /**
+   * The position that the tooltip is created in relative to its anchor element. Combine "top" with "right" to get a top and right aligned menu.
+   * Valid options are:
+   * - `"left"`
+   * - `"top"`
+   * - `"right"`
+   * - `"top right"`
+   *
+   * Defaults to `"left"` if no value is supplied.
+   *
+   * @property position
+   * @type {String}
+   * @passed
+   * @default 'left'
+   */
+  position: 'left',
 
   // Contextual Component Specifications
   // ---------------------------------------------------------------------------
@@ -217,15 +217,21 @@ export default Component.extend({
    * @protected
    */
   _bindDropdownListeners() {
-    $('body').on(`mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`, e => {
-      // Check if the click was inside the dropdown
-      let clickInDropdown = $(e.target).closest(`#${this.get('elementId')}`).length ? true : false;
+    $('body').on(
+      `mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`,
+      e => {
+        // Check if the click was inside the dropdown
+        let clickInDropdown = $(e.target).closest(`#${this.get('elementId')}`)
+          .length
+          ? true
+          : false
 
-      // If the click was ouside dropdown, close the dropdown and then cleanup the listener
-      if (!clickInDropdown) {
-        this.send('hide');
-      }
-    });
+        // If the click was ouside dropdown, close the dropdown and then cleanup the listener
+        if (!clickInDropdown) {
+          this.send('hide')
+        }
+      },
+    )
   },
   /**
    * Remove click listener from body. Used to DRY up our cleanup code in the
@@ -234,7 +240,9 @@ export default Component.extend({
    * @protected
    */
   _unbindDropdownListeners() {
-    $('body').off(`mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`);
+    $('body').off(
+      `mouseup.${this.get('elementId')} touchend.${this.get('elementId')}`,
+    )
   },
 
   // Hooks
@@ -248,11 +256,13 @@ export default Component.extend({
    */
   willDestroyElement() {
     // Check for passed closures
-    if (this.get('onDestroy')) { this.get('onDestroy')(); }
+    if (this.get('onDestroy')) {
+      this.get('onDestroy')()
+    }
 
     // Remove listeners
-    this._unbindDropdownListeners();
-    unbindOnEscape(this.get('elementId'));
+    this._unbindDropdownListeners()
+    unbindOnEscape(this.get('elementId'))
   },
 
   // Events
@@ -264,11 +274,14 @@ export default Component.extend({
    * @event mouseEnter
    */
   mouseEnter() {
-    let { autoClose, _autoCloseRunLater } = this.getProperties('autoClose', '_autoCloseRunLater');
+    let { autoClose, _autoCloseRunLater } = this.getProperties(
+      'autoClose',
+      '_autoCloseRunLater',
+    )
 
     if (autoClose && _autoCloseRunLater) {
-      run.cancel(_autoCloseRunLater);
-      this.set('_autoCloseRunLater', null);
+      run.cancel(_autoCloseRunLater)
+      this.set('_autoCloseRunLater', null)
     }
   },
   /**
@@ -279,11 +292,14 @@ export default Component.extend({
    */
   mouseLeave() {
     if (this.get('autoClose')) {
-      this.set('_autoCloseRunLater', run.later(() => {
-        if (!this.isDestroyed) {
-          this.send('hide');
-        }
-      }, 2500));
+      this.set(
+        '_autoCloseRunLater',
+        run.later(() => {
+          if (!this.isDestroyed) {
+            this.send('hide')
+          }
+        }, 2500),
+      )
     }
   },
 
@@ -303,17 +319,21 @@ export default Component.extend({
      */
     show() {
       // Fire user hooks
-      if (this.get('onShow')) { this.get('onShow')(...arguments); }
+      if (this.get('onShow')) {
+        this.get('onShow')(...arguments)
+      }
 
       // Toggle display
-      this.set('hidden', false);
+      this.set('hidden', false)
 
       // Add click listeners and bind esc to close
-      this._bindDropdownListeners();
-      bindOnEscape(this.get('elementId'), this.get('actions.hide').bind(this));
+      this._bindDropdownListeners()
+      bindOnEscape(this.get('elementId'), this.get('actions.hide').bind(this))
 
       // Fire user hooks
-      if (this.get('onShown')) { this.get('onShown')(...arguments); }
+      if (this.get('onShown')) {
+        this.get('onShown')(...arguments)
+      }
     },
     /**
      * Handle the hiding of the dropdown. This will pass on any arguments you
@@ -323,18 +343,22 @@ export default Component.extend({
      */
     hide() {
       // Fire user hooks
-      if (this.get('onHide')) { this.get('onHide')(...arguments); }
+      if (this.get('onHide')) {
+        this.get('onHide')(...arguments)
+      }
 
       // Toggle display
-      this.set('hidden', true);
+      this.set('hidden', true)
 
       // Remove listeners
-      this._unbindDropdownListeners();
-      unbindOnEscape(this.get('elementId'));
+      this._unbindDropdownListeners()
+      unbindOnEscape(this.get('elementId'))
 
       // Fire user hooks
-      if (this.get('onHidden')) { this.get('onHidden')(...arguments); }
-    }
+      if (this.get('onHidden')) {
+        this.get('onHidden')(...arguments)
+      }
+    },
   },
 
   // Layout
@@ -385,5 +409,5 @@ export default Component.extend({
       (action 'hide')
       hidden
     }}
-  `
-});
+  `,
+})

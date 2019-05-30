@@ -11,8 +11,8 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -21,32 +21,37 @@ module.exports = function(environment) {
     },
 
     featureFlags: {
-      TAGGING: true
-    }
-  };
-
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+      TAGGING: true,
+    },
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.locationType = 'none';
+    ENV.rootURL = '/'
+    ENV.locationType = 'none'
 
     // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false
+    ENV.APP.LOG_VIEW_LOOKUPS = false
+    ENV.APP.autoboot = false
+    ENV.APP.rootElement = '#ember-testing'
+    ENV.APP.SERVICE_NAMESPACE = '/healthsparq/service/'
+  }
 
-    ENV.APP.rootElement = '#ember-testing';
+  if (environment === 'test') {
+    // Testem prefers this...
+    ENV.locationType = 'none'
+
+    // keep test console output quieter
+    ENV.APP.LOG_ACTIVE_GENERATION = false
+    ENV.APP.LOG_VIEW_LOOKUPS = false
+
+    ENV.APP.rootElement = '#ember-testing'
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/ember-radical/';
+    ENV.rootURL = '/ember-radical/'
   }
 
-  return ENV;
-};
+  return ENV
+}

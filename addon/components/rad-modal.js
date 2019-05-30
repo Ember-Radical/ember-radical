@@ -1,10 +1,10 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
-import {later} from 'ember-runloop';
-import $ from 'jquery';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
+import { later } from 'ember-runloop'
+import $ from 'jquery'
 
 // Utils
-import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
+import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
 
 /**
  * ### Ember Radical DDAU Modal
@@ -128,7 +128,6 @@ import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -225,7 +224,7 @@ export default Component.extend({
   tagClose: {
     category: null,
     action: null,
-    label: null
+    label: null,
   },
 
   // Closure Actions
@@ -276,7 +275,6 @@ export default Component.extend({
    * @default ['_active:active']
    */
   classNameBindings: ['_active:active'],
-
 
   // Properties
   // ---------------------------------------------------------------------------
@@ -329,24 +327,26 @@ export default Component.extend({
    */
   _handleClose() {
     // Fire user hooks
-    if (this.get('onHide')) { this.get('onHide')(); }
+    if (this.get('onHide')) {
+      this.get('onHide')()
+    }
 
     // Remove body scroll freeze
-    $('body').removeClass('fixed-body');
+    $('body').removeClass('fixed-body')
 
     // Remove active classes in case modal stays in DOM while it is closed
-    this.set('_active', false);
+    this.set('_active', false)
 
     // Move focus back to last element (usually the button that opened the
     // modal) and clear out _lastFocusedElement to boy scout against any weird
     // bugs involving opening and closing modals multiple times
     if (this.get('autoFocus') && this.get('_lastFocusedElement')) {
-      this.get('_lastFocusedElement').focus();
-      this.set('_lastFocusedElement', undefined);
+      this.get('_lastFocusedElement').focus()
+      this.set('_lastFocusedElement', undefined)
     }
 
     // Unbind escape listener
-    unbindOnEscape(this.get('elementId'));
+    unbindOnEscape(this.get('elementId'))
 
     // The modal isn't the quickest of components, and needs some more time
     // finish it's transition/animation.
@@ -354,12 +354,14 @@ export default Component.extend({
       // Don't run this on a dealy if the object is destoryed. This can
       // happen when the user transitions to another route or during tests
       if (!this.get('isDestroyed')) {
-        this.set('_visible', false);
+        this.set('_visible', false)
       }
 
       // Fire user hooks
-      if (this.get('onHidden')) { this.get('onHidden')(); }
-    }, 500);
+      if (this.get('onHidden')) {
+        this.get('onHidden')()
+      }
+    }, 500)
   },
   /**
    * Handle modal open work here:
@@ -376,37 +378,41 @@ export default Component.extend({
    */
   _handleOpen() {
     // Fire user hooks
-    if (this.get('onShow')) { this.get('onShow')(); }
+    if (this.get('onShow')) {
+      this.get('onShow')()
+    }
 
     // Prevent body scroll while modal is open
-    $('body').addClass('fixed-body');
+    $('body').addClass('fixed-body')
 
     // Set the modal to be shown in the DOM first to allow for transitions
     // to work properly.
-    this.set('_visible', true);
+    this.set('_visible', true)
 
     // Set the current `activeElement` from the document to focus on close
     if (this.get('autoFocus')) {
-      this.set('_lastFocusedElement', document.activeElement);
+      this.set('_lastFocusedElement', document.activeElement)
     }
 
     // Bind the keycommand `esc` to close modal
-    bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this));
+    bindOnEscape(this.get('elementId'), this.get('closeModal').bind(this))
 
     // Wait to add active to modal elements until next run loop. This is
     // required for when we wait to render the modal until it should be active
     // if we add the active class at this point, then the modal renders with
     // active class and so there is no *transition*
     later(() => {
-      this.set('_active', true);
+      this.set('_active', true)
 
       // Focus the modal wrapper for usability
       // @TODO: A method to handle checking for an autoFocus element would be A++
-      this.$('.rad-modal-wrapper').focus();
+      this.$('.rad-modal-wrapper').focus()
 
       // Fire user hooks
-      if (this.get('onShown')) { this.get('onShown')(); }
-    }, 15);
+      if (this.get('onShown')) {
+        this.get('onShown')()
+      }
+    }, 15)
   },
 
   // Hooks
@@ -420,13 +426,13 @@ export default Component.extend({
    * @return {undefined}
    */
   didReceiveAttrs() {
-    const background = this.$('.rad-modal-background');
-    const hidden = background ? background.attr('aria-hidden') : null;
+    const background = this.$('.rad-modal-background')
+    const hidden = background ? background.attr('aria-hidden') : null
 
     if (this.get('open') && hidden === 'true') {
-      this._handleOpen();
+      this._handleOpen()
     } else if (!this.get('open') && hidden === 'false') {
-      this._handleClose();
+      this._handleClose()
     }
   },
   /**
@@ -435,22 +441,25 @@ export default Component.extend({
    * @method didInsertElement
    */
   didInsertElement() {
-    this._super(...arguments);
+    this._super(...arguments)
 
     if (this.get('open')) {
-      this._handleOpen();
+      this._handleOpen()
     }
 
     if (NODE_ENV === 'development') {
       // In dev builds, check for a header element with the correct aria bindings
       // aria-labelledby is required for A++ Accessibility
-      const elementId = this.get('elementId');
-      const headerId = `#aria-labelledby-${elementId}`;
+      const elementId = this.get('elementId')
+      const headerId = `#aria-labelledby-${elementId}`
       // @TODO: Figure out how to make this check _reliably_ for modals that
       // have `removeFromDomOnClose` enabled
       if (!this.get('removeFromDomOnClose') && !$(headerId).is('header')) {
-        console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2);
-        throw new Error('{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus', headerId);
+        console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2)
+        throw new Error(
+          '{{rad-modal}}: You must specify a modal header or supply an `ariaHeader` string, ya dongus',
+          headerId,
+        )
       }
     }
   },
@@ -468,7 +477,7 @@ export default Component.extend({
    * @return {undefined}
    */
   willDestroyElement() {
-    this._handleClose();
+    this._handleClose()
   },
 
   // Layout
@@ -553,5 +562,5 @@ export default Component.extend({
         }}
       </div>
     {{/if}}
-  `
-});
+  `,
+})

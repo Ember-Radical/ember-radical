@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-drawer/target';
+export { default } from 'ember-radical/components/rad-drawer/target'

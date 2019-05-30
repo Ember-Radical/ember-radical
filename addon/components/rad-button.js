@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import inject from 'ember-service/inject';
-import computed from 'ember-computed';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import { inject as service } from '@ember/service'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * The `rad-button` component is used for all user interaction targets in Ember
@@ -25,11 +25,11 @@ import hbs from 'htmlbars-inline-precompile';
 
 // Feature Assets
 // ---------------------------------------------------------------------------
-let taggingAssets = {};
+let taggingAssets = {}
 
 if (TAGGING) {
   taggingAssets = {
-    tagging: inject(),
+    tagging: service(),
 
     /**
      * Internal method that handles firiing a tag with or without custom dimensions.
@@ -37,20 +37,38 @@ if (TAGGING) {
      * @return {undefined}
      */
     _fireTag() {
-      const { tagcategory, tagaction, taglabel, tagvalue, tagcd } =
-        this.getProperties('tagcategory', 'tagaction', 'taglabel', 'tagvalue', 'tagcd');
+      const {
+        tagcategory,
+        tagaction,
+        taglabel,
+        tagvalue,
+        tagcd,
+      } = this.getProperties(
+        'tagcategory',
+        'tagaction',
+        'taglabel',
+        'tagvalue',
+        'tagcd',
+      )
 
       // Fire off that tag, pass along available props
-      this.get('tagging').fireTag({ tagcategory, tagaction, taglabel, tagvalue, tagcd });
+      this.get('tagging').fireTag({
+        tagcategory,
+        tagaction,
+        taglabel,
+        tagvalue,
+        tagcd,
+      })
 
       // If we're only tagging once, null out the category to prevent additional fires
-      if (this.get('tagonce')) { this.set('tagcategory', null); }
-    }
-  };
+      if (this.get('tagonce')) {
+        this.set('tagcategory', null)
+      }
+    },
+  }
 }
 
 export default Component.extend(taggingAssets, {
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -160,9 +178,9 @@ export default Component.extend(taggingAssets, {
    */
   brandClass: computed('brand', 'outline', function() {
     if (this.get('outline')) {
-      return this.get('brand') ? `btn-outline-${this.get('brand')}` : null;
+      return this.get('brand') ? `btn-outline-${this.get('brand')}` : null
     } else {
-      return this.get('brand') ? `btn-${this.get('brand')}` : null;
+      return this.get('brand') ? `btn-${this.get('brand')}` : null
     }
   }),
 
@@ -185,27 +203,20 @@ export default Component.extend(taggingAssets, {
     'aria-labelledby',
     'data-test',
     'disabled',
-    'type'
+    'type',
   ],
   /**
    * Bind standard rad classname for component: `rad-button`
    * @property classNames
    * @type {Array}
    */
-  classNames: [
-    'rad-button',
-    'btn'
-  ],
+  classNames: ['rad-button', 'btn'],
   /**
    * Handle binding brand and link related css class names
    * @property classNameBindings
    * @type {Array}
    */
-  classNameBindings: [
-    'brandClass',
-    'link:btn-link',
-    'link:btn-unstyled'
-  ],
+  classNameBindings: ['brandClass', 'link:btn-link', 'link:btn-unstyled'],
   /**
    * Button DOM element
    * @property tagName
@@ -240,19 +251,26 @@ export default Component.extend(taggingAssets, {
    * @return {undefined}
    */
   mouseDown() {
+    // @TODO CSS solution ?
     // Hide outline b/c this was a legit mouse click
     // On blur, remove outline style in case the user switches to keyboard
-    this.$().css({ outline: 'none', boxShadow: 'none' });
+    this.$().css({ outline: 'none', boxShadow: 'none' })
     this.$().on('blur', () => {
       // If this button instance is destroying/destroyed, don't bother
       // (This is an issue with instances of `{{rad-alert}}`)
-      if (this.get('isDestroying') || this.get('isDestroyed')) { return; }
-      this.$().off('blur').css({ outline: '', boxShadow: '' });
-    });
+      if (this.get('isDestroying') || this.get('isDestroyed')) {
+        return
+      }
+      this.$()
+        .off('blur')
+        .css({ outline: '', boxShadow: '' })
+    })
 
     if (TAGGING) {
       // If a tagcategory is present, handle firing a tag
-      if (this.get('tagcategory')) { this._fireTag(); }
+      if (this.get('tagcategory')) {
+        this._fireTag()
+      }
     }
   },
   /**
@@ -266,14 +284,19 @@ export default Component.extend(taggingAssets, {
    */
   mouseEnter() {
     if (TAGGING) {
-      const { taghover, tagcategory } = this.getProperties('taghover', 'tagcategory');
+      const { taghover, tagcategory } = this.getProperties(
+        'taghover',
+        'tagcategory',
+      )
 
       // If tagcategory is present and hover is flagged, handle firing a tag
-      if (taghover && tagcategory) { this._fireTag(); }
+      if (taghover && tagcategory) {
+        this._fireTag()
+      }
     }
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{{yield}}}`
-});
+  layout: hbs`{{{yield}}}`,
+})

@@ -1,11 +1,11 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import hbs from 'htmlbars-inline-precompile';
-import $ from 'jquery';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
+import $ from 'jquery'
 
 // Utils
-import { describedby } from '../utils/arias';
-import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
+import { describedby } from '../utils/arias'
+import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
 
 /**
  * Popover tooltips to Make UI Great Again.™
@@ -52,7 +52,6 @@ import { bindOnEscape, unbindOnEscape } from '../utils/listeners';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -164,9 +163,9 @@ export default Component.extend({
    * @return {undefined}
    */
   _hideContent() {
-    this.set('hidden', true);
-    this._unbindPopoverListeners();
-    unbindOnEscape(this.get('elementId'));
+    this.set('hidden', true)
+    this._unbindPopoverListeners()
+    unbindOnEscape(this.get('elementId'))
   },
   /**
    * When the popover is opened, bind an event listener that will close it if
@@ -177,13 +176,15 @@ export default Component.extend({
   _bindPopoverListeners() {
     $('body').on(`touchend.popover.${this.get('elementId')}`, e => {
       // Check if the click was inside the popover
-      let clickInPopover = $(e.target).closest(`#${this.get('elementId')}`).length ? true : false;
+      let clickInPopover = $(e.target).closest(`#${this.get('elementId')}`).length
+        ? true
+        : false
 
       // If the click was ouside popover, close the popover and then cleanup the listener
       if (!clickInPopover) {
-        this._hideContent();
+        this._hideContent()
       }
-    });
+    })
   },
   /**
    * Handle showing tooltip content; bind an event listener for mobile for
@@ -192,9 +193,9 @@ export default Component.extend({
    * @return {undefined}
    */
   _showContent() {
-    this._bindPopoverListeners();
-    bindOnEscape(this.get('elementId'), this.get('_hideContent').bind(this));
-    this.set('hidden', false);
+    this._bindPopoverListeners()
+    bindOnEscape(this.get('elementId'), this.get('_hideContent').bind(this))
+    this.set('hidden', false)
   },
   /**
    * Remove mouseleave and touchend listeners from body. Used to DRY up our
@@ -203,7 +204,7 @@ export default Component.extend({
    * @protected
    */
   _unbindPopoverListeners() {
-    $('body').off(`touchend.popover.${this.get('elementId')}`);
+    $('body').off(`touchend.popover.${this.get('elementId')}`)
   },
 
   // Hooks
@@ -217,7 +218,7 @@ export default Component.extend({
    */
   didReceiveAttrs() {
     if (!this.get('position')) {
-      this.set('position', 'bottom');
+      this.set('position', 'bottom')
     }
   },
   /**
@@ -228,10 +229,12 @@ export default Component.extend({
    */
   willDestroyElement() {
     // Check for passed closures
-    if (this.get('onDestroy')) { this.get('onDestroy')(); }
+    if (this.get('onDestroy')) {
+      this.get('onDestroy')()
+    }
 
-    this._unbindPopoverListeners();
-    unbindOnEscape(this.get('elementId'));
+    this._unbindPopoverListeners()
+    unbindOnEscape(this.get('elementId'))
   },
 
   // Events
@@ -242,35 +245,35 @@ export default Component.extend({
    * @event click
    */
   click(evt) {
-    this._showContent();
+    this._showContent()
   },
   /**
    * Show content on focus
    * @event focusIn
    */
   focusIn(evt) {
-    this._showContent();
+    this._showContent()
   },
   /**
    * Hide content on focusOut
    * @event focusOut
    */
   focusOut(evt) {
-    this._hideContent();
+    this._hideContent()
   },
   /**
    * Show content on mouse enter
    * @event mouseEnter
    */
   mouseEnter(evt) {
-    this._showContent();
+    this._showContent()
   },
   /**
    * Hide content on mouse leave
    * @event mouseLeave
    */
   mouseLeave(evt) {
-    this._hideContent();
+    this._hideContent()
   },
 
   // Actions
@@ -283,7 +286,7 @@ export default Component.extend({
      * @return {undefined}
      */
     hide() {
-      this._hideContent();
+      this._hideContent()
     },
     /**
      * Proxy action for the {{c-l '_showContent'}} method.
@@ -291,8 +294,8 @@ export default Component.extend({
      * @return {undefined}
      */
     show() {
-      this._showContent();
-    }
+      this._showContent()
+    },
   },
 
   // Layout
@@ -313,5 +316,5 @@ export default Component.extend({
       (action 'show')
       (action 'hide')
       hidden
-    }}`
-});
+    }}`,
+})

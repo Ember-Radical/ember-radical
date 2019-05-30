@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout: hbs`
     <nav>
       {{!-- <img src="http://i.giphy.com/3yFr6ODcNHhrW.gif"/> --}}
@@ -27,5 +27,5 @@ export default Ember.Component.extend({
         <li><a href="https://www.github.com/healthsparq/ember-radical/">Source on Github</a></li>
       </ul>
     </nav>
-  `
-});
+  `,
+})

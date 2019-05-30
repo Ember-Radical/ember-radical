@@ -1,1 +1,1 @@
-export { default, eq } from 'ember-radical/helpers/eq';
+export { default, eq } from 'ember-radical/helpers/eq'

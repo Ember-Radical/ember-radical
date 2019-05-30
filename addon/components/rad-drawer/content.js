@@ -1,7 +1,7 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import hbs from 'htmlbars-inline-precompile';
-import {hiddenForArias} from '../../utils/arias';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
+import { hiddenForArias } from '../../utils/arias'
 
 /**
  * Core drawer content component
@@ -11,7 +11,6 @@ import {hiddenForArias} from '../../utils/arias';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -42,14 +41,16 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   init() {
-    this._super(...arguments);
+    this._super(...arguments)
 
-    if (!this.get('ariaId')) { return console.warn('Aria id required for drawer content'); }
+    if (!this.get('ariaId')) {
+      return console.warn('Aria id required for drawer content')
+    }
 
-    this.set('elementId', this.get('ariaId'));
+    this.set('elementId', this.get('ariaId'))
   },
 
   // Layout
   // ---------------------------------------------------------------------------
-  layout: hbs`{{yield}}`
-});
+  layout: hbs`{{yield}}`,
+})

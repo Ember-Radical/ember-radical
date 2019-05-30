@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
-import computed from 'ember-computed';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
+import { computed } from '@ember/object'
 
 /**
  * Used to handle rendering a header for an Ember Radical Modal. Should always
@@ -30,7 +30,6 @@ import computed from 'ember-computed';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
   /**
@@ -105,7 +104,7 @@ export default Component.extend({
    * @param {string} brand
    */
   brandClass: computed('brand', function() {
-    return this.get('brand') ? `${this.get('brand')}-bg`: null;
+    return this.get('brand') ? `${this.get('brand')}-bg` : null
   }),
 
   // Ember
@@ -162,5 +161,5 @@ export default Component.extend({
         {{/rad-button}}
       </div>
     {{/if}}
-  `
-});
+  `,
+})

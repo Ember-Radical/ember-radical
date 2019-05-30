@@ -1,1 +1,1 @@
-export { default, not } from 'ember-radical/helpers/not';
+export { default, not } from 'ember-radical/helpers/not'

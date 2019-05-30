@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-alert';
+export { default } from 'ember-radical/components/rad-alert'

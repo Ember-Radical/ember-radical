@@ -1,1 +1,1 @@
-export { default } from 'ember-radical/components/rad-modal';
+export { default } from 'ember-radical/components/rad-modal'

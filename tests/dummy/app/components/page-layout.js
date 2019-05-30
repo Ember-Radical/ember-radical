@@ -1,6 +1,6 @@
-import Component from 'ember-component';
-import inject from 'ember-service/inject';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import { inject as service } from '@ember/service'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Basic reusable page layout component to ensure consistency without
@@ -21,10 +21,9 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Radical Service
   // ---------------------------------------------------------------------------
-  radical: inject(),
+  radical: service(),
 
   // Layout
   // ---------------------------------------------------------------------------
@@ -44,5 +43,5 @@ export default Component.extend({
         </div>
       </div>
     </div>
-  `
-});
+  `,
+})

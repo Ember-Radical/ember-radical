@@ -14,7 +14,11 @@
  * @param {String} nextVersion = '2.0' The next major release of the app in which the oldItem will be removed.
  * @return {undefined}
  */
-export default function deprecated(oldItem, newItem, nextVersion = '2.0') {
-  if (!oldItem || !newItem) { return; }
-  console.warn(`You referenced ${oldItem}, which is deprecated and will be unsupported in Ember Radical ${nextVersion}! Please use ${newItem} instead.`);
+export default function deprecated(oldItem, newItem, nextVersion = '3.0') {
+  if (!oldItem || !newItem) {
+    return
+  }
+  console.warn(
+    `You referenced ${oldItem}, which is deprecated and will be unsupported in Ember Radical ${nextVersion}! Please use ${newItem} instead.`,
+  )
 }

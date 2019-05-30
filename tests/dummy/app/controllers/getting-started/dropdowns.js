@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Controller from '@ember/controller'
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     customAction(derp) {
-      console.info('Greetings, Program!', derp);
-    }
-  }
-});
+      console.info('Greetings, Program!', derp)
+    },
+  },
+})

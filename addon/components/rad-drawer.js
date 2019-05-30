@@ -1,8 +1,7 @@
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import hbs from 'htmlbars-inline-precompile';
-import {controls} from '../utils/arias';
-import deprecated from '../utils/deprecated';
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import hbs from 'htmlbars-inline-precompile'
+import { controls } from '../utils/arias'
 
 /**
  * Fully accessible expandable drawer/expandable content component.
@@ -94,7 +93,6 @@ import deprecated from '../utils/deprecated';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -105,18 +103,6 @@ export default Component.extend({
    * @type {Boolean}
    */
   buttonStyle: false,
-  /**
-   * Allow for external controls to update the open/closed state of a
-   * `rad-drawer`.
-   *
-   * This property is now deprecated as of Ember Radical 1.6 and will be
-   * removed in Ember Radical 2.0. you should use {{c-l hidden}} instead.
-   * @property externalToggle
-   * @type {Boolean}
-   * @default false
-   * @deprecated
-   */
-  externalToggle: false,
   /**
    * State boolean for display of the drawer content. Is toggled true/false to
    * handle show/hide. Updated in `toggleHidden`.
@@ -180,33 +166,6 @@ export default Component.extend({
    * @type {Array}
    */
   classNames: ['rad-drawer'],
-  /**
-   * The component's `didReceiveAttrs` hook. Allows udpates from external state
-   * to adjust the `hidden` state of a `rad-drawer` instance.
-   *
-   * This hook contains deprecated code and will be removed in Ember Radical 2.0
-   *
-   * @event didReceiveAttrs
-   * @return {undefined}
-   */
-  didReceiveAttrs() {
-    if (this.get('externalToggle')) {
-      deprecated('externalToggle', 'hidden');
-    }
-
-    // @TODO: Remove in 2.0
-    // @DEPRECATED
-    let externalToggle = this.get('externalToggle');
-    let oldExternalToggle = this.get('_oldExternalToggle');
-
-    if (oldExternalToggle !== externalToggle) {
-      this.set('hidden', !externalToggle);
-    }
-
-    // Update the private hidden state so it can be used for comparison
-    // on the next attrs update
-    this.set('_oldExternalToggle', externalToggle);
-  },
 
   // Hooks
   // ---------------------------------------------------------------------------
@@ -239,11 +198,11 @@ export default Component.extend({
      */
     toggleHidden(evt, state) {
       if (state !== undefined) {
-        this.set('hidden', state);
+        this.set('hidden', state)
       } else {
-        this.toggleProperty('hidden');
+        this.toggleProperty('hidden')
       }
-    }
+    },
   },
 
   // Layout
@@ -282,5 +241,5 @@ export default Component.extend({
         {{{Content}}}
       {{/rad-drawer/content}}
     {{/if}}
-  `
-});
+  `,
+})

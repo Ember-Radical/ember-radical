@@ -1,4 +1,4 @@
-import Component from 'ember-component';
+import Component from '@ember/component'
 
 /**
  * Library component used within contextual components to create elements with
@@ -25,5 +25,5 @@ export default Component.extend({
    * @type {Array}
    * @default ['_classNames']
    */
-  classNameBindings: ['_classNames']
-});
+  classNameBindings: ['_classNames'],
+})

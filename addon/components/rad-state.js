@@ -1,6 +1,5 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
-import deprecated from '../utils/deprecated';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Component that can be used for tracking state changes with modals or drawers.
@@ -46,7 +45,6 @@ import deprecated from '../utils/deprecated';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -75,37 +73,11 @@ export default Component.extend({
   actions: {
     /**
      * Sets the {{c-l state}} property to `false`.
-     * This action is now deprecated as of Ember Radical 1.6 and will be
-     * removed in Ember Radical 2.0. you should use {{c-l actions.setFalse}}
-     * instead.
-     * @method close
-     * @return {undefined}
-     * @deprecated
-     */
-    close() {
-      deprecated('stateActions.close', 'stateActions.setFalse');
-      this.send('setFalse');
-    },
-    /**
-     * Sets the {{c-l state}} property to `true`.
-     * This action is now deprecated as of Ember Radical 1.6 and will be
-     * removed in Ember Radical 2.0. you should use {{c-l actions.setTrue}}
-     * instead.
-     * @method open
-     * @return {undefined}
-     * @deprecated
-     */
-    open() {
-      deprecated('stateActions.open', 'stateActions.setTrue');
-      this.send('setTrue');
-    },
-    /**
-     * Sets the {{c-l state}} property to `false`.
      * @method setFalse
      * @return {undefined}
      */
     setFalse() {
-      this.set('state', false);
+      this.set('state', false)
     },
     /**
      * Sets the {{c-l state}} property to `true`.
@@ -113,7 +85,7 @@ export default Component.extend({
      * @return {undefined}
      */
     setTrue() {
-      this.set('state', true);
+      this.set('state', true)
     },
     /**
      * Toggles the value of {{c-l 'state'}} to the opposite of its current
@@ -122,8 +94,8 @@ export default Component.extend({
      * @return {undefined}
      */
     toggleState() {
-      this.toggleProperty('state');
-    }
+      this.toggleProperty('state')
+    },
   },
 
   // Layout
@@ -131,8 +103,6 @@ export default Component.extend({
   layout: hbs`{{yield state (hash
     setTrue=(action 'setTrue')
     setFalse=(action 'setFalse')
-    open=(action 'open')
-    close=(action 'close')
     toggleState=(action 'toggleState')
-  )}}`
-});
+  )}}`,
+})

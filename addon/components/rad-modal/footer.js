@@ -1,5 +1,5 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * Simple wrapper for creating a modal footer.
@@ -8,7 +8,6 @@ import hbs from 'htmlbars-inline-precompile';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
   /**
@@ -35,5 +34,5 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{yield}}
-  `
-});
+  `,
+})

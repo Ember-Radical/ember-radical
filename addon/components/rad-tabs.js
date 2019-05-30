@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import Component from 'ember-component';
-import run from 'ember-runloop';
-import hbs from 'htmlbars-inline-precompile';
-
-const { $ } = Ember;
+import { setProperties } from '@ember/object'
+import { A } from '@ember/array'
+import $ from 'jquery'
+import Component from '@ember/component'
+import run from 'ember-runloop'
+import hbs from 'htmlbars-inline-precompile'
 
 /**
  * A++ Accessible tabs. The `rad-tabs` component is the parent container for
@@ -67,7 +67,6 @@ const { $ } = Ember;
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -227,10 +226,10 @@ export default Component.extend({
    * @method _createTabsList
    */
   _createTabsList() {
-    const tabList = this.get('tabList');
+    const tabList = this.get('tabList')
 
-    this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab));
-    this.set('_tabsToCreate', Ember.A());
+    this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab))
+    this.set('_tabsToCreate', A())
   },
 
   // Hooks
@@ -244,16 +243,16 @@ export default Component.extend({
    * @return {undefined}
    */
   init() {
-    this._super(...arguments);
+    this._super(...arguments)
 
     // Disabled prototype extensions require Ember.A for a new array:
     // https://guides.emberjs.com/v2.10.0/configuring-ember/disabling-prototype-extensions/#toc_arrays
-    this.set('tabList', Ember.A());
-    this.set('_tabsToCreate', Ember.A());
+    this.set('tabList', A())
+    this.set('_tabsToCreate', A())
 
     // When default tab is passed, update internal flag
     if (this.get('defaultTab')) {
-      this.set('activeId', this.get('defaultTab'));
+      this.set('activeId', this.get('defaultTab'))
     }
   },
 
@@ -269,18 +268,21 @@ export default Component.extend({
      */
     showTab(elementId) {
       if (this.get('scrollOnClick')) {
-        let scrollTarget = this.get('scrollTarget');
-        $(scrollTarget).animate({
-          scrollTop: $('#' + this.get('elementId')).offset().top - 120
-        }, 1000);
+        let scrollTarget = this.get('scrollTarget')
+        $(scrollTarget).animate(
+          {
+            scrollTop: $('#' + this.get('elementId')).offset().top - 120,
+          },
+          1000,
+        )
       }
 
       // If an onChange closure was passed in, call it with change data. This
       // allows for 'controlled' tabs
       if (this.get('onChange')) {
-        this.get('onChange')({ elementId: elementId });
+        this.get('onChange')({ elementId: elementId })
       } else {
-        this.set('activeId', elementId);
+        this.set('activeId', elementId)
       }
     },
     /**
@@ -293,9 +295,9 @@ export default Component.extend({
      * @param {Object} tab Object model of tab to be registered
      */
     registerTab(tab) {
-      this.get('_tabsToCreate').pushObject(tab);
+      this.get('_tabsToCreate').pushObject(tab)
       // We only want this to run once
-      run.once(this, '_createTabsList');
+      run.once(this, '_createTabsList')
     },
     /**
      * Closure action passed to content subcomponents that is called whenever
@@ -306,15 +308,17 @@ export default Component.extend({
      * @param {string}  tab.elementId HTML id of tab to update
      * @param {boolean} tab.hidden    Hidden status of changed tab
      */
-    updateTab( elementId, propsToUpdate) {
-      const tabToUpdate = this.get('tabList').find(tab => tab.elementId === elementId);
+    updateTab(elementId, propsToUpdate) {
+      const tabToUpdate = this.get('tabList').find(
+        tab => tab.elementId === elementId,
+      )
 
       if (tabToUpdate) {
         // TODO: when updating hidden in the tabList a double render is occuring
         // for some reason. Why???
-        run.once(this, () => Ember.setProperties(tabToUpdate, propsToUpdate));
+        run.once(this, () => setProperties(tabToUpdate, propsToUpdate))
       }
-    }
+    },
   },
 
   // Layout
@@ -352,5 +356,5 @@ export default Component.extend({
         activeId
         (action 'showTab')}}
     </div>
-  `
-});
+  `,
+})

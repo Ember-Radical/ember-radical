@@ -10,31 +10,30 @@ Note that all components declare their templates inline using the [ember-cli-htm
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-radical`
-* `npm install`
-* `bower install`
+- `git clone <repository-url>` this repository
+- `cd ember-radical`
+- `npm install`
 
 ## Running
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+- `ember serve`
+- Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+- `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
+- `ember test`
+- `ember test --server`
 
 ## Building
 
-* `ember build`
+- `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
 
 If you add new SVG icons to the dummy app, you will need to rebuild the SVG sprite:
 
-* `npm run svgdefs`
+- `npm run svgdefs`
 
 ## Submitting Pull Requests
 
@@ -49,6 +48,7 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 ## Conventions
 
 ### Code/Patterns
+
 - Use tagged templates to declare component templates inline in js files. If you're using Atom, we recommend installing [language-ember](https://atom.io/packages/language-ember) for totally rad hbs syntax highlighting in your JS files.
 - Components with display elements should use a DDAU property `show` to handle visibility
 - Feature flags should be used to ensure production builds are as light as possible
@@ -60,16 +60,16 @@ If you add new SVG icons to the dummy app, you will need to rebuild the SVG spri
 - Styles should be broken out into structure/theme for easy theming
 
 ### Accessibility
+
 - Components should use aria attrs for A++ Accessibility
 - Additional accessibility validations created for dev builds
 - Any interactive target without an `href` should be a `rad-button`
 
 ### Other
+
 - We use [gitmoji](https://gitmoji.carloscuesta.me/) in our commit messages to help quickly identify the nature of a commit and request you do as well.
 
 ## Feature Roadmap
 
 - Improve mobile layout for guides
 - Bangin' new TOTALLY RAD theme for the guides
-- Update to CLI 2.11 soonish
-- Add more new components once we assess what else should be created

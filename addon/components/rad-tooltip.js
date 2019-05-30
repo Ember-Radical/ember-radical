@@ -1,8 +1,8 @@
-import Component from 'ember-component';
-import hbs from 'htmlbars-inline-precompile';
-import computed from 'ember-computed';
+import Component from '@ember/component'
+import hbs from 'htmlbars-inline-precompile'
+import { computed } from '@ember/object'
 
-import { describedby } from '../utils/arias';
+import { describedby } from '../utils/arias'
 
 /**
  * A fully accessible tooltip component. The `rad-tooltip` component can be
@@ -45,7 +45,6 @@ import { describedby } from '../utils/arias';
  * @extends Ember.Component
  */
 export default Component.extend({
-
   // Passed Properties
   // ---------------------------------------------------------------------------
 
@@ -156,8 +155,10 @@ export default Component.extend({
    * @return undefined
    */
   _showContent() {
-    this.set('hidden', false);
-    if (this.get('onShow')) { this.get('onShow')(); }
+    this.set('hidden', false)
+    if (this.get('onShow')) {
+      this.get('onShow')()
+    }
   },
   /**
    * Handle showing tooltip content
@@ -165,8 +166,10 @@ export default Component.extend({
    * @return undefined
    */
   _hideContent() {
-    this.set('hidden', true);
-    if (this.get('onHide')) { this.get('onHide')(); }
+    this.set('hidden', true)
+    if (this.get('onHide')) {
+      this.get('onHide')()
+    }
   },
 
   // Events
@@ -176,28 +179,28 @@ export default Component.extend({
    * @event mouseEnter
    */
   mouseEnter(evt) {
-    this._showContent();
+    this._showContent()
   },
   /**
    * Hide content on mouse leave
    * @event mouseLeave
    */
   mouseLeave(evt) {
-    this._hideContent();
+    this._hideContent()
   },
   /**
    * Show content on focus
    * @event focusIn
    */
   focusIn() {
-    this._showContent();
+    this._showContent()
   },
   /**
    * Hide content on focusOut
    * @event focusOut
    */
   focusOut() {
-    this._hideContent();
+    this._hideContent()
   },
 
   // Layout
@@ -243,5 +246,5 @@ export default Component.extend({
         {{{Content}}}
       {{/rad-tooltip/content}}
     {{/if}}
-  `
-});
+  `,
+})

@@ -1,7 +1,7 @@
-import hbs from 'htmlbars-inline-precompile';
-import computed from 'ember-computed';
-import RadButton from '../rad-button';
-import {expanded} from '../../utils/arias';
+import hbs from 'htmlbars-inline-precompile'
+import { computed } from '@ember/object'
+import RadButton from '../rad-button'
+import { expanded } from '../../utils/arias'
 
 /**
  * Core drawer target component
@@ -11,7 +11,6 @@ import {expanded} from '../../utils/arias';
  * @extends Component.RadButton
  */
 export default RadButton.extend({
-
   // Properties
   // ---------------------------------------------------------------------------
 
@@ -50,7 +49,8 @@ export default RadButton.extend({
   attributeBindings: [
     'expanded:aria-expanded',
     'ariaId:aria-controls',
-    'data-test'],
+    'data-test',
+  ],
   /**
    * Bind `drawer-target` and `basic-b`
    * @property classNames
@@ -67,5 +67,5 @@ export default RadButton.extend({
     <span data-test="{{data-test}}-yield">
       {{yield}}
     </span>
-  `
-});
+  `,
+})
