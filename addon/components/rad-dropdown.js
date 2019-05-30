@@ -230,6 +230,13 @@ export default Component.extend({
     document.body.removeEventListener('mouseup', this._onMouseTouchEnd)
     document.body.removeEventListener('touchend', this._onMouseTouchEnd)
   },
+  /**
+   * If the user clicks or touches outside of the dropdown, ensure that we close the
+   * dropdown automatically.
+   * @method _onMouseTouchEnd
+   * @param {MouseEvent|TouchEvent} evt
+   * @protected
+   */
   _onMouseTouchEnd(evt) {
     // Check if the click was inside the dropdown
     const clickInDropdown = isChild(evt.target, this.element)

@@ -170,7 +170,7 @@ export default Component.extend({
       // note `boundingRect.left` is negative so we add the deduction.
       const newWidth = boundingRect.width + widthDeduction
       // Udpate component with new width, problem solved
-      element.style.width = `${newWidth}px`
+      element.style.cssText += `width: ${newWidth}px !important;`
     } // if the right right offset is greater than the body width, it is outside of our application.
     else if (boundingRect.right > bodyWidth) {
       // determine length deduction based on centered.
@@ -181,7 +181,7 @@ export default Component.extend({
 
       const newWidth = boundingRect.width - widthDeduction
       // Udpate component with new width, problem solved
-      element.style.width = `${newWidth}px`
+      element.style.cssText += `width: ${newWidth}px !important;`
     }
   },
 

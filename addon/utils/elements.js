@@ -12,6 +12,7 @@ export function isChild(child, parent) {
     }
     parentNode = parentNode.parentNode
   }
+  return false
 }
 
 /**
