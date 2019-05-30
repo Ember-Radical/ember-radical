@@ -33,6 +33,7 @@ export default Component.extend({
    *
    * @property position
    * @type {string}
+   * @enum `["top", "bottom", "left", "right", "bottom-left", "bottom-right"]`
    * @default ''
    */
   position: '',
@@ -158,7 +159,7 @@ export default Component.extend({
      * will need to subtract twice the necessary width. The box is only ever centered
      * when position does not contain `-left`/`-right`.
      */
-    const boxIsCentered = this.position === 'top' || this.position === 'bottom'
+    const boxIsCentered = position === 'top' || position === 'bottom'
 
     // If the left offset of content is negative, then the content is to the left of the viewport.
     if (boundingRect.left < 0) {
