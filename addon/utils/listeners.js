@@ -36,8 +36,8 @@ function tabLock(evt) {
   const { shiftKey, which, target } = evt
   if (which === 9) {
     const allTabbableItems = tabbable(this)
-    const firstItem = allTabbableItems.shift()
-    const lastItem = allTabbableItems.pop()
+    const firstItem = allTabbableItems[0]
+    const lastItem = allTabbableItems[allTabbableItems.length - 1]
     if (shiftKey) {
       if (target === firstItem) {
         evt.preventDefault()
