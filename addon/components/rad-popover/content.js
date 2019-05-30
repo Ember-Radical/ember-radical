@@ -1,10 +1,9 @@
 import Component from '@ember/component'
 import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
-import $ from 'jquery'
-
 // Utils
 import { hiddenForArias } from '../../utils/arias'
+import { outerHeight } from '../../utils/elements'
 
 /**
  *
@@ -34,6 +33,7 @@ export default Component.extend({
    *
    * @property position
    * @type {string}
+   * @enum `["top", "bottom", "left", "right", "bottom-left", "bottom-right"]`
    * @default ''
    */
   position: '',
@@ -142,21 +142,16 @@ export default Component.extend({
    */
   didRender() {
     // if the popover will expands beyond the total height of the body, we set the position to top.
-    const bodyHeight = $('body').height(),
-      distanceTop = $(`#${this.get('elementId')}`).offset().top,
-      thisHeight = $(`#${this.get('elementId')}`).outerHeight(true),
-      currentPosition = this.get('position')
-    if (
-      distanceTop + thisHeight > bodyHeight &&
-      currentPosition.includes('bottom')
-    ) {
-      this.set('position', currentPosition.replace('bottom', 'top'))
+    const { position, element } = this
+    const bodyHeight = document.body.offsetHeight
+    const boundingRect = element.getBoundingClientRect()
+    const distanceTop = boundingRect.top + document.body.scrollTop
+    const thisHeight = outerHeight(element)
+    if (distanceTop + thisHeight > bodyHeight && position.includes('bottom')) {
+      this.set('position', position.replace('bottom', 'top'))
     }
 
-    const boundingRect = document
-      .getElementById(this.get('elementId'))
-      .getBoundingClientRect()
-    const bodyWidth = $('body').width()
+    const bodyWidth = document.body.offsetWidth
 
     /*
      * If the box is centered, it will center itself back off of the page when we
@@ -164,8 +159,7 @@ export default Component.extend({
      * will need to subtract twice the necessary width. The box is only ever centered
      * when position does not contain `-left`/`-right`.
      */
-    const boxIsCentered =
-      this.get('position') === 'top' || this.get('position') === 'bottom'
+    const boxIsCentered = position === 'top' || position === 'bottom'
 
     // If the left offset of content is negative, then the content is to the left of the viewport.
     if (boundingRect.left < 0) {
@@ -177,7 +171,7 @@ export default Component.extend({
       // note `boundingRect.left` is negative so we add the deduction.
       const newWidth = boundingRect.width + widthDeduction
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth })
+      element.style.cssText += `width: ${newWidth}px !important;`
     } // if the right right offset is greater than the body width, it is outside of our application.
     else if (boundingRect.right > bodyWidth) {
       // determine length deduction based on centered.
@@ -188,7 +182,7 @@ export default Component.extend({
 
       const newWidth = boundingRect.width - widthDeduction
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth })
+      element.style.cssText += `width: ${newWidth}px !important;`
     }
   },
 

@@ -1,11 +1,11 @@
 import Component from '@ember/component'
 import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
-import $ from 'jquery'
 
 // Utils
 import { describedby } from '../utils/arias'
 import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
+import { isChild } from '../utils/elements'
 
 /**
  * Popover tooltips to Make UI Great Again.™
@@ -174,17 +174,7 @@ export default Component.extend({
    * @protected
    */
   _bindPopoverListeners() {
-    $('body').on(`touchend.popover.${this.get('elementId')}`, e => {
-      // Check if the click was inside the popover
-      let clickInPopover = $(e.target).closest(`#${this.get('elementId')}`).length
-        ? true
-        : false
-
-      // If the click was ouside popover, close the popover and then cleanup the listener
-      if (!clickInPopover) {
-        this._hideContent()
-      }
-    })
+    document.body.addEventListener(`touchend`, this._onBodyTouchEnd)
   },
   /**
    * Handle showing tooltip content; bind an event listener for mobile for
@@ -204,12 +194,32 @@ export default Component.extend({
    * @protected
    */
   _unbindPopoverListeners() {
-    $('body').off(`touchend.popover.${this.get('elementId')}`)
+    document.body.removeEventListener('touchend', this._onBodyTouchEnd)
   },
+  /**
+   * Force the popover to close when a user has touched the screen outside the popover.
+   * @TODO Evaluate if this is necessary, and if so, document why. `mouseleaeve`
+   * appears to fire for at least Chrome on `touchend` events, meaning this seem superfluous.
+   * @method _onBodyTouchEnd
+   * @param {TouchEvent} event
+   * @protected
+   */
+  _onBodyTouchEnd(event) {
+    // Check if the click was inside the popover
+    const clickInPopover = isChild(event.target, this.element)
 
+    // If the click was ouside popover, close the popover and then cleanup the listener
+    if (!clickInPopover) {
+      this._unbindPopoverListeners()
+      this._hideContent()
+    }
+  },
   // Hooks
   // ---------------------------------------------------------------------------
-
+  init() {
+    this._super(...arguments)
+    this.set('_onBodyTouchEnd', this._onBodyTouchEnd.bind(this))
+  },
   /**
    * Checks for a position prop value; if none was supplied, set a default
    * of `bottom`

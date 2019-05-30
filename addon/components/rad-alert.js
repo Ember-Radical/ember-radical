@@ -139,16 +139,27 @@ export default Component.extend({
     dismiss(evt) {
       this.get('onDeactivate')(this, evt) // Consumer Hooks
       // Fade the element out
-      this.$().animate({ opacity: 0 }, 300, () => {
-        if (this.get('isDestroyed')) {
+      const { element } = this
+      const { transition } = element.style
+      const opacityTranistion = 'opacity .3s'
+      element.style.transition = transition
+        ? `${transition}, ${opacityTranistion}`
+        : opacityTranistion
+      const onTransitionEnd = ({ propertyName }) => {
+        if (propertyName !== 'opacity') return
+        if (this.isDestroyed) {
           return
         }
         // Sets display:none to pull from DOM flow
         run(() => {
+          element.style.transition = transition
           this.set('isVisible', false)
           this.get('onDeactivated')(this, evt) // Consumer Hooks
         })
-      })
+        element.removeEventListener('transitionend', onTransitionEnd)
+      }
+      element.addEventListener('transitionend', onTransitionEnd)
+      element.style.opacity = 0
     },
   },
 

@@ -1,10 +1,17 @@
-import $ from 'jquery'
 import tabbable from 'tabbable'
 
 /**
  * @class Utils.Listeners
  * @constructor
  */
+
+/**
+ * Since we are using closure actions as the actual listener, we need to ensure that
+ * they are the same closure action when we add or remove them from the DOM.
+ * So we create the closure action and store it in this hash. Then when we go to
+ * remove the callback it is the same reference.
+ */
+const escapeCallbackHash = {}
 
 /**
  * Handle binding a listener to an element that calls a callback (typically a
@@ -15,11 +22,14 @@ import tabbable from 'tabbable'
  * @return {undefined}
  */
 export function bindOnEscape(namespace, cb) {
-  $(document).bind(`keydown.${namespace}`, evt => {
-    if (evt.which === 27) {
-      return cb()
+  if (!escapeCallbackHash[namespace]) {
+    escapeCallbackHash[namespace] = evt => {
+      if (evt.which === 27) {
+        return cb()
+      }
     }
-  })
+  } else return
+  document.addEventListener('keydown', escapeCallbackHash[namespace])
 }
 
 /**
@@ -29,7 +39,9 @@ export function bindOnEscape(namespace, cb) {
  * @return {undefined}
  */
 export function unbindOnEscape(namespace) {
-  $(document).unbind(`keydown.${namespace}`)
+  if (!escapeCallbackHash[namespace]) return
+  document.removeEventListener('keydown', escapeCallbackHash[namespace])
+  delete escapeCallbackHash[namespace]
 }
 
 function tabLock(evt) {

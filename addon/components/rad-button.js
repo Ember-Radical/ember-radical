@@ -254,17 +254,18 @@ export default Component.extend(taggingAssets, {
     // @TODO CSS solution ?
     // Hide outline b/c this was a legit mouse click
     // On blur, remove outline style in case the user switches to keyboard
-    this.$().css({ outline: 'none', boxShadow: 'none' })
-    this.$().on('blur', () => {
+    const { element } = this
+    Object.assign(element.style, { outline: 'none', boxShadow: 'none' })
+    const onBlur = () => {
       // If this button instance is destroying/destroyed, don't bother
       // (This is an issue with instances of `{{rad-alert}}`)
-      if (this.get('isDestroying') || this.get('isDestroyed')) {
+      if (this.isDestroying || this.isDestroyed) {
         return
       }
-      this.$()
-        .off('blur')
-        .css({ outline: '', boxShadow: '' })
-    })
+      Object.assign(element.style, { outline: '', boxShadow: '' })
+      element.removeEventListener('blur', onBlur)
+    }
+    element.addEventListener('blur', onBlur)
 
     if (TAGGING) {
       // If a tagcategory is present, handle firing a tag

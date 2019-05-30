@@ -11,14 +11,16 @@
  * @method deprecated
  * @param {String} oldItem The name of the deprecated item (property/method/etc)
  * @param {String} newItem The name of the new preferred item
- * @param {String} nextVersion = '2.0' The next major release of the app in which the oldItem will be removed.
+ * @param {String} nextVersion = '3.0' The next major release of the app in which the oldItem will be removed.
  * @return {undefined}
  */
 export default function deprecated(oldItem, newItem, nextVersion = '3.0') {
   if (!oldItem || !newItem) {
     return
   }
+  let additionalMessage = ''
+  if (newItem) additionalMessage = ` Please use ${newItem} instead.`
   console.warn(
-    `You referenced ${oldItem}, which is deprecated and will be unsupported in Ember Radical ${nextVersion}! Please use ${newItem} instead.`,
+    `You referenced ${oldItem}, which is deprecated and will be unsupported in Ember Radical ${nextVersion}!${additionalMessage}`,
   )
 }

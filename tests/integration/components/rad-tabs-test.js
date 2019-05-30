@@ -51,12 +51,12 @@ module('Integration | Component | rad tabs', function(hooks) {
     assert.ok(tabAControls, 'component tabs have aria-controls value')
     assert.ok(tabBControls, 'component tabs have aria-controls value')
     assert.equal(
-      this.$(`#${tabAControls}`).length,
+      findAll(`#${tabAControls}`).length,
       1,
       'component aria-controls matches one id in DOM',
     )
     assert.equal(
-      this.$(`#${tabBControls}`).length,
+      findAll(`#${tabBControls}`).length,
       1,
       'component aria-controls matches one id in DOM',
     )
@@ -75,21 +75,20 @@ module('Integration | Component | rad tabs', function(hooks) {
     `)
 
     // Validate content subcomponents
-    const tabConent = this.$('[role="tabpanel"]').toArray()
+    const tabConent = findAll('[role="tabpanel"]')
     assert.equal(
       tabConent.length,
       2,
       'component yields each subcomponent with role tabpanel',
     )
     tabConent.forEach(tab => {
-      let $tab = this.$(tab)
       assert.equal(
-        $tab.attr('aria-hidden'),
+        tab.getAttribute('aria-hidden'),
         'true',
         'subcomponent content is hidden by default',
       )
       assert.equal(
-        $tab.attr('role'),
+        tab.getAttribute('role'),
         'tabpanel',
         'subcomponent aria role tabpanel is bound by default',
       )
@@ -136,12 +135,12 @@ module('Integration | Component | rad tabs', function(hooks) {
 
     // Tab H tab button should be hidden
     assert.equal(
-      this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'),
+      find('[data-test="tab-g"]').parentNode.getAttribute('aria-hidden'),
       'false',
       'show default tab button',
     )
     assert.equal(
-      this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'),
+      find('[data-test="tab-h"]').parentNode.getAttribute('aria-hidden'),
       'true',
       'pizza tab is hidden',
     )
@@ -163,12 +162,12 @@ module('Integration | Component | rad tabs', function(hooks) {
 
     // Both tab buttons should be shown
     assert.equal(
-      this.$(this.$('[data-test="tab-g"]').parent()[0]).attr('aria-hidden'),
+      find('[data-test="tab-g"]').parentNode.getAttribute('aria-hidden'),
       'false',
       'show default tab button',
     )
     assert.equal(
-      this.$(this.$('[data-test="tab-h"]').parent()[0]).attr('aria-hidden'),
+      find('[data-test="tab-h"]').parentNode.getAttribute('aria-hidden'),
       'false',
       'show tab h tab button',
     )
@@ -202,18 +201,18 @@ module('Integration | Component | rad tabs', function(hooks) {
       {{/rad-tabs}}
     `)
 
-    const tabPanels = this.$('[role="tabpanel"]').toArray()
-    const tabs = this.$('[role="tab"]').toArray()
+    const tabPanels = findAll('[role="tabpanel"]')
+    const tabs = findAll('[role="tab"]')
     // No panels should be shown by default
     tabPanels.forEach(tabPanel => {
       assert.equal(
-        this.$(tabPanel).attr('aria-hidden'),
+        tabPanel.getAttribute('aria-hidden'),
         'true',
         'tab panels hidden on render',
       )
     })
     tabs.forEach(tab => {
-      assert.notOk(this.$(tab).hasClass('active'), 'no tab should be active')
+      assert.notOk(tab.classList.contains('active'), 'no tab should be active')
     })
 
     // Click Tab A
@@ -221,14 +220,14 @@ module('Integration | Component | rad tabs', function(hooks) {
     await click('[data-test="tab-a"]')
     // Tab A should now have class active
     tabs.forEach(tab => {
-      if (this.$(tab).attr('data-test') === 'tab-a') {
+      if (tab.getAttribute('data-test') === 'tab-a') {
         assert.ok(
-          this.$(tab).hasClass('active'),
+          tab.classList.contains('active'),
           'tab a should have class active after being clicked',
         )
       } else {
         assert.notOk(
-          this.$(tab).hasClass('active'),
+          tab.classList.contains('active'),
           'other tabs should not have class active',
         )
       }
@@ -255,14 +254,14 @@ module('Integration | Component | rad tabs', function(hooks) {
     await click('[data-test="tab-c"]')
     // Tab C should now have active class
     tabs.forEach(tab => {
-      if (this.$(tab).attr('data-test') === 'tab-c') {
+      if (tab.dataset.test === 'tab-c') {
         assert.ok(
-          this.$(tab).hasClass('active'),
+          tab.classList.contains('active'),
           'tab c should have class active after being clicked',
         )
       } else {
         assert.notOk(
-          this.$(tab).hasClass('active'),
+          tab.classList.contains('active'),
           'other tabs should not have class active',
         )
       }
@@ -394,16 +393,16 @@ module('Integration | Component | rad tabs', function(hooks) {
     {{/rad-tabs}}`)
 
     assert.ok(
-      this.$('[data-test="custom-classes-test"]')
-        .find('ul')
-        .hasClass('totally-rad-buttons'),
+      find('[data-test="custom-classes-test"] ul').classList.contains(
+        'totally-rad-buttons',
+      ),
       'The custom buttonStyleClassNames should be applied to the ul',
     )
 
     assert.ok(
-      this.$('[data-test="custom-classes-test"]')
-        .find('ul')
-        .hasClass('totally-effing-rad-tab-list'),
+      find('[data-test="custom-classes-test"] ul').classList.contains(
+        'totally-effing-rad-tab-list',
+      ),
       'The custom tabListClassNames should be applied to the ul',
     )
 

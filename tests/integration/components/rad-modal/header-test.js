@@ -74,9 +74,9 @@ module('Integration | Component | rad modal/header', function(hooks) {
       'passed brand should render branded class used to handle whitespace',
     )
     assert.ok(
-      this.$('[data-test="rad-modal-close-button"]')
-        .find('svg')
-        .hasClass('primary'),
+      find('[data-test="rad-modal-close-button"] svg').classList.contains(
+        'primary',
+      ),
       'close button should also be branded',
     )
   })

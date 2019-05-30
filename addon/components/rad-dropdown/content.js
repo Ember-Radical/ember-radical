@@ -1,7 +1,6 @@
 import Component from '@ember/component'
 import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
-import $ from 'jquery'
 
 import { hiddenForArias } from '../../utils/arias'
 
@@ -91,19 +90,16 @@ export default Component.extend({
    * @return {undefined}
    */
   didRender() {
-    const boundingRect = document
-      .getElementById(this.get('elementId'))
-      .getBoundingClientRect()
-    const bodyWidth = $('body').width()
-
+    const boundingRect = this.element.getBoundingClientRect()
+    const bodyWidth = document.body.offsetWidth
+    const { position } = this
     /*
      * If the box is centered, it will center itself back off of the page when we
      * subtract the necessary width from the component width. In these cases, we
      * will need to subtract twice the necessary width. The box is only ever centered
      * when position does not contain `-left`/`-right`.
      */
-    const boxIsCentered =
-      this.get('position') !== 'left' && this.get('position') !== 'right'
+    const boxIsCentered = !(position.includes('left') || position.includes('right'))
 
     // If the left offset of content is negative, then the content is to the left of the viewport.
     if (boundingRect.left < 0) {
@@ -115,7 +111,7 @@ export default Component.extend({
       // note `boundingRect.left` is negative so we add the deduction.
       const newWidth = boundingRect.width + widthDeduction
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth })
+      this.element.style.cssText += `width: ${newWidth}px !important;`
     } // if the right right offset is greater than the body width, it is outside of our application.
     else if (boundingRect.right > bodyWidth) {
       // determine length deduction based on centered.
@@ -123,10 +119,13 @@ export default Component.extend({
       const widthDeduction = boxIsCentered
         ? (boundingRect.right - bodyWidth) * 2
         : boundingRect.right - bodyWidth
-
       const newWidth = boundingRect.width - widthDeduction - 5
       // Udpate component with new width, problem solved
-      this.$().css({ width: newWidth, minWidth: 'auto' })
+      Object.assign(this.element.style, {
+        minWidth: 'auto',
+        maxWidth: 'auto',
+      })
+      this.element.style.cssText += `width: ${newWidth}px !important;`
     }
   },
 

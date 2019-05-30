@@ -3,7 +3,6 @@ import EmberRouter from '@ember/routing/router'
 import { getOwner } from '@ember/application'
 import { get } from '@ember/object'
 import { run } from '@ember/runloop'
-import $ from 'jquery'
 import config from './config/environment'
 
 const Router = EmberRouter.extend({
@@ -21,7 +20,7 @@ const Router = EmberRouter.extend({
     // Schedule some fun goodtimes into the `afterRender` run queue
     run.scheduleOnce('afterRender', this, function() {
       // Reset the page position to the top
-      $('body, html').scrollTop(0)
+      document.body.scrollTop = document.documentElement.scrollTop = 0
     })
 
     // Update the `currentRouteName` prop on `Service.Radical` so we can show

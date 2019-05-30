@@ -97,7 +97,7 @@ export default Component.extend({
     // If the tooltip's right bound is outside the window, it's overflowing, no bueno
     if (right > windowWidth) {
       // Set the width of the magical width wrapper to the current width minuse how much the tooltip is overflowing
-      this.$().css({ width: width - (right - windowWidth) })
+      this.element.style.width = `${width - (right - windowWidth)}px`
     }
   },
 
