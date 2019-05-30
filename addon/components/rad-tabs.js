@@ -1,6 +1,5 @@
 import { setProperties } from '@ember/object'
 import { A } from '@ember/array'
-import $ from 'jquery'
 import Component from '@ember/component'
 import run from 'ember-runloop'
 import hbs from 'htmlbars-inline-precompile'

@@ -1,7 +1,6 @@
 import Component from '@ember/component'
 import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
-import $ from 'jquery'
 
 import { hiddenForArias } from '../../utils/arias'
 
