@@ -254,6 +254,12 @@ export default Component.extend({
     this._super(...arguments)
     this.set('_onMouseTouchEnd', this._onMouseTouchEnd.bind(this))
   },
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this.onMouseEnter.bind(this))
+    element.addEventListener('mouseleave', this.onMouseLeave.bind(this))
+  },
+
   /**
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan
@@ -271,15 +277,15 @@ export default Component.extend({
     unbindOnEscape(this.elementId)
   },
 
-  // Events
+  // Methods
   // ---------------------------------------------------------------------------
 
   /**
    * Check for an auto-close timer when user mouses into dropdown and cancel it
    * if it exists.
-   * @event mouseEnter
+   * @method onMouseEnter
    */
-  mouseEnter() {
+  onMouseEnter() {
     let { autoClose, _autoCloseRunLater } = this
 
     if (autoClose && _autoCloseRunLater) {
@@ -291,9 +297,9 @@ export default Component.extend({
    * When user mouses out of the dropdown start an auto close timer to close
    * dropdown after 2.5 seconds. Is canceled using `mouseEnter` if user mouses
    * back into dropdown.
-   * @event mouseLeave
+   * @method onMouseLeave
    */
-  mouseLeave() {
+  onMouseLeave() {
     if (this.autoClose) {
       this.set(
         '_autoCloseRunLater',

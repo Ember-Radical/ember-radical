@@ -37,19 +37,6 @@ export default Component.extend({
    */
   classNames: ['drawer-content'],
 
-  // Hooks
-  // ---------------------------------------------------------------------------
-
-  init() {
-    this._super(...arguments)
-
-    if (!this.ariaId) {
-      return console.warn('Aria id required for drawer content')
-    }
-
-    this.set('elementId', this.ariaId)
-  },
-
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`{{yield}}`,

@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.2.0
+
+### Added
+
+- Upgraded Ember.js to version 3.14
+
+### Fixed
+
+- Removed `mouseEnter`/`mouseLeave` deprecation warnings.
+- Removed es5 getters.
+
 ## 2.1.1
 
 ### Refactored

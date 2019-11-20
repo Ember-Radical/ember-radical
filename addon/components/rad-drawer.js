@@ -237,7 +237,7 @@ export default Component.extend({
     ) hidden}}
 
     {{#if Content}}
-      {{#rad-drawer/content hidden=hidden ariaId=ariaId data-test=(if data-test (concat data-test '-content'))}}
+      {{#rad-drawer/content hidden=hidden elementId=ariaId data-test=(if data-test (concat data-test '-content'))}}
         {{{Content}}}
       {{/rad-drawer/content}}
     {{/if}}

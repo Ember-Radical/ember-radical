@@ -175,20 +175,6 @@ export default Component.extend({
   // Events
   // ---------------------------------------------------------------------------
   /**
-   * Show content on mouse enter
-   * @event mouseEnter
-   */
-  mouseEnter(evt) {
-    this._showContent()
-  },
-  /**
-   * Hide content on mouse leave
-   * @event mouseLeave
-   */
-  mouseLeave(evt) {
-    this._hideContent()
-  },
-  /**
    * Show content on focus
    * @event focusIn
    */
@@ -202,7 +188,11 @@ export default Component.extend({
   focusOut() {
     this._hideContent()
   },
-
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this._showContent.bind(this))
+    element.addEventListener('mouseleave', this._hideContent.bind(this))
+  },
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`

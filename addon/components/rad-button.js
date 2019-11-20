@@ -222,63 +222,12 @@ export default Component.extend(taggingAssets, {
 
   // Events
   // ---------------------------------------------------------------------------
-  _handleTagging() {},
-  /**
-   * The `mouseDown` event is used for some utility/housekeeping methods because
-   * we use the `click` event to pass in actions.
-   *
-   * Handle setting the outline on this element to `none` because we know this
-   * event is only triggered by actual mouse clicks. Keyboard events don't trigger
-   * it, which is a convenient way to know we're good to hide the outline and
-   * maintain usability for keyboard users. A++ accessibility!
-   *
-   * Handle checking for a tagging category and if one exists, fire a tag.
-   *
-   * If you need to override this event, be sure to call `this._super();`
-   * @event mouseDown
-   * @return {undefined}
-   */
-  mouseDown() {
-    // @TODO CSS solution ?
-    // Hide outline b/c this was a legit mouse click
-    // On blur, remove outline style in case the user switches to keyboard
-    const { element } = this
-    Object.assign(element.style, { outline: 'none', boxShadow: 'none' })
-    const onBlur = () => {
-      // If this button instance is destroying/destroyed, don't bother
-      // (This is an issue with instances of `{{rad-alert}}`)
-      if (this.isDestroying || this.isDestroyed) {
-        return
-      }
-      Object.assign(element.style, { outline: '', boxShadow: '' })
-      element.removeEventListener('blur', onBlur)
-    }
-    element.addEventListener('blur', onBlur)
-
+  didInsertElement() {
     if (TAGGING) {
-      // If a tagcategory is present, handle firing a tag
-      if (this.tagcategory) {
-        this._fireTag()
-      }
-    }
-  },
-  /**
-   * The `mouseEnter` checks for a tagging category and hover flag. If they're
-   * present a tag is fired.
-   *
-   * If you need to override this event, be sure to call `this._super();`
-   * TODO: Only include this if Tagging feature is enabled
-   * @event mouseEnter
-   * @return {undefined}
-   */
-  mouseEnter() {
-    if (TAGGING) {
-      const { taghover, tagcategory } = this
-
-      // If tagcategory is present and hover is flagged, handle firing a tag
-      if (taghover && tagcategory) {
-        this._fireTag()
-      }
+      const { element, _fireTag, taghover } = this
+      if (taghover) {
+        element.addEventListener('mouseenter', _fireTag.bind(this))
+      } else element.addEventListener('click', _fireTag.bind(this))
     }
   },
 

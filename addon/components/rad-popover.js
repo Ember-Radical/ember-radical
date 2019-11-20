@@ -271,19 +271,13 @@ export default Component.extend({
   focusOut(evt) {
     this._hideContent()
   },
-  /**
-   * Show content on mouse enter
-   * @event mouseEnter
-   */
-  mouseEnter(evt) {
-    this._showContent()
-  },
-  /**
-   * Hide content on mouse leave
-   * @event mouseLeave
-   */
-  mouseLeave(evt) {
-    this._hideContent()
+  // Hooks
+  //----------------------------------------------------------------------------
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this._showContent.bind(this))
+    element.addEventListener('mouseleave', this._hideContent.bind(this))
+    this._super(...arguments)
   },
 
   // Actions
