@@ -1,6 +1,12 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render, settled, find, click, findAll } from '@ember/test-helpers'
+import {
+  render,
+  settled,
+  find,
+  click,
+  findAll
+} from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad modal', function(hooks) {

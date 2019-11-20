@@ -226,9 +226,9 @@ export default Component.extend({
    * @method _createTabsList
    */
   _createTabsList() {
-    const tabList = this.get('tabList')
+    const tabList = this.tabList
 
-    this.get('_tabsToCreate').forEach(tab => tabList.pushObject(tab))
+    this._tabsToCreate.forEach(tab => tabList.pushObject(tab))
     this.set('_tabsToCreate', A())
   },
 
@@ -251,8 +251,8 @@ export default Component.extend({
     this.set('_tabsToCreate', A())
 
     // When default tab is passed, update internal flag
-    if (this.get('defaultTab')) {
-      this.set('activeId', this.get('defaultTab'))
+    if (this.defaultTab) {
+      this.set('activeId', this.defaultTab)
     }
   },
   /**
@@ -280,7 +280,7 @@ export default Component.extend({
      * @param {String} elementId HTML id of the tab to show
      */
     showTab(elementId) {
-      if (this.get('scrollOnClick')) {
+      if (this.scrollOnClick) {
         const { scrollTarget: target, element } = this
         const { scrollingElement = document.body } = document
         const scrollTarget = document.querySelector(target) || scrollingElement
@@ -293,8 +293,8 @@ export default Component.extend({
 
       // If an onChange closure was passed in, call it with change data. This
       // allows for 'controlled' tabs
-      if (this.get('onChange')) {
-        this.get('onChange')({ elementId: elementId })
+      if (this.onChange) {
+        this.onChange({ elementId: elementId })
       } else {
         this.set('activeId', elementId)
       }
@@ -309,7 +309,7 @@ export default Component.extend({
      * @param {Object} tab Object model of tab to be registered
      */
     registerTab(tab) {
-      this.get('_tabsToCreate').pushObject(tab)
+      this._tabsToCreate.pushObject(tab)
       // We only want this to run once
       run.once(this, '_createTabsList')
     },
@@ -323,7 +323,7 @@ export default Component.extend({
      * @param {boolean} tab.hidden    Hidden status of changed tab
      */
     updateTab(elementId, propsToUpdate) {
-      const tabToUpdate = this.get('tabList').find(
+      const tabToUpdate = this.tabList.find(
         tab => tab.elementId === elementId,
       )
 

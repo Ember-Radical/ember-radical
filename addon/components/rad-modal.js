@@ -150,6 +150,7 @@ export default Component.extend({
    * @property autoFocus
    * @type {Boolean}
    * @default false
+   * @deprecated This feature should not be used.
    */
   autoFocus: false,
   /**
@@ -331,8 +332,8 @@ export default Component.extend({
    */
   _handleClose() {
     // Fire user hooks
-    if (this.get('onHide')) {
-      this.get('onHide')()
+    if (this.onHide) {
+      this.onHide()
     }
 
     // Remove body scroll freeze
@@ -344,13 +345,13 @@ export default Component.extend({
     // Move focus back to last element (usually the button that opened the
     // modal) and clear out _lastFocusedElement to boy scout against any weird
     // bugs involving opening and closing modals multiple times
-    if (this.get('autoFocus') && this.get('_lastFocusedElement')) {
-      this.get('_lastFocusedElement').focus()
+    if (this.autoFocus && this._lastFocusedElement) {
+      this._lastFocusedElement.focus()
       this.set('_lastFocusedElement', undefined)
     }
 
     // Unbind escape listener
-    unbindOnEscape(this.get('elementId'))
+    unbindOnEscape(this.elementId)
     //unbind tab
     unbindTabLock(this.element)
     // The modal isn't the quickest of components, and needs some more time
@@ -358,13 +359,13 @@ export default Component.extend({
     later(() => {
       // Don't run this on a dealy if the object is destoryed. This can
       // happen when the user transitions to another route or during tests
-      if (!this.get('isDestroyed')) {
+      if (!this.isDestroyed) {
         this.set('_visible', false)
       }
 
       // Fire user hooks
-      if (this.get('onHidden')) {
-        this.get('onHidden')()
+      if (this.onHidden) {
+        this.onHidden()
       }
     }, 500)
   },
@@ -436,9 +437,9 @@ export default Component.extend({
       this.element && this.element.querySelector('.rad-modal-background')
     const hidden = background && background.getAttribute('aria-hidden')
 
-    if (this.get('open') && hidden === 'true') {
+    if (this.open && hidden === 'true') {
       this._handleOpen()
-    } else if (!this.get('open') && hidden === 'false') {
+    } else if (!this.open && hidden === 'false') {
       this._handleClose()
     }
   },
@@ -450,19 +451,19 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments)
 
-    if (this.get('open')) {
+    if (this.open) {
       this._handleOpen()
     }
     if (NODE_ENV === 'development') {
       // In dev builds, check for a header element with the correct aria bindings
       // aria-labelledby is required for A++ Accessibility
-      const elementId = this.get('elementId')
+      const elementId = this.elementId
       const headerId = `aria-labelledby-${elementId}`
       // @TODO: Figure out how to make this check _reliably_ for modals that
       // have `removeFromDomOnClose` enabled
       const headerEl = document.getElementById(headerId)
       if (
-        !this.get('removeFromDomOnClose') &&
+        !this.removeFromDomOnClose &&
         (!headerEl || headerEl.tagName.toLowerCase() !== 'header')
       ) {
         console.image('https://media.giphy.com/media/6Bfnhb5jQqvny/giphy.gif', 2)

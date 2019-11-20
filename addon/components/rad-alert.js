@@ -99,7 +99,7 @@ export default Component.extend({
    * @protected
    */
   brandClass: computed('brand', function() {
-    return this.get('brand') ? `alert-${this.get('brand')}` : null
+    return this.brand ? `alert-${this.brand}` : null;
   }),
 
   // Ember Properties
@@ -137,7 +137,7 @@ export default Component.extend({
      * @action
      */
     dismiss(evt) {
-      this.get('onDeactivate')(this, evt) // Consumer Hooks
+      this.onDeactivate(this, evt) // Consumer Hooks
       // Fade the element out
       const { element } = this
       const { transition } = element.style
@@ -154,7 +154,7 @@ export default Component.extend({
         run(() => {
           element.style.transition = transition
           this.set('isVisible', false)
-          this.get('onDeactivated')(this, evt) // Consumer Hooks
+          this.onDeactivated(this, evt) // Consumer Hooks
         })
         element.removeEventListener('transitionend', onTransitionEnd)
       }

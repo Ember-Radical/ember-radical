@@ -8,8 +8,8 @@ if (NODE_ENV === 'development') {
     this._super(...arguments)
 
     // aria-describedby is required for A++ Accessibility
-    if (!this.get('aria-describedby')) {
-      console.warn(`tooltip requires aria-describedby: ${this.get('elementId')}`)
+    if (!this['aria-describedby']) {
+      console.warn(`tooltip requires aria-describedby: ${this.elementId}`)
     }
   }
 }

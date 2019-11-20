@@ -127,11 +127,11 @@ export default Component.extend({
     // This should never happen so long as this component is called via the
     // "public" subcomponent reference but we will leave the check here just
     // to be safe
-    if (!this.get('aria-describedby')) {
+    if (!this['aria-describedby']) {
       return console.warn('Popover requires aria-describedby')
     }
     // This id matches the `aria-describedby` of the tooltip title.
-    this.set('elementId', this.get('aria-describedby'))
+    this.set('elementId', this['aria-describedby'])
   },
   /**
    * Handle checking component width against window width on render. If overflowing

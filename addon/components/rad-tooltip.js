@@ -156,8 +156,8 @@ export default Component.extend({
    */
   _showContent() {
     this.set('hidden', false)
-    if (this.get('onShow')) {
-      this.get('onShow')()
+    if (this.onShow) {
+      this.onShow()
     }
   },
   /**
@@ -167,8 +167,8 @@ export default Component.extend({
    */
   _hideContent() {
     this.set('hidden', true)
-    if (this.get('onHide')) {
-      this.get('onHide')()
+    if (this.onHide) {
+      this.onHide()
     }
   },
 

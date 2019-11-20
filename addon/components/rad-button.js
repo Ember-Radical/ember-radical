@@ -37,22 +37,10 @@ if (TAGGING) {
      * @return {undefined}
      */
     _fireTag() {
-      const {
-        tagcategory,
-        tagaction,
-        taglabel,
-        tagvalue,
-        tagcd,
-      } = this.getProperties(
-        'tagcategory',
-        'tagaction',
-        'taglabel',
-        'tagvalue',
-        'tagcd',
-      )
+      const { tagcategory, tagaction, taglabel, tagvalue, tagcd } = this
 
       // Fire off that tag, pass along available props
-      this.get('tagging').fireTag({
+      this.tagging.fireTag({
         tagcategory,
         tagaction,
         taglabel,
@@ -61,7 +49,7 @@ if (TAGGING) {
       })
 
       // If we're only tagging once, null out the category to prevent additional fires
-      if (this.get('tagonce')) {
+      if (this.tagonce) {
         this.set('tagcategory', null)
       }
     },
@@ -177,10 +165,10 @@ export default Component.extend(taggingAssets, {
    * @param 'outline'
    */
   brandClass: computed('brand', 'outline', function() {
-    if (this.get('outline')) {
-      return this.get('brand') ? `btn-outline-${this.get('brand')}` : null
+    if (this.outline) {
+      return this.brand ? `btn-outline-${this.brand}` : null
     } else {
-      return this.get('brand') ? `btn-${this.get('brand')}` : null
+      return this.brand ? `btn-${this.brand}` : null
     }
   }),
 
@@ -234,7 +222,7 @@ export default Component.extend(taggingAssets, {
 
   // Events
   // ---------------------------------------------------------------------------
-
+  _handleTagging() {},
   /**
    * The `mouseDown` event is used for some utility/housekeeping methods because
    * we use the `click` event to pass in actions.
@@ -269,7 +257,7 @@ export default Component.extend(taggingAssets, {
 
     if (TAGGING) {
       // If a tagcategory is present, handle firing a tag
-      if (this.get('tagcategory')) {
+      if (this.tagcategory) {
         this._fireTag()
       }
     }
@@ -285,10 +273,7 @@ export default Component.extend(taggingAssets, {
    */
   mouseEnter() {
     if (TAGGING) {
-      const { taghover, tagcategory } = this.getProperties(
-        'taghover',
-        'tagcategory',
-      )
+      const { taghover, tagcategory } = this
 
       // If tagcategory is present and hover is flagged, handle firing a tag
       if (taghover && tagcategory) {

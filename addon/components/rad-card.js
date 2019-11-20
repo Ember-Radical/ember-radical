@@ -96,7 +96,7 @@ export default Component.extend({
    * @type {String}
    */
   brandClass: computed(function() {
-    return this.get('brand') ? `card-${this.get('brand')}` : 'card-default'
+    return this.brand ? `card-${this.brand}` : 'card-default';
   }),
   /**
    * @property classNames

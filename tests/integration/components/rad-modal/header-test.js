@@ -1,7 +1,13 @@
 import Service from '@ember/service'
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render, find, click, findAll, triggerEvent } from '@ember/test-helpers'
+import {
+  render,
+  find,
+  click,
+  findAll,
+  triggerEvent
+} from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad modal/header', function(hooks) {

@@ -104,7 +104,7 @@ export default Component.extend({
    * @param {string} brand
    */
   brandClass: computed('brand', function() {
-    return this.get('brand') ? `${this.get('brand')}-bg` : null
+    return this.brand ? `${this.brand}-bg` : null;
   }),
 
   // Ember

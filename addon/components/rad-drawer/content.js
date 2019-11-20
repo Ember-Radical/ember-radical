@@ -43,11 +43,11 @@ export default Component.extend({
   init() {
     this._super(...arguments)
 
-    if (!this.get('ariaId')) {
+    if (!this.ariaId) {
       return console.warn('Aria id required for drawer content')
     }
 
-    this.set('elementId', this.get('ariaId'))
+    this.set('elementId', this.ariaId)
   },
 
   // Layout

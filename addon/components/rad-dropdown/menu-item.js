@@ -72,8 +72,8 @@ export default RadButton.extend({
    * @return {undefined}
    */
   didReceiveAttrs() {
-    const oldClick = this.get('_click')
-    const passedClick = this.get('click')
+    const oldClick = this._click
+    const passedClick = this.click
 
     if (passedClick !== oldClick) {
       let newClick = () => {

@@ -109,13 +109,20 @@ export default Component.extend({
    * @return {string} String of true/false for use with `aria-hidden` binding
    */
   _hidden: computed('activeId', 'hidden', function() {
-    if (this.get('hidden') || this.get('activeId') !== this.get('elementId')) {
+    if (this.hidden || this.activeId !== this.elementId) {
       return 'true'
     } else {
       return 'false'
     }
   }),
-
+  // Internal Methods
+  //----------------------------------------------------------------------------
+  _getProps() {
+    return {
+      label: this.label,
+      hidden: this.hidden,
+    }
+  },
   // Hooks
   // ---------------------------------------------------------------------------
 
@@ -126,18 +133,24 @@ export default Component.extend({
    */
   init() {
     this._super(...arguments)
-
-    this.registerTab(
-      this.getProperties(
-        'elementId',
-        'label',
-        'hidden',
-        'tabDataTest',
-        'tagcategory',
-        'tagaction',
-        'taglabel',
-      ),
-    )
+    const {
+      elementId,
+      label,
+      hidden,
+      tabDataTest,
+      tagcategory,
+      tagaction,
+      taglabel,
+    } = this
+    this.registerTab({
+      elementId,
+      label,
+      hidden,
+      tabDataTest,
+      tagcategory,
+      tagaction,
+      taglabel,
+    })
   },
   /**
    * Sets the props label and hidden on initializing these Properties
@@ -147,7 +160,7 @@ export default Component.extend({
   didReceiveAttrs() {
     // Update the private hidden state so it can be used for comparison
     // on the next attrs update
-    this.set('_oldProps', this.getProperties('label', 'hidden'))
+    this.set('_oldProps', this._getProps())
   },
   /**
    * Actions Up: When something changes in this component we need to let the
@@ -158,15 +171,15 @@ export default Component.extend({
    * @event didUpdateAttrs
    */
   didUpdateAttrs() {
-    const props = this.getProperties('label', 'hidden')
-    const oldProps = this.get('_oldProps')
+    const props = this._getProps()
+    const oldProps = this._oldProps
     for (const key in props) {
       if (props[key] === oldProps[key]) {
         delete props[key]
       }
     }
     if (Object.keys(props).length) {
-      this.updateTab(this.get('elementId'), props)
+      this.updateTab(this.elementId, props)
     }
   },
 

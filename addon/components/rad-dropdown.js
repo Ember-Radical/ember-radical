@@ -262,13 +262,13 @@ export default Component.extend({
    */
   willDestroyElement() {
     // Check for passed closures
-    if (this.get('onDestroy')) {
-      this.get('onDestroy')()
+    if (this.onDestroy) {
+      this.onDestroy()
     }
 
     // Remove listeners
     this._unbindDropdownListeners()
-    unbindOnEscape(this.get('elementId'))
+    unbindOnEscape(this.elementId)
   },
 
   // Events
@@ -280,10 +280,7 @@ export default Component.extend({
    * @event mouseEnter
    */
   mouseEnter() {
-    let { autoClose, _autoCloseRunLater } = this.getProperties(
-      'autoClose',
-      '_autoCloseRunLater',
-    )
+    let { autoClose, _autoCloseRunLater } = this
 
     if (autoClose && _autoCloseRunLater) {
       run.cancel(_autoCloseRunLater)
@@ -297,7 +294,7 @@ export default Component.extend({
    * @event mouseLeave
    */
   mouseLeave() {
-    if (this.get('autoClose')) {
+    if (this.autoClose) {
       this.set(
         '_autoCloseRunLater',
         run.later(() => {
@@ -325,8 +322,8 @@ export default Component.extend({
      */
     show() {
       // Fire user hooks
-      if (this.get('onShow')) {
-        this.get('onShow')(...arguments)
+      if (this.onShow) {
+        this.onShow(...arguments)
       }
 
       // Toggle display
@@ -334,11 +331,12 @@ export default Component.extend({
 
       // Add click listeners and bind esc to close
       this._bindDropdownListeners()
-      bindOnEscape(this.get('elementId'), this.get('actions.hide').bind(this))
+      const { actions } = this
+      bindOnEscape(this.elementId, actions.hide.bind(this))
 
       // Fire user hooks
-      if (this.get('onShown')) {
-        this.get('onShown')(...arguments)
+      if (this.onShown) {
+        this.onShown(...arguments)
       }
     },
     /**
@@ -349,8 +347,8 @@ export default Component.extend({
      */
     hide() {
       // Fire user hooks
-      if (this.get('onHide')) {
-        this.get('onHide')(...arguments)
+      if (this.onHide) {
+        this.onHide(...arguments)
       }
 
       // Toggle display
@@ -358,11 +356,11 @@ export default Component.extend({
 
       // Remove listeners
       this._unbindDropdownListeners()
-      unbindOnEscape(this.get('elementId'))
+      unbindOnEscape(this.elementId)
 
       // Fire user hooks
-      if (this.get('onHidden')) {
-        this.get('onHidden')(...arguments)
+      if (this.onHidden) {
+        this.onHidden(...arguments)
       }
     },
   },

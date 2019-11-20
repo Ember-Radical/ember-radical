@@ -11,7 +11,7 @@
  * @return {string} Unique string for use with binding `aria-controls`
  */
 export function controls() {
-  return `cntrls-${this.get('elementId')}`
+  return `cntrls-${this.elementId}`;
 }
 
 /**
@@ -22,7 +22,7 @@ export function controls() {
  * @return {string} Unique string for use with binding `aria-describedby`
  */
 export function describedby() {
-  return `dscbdy-${this.get('elementId')}`
+  return `dscbdy-${this.elementId}`;
 }
 
 /**
@@ -33,7 +33,7 @@ export function describedby() {
  * @return {string} String of negated boolean hidden for expanded
  */
 export function expanded() {
-  return this.get('hidden') ? 'false' : 'true'
+  return this.hidden ? 'false' : 'true';
 }
 
 /**
@@ -45,7 +45,7 @@ export function expanded() {
  * @return {string} String of boolean hidden
  */
 export function hiddenForArias() {
-  return this.get('hidden') ? 'true' : 'false'
+  return this.hidden ? 'true' : 'false';
 }
 
 /**
@@ -56,5 +56,5 @@ export function hiddenForArias() {
  * @return {string} Unique string for use with binding `aria-labelledby`
  */
 export function labelledby() {
-  return `lbldy-${this.get('elementId')}`
+  return `lbldy-${this.elementId}`;
 }
