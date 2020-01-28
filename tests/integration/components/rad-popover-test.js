@@ -1,11 +1,6 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import {
-  render,
-  find,
-  findAll,
-  triggerEvent
-} from '@ember/test-helpers'
+import { render, find, findAll, triggerEvent } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad popover', function(hooks) {
@@ -99,7 +94,7 @@ module('Integration | Component | rad popover', function(hooks) {
     )
 
     // Simulate mouseEnter
-    await triggerEvent('[data-test="interact-test-target"]', 'mouseover')
+    await triggerEvent('[data-test="interact-test-target"]', 'mouseenter')
 
     assert.equal(
       find('[data-test="interact-test-content"]').getAttribute('aria-hidden'),
@@ -113,7 +108,7 @@ module('Integration | Component | rad popover', function(hooks) {
     )
 
     // Simulate mouseLeave
-    await triggerEvent('[data-test="interact-test-target"]', 'mouseout')
+    await triggerEvent('[data-test="interact-test-target"]', 'mouseleave')
 
     assert.equal(
       find('[data-test="interact-test-content"]').getAttribute('aria-hidden'),

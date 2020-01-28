@@ -1,11 +1,6 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import {
-  render,
-  find,
-  findAll,
-  triggerEvent
-} from '@ember/test-helpers'
+import { render, find, findAll, triggerEvent } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad tooltip', function(hooks) {
@@ -78,14 +73,14 @@ module('Integration | Component | rad tooltip', function(hooks) {
       'content is hidden on render',
     )
 
-    await triggerEvent('button', 'mouseover')
+    await triggerEvent('button', 'mouseenter')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'block',
       'content is displayed on button hover',
     )
 
-    await triggerEvent('button', 'mouseout')
+    await triggerEvent('button', 'mouseleave')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'none',
@@ -143,14 +138,14 @@ module('Integration | Component | rad tooltip', function(hooks) {
       'content is hidden on render',
     )
 
-    await triggerEvent('button', 'mouseover')
+    await triggerEvent('button', 'mouseenter')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'block',
       'content is displayed on button hover',
     )
 
-    await triggerEvent('button', 'mouseout')
+    await triggerEvent('button', 'mouseleave')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'none',
@@ -208,14 +203,14 @@ module('Integration | Component | rad tooltip', function(hooks) {
       'content is hidden on render',
     )
 
-    await triggerEvent('button', 'mouseover')
+    await triggerEvent('button', 'mouseenter')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'block',
       'content is displayed on button hover',
     )
 
-    await triggerEvent('button', 'mouseout')
+    await triggerEvent('button', 'mouseleave')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'none',
@@ -276,14 +271,14 @@ module('Integration | Component | rad tooltip', function(hooks) {
       'content is hidden on render',
     )
 
-    await triggerEvent('button', 'mouseover')
+    await triggerEvent('button', 'mouseenter')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'block',
       'content is displayed on button hover',
     )
 
-    await triggerEvent('button', 'mouseout')
+    await triggerEvent('button', 'mouseleave')
     assert.equal(
       getComputedStyle(find('.tooltip-content')).display,
       'none',

@@ -1,13 +1,7 @@
 import Service from '@ember/service'
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import {
-  render,
-  find,
-  click,
-  findAll,
-  triggerEvent
-} from '@ember/test-helpers'
+import { render, find, click, findAll, triggerEvent } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | rad modal/header', function(hooks) {
@@ -182,6 +176,6 @@ module('Integration | Component | rad modal/header', function(hooks) {
     `)
 
     // Trigger mouseDown on close x to test that fireTag is triggered with appropriate data
-    await triggerEvent('[data-test="rad-modal-close-button"]', 'mousedown')
+    await triggerEvent('[data-test="rad-modal-close-button"]', 'click')
   })
 })
