@@ -165,7 +165,7 @@ export default Component.extend({
   _hideContent() {
     this.set('hidden', true)
     this._unbindPopoverListeners()
-    unbindOnEscape(this.get('elementId'))
+    unbindOnEscape(this.elementId)
   },
   /**
    * When the popover is opened, bind an event listener that will close it if
@@ -184,7 +184,7 @@ export default Component.extend({
    */
   _showContent() {
     this._bindPopoverListeners()
-    bindOnEscape(this.get('elementId'), this.get('_hideContent').bind(this))
+    bindOnEscape(this.elementId, this._hideContent.bind(this))
     this.set('hidden', false)
   },
   /**
@@ -227,7 +227,7 @@ export default Component.extend({
    * @return {undefined}
    */
   didReceiveAttrs() {
-    if (!this.get('position')) {
+    if (!this.position) {
       this.set('position', 'bottom')
     }
   },
@@ -239,12 +239,12 @@ export default Component.extend({
    */
   willDestroyElement() {
     // Check for passed closures
-    if (this.get('onDestroy')) {
-      this.get('onDestroy')()
+    if (this.onDestroy) {
+      this.onDestroy()
     }
 
     this._unbindPopoverListeners()
-    unbindOnEscape(this.get('elementId'))
+    unbindOnEscape(this.elementId)
   },
 
   // Events
@@ -271,19 +271,13 @@ export default Component.extend({
   focusOut(evt) {
     this._hideContent()
   },
-  /**
-   * Show content on mouse enter
-   * @event mouseEnter
-   */
-  mouseEnter(evt) {
-    this._showContent()
-  },
-  /**
-   * Hide content on mouse leave
-   * @event mouseLeave
-   */
-  mouseLeave(evt) {
-    this._hideContent()
+  // Hooks
+  //----------------------------------------------------------------------------
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this._showContent.bind(this))
+    element.addEventListener('mouseleave', this._hideContent.bind(this))
+    this._super(...arguments)
   },
 
   // Actions

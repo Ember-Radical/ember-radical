@@ -71,7 +71,7 @@ export default Component.extend({
    */
   init() {
     this._super(...arguments)
-    if (!this.get('aria-describedby')) {
+    if (!this['aria-describedby']) {
       return console.warn('Tooltip requires aria-describedby')
     }
   },
@@ -85,12 +85,12 @@ export default Component.extend({
    */
   didRender() {
     // If the content is hidden, do less
-    if (this.get('hidden')) {
+    if (this.hidden) {
       return
     }
 
     const { right, width } = document
-      .getElementById(this.get('aria-describedby'))
+      .getElementById(this['aria-describedby'])
       .getBoundingClientRect()
     const windowWidth = window.innerWidth
 

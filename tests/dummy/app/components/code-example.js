@@ -34,8 +34,8 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
 
   _calculateCodeBlockHeight() {
-    let codeBlockHeight = this.$(this.$('.code-block pre')[0]).outerHeight()
-    this.set('codeBlockHeight', codeBlockHeight + 50)
+    // let codeBlockHeight = this.$(this.$('.code-block pre')[0]).outerHeight()
+    // this.set('codeBlockHeight', codeBlockHeight + 50)
   },
 
   _checkActionRefs(templateString) {

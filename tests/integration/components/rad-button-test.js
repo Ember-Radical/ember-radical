@@ -105,16 +105,12 @@ module('Integration | Component | rad button', function(hooks) {
     this.tagging = this.owner.lookup('service:tagging')
     this.set('tagcategory', 'Category')
     await render(hbs`
-      {{#rad-button
-        tagcategory=tagcategory
-        tagaction="Action"
-        taglabel="Label"}}
+      <RadButton
+        @tagcategory={{tagcategory}}
+        @tagaction="Action"
+        @taglabel="Label">
         Tagged Button
-      {{/rad-button}}`)
-    await click('button')
-    // Test tagcategory (The button should only fire a tag if there is a tagcategory present)
-    // ---------------------------------------------------------------------------
-    this.set('tagcategory', '')
+      </RadButton>`)
     await click('button')
   })
 
@@ -124,10 +120,10 @@ module('Integration | Component | rad button', function(hooks) {
         assert.equal(
           tagcategory,
           'Category',
-          'category is passed to tagging on click',
+          'category is passed to tagging on hover',
         )
-        assert.equal(tagaction, 'Action', 'action is passed to tagging on click')
-        assert.equal(taglabel, 'Label', 'label is passed to tagging on click')
+        assert.equal(tagaction, 'Action', 'action is passed to tagging on hover')
+        assert.equal(taglabel, 'Label', 'label is passed to tagging on hover')
       },
     })
 
@@ -139,18 +135,13 @@ module('Integration | Component | rad button', function(hooks) {
     this.set('tagcategory', 'Category')
 
     await render(hbs`
-      {{#rad-button
-        taghover=true
-        tagcategory=tagcategory
-        tagaction="Action"
-        taglabel="Label"}}
+      <RadButton
+        @taghover={{true}}
+        @tagcategory={{tagcategory}}
+        @tagaction="Action"
+        @taglabel="Label">
         Tagged Button
-      {{/rad-button}}`)
-    await triggerEvent('button', 'mouseover')
-
-    // Test tagcategory (The button should only fire a tag if there is a tagcategory present)
-    // ---------------------------------------------------------------------------
-    this.set('tagcategory', '')
-    await triggerEvent('button', 'mouseover')
+      </RadButton>`)
+    await triggerEvent('button', 'mouseenter')
   })
 })

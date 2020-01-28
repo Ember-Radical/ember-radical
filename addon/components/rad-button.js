@@ -37,31 +37,18 @@ if (TAGGING) {
      * @return {undefined}
      */
     _fireTag() {
-      const {
-        tagcategory,
-        tagaction,
-        taglabel,
-        tagvalue,
-        tagcd,
-      } = this.getProperties(
-        'tagcategory',
-        'tagaction',
-        'taglabel',
-        'tagvalue',
-        'tagcd',
-      )
+      const { tagcategory, tagaction, taglabel, tagvalue } = this
 
       // Fire off that tag, pass along available props
-      this.get('tagging').fireTag({
+      this.tagging.fireTag({
         tagcategory,
         tagaction,
         taglabel,
         tagvalue,
-        tagcd,
       })
 
       // If we're only tagging once, null out the category to prevent additional fires
-      if (this.get('tagonce')) {
+      if (this.tagonce) {
         this.set('tagcategory', null)
       }
     },
@@ -177,10 +164,10 @@ export default Component.extend(taggingAssets, {
    * @param 'outline'
    */
   brandClass: computed('brand', 'outline', function() {
-    if (this.get('outline')) {
-      return this.get('brand') ? `btn-outline-${this.get('brand')}` : null
+    if (this.outline) {
+      return this.brand ? `btn-outline-${this.brand}` : null
     } else {
-      return this.get('brand') ? `btn-${this.get('brand')}` : null
+      return this.brand ? `btn-${this.brand}` : null
     }
   }),
 
@@ -234,66 +221,12 @@ export default Component.extend(taggingAssets, {
 
   // Events
   // ---------------------------------------------------------------------------
-
-  /**
-   * The `mouseDown` event is used for some utility/housekeeping methods because
-   * we use the `click` event to pass in actions.
-   *
-   * Handle setting the outline on this element to `none` because we know this
-   * event is only triggered by actual mouse clicks. Keyboard events don't trigger
-   * it, which is a convenient way to know we're good to hide the outline and
-   * maintain usability for keyboard users. A++ accessibility!
-   *
-   * Handle checking for a tagging category and if one exists, fire a tag.
-   *
-   * If you need to override this event, be sure to call `this._super();`
-   * @event mouseDown
-   * @return {undefined}
-   */
-  mouseDown() {
-    // @TODO CSS solution ?
-    // Hide outline b/c this was a legit mouse click
-    // On blur, remove outline style in case the user switches to keyboard
-    const { element } = this
-    Object.assign(element.style, { outline: 'none', boxShadow: 'none' })
-    const onBlur = () => {
-      // If this button instance is destroying/destroyed, don't bother
-      // (This is an issue with instances of `{{rad-alert}}`)
-      if (this.isDestroying || this.isDestroyed) {
-        return
-      }
-      Object.assign(element.style, { outline: '', boxShadow: '' })
-      element.removeEventListener('blur', onBlur)
-    }
-    element.addEventListener('blur', onBlur)
-
+  didInsertElement() {
     if (TAGGING) {
-      // If a tagcategory is present, handle firing a tag
-      if (this.get('tagcategory')) {
-        this._fireTag()
-      }
-    }
-  },
-  /**
-   * The `mouseEnter` checks for a tagging category and hover flag. If they're
-   * present a tag is fired.
-   *
-   * If you need to override this event, be sure to call `this._super();`
-   * TODO: Only include this if Tagging feature is enabled
-   * @event mouseEnter
-   * @return {undefined}
-   */
-  mouseEnter() {
-    if (TAGGING) {
-      const { taghover, tagcategory } = this.getProperties(
-        'taghover',
-        'tagcategory',
-      )
-
-      // If tagcategory is present and hover is flagged, handle firing a tag
-      if (taghover && tagcategory) {
-        this._fireTag()
-      }
+      const { element, _fireTag, taghover } = this
+      if (taghover) {
+        element.addEventListener('mouseenter', _fireTag.bind(this))
+      } else element.addEventListener('click', _fireTag.bind(this))
     }
   },
 

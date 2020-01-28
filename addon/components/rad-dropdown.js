@@ -254,6 +254,12 @@ export default Component.extend({
     this._super(...arguments)
     this.set('_onMouseTouchEnd', this._onMouseTouchEnd.bind(this))
   },
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this.onMouseEnter.bind(this))
+    element.addEventListener('mouseleave', this.onMouseLeave.bind(this))
+  },
+
   /**
    * Safety first!
    * If we leave the page without closing the dropdown we don't want to orphan
@@ -262,28 +268,25 @@ export default Component.extend({
    */
   willDestroyElement() {
     // Check for passed closures
-    if (this.get('onDestroy')) {
-      this.get('onDestroy')()
+    if (this.onDestroy) {
+      this.onDestroy()
     }
 
     // Remove listeners
     this._unbindDropdownListeners()
-    unbindOnEscape(this.get('elementId'))
+    unbindOnEscape(this.elementId)
   },
 
-  // Events
+  // Methods
   // ---------------------------------------------------------------------------
 
   /**
    * Check for an auto-close timer when user mouses into dropdown and cancel it
    * if it exists.
-   * @event mouseEnter
+   * @method onMouseEnter
    */
-  mouseEnter() {
-    let { autoClose, _autoCloseRunLater } = this.getProperties(
-      'autoClose',
-      '_autoCloseRunLater',
-    )
+  onMouseEnter() {
+    let { autoClose, _autoCloseRunLater } = this
 
     if (autoClose && _autoCloseRunLater) {
       run.cancel(_autoCloseRunLater)
@@ -294,10 +297,10 @@ export default Component.extend({
    * When user mouses out of the dropdown start an auto close timer to close
    * dropdown after 2.5 seconds. Is canceled using `mouseEnter` if user mouses
    * back into dropdown.
-   * @event mouseLeave
+   * @method onMouseLeave
    */
-  mouseLeave() {
-    if (this.get('autoClose')) {
+  onMouseLeave() {
+    if (this.autoClose) {
       this.set(
         '_autoCloseRunLater',
         run.later(() => {
@@ -325,8 +328,8 @@ export default Component.extend({
      */
     show() {
       // Fire user hooks
-      if (this.get('onShow')) {
-        this.get('onShow')(...arguments)
+      if (this.onShow) {
+        this.onShow(...arguments)
       }
 
       // Toggle display
@@ -334,11 +337,12 @@ export default Component.extend({
 
       // Add click listeners and bind esc to close
       this._bindDropdownListeners()
-      bindOnEscape(this.get('elementId'), this.get('actions.hide').bind(this))
+      const { actions } = this
+      bindOnEscape(this.elementId, actions.hide.bind(this))
 
       // Fire user hooks
-      if (this.get('onShown')) {
-        this.get('onShown')(...arguments)
+      if (this.onShown) {
+        this.onShown(...arguments)
       }
     },
     /**
@@ -349,8 +353,8 @@ export default Component.extend({
      */
     hide() {
       // Fire user hooks
-      if (this.get('onHide')) {
-        this.get('onHide')(...arguments)
+      if (this.onHide) {
+        this.onHide(...arguments)
       }
 
       // Toggle display
@@ -358,11 +362,11 @@ export default Component.extend({
 
       // Remove listeners
       this._unbindDropdownListeners()
-      unbindOnEscape(this.get('elementId'))
+      unbindOnEscape(this.elementId)
 
       // Fire user hooks
-      if (this.get('onHidden')) {
-        this.get('onHidden')(...arguments)
+      if (this.onHidden) {
+        this.onHidden(...arguments)
       }
     },
   },

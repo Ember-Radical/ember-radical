@@ -156,8 +156,8 @@ export default Component.extend({
    */
   _showContent() {
     this.set('hidden', false)
-    if (this.get('onShow')) {
-      this.get('onShow')()
+    if (this.onShow) {
+      this.onShow()
     }
   },
   /**
@@ -167,27 +167,13 @@ export default Component.extend({
    */
   _hideContent() {
     this.set('hidden', true)
-    if (this.get('onHide')) {
-      this.get('onHide')()
+    if (this.onHide) {
+      this.onHide()
     }
   },
 
   // Events
   // ---------------------------------------------------------------------------
-  /**
-   * Show content on mouse enter
-   * @event mouseEnter
-   */
-  mouseEnter(evt) {
-    this._showContent()
-  },
-  /**
-   * Hide content on mouse leave
-   * @event mouseLeave
-   */
-  mouseLeave(evt) {
-    this._hideContent()
-  },
   /**
    * Show content on focus
    * @event focusIn
@@ -202,7 +188,11 @@ export default Component.extend({
   focusOut() {
     this._hideContent()
   },
-
+  didInsertElement() {
+    const { element } = this
+    element.addEventListener('mouseenter', this._showContent.bind(this))
+    element.addEventListener('mouseleave', this._hideContent.bind(this))
+  },
   // Layout
   // ---------------------------------------------------------------------------
   layout: hbs`

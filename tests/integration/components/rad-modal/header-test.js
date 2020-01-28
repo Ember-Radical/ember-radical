@@ -176,6 +176,6 @@ module('Integration | Component | rad modal/header', function(hooks) {
     `)
 
     // Trigger mouseDown on close x to test that fireTag is triggered with appropriate data
-    await triggerEvent('[data-test="rad-modal-close-button"]', 'mousedown')
+    await triggerEvent('[data-test="rad-modal-close-button"]', 'click')
   })
 })

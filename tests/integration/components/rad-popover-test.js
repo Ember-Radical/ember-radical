@@ -94,7 +94,7 @@ module('Integration | Component | rad popover', function(hooks) {
     )
 
     // Simulate mouseEnter
-    await triggerEvent('[data-test="interact-test-target"]', 'mouseover')
+    await triggerEvent('[data-test="interact-test-target"]', 'mouseenter')
 
     assert.equal(
       find('[data-test="interact-test-content"]').getAttribute('aria-hidden'),
@@ -108,7 +108,7 @@ module('Integration | Component | rad popover', function(hooks) {
     )
 
     // Simulate mouseLeave
-    await triggerEvent('[data-test="interact-test-target"]', 'mouseout')
+    await triggerEvent('[data-test="interact-test-target"]', 'mouseleave')
 
     assert.equal(
       find('[data-test="interact-test-content"]').getAttribute('aria-hidden'),
