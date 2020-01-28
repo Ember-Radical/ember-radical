@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Upgraded Ember.js to version 3.14
+- Upgraded Ember.js to version 3.10
 
 ### Fixed
 
