@@ -1,5 +1,4 @@
 import Component from '@ember/component'
-import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
 
 /**
@@ -100,7 +99,7 @@ export default Component.extend({
    */
   classNames: ['tabs-content'],
   /**
-   * Computed `_hidden` accounts for whether the tab is selected (by checking
+   * `_hidden` accounts for whether the tab is selected (by checking
    * `activeId`) && if this tab has been flagged to be hidden with property
    * `hidden`
    * @property _hidden
@@ -108,13 +107,7 @@ export default Component.extend({
    * @param {boolean} hidden
    * @return {string} String of true/false for use with `aria-hidden` binding
    */
-  _hidden: computed('activeId', 'hidden', function() {
-    if (this.hidden || this.activeId !== this.elementId) {
-      return 'true'
-    } else {
-      return 'false'
-    }
-  }),
+  _hidden: 'true',
   // Internal Methods
   //----------------------------------------------------------------------------
   _getProps() {
@@ -123,18 +116,28 @@ export default Component.extend({
       hidden: this.hidden,
     }
   },
+  _calculateHidden() {
+    const { hidden, activeId, defaultTab, element } = this
+    const propToUse = activeId || defaultTab || null
+    if (!element || hidden || propToUse !== this.element.id) {
+      this.set('_hidden', 'true')
+    } else {
+      this.set('_hidden', 'false')
+    }
+  },
   // Hooks
   // ---------------------------------------------------------------------------
 
   /**
    * Handle registering with the tabs container on int by firing `registerTab`
    * closure action with this tab's data.
-   * @event init
+   * @event didInsertElement
    */
-  init() {
+  didInsertElement() {
     this._super(...arguments)
+    this._calculateHidden()
     const {
-      elementId,
+      element: { id: elementId },
       label,
       hidden,
       tabDataTest,
@@ -158,6 +161,7 @@ export default Component.extend({
    * @event didReceiveAttrs
    */
   didReceiveAttrs() {
+    this._calculateHidden()
     // Update the private hidden state so it can be used for comparison
     // on the next attrs update
     this.set('_oldProps', this._getProps())
@@ -179,7 +183,7 @@ export default Component.extend({
       }
     }
     if (Object.keys(props).length) {
-      this.updateTab(this.elementId, props)
+      this.updateTab(this.element.id, props)
     }
   },
 

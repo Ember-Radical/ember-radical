@@ -294,7 +294,7 @@ export default Component.extend({
       // If an onChange closure was passed in, call it with change data. This
       // allows for 'controlled' tabs
       if (this.onChange) {
-        this.onChange({ elementId: elementId })
+        this.onChange({ elementId })
       } else {
         this.set('activeId', elementId)
       }
@@ -323,9 +323,7 @@ export default Component.extend({
      * @param {boolean} tab.hidden    Hidden status of changed tab
      */
     updateTab(elementId, propsToUpdate) {
-      const tabToUpdate = this.tabList.find(
-        tab => tab.elementId === elementId,
-      )
+      const tabToUpdate = this.tabList.find(tab => tab.elementId === elementId)
 
       if (tabToUpdate) {
         // TODO: when updating hidden in the tabList a double render is occuring

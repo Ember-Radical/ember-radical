@@ -37,7 +37,7 @@ if (TAGGING) {
      * @return {undefined}
      */
     _fireTag() {
-      const { tagcategory, tagaction, taglabel, tagvalue, tagcd } = this
+      const { tagcategory, tagaction, taglabel, tagvalue } = this
 
       // Fire off that tag, pass along available props
       this.tagging.fireTag({
@@ -45,7 +45,6 @@ if (TAGGING) {
         tagaction,
         taglabel,
         tagvalue,
-        tagcd,
       })
 
       // If we're only tagging once, null out the category to prevent additional fires
