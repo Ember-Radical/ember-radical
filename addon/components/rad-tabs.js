@@ -339,7 +339,7 @@ export default Component.extend({
     {{! A list of buttons that are all automagically added to the tabList based on the number of rad-tabs.content components are nested inside the component. }}
     <div class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
       {{#each tabList as |tab|}}
-        <div role="tab" class={{tabClassNames}}
+        <div role="tab" data-test="tab" class={{tabClassNames}}
           aria-hidden="{{if tab.hidden true false}}">
           {{#rad-button
             aria-controls=tab.elementId
