@@ -337,12 +337,11 @@ export default Component.extend({
   // ---------------------------------------------------------------------------
   layout: hbs`
     {{! A list of buttons that are all automagically added to the tabList based on the number of rad-tabs.content components are nested inside the component. }}
-    <ul class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
+    <div class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
       {{#each tabList as |tab|}}
-        <li class={{tabClassNames}}
+        <div role="tab" class={{tabClassNames}}
           aria-hidden="{{if tab.hidden true false}}">
           {{#rad-button
-            ariaRole="tab"
             aria-controls=tab.elementId
             class=(concat 'tab' (if (eq tab.elementId activeId) ' active') ' ' tabButtonClassNames)
             link=true
@@ -353,9 +352,9 @@ export default Component.extend({
             taglabel=tab.taglabel}}
             {{tab.label}}
           {{/rad-button}}
-        </li>
+        </div>
       {{/each}}
-    </ul>
+    </div>
     <div class="content-container {{if card 'rad-card'}}">
       {{! Yield the rad-tabs/content component pre-bound with internal props }}
       {{yield

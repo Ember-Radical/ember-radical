@@ -393,24 +393,24 @@ module('Integration | Component | rad tabs', function(hooks) {
     {{/rad-tabs}}`)
 
     assert.ok(
-      find('[data-test="custom-classes-test"] ul').classList.contains(
+      find('[data-test="custom-classes-test"] div').classList.contains(
         'totally-rad-buttons',
       ),
-      'The custom buttonStyleClassNames should be applied to the ul',
+      'The custom buttonStyleClassNames should be applied to the div',
     )
 
     assert.ok(
-      find('[data-test="custom-classes-test"] ul').classList.contains(
+      find('[data-test="custom-classes-test"] div').classList.contains(
         'totally-effing-rad-tab-list',
       ),
-      'The custom tabListClassNames should be applied to the ul',
+      'The custom tabListClassNames should be applied to the div',
     )
 
     assert.ok(
-      find('[data-test="custom-classes-test"] li:first-child').classList.contains(
+      find('[data-test="custom-classes-test"] div div:first-child').classList.contains(
         'custom-tab-class',
       ),
-      'The custom tabClassNames should be applied to the tab item li elements',
+      'The custom tabClassNames should be applied to the tab item div elements',
     )
 
     assert.ok(
