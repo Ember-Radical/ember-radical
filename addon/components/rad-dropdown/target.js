@@ -27,16 +27,22 @@ export default RadButton.extend({
    * @param hidden
    */
   expanded: computed('hidden', expanded),
+  /**
+   * `ariaLabelledBy` accounts for which header is the label for the dropdown
+   * @property ariaLabelledBy
+   * @return {string} String of id name for use with `aria-labelledby` binding
+   */
+  ariaLabelledBy: '',
 
   // Ember Props
   // ---------------------------------------------------------------------------
   /**
-   * Bind `aria-haspopup` and `aria-expanded` for A+ usability;
+   * Bind `aria-haspopup`, `aria-expanded`, and `aria-lablelledby` for A+ usability;
    * Auto-binds `data-test` attribute
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['aria-haspopup', 'data-test', 'expanded:aria-expanded'],
+  attributeBindings: ['aria-haspopup', 'data-test', 'expanded:aria-expanded', 'ariaLabelledBy:aria-labelledby',],
   /**
    * Bind `dropdown-target`
    * @property classNames
