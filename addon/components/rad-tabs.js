@@ -340,7 +340,9 @@ export default Component.extend({
     <div class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
       {{#each tabList as |tab|}}
         <div role="tab" data-test="tab" class={{tabClassNames}}
-          aria-hidden="{{if tab.hidden true false}}">
+          aria-hidden="{{if tab.hidden true false}}"
+          id="{{tab.elementId}}-control"
+          aria-selected="{{if (eq tab.elementId activeId) true false}}">
           {{#rad-button
             aria-controls=tab.elementId
             class=(concat 'tab' (if (eq tab.elementId activeId) ' active') ' ' tabButtonClassNames)
