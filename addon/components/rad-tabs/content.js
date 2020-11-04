@@ -87,11 +87,16 @@ export default Component.extend({
   /**
    * Bound attributes:
    * - `data-test`: for precise testing identification
+   * - `aria-labelledby`: designate which tab labels this panel
    * - `_hidden`: to hide this tab if it is not selected or if prop hidden is true
    * @property attributeBindings
    * @type {Array}
    */
-  attributeBindings: ['data-test', '_hidden:aria-hidden'],
+  attributeBindings: [
+    'data-test',
+    '_hidden:aria-hidden',
+    'ariaLabelledBy:aria-labelledby',
+  ],
   /**
    * Class names: `tabs-content`
    * @property classNames
@@ -108,6 +113,12 @@ export default Component.extend({
    * @return {string} String of true/false for use with `aria-hidden` binding
    */
   _hidden: 'true',
+  /**
+   * `ariaLabelledBy` accounts for which tab is the label for the tab panel
+   * @property ariaLabelledBy
+   * @return {string} String of id name for use with `aria-labelledby` binding
+   */
+  ariaLabelledBy: '',
   // Internal Methods
   //----------------------------------------------------------------------------
   _getProps() {
