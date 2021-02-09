@@ -1,8 +1,8 @@
 {
   "name": "ember-radical",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A set of lightweight, simple and fully accessible Ember DDAU components.",
-  "homepage": "https://healthsparq.github.io/ember-radical",
+  "__DEPRECATED_TODO_FIXME_homepage": "https://healthsparq.github.io/ember-radical",
   "keywords": [
     "ember",
     "ember-addon",
@@ -26,7 +26,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/healthsparq/ember-radical",
+  "repository": "git@github.com:Ember-Radical/ember-radical.git",
   "scripts": {
     "build": "./node_modules/.bin/ember build",
     "docs:prod": "NODE_ENV=production ember docs",
