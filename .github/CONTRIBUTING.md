@@ -17,7 +17,7 @@ Note that all components declare their templates inline using the [ember-cli-htm
 ## Running
 
 - `ember serve`
-- Visit your app at [http://localhost:4200](http://localhost:4200).
+- Visit your app at [http://localhost:4300](http://localhost:4300).
 
 ## Running Tests
 

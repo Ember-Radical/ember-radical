@@ -1,6 +1,6 @@
 {
   "name": "ember-radical",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "A set of lightweight, simple and fully accessible Ember DDAU components.",
   "__DEPRECATED_TODO_FIXME_homepage": "https://healthsparq.github.io/ember-radical",
   "keywords": [
@@ -31,7 +31,7 @@
     "build": "./node_modules/.bin/ember build",
     "docs:prod": "NODE_ENV=production ember docs",
     "deploy": "npm run docs:prod && ember b -environment=production && gh-pages -d dist",
-    "start": "./node_modules/.bin/ember server",
+    "start": "./node_modules/.bin/ember serve --port 4300",
     "test": "./node_modules/.bin/ember try:each",
     "svgdefs": "svg-sprite --defs --defs-dest=tests/dummy/public/assets --defs-sprite=symbol-defs.svg tests/dummy/public/svgs/*.svg",
     "format": "./node_modules/.bin/prettier --write \"{addon,app,tests}/**/*.js\""
@@ -43,7 +43,6 @@
     "bootstrap": "4.1.1",
     "ember-cli-babel": "^7.11.1",
     "ember-cli-htmlbars": "^4.0.1",
-    "ember-cli-htmlbars-inline-precompile": "^3.0.0",
     "tabbable": "^4.0.0"
   },
   "devDependencies": {
