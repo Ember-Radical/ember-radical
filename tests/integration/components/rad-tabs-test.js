@@ -211,7 +211,8 @@ module('Integration | Component | rad tabs', function(hooks) {
         'tab panels hidden on render',
       )
     })
-    tabs.forEach(tab => {
+    tabs.forEach(button => {
+      const { parentNode: tab } = button
       assert.notOk(tab.classList.contains('active'), 'no tab should be active')
     })
 
@@ -219,7 +220,8 @@ module('Integration | Component | rad tabs', function(hooks) {
     // ---------------------------------------------------------------------------
     await click('[data-test="tab-a"]')
     // Tab A should now have class active
-    tabs.forEach(tab => {
+    tabs.forEach(button => {
+      const { parentNode: tab } = button
       if (tab.getAttribute('data-test') === 'tab-a') {
         assert.ok(
           tab.classList.contains('active'),
@@ -253,7 +255,8 @@ module('Integration | Component | rad tabs', function(hooks) {
     // ---------------------------------------------------------------------------
     await click('[data-test="tab-c"]')
     // Tab C should now have active class
-    tabs.forEach(tab => {
+    tabs.forEach(button => {
+      const { parentNode: tab } = button
       if (tab.dataset.test === 'tab-c') {
         assert.ok(
           tab.classList.contains('active'),
@@ -393,9 +396,7 @@ module('Integration | Component | rad tabs', function(hooks) {
     {{/rad-tabs}}`)
 
     assert.ok(
-      find('[data-test="tab-list"]').classList.contains(
-        'totally-rad-buttons',
-      ),
+      find('[data-test="tab-list"]').classList.contains('totally-rad-buttons'),
       'The custom buttonStyleClassNames should be applied to the div',
     )
 
@@ -407,9 +408,7 @@ module('Integration | Component | rad tabs', function(hooks) {
     )
 
     assert.ok(
-      find('[data-test="tab"]').classList.contains(
-        'custom-tab-class',
-      ),
+      find('[data-test="tab"]').classList.contains('custom-tab-class'),
       'The custom tabClassNames should be applied to the tab item div elements',
     )
 
