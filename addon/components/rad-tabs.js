@@ -339,23 +339,21 @@ export default Component.extend({
     {{! A list of buttons that are all automagically added to the tabList based on the number of rad-tabs.content components are nested inside the component. }}
     <div class="tab-list {{tabListClassNames}}{{if buttonStyle (concat ' ' buttonStyleClassNames)}}" role="tablist" data-test="tab-list">
       {{#each tabList as |tab|}}
-        <div data-test="tab" class={{tabClassNames}}
-          aria-hidden="{{if tab.hidden true false}}"
-          id="{{tab.elementId}}-control"
-          aria-selected="{{if (eq tab.elementId activeId) true false}}">
-          {{#rad-button
-            role="tab"
-            aria-controls=tab.elementId
-            class=(concat 'tab' (if (eq tab.elementId activeId) ' active') ' ' tabButtonClassNames)
-            link=true
-            click=(action 'showTab' tab.elementId)
-            data-test=tab.tabDataTest
-            tagcategory=tab.tagcategory
-            tagaction=tab.tagaction
-            taglabel=tab.taglabel}}
-            {{tab.label}}
-          {{/rad-button}}
-        </div>
+        {{#rad-button
+          aria-controls=tab.elementId
+          aria-hidden=(if tab.hidden 'true' 'false')
+          aria-selected=(if (eq tab.elementId activeId) 'true' 'false')
+          class=(concat 'tab' (if (eq tab.elementId activeId) ' active') ' ' tabButtonClassNames ' ' tabClassNames)
+          click=(action 'showTab' tab.elementId)
+          data-test=tab.tabDataTest
+          id=(concat tab.elementId '-control')
+          link=true
+          role="tab"
+          tagaction=tab.tagaction
+          tagcategory=tab.tagcategory
+          taglabel=tab.taglabel}}
+          {{tab.label}}
+        {{/rad-button}}
       {{/each}}
     </div>
     <div class="content-container {{if card 'rad-card'}}">
