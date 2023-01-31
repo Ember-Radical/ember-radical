@@ -191,6 +191,7 @@ export default Component.extend(taggingAssets, {
     'data-test',
     'disabled',
     'type',
+    'role',
   ],
   /**
    * Bind standard rad classname for component: `rad-button`

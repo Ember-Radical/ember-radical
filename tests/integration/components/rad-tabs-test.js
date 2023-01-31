@@ -135,12 +135,12 @@ module('Integration | Component | rad tabs', function(hooks) {
 
     // Tab H tab button should be hidden
     assert.equal(
-      find('[data-test="tab-g"]').parentNode.getAttribute('aria-hidden'),
+      find('[data-test="tab-g"]').getAttribute('aria-hidden'),
       'false',
       'show default tab button',
     )
     assert.equal(
-      find('[data-test="tab-h"]').parentNode.getAttribute('aria-hidden'),
+      find('[data-test="tab-h"]').getAttribute('aria-hidden'),
       'true',
       'pizza tab is hidden',
     )
@@ -162,12 +162,12 @@ module('Integration | Component | rad tabs', function(hooks) {
 
     // Both tab buttons should be shown
     assert.equal(
-      find('[data-test="tab-g"]').parentNode.getAttribute('aria-hidden'),
+      find('[data-test="tab-g"]').getAttribute('aria-hidden'),
       'false',
       'show default tab button',
     )
     assert.equal(
-      find('[data-test="tab-h"]').parentNode.getAttribute('aria-hidden'),
+      find('[data-test="tab-h"]').getAttribute('aria-hidden'),
       'false',
       'show tab h tab button',
     )
@@ -393,9 +393,7 @@ module('Integration | Component | rad tabs', function(hooks) {
     {{/rad-tabs}}`)
 
     assert.ok(
-      find('[data-test="tab-list"]').classList.contains(
-        'totally-rad-buttons',
-      ),
+      find('[data-test="tab-list"]').classList.contains('totally-rad-buttons'),
       'The custom buttonStyleClassNames should be applied to the div',
     )
 
@@ -404,13 +402,6 @@ module('Integration | Component | rad tabs', function(hooks) {
         'totally-effing-rad-tab-list',
       ),
       'The custom tabListClassNames should be applied to the div',
-    )
-
-    assert.ok(
-      find('[data-test="tab"]').classList.contains(
-        'custom-tab-class',
-      ),
-      'The custom tabClassNames should be applied to the tab item div elements',
     )
 
     assert.ok(
