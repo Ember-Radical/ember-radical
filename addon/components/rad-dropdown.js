@@ -1,6 +1,6 @@
 import Component from '@ember/component'
 import hbs from 'htmlbars-inline-precompile'
-import run from 'ember-runloop'
+import run from '@ember/runloop'
 
 import { bindOnEscape, unbindOnEscape } from '../utils/listeners'
 import { isChild } from '../utils/elements'

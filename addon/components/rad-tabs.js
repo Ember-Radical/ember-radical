@@ -1,7 +1,7 @@
 import { setProperties } from '@ember/object'
 import { A } from '@ember/array'
 import Component from '@ember/component'
-import run from 'ember-runloop'
+import run from '@ember/runloop'
 import hbs from 'htmlbars-inline-precompile'
 
 import deprecated from '../utils/deprecated'

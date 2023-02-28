@@ -1,5 +1,5 @@
 import Component from '@ember/component'
-import run from 'ember-runloop'
+import run from '@ember/runloop'
 import { computed } from '@ember/object'
 import hbs from 'htmlbars-inline-precompile'
 
@@ -99,7 +99,7 @@ export default Component.extend({
    * @protected
    */
   brandClass: computed('brand', function() {
-    return this.brand ? `alert-${this.brand}` : null;
+    return this.brand ? `alert-${this.brand}` : null
   }),
 
   // Ember Properties
